@@ -21,15 +21,17 @@ class Navbar extends Component {
 				<img src={logo} alt="Brand logo" className="header-logo" />
 
 				<div className="header actions">
-					<form action="#" className="header actions-currency">
-						<select id="currency" name="currency">
-							<option value="no-value">$</option>
-							<option value="usd">$ USD</option>
-							<option value="euro">EURO</option>
-							<option value="jpy">JPY</option>
-						</select>
-						<input type="submit" />
-					</form>
+					<div className="header action-dropdown container">
+						<span className="header action-dropdown currency-symbol">$</span>
+						<ul className="header action-dropdown ">
+							<li className="header action-dropdwon item">$ USD</li>
+							<li className="header action-dropdwon item">&euro;EURO</li>
+							<li className="header action-dropdwon item">&#165;JPY</li>
+						</ul>
+						<span className="header action-dropdown dropdown-symbol">
+							&#8964;
+						</span>
+					</div>
 
 					<span className="header actions-cartbtn" role="button">
 						&#x1F6D2;
