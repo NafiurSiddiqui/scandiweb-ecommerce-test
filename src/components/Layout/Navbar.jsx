@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../assets/a-logo.png';
 import classes from './Navbar.module.css';
-
 class Navbar extends Component {
 	render() {
 		return (
