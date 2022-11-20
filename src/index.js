@@ -19,6 +19,7 @@ export const GET_ALL_CATEGORIES = gql`
 	query {
 		category {
 			products {
+				category
 				id
 				name
 				inStock

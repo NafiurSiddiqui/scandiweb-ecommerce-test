@@ -10,17 +10,12 @@ class Navbar extends Component {
 						<li
 							className={`navigation header-navigation ${classes['navigation-item']}`}
 						>
-							Women
+							Clothes
 						</li>
 						<li
 							className={`navigation header-navigation ${classes['navigation-item']}`}
 						>
-							Men
-						</li>
-						<li
-							className={`navigation header-navigation ${classes['navigation-item']}`}
-						>
-							Kids
+							Tech
 						</li>
 					</ul>
 				</nav>
