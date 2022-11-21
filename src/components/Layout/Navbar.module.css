@@ -64,4 +64,22 @@ header {
 	right: 80px;
 	transform: rotateY(150deg) scale(1.3);
 	cursor: pointer;
+	border: 1px solid black;
+	width: 100%;
+}
+
+.actions-cartbtn:before {
+	content: '3';
+	font-size: 0.8rem;
+	text-align: center;
+	transform: rotateY(180deg);
+	color: white;
+	display: inline-block;
+	width: 22px;
+	height: 20px;
+	background-color: rgb(9, 9, 9);
+	position: relative;
+	right: -8px;
+	top: -5px;
+	border-radius: 50%;
 }
