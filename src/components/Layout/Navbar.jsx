@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import logo from '../assets/a-logo.png';
+import Currency from '../Navbar/Currency';
 import classes from './Navbar.module.css';
+
 class Navbar extends Component {
 	render() {
 		return (
 			<header className={classes.header}>
 				<nav className={classes.navigation}>
 					<ul className={`navigation ${classes['header-navigation']}`}>
+						<li
+							className={`navigation header-navigation ${classes['navigation-item']}`}
+						>
+							All
+						</li>
 						<li
 							className={`navigation header-navigation ${classes['navigation-item']}`}
 						>
@@ -25,41 +32,7 @@ class Navbar extends Component {
 				</div>
 
 				<div className={classes['header-actions']}>
-					<div className={`header action-dropdown ${classes.container} `}>
-						<div
-							className={`header action-dropdown ${classes['currency-symobol-container']} `}
-						>
-							<span className="header action-dropdown currency-symbol">$</span>
-
-							<span
-								className={`header action-dropdown ${classes['dropdown-symbol']}`}
-							>
-								&#8964;
-							</span>
-						</div>
-						<ul className={`header ${classes['action-dropdown-container']} `}>
-							<li
-								className={`header action-dropdown ${classes['dropdown-item']}`}
-							>
-								$ USD
-							</li>
-							<li
-								className={`header action-dropdown ${classes['dropdown-item']}`}
-							>
-								&euro;EURO
-							</li>
-							<li
-								className={`header action-dropdown ${classes['dropdown-item']}`}
-							>
-								&#165;JPY
-							</li>
-							<li
-								className={`header action-dropdown ${classes['dropdown-item']}`}
-							>
-								&#165;JPY
-							</li>
-						</ul>
-					</div>
+					<Currency />
 
 					<span
 						className={`header ${classes['actions-cartbtn']}`}
