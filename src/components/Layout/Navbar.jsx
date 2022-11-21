@@ -39,17 +39,22 @@ class Navbar extends Component {
 						</div>
 						<ul className={`header ${classes['action-dropdown-container']} `}>
 							<li
-								className={`header action-dropdwon ${classes['dropdown-item']}`}
+								className={`header action-dropdown ${classes['dropdown-item']}`}
 							>
 								$ USD
 							</li>
 							<li
-								className={`header action-dropdwon ${classes['dropdown-item']}`}
+								className={`header action-dropdown ${classes['dropdown-item']}`}
 							>
 								&euro;EURO
 							</li>
 							<li
-								className={`header action-dropdwon ${classes['dropdown-item']}`}
+								className={`header action-dropdown ${classes['dropdown-item']}`}
+							>
+								&#165;JPY
+							</li>
+							<li
+								className={`header action-dropdown ${classes['dropdown-item']}`}
 							>
 								&#165;JPY
 							</li>
