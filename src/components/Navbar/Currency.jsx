@@ -11,7 +11,7 @@ export default class Currency extends Component {
 		return (
 			<>
 				<div className={`header-currency`}>
-					<div className={`header-currency__symbols `}>
+					<div className={`header-currency__symbols`}>
 						<span className="header-currency__symbols__currency-symbol">$</span>
 
 						<span className={`header-currency__symbols__dropdown-symbol`}>
