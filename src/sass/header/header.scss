@@ -54,9 +54,10 @@ $currencyHover: #e2e2e2;
 	}
 
 	&-cart {
-		@include borderTest;
+		// @include borderTest;
 		width: 100%;
-
+		position: relative;
+		left: -2rem;
 		&__btn {
 			transform: rotateY(150deg) scale(1.3);
 			cursor: pointer;
