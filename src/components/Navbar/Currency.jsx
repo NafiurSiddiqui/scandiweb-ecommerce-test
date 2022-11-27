@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classes from './Currency.module.css';
 
 export default class Currency extends Component {
 	constructor() {
@@ -11,33 +10,25 @@ export default class Currency extends Component {
 	render() {
 		return (
 			<>
-				<div className={`header action-dropdown ${classes.container} `}>
-					<div
-						className={`header action-dropdown ${classes['currency-symobol-container']} `}
-					>
-						<span className="header action-dropdown currency-symbol">$</span>
+				<div className={`header-currency`}>
+					<div className={`header-currency__symbols `}>
+						<span className="header-currency__symbols__currency-symbol">$</span>
 
-						<span
-							className={`header action-dropdown ${classes['dropdown-symbol']}`}
-						>
+						<span className={`header-currency__symbols__dropdown-symbol`}>
 							&#8964;
 						</span>
 					</div>
 				</div>
-				<ul className={`${classes['action-dropdown-container']} `}>
-					<li className={`header action-dropdown ${classes['dropdown-item']}`}>
-						$ USD
-					</li>
-					<li className={`header action-dropdown ${classes['dropdown-item']}`}>
+				<ul className={`header-currency__currency-items `}>
+					<li className={`header-currency__currency-items__item `}>$ USD</li>
+					<li className={`header-currency__currency-items__item `}>
 						&euro;EURO
 					</li>
-					<li className={`header action-dropdown ${classes['dropdown-item']}`}>
+					<li className={`header-currency__currency-items__item `}>
 						&#165;JPY
 					</li>
-					<li className={`header action-dropdown ${classes['dropdown-item']}`}>
-						$ AUD
-					</li>
-					<li className={`header action-dropdown ${classes['dropdown-item']}`}>
+					<li className={`header-currency__currency-items__item `}>$ AUD</li>
+					<li className={`header-currency__currency-items__item `}>
 						&#8381; RUB
 					</li>
 				</ul>

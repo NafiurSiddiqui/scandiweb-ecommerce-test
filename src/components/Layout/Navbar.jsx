@@ -1,45 +1,28 @@
 import React, { Component } from 'react';
 import logo from '../assets/a-logo.png';
 import Currency from '../Navbar/Currency';
-import classes from './Navbar.module.css';
+import NavCart from '../Navbar/NavCart';
 
 class Navbar extends Component {
 	render() {
 		return (
-			<header className={classes.header}>
-				<nav className={classes.navigation}>
-					<ul className={`navigation ${classes['header-navigation']}`}>
-						<li
-							className={`navigation header-navigation ${classes['navigation-item']}`}
-						>
-							All
-						</li>
-						<li
-							className={`navigation header-navigation ${classes['navigation-item']}`}
-						>
-							Clothes
-						</li>
-						<li
-							className={`navigation header-navigation ${classes['navigation-item']}`}
-						>
-							Tech
-						</li>
+			<header className={'header'}>
+				<nav className={'header-navigation'}>
+					<ul className={`header-navigation__items`}>
+						<li className={`header-navigation__items--item`}>All</li>
+						<li className={`header-navigation__items--item`}>Clothes</li>
+						<li className={`header-navigation__items--item`}>Tech</li>
 					</ul>
 				</nav>
 
-				<div className={`header-logo ${classes['logo-container']}`}>
-					<img src={logo} alt="Brand logo" className={classes['header-logo']} />
+				<div className={`header-logo`}>
+					<img src={logo} alt="Brand logo" className={'header-logo__logo'} />
 				</div>
 
-				<div className={classes['header-actions']}>
+				<div className={'header-actions'}>
 					<Currency />
 
-					<span
-						className={`header ${classes['actions-cartbtn']}`}
-						role="button"
-					>
-						&#x1F6D2;
-					</span>
+					<NavCart />
 				</div>
 			</header>
 		);

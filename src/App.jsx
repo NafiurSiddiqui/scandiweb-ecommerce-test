@@ -1,7 +1,5 @@
-import './App.css';
-import Navbar from './components/Layout/Navbar';
-
 import React, { Component } from 'react';
+import Navbar from './components/Layout/Navbar';
 import CategoryList from './components/pages/Category/CategoryList';
 import ProductDescription from './components/pages/ProductDescription';
 

@@ -8,7 +8,7 @@ import { Query } from '@apollo/client/react/components';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './index.css';
+import './sass/main.scss';
 
 const client = new ApolloClient({
 	uri: 'http://localhost:4000/',
