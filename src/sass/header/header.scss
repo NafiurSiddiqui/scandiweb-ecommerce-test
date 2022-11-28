@@ -54,7 +54,6 @@ $currencyHover: #e2e2e2;
 	}
 
 	&-cart {
-		// @include borderTest;
 		width: 100%;
 		position: relative;
 		left: -2rem;
@@ -73,8 +72,9 @@ $currencyHover: #e2e2e2;
 			background-color: rgb(49, 49, 49);
 			border-radius: 50%;
 			display: inline-block;
-			position: relative;
-			left: -10px;
+			left: 11px;
+			position: absolute;
+			top: -9px;
 		}
 	}
 
