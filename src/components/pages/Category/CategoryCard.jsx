@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 export default class CategoryCard extends Component {
+	//if currency is selected, showSelectedCurrency || default
+
 	render() {
 		return (
 			<li className={'category-item'} key={this.props.index}>
@@ -9,7 +11,9 @@ export default class CategoryCard extends Component {
 				</div>
 
 				<h2>{this.props.heading}</h2>
-				<p>$ {this.props.price}</p>
+				<p>
+					<span>{this.props.currencySymbol}</span> {this.props.price}
+				</p>
 			</li>
 		);
 	}

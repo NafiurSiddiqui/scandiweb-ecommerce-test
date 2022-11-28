@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
+
 import { Component } from 'react';
-import CategoryCard from './CategoryCard';
+import CategoryAll from './All';
 
 export const GET_ALL_CATEGORIES = gql`
 	query {
@@ -37,7 +38,7 @@ export const GET_ALL_CATEGORIES = gql`
 
 class CategoryList extends Component {
 	componentDidMount() {
-		console.log('one time!');
+		// console.log('one time!');
 	}
 	render() {
 		return (
@@ -47,19 +48,7 @@ class CategoryList extends Component {
 				</div>
 
 				<ul className={'category-items'}>
-					{/* <Query query={GET_ALL_CATEGORIES}>
-						{({ error, loading, data, client }) => {
-							if (error) return `something went wrong !!! ${error} `;
-							// console.log(client);
-							if (loading || !data) return 'Loading ... ';
-							const products = data.category.products;
-							console.log(products);
-							return products.map((p, index) => (
-								<div key={index}>{p.brand}</div>
-							));
-						}}
-					</Query> */}
-					<CategoryCard />
+					<CategoryAll />
 				</ul>
 			</section>
 		);
