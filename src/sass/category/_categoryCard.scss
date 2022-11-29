@@ -1,25 +1,38 @@
 .category-item {
 	cursor: pointer;
 	height: 29rem;
+	@include border(rgb(195, 195, 195));
+	border-radius: 0.2em;
+	@include transition(0.2);
+
+	&:hover {
+		box-shadow: 0px 2px 3px rgb(155, 154, 154);
+	}
 
 	&__image-wrapper {
 		height: 80%;
+		position: relative;
 
 		&__cart {
-			// visibility: hidden;
-			// @include borderTest;
+			@include transition(0.1);
+			visibility: hidden;
 			border-radius: 50%;
-			padding: 0.4rem;
-			width: 2.5rem;
-			height: 1.9rem;
-			@include flex(center, center, row);
-			background-color: #5ece7b;
+			padding: 0.5rem;
+			width: 3rem;
+			height: 4rem;
+			background-color: #40ba60;
 			color: white;
+			position: absolute;
+			right: 1rem;
+			bottom: -0.8rem;
 		}
 
 		&:hover {
 			.category-item__image-wrapper__cart {
 				visibility: visible;
+				&:hover {
+					background-color: #149235;
+				}
 			}
 		}
 	}

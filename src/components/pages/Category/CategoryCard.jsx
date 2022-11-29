@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MiniCartIcon from '../../assets/MiniCartIcon';
 
 export default class CategoryCard extends Component {
 	//if currency is selected, showSelectedCurrency || default
@@ -27,9 +28,10 @@ export default class CategoryCard extends Component {
 						}}
 					></div>
 
-					{/* <div className="category-item__image-wrapper__cart cart-btn">
-						&#x1F6D2;
-					</div> */}
+					<MiniCartIcon
+						color={'#ffffff'}
+						className={`category-item__image-wrapper__cart`}
+					/>
 				</div>
 
 				<div className="category-item__meta-container">

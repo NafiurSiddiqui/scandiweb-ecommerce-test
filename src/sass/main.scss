@@ -32,6 +32,16 @@ a {
 	text-decoration: none;
 }
 
+main {
+	padding-bottom: 3rem;
+}
+
+// DYNAMIC CLASSES
 .hide {
 	display: none;
+}
+
+.cart-btn {
+	cursor: pointer;
+	height: 2.5rem;
 }

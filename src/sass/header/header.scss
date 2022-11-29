@@ -5,7 +5,7 @@ $currencyHover: #e2e2e2;
 	justify-content: space-between;
 	align-items: center;
 	height: 15vh;
-
+	padding: 0 2rem;
 	&-navigation {
 		width: 20%;
 		position: relative;
@@ -69,7 +69,7 @@ $currencyHover: #e2e2e2;
 			display: inline-block;
 			left: 11px;
 			position: absolute;
-			top: -9px;
+			top: -3px;
 		}
 	}
 
@@ -123,10 +123,4 @@ $currencyHover: #e2e2e2;
 			}
 		}
 	}
-}
-
-.cart-btn {
-	transform: rotateY(150deg) scale(1.3);
-	cursor: pointer;
-	display: inline-block;
 }
