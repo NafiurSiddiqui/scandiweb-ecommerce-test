@@ -11,9 +11,7 @@ export default class CategoryCard extends Component {
 				</div>
 
 				<h2>{this.props.heading}</h2>
-				<p>
-					<span>{this.props.currencySymbol}</span> {this.props.price}
-				</p>
+				<p>{this.props.price}</p>
 			</li>
 		);
 	}
