@@ -59,6 +59,7 @@ $currencyHover: #e2e2e2;
 		left: -2rem;
 
 		&__badge {
+			visibility: hidden;
 			font-size: 0.8rem;
 			text-align: center;
 			color: white;
@@ -108,10 +109,11 @@ $currencyHover: #e2e2e2;
 			align-items: center;
 			flex-direction: column;
 			padding: 0.2rem 0;
-			width: 8rem;
+			width: 10rem;
 			text-align: center;
 			box-shadow: 0px 1px 3px rgba(198, 198, 198, 0.998);
-
+			z-index: 2;
+			background-color: white;
 			&__item {
 				width: 100%;
 				cursor: pointer;

@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client';
-
 import { Component } from 'react';
-import CategoryAll from './All';
+import CategoryClothes from './Clothes';
 
 export const GET_ALL_CATEGORIES = gql`
 	query {
@@ -36,6 +35,8 @@ export const GET_ALL_CATEGORIES = gql`
 	}
 `;
 
+//Category-title should be coming from each Category* component
+
 class CategoryList extends Component {
 	render() {
 		return (
@@ -45,7 +46,8 @@ class CategoryList extends Component {
 				</div>
 
 				<ul className={'category-items'}>
-					<CategoryAll />
+					{/* <CategoryAll /> */}
+					<CategoryClothes />
 				</ul>
 			</section>
 		);
