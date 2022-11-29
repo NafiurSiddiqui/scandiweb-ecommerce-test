@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Navbar from './components/Layout/Navbar';
+import Header from './components/Layout/Header';
 import CategoryList from './components/pages/Category/CategoryList';
 
 export default class App extends Component {
 	render() {
 		return (
 			<>
-				<Navbar />
+				<Header />
 				<main className="products-display">
 					<CategoryList />
 

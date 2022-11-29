@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from '../assets/a-logo.png';
-import Currency from '../Navbar/Currency';
-import NavCart from '../Navbar/NavCart';
+import Currency from '../Header/Currency';
+import HeaderCart from '../Header/HeaderCart';
 
-class Navbar extends Component {
+class Header extends Component {
 	render() {
 		return (
 			<header className={'header'}>
@@ -22,11 +22,11 @@ class Navbar extends Component {
 				<div className={'header-actions'}>
 					<Currency />
 
-					<NavCart />
+					<HeaderCart />
 				</div>
 			</header>
 		);
 	}
 }
 
-export default Navbar;
+export default Header;

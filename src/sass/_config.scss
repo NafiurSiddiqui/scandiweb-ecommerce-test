@@ -1,3 +1,10 @@
 @mixin borderTest {
 	border: 1px solid black;
 }
+
+@mixin flex($jc, $ai, $dir) {
+	display: flex;
+	justify-content: $jc;
+	align-items: $ai;
+	flex-direction: $dir;
+}

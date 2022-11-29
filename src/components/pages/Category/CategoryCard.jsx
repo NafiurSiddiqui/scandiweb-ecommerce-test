@@ -19,19 +19,23 @@ export default class CategoryCard extends Component {
 		return (
 			<li className={'category-item'} key={this.props.index}>
 				<div className={'category-item__image-wrapper'}>
-					{/* <img src={this.props.image} alt="products" /> */}
-
 					<div
-						className={'category-item-wrapper__image'}
+						className={'category-item__image-wrapper__image'}
 						style={{
 							backgroundImage: `url(${this.props.image})`,
 							...this.style,
 						}}
 					></div>
+
+					{/* <div className="category-item__image-wrapper__cart cart-btn">
+						&#x1F6D2;
+					</div> */}
 				</div>
 
-				<h2>{this.props.heading}</h2>
-				<p>{this.props.price}</p>
+				<div className="category-item__meta-container">
+					<h2>{this.props.heading}</h2>
+					<p>${this.props.price}</p>
+				</div>
 			</li>
 		);
 	}
