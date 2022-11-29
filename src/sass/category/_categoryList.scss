@@ -1,0 +1,9 @@
+.category {
+	padding: 0 1rem;
+	&-items {
+		@include borderTest;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+		grid-gap: 1rem;
+	}
+}

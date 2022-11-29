@@ -37,14 +37,11 @@ export const GET_ALL_CATEGORIES = gql`
 `;
 
 class CategoryList extends Component {
-	componentDidMount() {
-		// console.log('one time!');
-	}
 	render() {
 		return (
 			<section className={'category'}>
 				<div>
-					<h1 className={'category-title'}>Category Name</h1>
+					<h1 className={'category-title'}>All</h1>
 				</div>
 
 				<ul className={'category-items'}>

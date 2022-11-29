@@ -104,6 +104,7 @@ $currencyHover: #e2e2e2;
 		}
 
 		&__currency-items {
+			visibility: hidden;
 			position: relative;
 			top: 6.4rem;
 			right: 3.5rem;

@@ -1,0 +1,21 @@
+.category-item {
+	@include borderTest;
+	// width: 40%;
+	height: 29rem;
+	&__image {
+		&-wrapper {
+			height: 80%;
+
+			&__image {
+				background-size: contain;
+				background-position: center;
+				height: 100%;
+				width: 100%;
+			}
+		}
+		// > img {
+		// 	width: 100%;
+		// 	height: fit-content;
+		// }
+	}
+}
