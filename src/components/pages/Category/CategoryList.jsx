@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import { Component } from 'react';
 import CategoryAll from './All';
 import CategoryClothes from './Clothes';
+import CategoryTech from './Tech';
 
 export const GET_ALL_CATEGORIES = gql`
 	query {
@@ -52,7 +53,8 @@ class CategoryList extends Component {
 				</ul> */}
 
 				{/* <CategoryAll /> */}
-				<CategoryClothes />
+				{/* <CategoryClothes /> */}
+				<CategoryTech />
 			</section>
 		);
 	}
