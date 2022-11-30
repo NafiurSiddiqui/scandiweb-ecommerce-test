@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client';
-import { Component } from 'react';
-import CategoryAll from './All';
-import CategoryClothes from './Clothes';
-import CategoryTech from './Tech';
+import { Component, Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+const CategoryAll = lazy(() => import('./All'));
+const CategoryClothes = lazy(() => import('./Clothes'));
+const CategoryTech = lazy(() => import('./Tech'));
 
 export const GET_ALL_CATEGORIES = gql`
 	query {
@@ -37,24 +39,17 @@ export const GET_ALL_CATEGORIES = gql`
 	}
 `;
 
-//Category-title should be coming from each Category* component
-
 class CategoryList extends Component {
 	render() {
 		return (
 			<section className={'category'}>
-				{/* <div>
-					<h1 className={'category-title'}>All</h1>
-				</div>
-
-				<ul className={'category-items'}>
-					<CategoryAll />
-					<CategoryClothes />
-				</ul> */}
-
-				{/* <CategoryAll /> */}
-				{/* <CategoryClothes /> */}
-				<CategoryTech />
+				<Suspense fallback={<span>Loading...</span>}>
+					<Routes>
+						<Route path="/" element={<CategoryAll />} />
+						<Route path="clothes" element={<CategoryClothes />} />
+						<Route path="tech" element={<CategoryTech />} />
+					</Routes>
+				</Suspense>
 			</section>
 		);
 	}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
@@ -9,9 +10,15 @@ class Header extends Component {
 			<header className={'header'}>
 				<nav className={'header-navigation'}>
 					<ul className={`header-navigation__items`}>
-						<li className={`header-navigation__items--item`}>All</li>
-						<li className={`header-navigation__items--item`}>Clothes</li>
-						<li className={`header-navigation__items--item`}>Tech</li>
+						<li className={`header-navigation__items--item`}>
+							<Link to={'/'}>All</Link>
+						</li>
+						<li className={`header-navigation__items--item`}>
+							<Link to={'/clothes'}>Clothes</Link>
+						</li>
+						<li className={`header-navigation__items--item`}>
+							<Link to={'/tech'}>Tech</Link>
+						</li>
 					</ul>
 				</nav>
 

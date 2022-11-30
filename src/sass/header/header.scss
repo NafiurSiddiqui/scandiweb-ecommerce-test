@@ -18,19 +18,20 @@ $currencyHover: #e2e2e2;
 			width: 12rem;
 
 			&--item {
-				padding-bottom: 0.6rem;
-				transition: all 0.19s ease-in-out;
 				border-bottom: 2px solid white;
 
-				&:hover {
-					color: #5ece7b;
-					border-bottom: 2px solid #5ece7b;
-					cursor: pointer;
-				}
-
-				&:active {
-					color: #5ece7b;
-					border-bottom: 2px solid #5ece7b;
+				> a {
+					transition: all 0.19s ease-in-out;
+					padding-bottom: 0.6rem;
+					&:hover {
+						color: #5ece7b;
+						border-bottom: 2px solid #5ece7b;
+						cursor: pointer;
+					}
+					&:active {
+						color: #5ece7b;
+						border-bottom: 2px solid #5ece7b;
+					}
 				}
 			}
 		}
