@@ -28,10 +28,6 @@ $currencyHover: #e2e2e2;
 						border-bottom: 2px solid #5ece7b;
 						cursor: pointer;
 					}
-					&:active {
-						color: #5ece7b;
-						border-bottom: 2px solid #5ece7b;
-					}
 				}
 			}
 		}
@@ -102,6 +98,7 @@ $currencyHover: #e2e2e2;
 
 		&__currency-items {
 			visibility: hidden;
+			@include transition(0.4);
 			position: relative;
 			top: 6.4rem;
 			right: 3.5rem;
@@ -126,4 +123,9 @@ $currencyHover: #e2e2e2;
 			}
 		}
 	}
+}
+
+.active {
+	color: #5ece7b;
+	border-bottom: 2px solid #5ece7b;
 }

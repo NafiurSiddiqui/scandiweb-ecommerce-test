@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
@@ -11,13 +11,18 @@ class Header extends Component {
 				<nav className={'header-navigation'}>
 					<ul className={`header-navigation__items`}>
 						<li className={`header-navigation__items--item`}>
-							<Link to={'/'}>All</Link>
+							<NavLink
+								to={'/'}
+								className={(navData) => (navData.isActive ? 'active' : '')}
+							>
+								All
+							</NavLink>
 						</li>
 						<li className={`header-navigation__items--item`}>
-							<Link to={'/clothes'}>Clothes</Link>
+							<NavLink to={'/clothes'}>Clothes</NavLink>
 						</li>
 						<li className={`header-navigation__items--item`}>
-							<Link to={'/tech'}>Tech</Link>
+							<NavLink to={'/tech'}>Tech</NavLink>
 						</li>
 					</ul>
 				</nav>

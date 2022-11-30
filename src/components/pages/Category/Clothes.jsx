@@ -42,6 +42,7 @@ export default class CategoryClothes extends Component {
 										image: p.gallery[0],
 										name: p.name,
 										prices: p.prices.map((item) => item.amount).slice(0, 1),
+										stock: p.inStock,
 									};
 									return (
 										<CategoryCard
@@ -49,6 +50,7 @@ export default class CategoryClothes extends Component {
 											image={product.image}
 											heading={product.name}
 											price={product.prices}
+											inStock={product.stock}
 										/>
 									);
 								})}

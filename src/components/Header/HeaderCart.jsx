@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MiniCartIcon from '../assets/MiniCartIcon';
+
 export default class HeaderCart extends Component {
 	render() {
 		return (
