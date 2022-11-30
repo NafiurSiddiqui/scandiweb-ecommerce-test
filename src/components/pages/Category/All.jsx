@@ -12,23 +12,32 @@ export default class CategoryAll extends Component {
 					if (loading || !data) return 'Loading ... ';
 					const products = data.category.products;
 
-					return products.map((p, i) => {
-						let product = {
-							id: p.id,
-							image: p.gallery[0],
-							name: p.name,
-							prices: p.prices.map((item) => item.amount).slice(0, 1),
-						};
+					return (
+						<>
+							<div>
+								<h1 className={'category-title'}>All</h1>
+							</div>
 
-						return (
-							<CategoryCard
-								key={product.id}
-								image={product.image}
-								heading={product.name}
-								price={product.prices}
-							/>
-						);
-					});
+							<ul className={'category-items'}>
+								{products.map((p) => {
+									let product = {
+										id: p.id,
+										image: p.gallery[0],
+										name: p.name,
+										prices: p.prices.map((item) => item.amount).slice(0, 1),
+									};
+									return (
+										<CategoryCard
+											key={product.id}
+											image={product.image}
+											heading={product.name}
+											price={product.prices}
+										/>
+									);
+								})}
+							</ul>
+						</>
+					);
 				}}
 			</Query>
 		);

@@ -7,6 +7,10 @@ export default class CategoryCard extends Component {
 	constructor(props) {
 		super(props);
 
+		this.stock = {
+			inStock: this.props.inStock,
+		};
+
 		this.style = {
 			backgroundSize: 'contain',
 			backgroundPosition: ' center',
@@ -27,6 +31,11 @@ export default class CategoryCard extends Component {
 							...this.style,
 						}}
 					></div>
+					{!this.stock ? (
+						<span className={'category-item__image-wrapper-outOfStock'}>
+							OUT OF STOCK
+						</span>
+					) : null}
 
 					<MiniCartIcon
 						color={'#ffffff'}

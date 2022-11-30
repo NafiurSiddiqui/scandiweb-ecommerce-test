@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { Component } from 'react';
+import CategoryAll from './All';
 import CategoryClothes from './Clothes';
 
 export const GET_ALL_CATEGORIES = gql`
@@ -41,14 +42,17 @@ class CategoryList extends Component {
 	render() {
 		return (
 			<section className={'category'}>
-				<div>
+				{/* <div>
 					<h1 className={'category-title'}>All</h1>
 				</div>
 
 				<ul className={'category-items'}>
-					{/* <CategoryAll /> */}
+					<CategoryAll />
 					<CategoryClothes />
-				</ul>
+				</ul> */}
+
+				{/* <CategoryAll /> */}
+				<CategoryClothes />
 			</section>
 		);
 	}

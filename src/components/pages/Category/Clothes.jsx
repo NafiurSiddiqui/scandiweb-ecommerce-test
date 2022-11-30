@@ -1,6 +1,7 @@
 import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { GET_ALL_CATEGORIES } from './CategoryList';
+import CategoryCard from './CategoryCard';
 
 export default class CategoryClothes extends Component {
 	render() {
@@ -11,34 +12,49 @@ export default class CategoryClothes extends Component {
 					if (loading || !data) return 'Loading ... ';
 					const products = data.category.products;
 
-					// return products.map((p, i) => {
-					// 	let product = {
-					// 		id: p.id,
-					// 		image: p.gallery[0],
-					// 		name: p.name,
-					// 		prices: p.prices.map((item) => item.amount).slice(0, 1),
-					// 	};
+					const clothes = products.filter(
+						(item) => item.category === 'clothes'
+					);
 
-					// products
-					// 	.map((p) => {
-					// 		return p.category;
-					// 	})
-					// 	.filter((item) => item === 'clothes')
-					const clothes = products
-						.filter(({ category }) => category === 'clothes')
-						.map(({ name, prices, gallery }) => {
-							return [name, prices, gallery[0]];
-						});
-					console.log();
-					// 	return (
-					// 		<CategoryCard
-					// 			key={product.id}
-					// 			image={product.image}
-					// 			heading={product.name}
-					// 			price={product.prices}
-					// 		/>
-					// 	);
-					// });
+					// const clothes = products
+					// 	.filter(({ category }) => category === 'clothes')
+					// 	.map(({ name, prices, gallery }) => {
+					// 		return [name, prices, gallery[0]];
+					// 	});
+
+					//! RETURN AMOUNT BASED ON THE CURRENCY > LABEL 👇 DO NOT delete the prices
+
+					// const prices = clothes
+					// 	.map((item) => item[1])
+					// 	.flatMap((item) => item)
+					// 	.filter((item) => item.currency.label === 'USD');
+
+					return (
+						<>
+							<div>
+								<h1 className={'category-title'}>Clothes</h1>
+							</div>
+
+							<ul className={'category-items'}>
+								{clothes.map((p) => {
+									let product = {
+										id: p.id,
+										image: p.gallery[0],
+										name: p.name,
+										prices: p.prices.map((item) => item.amount).slice(0, 1),
+									};
+									return (
+										<CategoryCard
+											key={product.id}
+											image={product.image}
+											heading={product.name}
+											price={product.prices}
+										/>
+									);
+								})}
+							</ul>
+						</>
+					);
 				}}
 			</Query>
 		);
