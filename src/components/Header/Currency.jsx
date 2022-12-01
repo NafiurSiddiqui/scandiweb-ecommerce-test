@@ -15,8 +15,6 @@ export default class Currency extends Component {
 		this.setState((prev) => ({
 			currencyIsOpen: !prev.currencyIsOpen,
 		}));
-
-		console.log(this.state.currencyIsOpen);
 	}
 
 	render() {
