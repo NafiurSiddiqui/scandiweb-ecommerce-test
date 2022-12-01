@@ -1,7 +1,14 @@
 import { gql } from '@apollo/client';
 import { Query } from '@apollo/client/react/components';
 import { Component } from 'react';
+
+//-------------------
+
+// https://www.apollographql.com/docs/react/api/react/hoc/#propsdata
+
 // https://stackoverflow.com/questions/56200389/how-to-write-hoc-for-react-apollo-query-component-in-typescript
+
+//-----------------------
 export const GET_ALL_CATEGORIES = gql`
 	query {
 		category {
@@ -44,6 +51,12 @@ class QueryComponent extends Component {
 		};
 	}
 
+	getProducts(props) {
+		this.setState({
+			product: props,
+		});
+	}
+
 	render() {
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
@@ -51,6 +64,8 @@ class QueryComponent extends Component {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';
 					const products = data.category.products;
+					const s = 'hello';
+					this.getProducts(s);
 
 					return (
 						<>
@@ -63,7 +78,7 @@ class QueryComponent extends Component {
 									stock: p.inStock,
 								};
 								return (
-									<div key={p.id} data-list={product}>
+									<div key={p.id} data-list={this.state.product}>
 										{this.props.children}
 									</div>
 								);
