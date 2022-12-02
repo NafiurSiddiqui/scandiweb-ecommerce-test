@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MiniCartIcon from '../../assets/MiniCartIcon';
 import { connect } from 'react-redux';
-import getProdcutID from '../../store/categorySlice';
+import { getProductID } from '../../store/categorySlice';
 
 class CategoryCard extends Component {
 	//if currency is selected, showSelectedCurrency || default
@@ -19,8 +19,9 @@ class CategoryCard extends Component {
 	}
 
 	productIdHandler() {
-		this.props.getProdcutID(this.props.protductIDState);
-		// console.log(this.props.productID);
+		//!👇 NOT WORKING. WHY?
+		// this.props.getProdcutID(this.props.protductIDState);
+		//? HOW DO I WRITE THIS FUNCION for onClick here
 	}
 
 	render() {
@@ -28,7 +29,7 @@ class CategoryCard extends Component {
 			<li
 				className={'category-item'}
 				key={this.props.index}
-				onClick={this.productIdHandler.bind(this)}
+				onClick={() => this.props.getProductID(this.props.productID)}
 			>
 				{/* {console.log(this.props.productId)} */}
 				<div className={'category-item__image-wrapper'}>
@@ -66,10 +67,12 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		getProdcutID: () => dispatch({ type: 'getProductID' }),
-	};
-};
+// const mapDispatchToProps = (dispatch) => {
+// 	return {
+// 		getProdcutID: () => dispatch({ type: 'getProductID' }),
+// 	};
+// };
+
+const mapDispatchToProps = { getProductID };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryCard);

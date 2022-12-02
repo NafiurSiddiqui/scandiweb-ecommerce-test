@@ -8,7 +8,9 @@ export const categorySlice = createSlice({
 	name: 'category',
 	initialState,
 	reducers: {
-		getProductID: (state, action) => (state.productID = action.payload),
+		getProductID: (state, action) => {
+			state.productID = action.payload;
+		},
 	},
 });
 
