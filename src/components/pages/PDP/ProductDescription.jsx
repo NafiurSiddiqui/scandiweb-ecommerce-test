@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import DescriptionCard from '../../UI/DescriptionCard';
 import Button from '../../UI/Button';
+import { connect } from 'react-redux';
 
 /**
  * @className - 'PDP' = product description
  */
 
 class ProductDescription extends Component {
+	componentDidUpdate() {
+		console.log(this.props.productIDState);
+	}
+
 	render() {
 		return (
 			<section className="pdp">
@@ -27,4 +32,10 @@ class ProductDescription extends Component {
 	}
 }
 
-export default ProductDescription;
+const mapStateToProps = (state) => {
+	return {
+		productIDState: state.category,
+	};
+};
+
+export default connect(mapStateToProps)(ProductDescription);

@@ -1,18 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	productID: '',
+	productID: null,
 };
 
 export const categorySlice = createSlice({
 	name: 'category',
 	initialState,
 	reducers: {
-		getProductID: (state, action) => (state.initialState = action.payload),
+		getProductID: (state, action) => (state.productID = action.payload),
 	},
 });
-console.log(initialState);
 
-export const { getProductId } = categorySlice.actions;
+export const { getProductID } = categorySlice.actions;
 
 export default categorySlice.reducer;
