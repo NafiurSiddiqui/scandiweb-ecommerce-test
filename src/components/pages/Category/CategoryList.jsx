@@ -54,4 +54,5 @@ class CategoryList extends Component {
 		);
 	}
 }
+
 export default CategoryList;

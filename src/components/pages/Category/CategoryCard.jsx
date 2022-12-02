@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import MiniCartIcon from '../../assets/MiniCartIcon';
+import { connect } from 'react-redux';
 
-export default class CategoryCard extends Component {
+class CategoryCard extends Component {
 	//if currency is selected, showSelectedCurrency || default
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			productID: this.props.productID,
+		};
 
 		this.style = {
 			backgroundSize: 'contain',
@@ -16,9 +21,17 @@ export default class CategoryCard extends Component {
 		};
 	}
 
+	productIdHandler() {
+		this.props.getProdcutID(this.state.productID);
+	}
+
 	render() {
 		return (
-			<li className={'category-item'} key={this.props.index}>
+			<li
+				className={'category-item'}
+				key={this.props.index}
+				onClick={this.productIdHandler.bind(this)}
+			>
 				<div className={'category-item__image-wrapper'}>
 					<div
 						className={'category-item__image-wrapper__image'}
@@ -47,3 +60,17 @@ export default class CategoryCard extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		stateID: state.productID,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		getProdcutID: () => dispatch({ type: 'getProductID' }),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryCard);

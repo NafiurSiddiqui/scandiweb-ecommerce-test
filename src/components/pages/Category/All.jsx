@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import CategoryCard from './CategoryCard';
 import { GET_ALL_CATEGORIES } from './CategoryList';
 
-export default class CategoryAll extends Component {
+class CategoryAll extends Component {
 	render() {
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
@@ -27,6 +27,7 @@ export default class CategoryAll extends Component {
 										prices: p.prices.map((item) => item.amount).slice(0, 1),
 										stock: p.inStock,
 									};
+
 									return (
 										<CategoryCard
 											key={product.id}
@@ -34,6 +35,7 @@ export default class CategoryAll extends Component {
 											heading={product.name}
 											price={product.prices}
 											inStock={product.stock}
+											productID={p.id}
 										/>
 									);
 								})}
@@ -45,3 +47,5 @@ export default class CategoryAll extends Component {
 		);
 	}
 }
+
+export default CategoryAll;

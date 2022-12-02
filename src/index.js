@@ -4,6 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './sass/main.scss';
+import store from './components/store/store';
+import { Provider } from 'react-redux';
 
 const client = new ApolloClient({
 	uri: 'http://localhost:4000/',
@@ -13,10 +15,12 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<ApolloProvider client={client}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</ApolloProvider>
+		<Provider store={store}>
+			<ApolloProvider client={client}>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</ApolloProvider>
+		</Provider>
 	</React.StrictMode>
 );

@@ -9,9 +9,9 @@ export default class App extends Component {
 			<>
 				<Header />
 				<main className="products-display">
-					{/* <CategoryList /> */}
+					<CategoryList />
 
-					<ProductDescription />
+					{/* <ProductDescription /> */}
 				</main>
 			</>
 		);
