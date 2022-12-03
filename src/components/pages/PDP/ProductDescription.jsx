@@ -10,16 +10,16 @@ import { gql } from '@apollo/client';
  * @className - 'PDP' = product description
  */
 
-const QueryByID = (id) => {
-	const GET_PRODUCT_BY_ID = gql`
-		query{
-			product(id:"${id}"){
-				id
-				name
-			}
-		}
-	`;
-};
+// const QueryByID = (id) => {
+// 	const GET_PRODUCT_BY_ID = gql`
+// 		query{
+// 			product(id:"${id}"){
+// 				id
+// 				name
+// 			}
+// 		}
+// 	`;
+// };
 
 class ProductDescription extends Component {
 	render() {
@@ -48,9 +48,7 @@ class ProductDescription extends Component {
 								<DescriptionCard />
 								<Button>ADD TO CART</Button>
 								<p className="pd__description">
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Delectus, voluptates! Voluptas facere cupiditate reprehenderit
-									cum quo libero, aliquid fuga obcaecati.
+									{selectedProduct[0].description}
 								</p>
 							</section>
 						</>
