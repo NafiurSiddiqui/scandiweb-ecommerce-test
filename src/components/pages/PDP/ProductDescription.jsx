@@ -2,32 +2,69 @@ import React, { Component } from 'react';
 import DescriptionCard from '../../UI/DescriptionCard';
 import Button from '../../UI/Button';
 import { connect } from 'react-redux';
+import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
+import { Query } from '@apollo/client/react/components';
+import { gql } from '@apollo/client';
 
 /**
  * @className - 'PDP' = product description
  */
 
+const QueryByID = (id) => {
+	const GET_PRODUCT_BY_ID = gql`
+		query{
+			product(id:"${id}"){
+				id
+				name
+			}
+		}
+	`;
+};
+
 class ProductDescription extends Component {
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		PDP_ID: '',
+	// 	};
+	// }
+
 	componentDidUpdate() {
-		console.log(this.props.productIDState);
+		// console.log(this.props.productIDState);
+		// this.setState({
+		// 	PDP_ID: this.props.productIDState,
+		// });
 	}
 
 	render() {
+		// console.log(this.state.PDP_ID);
 		return (
-			<section className="pdp">
-				<div className="pdp-image">
-					<div className="pdp-image-gallery">image gallery</div>
+			<Query query={GET_ALL_CATEGORIES}>
+				{({ error, loading, data, client }) => {
+					if (error) return `something went wrong !!! ${error} `;
+					if (loading || !data) return 'Loading ... ';
+					const products = data.category.products;
 
-					<div className="pdp-hero-image">hero image</div>
-				</div>
-				<DescriptionCard />
-				<Button>ADD TO CART</Button>
-				<p className="pd__description">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus,
-					voluptates! Voluptas facere cupiditate reprehenderit cum quo libero,
-					aliquid fuga obcaecati.
-				</p>
-			</section>
+					return (
+						<>
+							<section className="pdp">
+								<div className="pdp-image">
+									<div className="pdp-image-gallery">image gallery</div>
+
+									<div className="pdp-hero-image">hero image</div>
+								</div>
+								<DescriptionCard />
+								<Button>ADD TO CART</Button>
+								<p className="pd__description">
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									Delectus, voluptates! Voluptas facere cupiditate reprehenderit
+									cum quo libero, aliquid fuga obcaecati.
+								</p>
+							</section>
+						</>
+					);
+				}}
+			</Query>
 		);
 	}
 }

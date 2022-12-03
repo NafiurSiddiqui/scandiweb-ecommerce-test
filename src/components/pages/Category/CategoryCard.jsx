@@ -31,7 +31,6 @@ class CategoryCard extends Component {
 				key={this.props.index}
 				onClick={() => this.props.getProductID(this.props.productID)}
 			>
-				{/* {console.log(this.props.productId)} */}
 				<div className={'category-item__image-wrapper'}>
 					<div
 						className={'category-item__image-wrapper__image'}
@@ -66,12 +65,6 @@ const mapStateToProps = (state) => {
 		protductIDState: state.category,
 	};
 };
-
-// const mapDispatchToProps = (dispatch) => {
-// 	return {
-// 		getProdcutID: () => dispatch({ type: 'getProductID' }),
-// 	};
-// };
 
 const mapDispatchToProps = { getProductID };
 
