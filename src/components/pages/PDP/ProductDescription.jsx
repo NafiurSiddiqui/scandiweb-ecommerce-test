@@ -22,28 +22,20 @@ const QueryByID = (id) => {
 };
 
 class ProductDescription extends Component {
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state = {
-	// 		PDP_ID: '',
-	// 	};
-	// }
-
-	componentDidUpdate() {
-		// console.log(this.props.productIDState);
-		// this.setState({
-		// 	PDP_ID: this.props.productIDState,
-		// });
-	}
-
 	render() {
-		// console.log(this.state.PDP_ID);
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data, client }) => {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';
 					const products = data.category.products;
+					// console.log(this.props.productIDState);
+					let itemID = this.props.productIDState.productID;
+					console.log(itemID);
+					// console.log();
+					let selectedProduct = products.filter((item) => item.id === itemID);
+
+					console.log(selectedProduct);
 
 					return (
 						<>
