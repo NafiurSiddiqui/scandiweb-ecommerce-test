@@ -35,7 +35,16 @@ class ProductDescription extends Component {
 					// console.log();
 					let selectedProduct = products.filter((item) => item.id === itemID);
 
-					console.log(selectedProduct);
+					const parser = new DOMParser();
+
+					const testDOC = parser.parseFromString(
+						selectedProduct[0].description,
+						'text/html'
+					);
+
+					const parsedParagraph = testDOC.getElementsByTagName('p');
+
+					console.log(parsedParagraph[0].innerHTML);
 
 					return (
 						<>
@@ -48,7 +57,7 @@ class ProductDescription extends Component {
 								<DescriptionCard />
 								<Button>ADD TO CART</Button>
 								<p className="pd__description">
-									{selectedProduct[0].description}
+									{selectedProduct[0] ? selectedProduct[0].description : null}
 								</p>
 							</section>
 						</>
