@@ -22,6 +22,51 @@ import { gql } from '@apollo/client';
 // };
 
 class ProductDescription extends Component {
+	HTMLparser(products) {
+		// console.log(this.props.productIDState.productID);
+		let itemID = this.props.productIDState.productID;
+
+		if (!itemID) {
+			return;
+		}
+
+		let selectedProduct = products.filter((item) => item.id === itemID);
+
+		const parser = new DOMParser();
+
+		const testDOC = parser.parseFromString(
+			selectedProduct[0].description,
+			'text/html'
+		);
+		// console.log(selectedProduct[0].description);
+		/**
+		 * @availableElements -
+		 * ul > li
+		 * h3 > p
+		 */
+
+		const checkElements = testDOC.getElementsByTagName('*');
+
+		//if <p>.. parse <p>
+		//else <li>..parse li
+
+		const parsedParagraph = testDOC.getElementsByTagName('p');
+		// console.log();
+		let paraContent = parsedParagraph[0]?.textContent;
+
+		if (paraContent) {
+			console.log(paraContent);
+		}
+
+		const allSpanEl = testDOC.getElementsByTagName('span');
+
+		for (const el of allSpanEl) {
+			// console.log(el.innerHTML);
+			let allSpanText = parser.parseFromString(el.innerHTML, 'text/html');
+			console.log(allSpanText.documentElement.textContent);
+		}
+	}
+
 	render() {
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
@@ -29,22 +74,26 @@ class ProductDescription extends Component {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';
 					const products = data.category.products;
-					// console.log(this.props.productIDState);
-					let itemID = this.props.productIDState.productID;
-					console.log(itemID);
+
+					// console.log(this.props.productIDState.productID);
+
+					// let itemID = this.props.productIDState.productID;
+					// console.log(itemID);
 					// console.log();
-					let selectedProduct = products.filter((item) => item.id === itemID);
+					// let selectedProduct = products.filter((item) => item.id === itemID);
 
-					const parser = new DOMParser();
+					this.HTMLparser(products);
 
-					const testDOC = parser.parseFromString(
-						selectedProduct[0].description,
-						'text/html'
-					);
+					// const parser = new DOMParser();
 
-					const parsedParagraph = testDOC.getElementsByTagName('p');
+					// const testDOC = parser.parseFromString(
+					// 	selectedProduct[0].description,
+					// 	'text/html'
+					// );
 
-					console.log(parsedParagraph[0].innerHTML);
+					// const parsedParagraph = testDOC.getElementsByTagName('p');
+
+					// console.log(parsedParagraph[0].innerHTML);
 
 					return (
 						<>
@@ -57,7 +106,7 @@ class ProductDescription extends Component {
 								<DescriptionCard />
 								<Button>ADD TO CART</Button>
 								<p className="pd__description">
-									{selectedProduct[0] ? selectedProduct[0].description : null}
+									{/* {selectedProduct[0] ? selectedProduct[0].description : null} */}
 								</p>
 							</section>
 						</>
