@@ -38,33 +38,27 @@ class ProductDescription extends Component {
 			selectedProduct[0].description,
 			'text/html'
 		);
-		// console.log(selectedProduct[0].description);
-		/**
-		 * @availableElements -
-		 * ul > li
-		 * h3 > p
-		 */
 
-		const checkElements = testDOC.getElementsByTagName('*');
+		let parsedText = testDOC.documentElement.textContent;
 
-		//if <p>.. parse <p>
-		//else <li>..parse li
+		return parsedText;
 
-		const parsedParagraph = testDOC.getElementsByTagName('p');
-		// console.log();
-		let paraContent = parsedParagraph[0]?.textContent;
+		// const parsedParagraph = testDOC.getElementsByTagName('p');
 
-		if (paraContent) {
-			console.log(paraContent);
-		}
+		// let paraContent = parsedParagraph[0]?.textContent;
 
-		const allSpanEl = testDOC.getElementsByTagName('span');
+		// if (paraContent) {
+		// 	console.log(paraContent);
+		// 	return paraContent;
+		// }
 
-		for (const el of allSpanEl) {
-			// console.log(el.innerHTML);
-			let allSpanText = parser.parseFromString(el.innerHTML, 'text/html');
-			console.log(allSpanText.documentElement.textContent);
-		}
+		// const allSpanEl = testDOC.getElementsByTagName('span');
+
+		// for (const el of allSpanEl) {
+		// 	// console.log(el.innerHTML);
+		// 	let allSpanText = parser.parseFromString(el.innerHTML, 'text/html');
+		// 	console.log(allSpanText.documentElement.textContent);
+		// }
 	}
 
 	render() {
@@ -74,26 +68,6 @@ class ProductDescription extends Component {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';
 					const products = data.category.products;
-
-					// console.log(this.props.productIDState.productID);
-
-					// let itemID = this.props.productIDState.productID;
-					// console.log(itemID);
-					// console.log();
-					// let selectedProduct = products.filter((item) => item.id === itemID);
-
-					this.HTMLparser(products);
-
-					// const parser = new DOMParser();
-
-					// const testDOC = parser.parseFromString(
-					// 	selectedProduct[0].description,
-					// 	'text/html'
-					// );
-
-					// const parsedParagraph = testDOC.getElementsByTagName('p');
-
-					// console.log(parsedParagraph[0].innerHTML);
 
 					return (
 						<>
@@ -105,9 +79,7 @@ class ProductDescription extends Component {
 								</div>
 								<DescriptionCard />
 								<Button>ADD TO CART</Button>
-								<p className="pd__description">
-									{/* {selectedProduct[0] ? selectedProduct[0].description : null} */}
-								</p>
+								<p className="pd__description">{this.HTMLparser(products)}</p>
 							</section>
 						</>
 					);
