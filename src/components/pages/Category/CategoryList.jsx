@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client';
 import { Component, Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { getProductID } from '../../store/categorySlice';
 
 const CategoryAll = lazy(() => import('./All'));
 const CategoryClothes = lazy(() => import('./Clothes'));
@@ -41,6 +43,9 @@ export const GET_ALL_CATEGORIES = gql`
 
 class CategoryList extends Component {
 	render() {
+		// let { itemClicked } = this.state;
+		let { productID } = this.props.protductIDState;
+
 		return (
 			<section className={'category'}>
 				<Suspense fallback={<span>Loading...</span>}>
@@ -48,6 +53,7 @@ class CategoryList extends Component {
 						<Route path="/" element={<CategoryAll />} />
 						<Route path="clothes" element={<CategoryClothes />} />
 						<Route path="tech" element={<CategoryTech />} />
+						<Route path="*" element={<Navigate to={'/'} />} />
 					</Routes>
 				</Suspense>
 			</section>
@@ -55,4 +61,12 @@ class CategoryList extends Component {
 	}
 }
 
-export default CategoryList;
+const mapStateToProps = (state) => {
+	return {
+		protductIDState: state.category,
+	};
+};
+
+const mapDispatchToProps = { getProductID };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);

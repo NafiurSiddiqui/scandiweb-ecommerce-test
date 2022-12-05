@@ -4,26 +4,13 @@ import Button from '../../UI/Button';
 import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
-import { gql } from '@apollo/client';
 
 /**
  * @className - 'PDP' = product description
  */
 
-// const QueryByID = (id) => {
-// 	const GET_PRODUCT_BY_ID = gql`
-// 		query{
-// 			product(id:"${id}"){
-// 				id
-// 				name
-// 			}
-// 		}
-// 	`;
-// };
-
 class ProductDescription extends Component {
 	HTMLparser(products) {
-		// console.log(this.props.productIDState.productID);
 		let itemID = this.props.productIDState.productID;
 
 		if (!itemID) {
@@ -42,23 +29,6 @@ class ProductDescription extends Component {
 		let parsedText = testDOC.documentElement.textContent;
 
 		return parsedText;
-
-		// const parsedParagraph = testDOC.getElementsByTagName('p');
-
-		// let paraContent = parsedParagraph[0]?.textContent;
-
-		// if (paraContent) {
-		// 	console.log(paraContent);
-		// 	return paraContent;
-		// }
-
-		// const allSpanEl = testDOC.getElementsByTagName('span');
-
-		// for (const el of allSpanEl) {
-		// 	// console.log(el.innerHTML);
-		// 	let allSpanText = parser.parseFromString(el.innerHTML, 'text/html');
-		// 	console.log(allSpanText.documentElement.textContent);
-		// }
 	}
 
 	render() {

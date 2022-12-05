@@ -18,12 +18,6 @@ class CategoryCard extends Component {
 		};
 	}
 
-	productIdHandler() {
-		//!👇 NOT WORKING. WHY?
-		// this.props.getProdcutID(this.props.protductIDState);
-		//? HOW DO I WRITE THIS FUNCION for onClick here
-	}
-
 	render() {
 		return (
 			<li

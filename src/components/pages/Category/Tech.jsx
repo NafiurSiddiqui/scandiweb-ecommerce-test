@@ -43,6 +43,7 @@ export default class CategoryTech extends Component {
 											heading={product.name}
 											price={product.prices}
 											inStock={product.stock}
+											productID={p.id}
 										/>
 									);
 								})}

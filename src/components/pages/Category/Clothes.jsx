@@ -51,6 +51,7 @@ export default class CategoryClothes extends Component {
 											heading={product.name}
 											price={product.prices}
 											inStock={product.stock}
+											productID={p.id}
 										/>
 									);
 								})}
