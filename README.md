@@ -16,6 +16,7 @@ All of these challenges are tackled down without any third-party libs.
 
 - Finding and rendering conent from deeply nested array
 - parsing HTML string to pure DOM content
+- parsing any HTML entity to pure DOM text content.
 
 ## Available Scripts
 
