@@ -32,12 +32,40 @@ class ProductDescription extends Component {
 	}
 
 	render() {
+		let itemID = this.props.productIDState.productID;
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data, client }) => {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';
-					const products = data.category.products;
+
+					const { products } = data.category;
+
+					let filteredProduct = products.filter((item) => item.id === itemID);
+
+					let PDP = filteredProduct.map((item) => {
+						return {
+							brand: item.brand,
+							name: item.name,
+							images: item.gallery,
+						};
+					});
+
+					/**
+					 * some product attribute length === 0, then return
+					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
+					 */
+
+					console.log(filteredProduct);
+					console.log(
+						filteredProduct[0].attributes.map((item) => {
+							return [item.id, item.items];
+						})
+					);
+
+					let attributes = filteredProduct[0].attributes[0]?.items;
+
+					// console.log(attributes);
 
 					return (
 						<>
