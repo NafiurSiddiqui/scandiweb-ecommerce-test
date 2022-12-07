@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Skeleton from './components/Layout/skeleton';
 import CategoryList from './components/pages/Category/CategoryList';
