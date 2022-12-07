@@ -44,10 +44,9 @@ class ProductDescription extends Component {
 					if (loading || !data) return 'Loading ... ';
 
 					const { products } = data.category;
-
+					//getting the right data
 					let filteredProduct = products.filter((item) => item.id === itemID);
-					// console.log(filteredProduct);
-
+					//returning PDP as an OBJECT
 					let PDP = filteredProduct.map((item) => {
 						return {
 							brand: item.brand,
@@ -60,15 +59,18 @@ class ProductDescription extends Component {
 							prices: item.prices.filter(
 								(item) => item.currency.label === 'USD'
 							),
+							amount: function () {
+								return this.prices[0].amount;
+							},
 						};
 					});
 					/**
 					 * some product attribute length === 0, then return
 					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
 					 */
-					console.log(PDP);
+					console.log(PDP[0].amount());
 
-					let currencyAmount = PDP[0].prices[0].amount;
+					// let currencyAmount = PDP[0].prices[0].amount;
 
 					// let filteredItems = filteredProduct[0].attributes.map((item) => {
 					// 	return [item.id, item.items];
