@@ -2,6 +2,7 @@
 @import './header/header';
 @import './category/categoryCard';
 @import './category/categoryList';
+@import './PDP/pdp';
 
 *,
 *::before,
@@ -33,8 +34,13 @@ a {
 	color: rgb(125, 125, 125);
 }
 
+div#root {
+	height: 100vh;
+}
+
 main {
 	padding-bottom: 3rem;
+	height: 100%;
 }
 
 // DYNAMIC CLASSES

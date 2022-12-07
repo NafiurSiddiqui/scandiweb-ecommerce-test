@@ -4,16 +4,13 @@ import Button from '../../UI/Button';
 import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
+import ProgressiveImage from '../../Utilities/ProgressiveImage';
 
 /**
  * @className - 'PDP' = product description
  */
 
 class ProductDescription extends Component {
-	constructor() {
-		super();
-		// this.test = this.test.bind(this);
-	}
 	HTMLparser(products) {
 		let itemID = this.props.productIDState.productID;
 
@@ -68,6 +65,8 @@ class ProductDescription extends Component {
 					 * some product attribute length === 0, then return
 					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
 					 */
+
+					console.log(PDP[0].images[0]);
 					console.log(PDP[0].amount);
 
 					// let currencyAmount = PDP[0].prices[0].amount;
@@ -87,13 +86,32 @@ class ProductDescription extends Component {
 						<>
 							<section className="pdp">
 								<div className="pdp-image">
-									<div className="pdp-image-gallery">image gallery</div>
+									<div className="pdp-image-gallery">
+										{PDP[0].images.map((item, index) => (
+											// <img
+											// 	loading="lazy"
+											// 	width="200"
+											// 	height="250"
+											// 	src={item}
+											// 	alt="products"
+											// 	key={index}
+											// 	className="pdp-image-gallery__image"
+											// />
+											<ProgressiveImage src={item} key={item} />
+										))}
+									</div>
 
-									<div className="pdp-hero-image">hero image</div>
+									<img
+										className="pdp-image-hero"
+										alt="product"
+										src={PDP[0].images[0]}
+									></img>
 								</div>
-								<DescriptionCard />
-								<Button>ADD TO CART</Button>
-								<p className="pd__description">{this.HTMLparser(products)}</p>
+								<article className="pdp_pd">
+									<DescriptionCard />
+									<Button>ADD TO CART</Button>
+									<p className="pd__description">{this.HTMLparser(products)}</p>
+								</article>
 							</section>
 						</>
 					);
