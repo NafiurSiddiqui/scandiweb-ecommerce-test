@@ -10,6 +10,10 @@ import { Query } from '@apollo/client/react/components';
  */
 
 class ProductDescription extends Component {
+	constructor() {
+		super();
+		// this.test = this.test.bind(this);
+	}
 	HTMLparser(products) {
 		let itemID = this.props.productIDState.productID;
 
@@ -42,30 +46,40 @@ class ProductDescription extends Component {
 					const { products } = data.category;
 
 					let filteredProduct = products.filter((item) => item.id === itemID);
+					// console.log(filteredProduct);
 
 					let PDP = filteredProduct.map((item) => {
 						return {
 							brand: item.brand,
 							name: item.name,
 							images: item.gallery,
+							attributesID: item.attributes.map((item) => item.id),
+							attributesItem: item.attributes.map((item) =>
+								item.items.map((item) => item.id)
+							),
+							prices: item.prices.filter(
+								(item) => item.currency.label === 'USD'
+							),
 						};
 					});
-
 					/**
 					 * some product attribute length === 0, then return
 					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
 					 */
+					console.log(PDP);
 
-					console.log(filteredProduct);
-					console.log(
-						filteredProduct[0].attributes.map((item) => {
-							return [item.id, item.items];
-						})
-					);
+					let currencyAmount = PDP[0].prices[0].amount;
 
-					let attributes = filteredProduct[0].attributes[0]?.items;
+					// let filteredItems = filteredProduct[0].attributes.map((item) => {
+					// 	return [item.id, item.items];
+					// });
 
-					// console.log(attributes);
+					// console.log(filteredItems.map((item) => item[0]));
+					// let items = filteredItems.map((item) => item[1]);
+
+					// for (let i = 0; i < items.length; i++) {
+					// 	console.log(items[i].map((item) => item.id));
+					// }
 
 					return (
 						<>
