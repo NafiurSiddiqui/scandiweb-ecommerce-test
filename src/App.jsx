@@ -34,11 +34,18 @@ class App extends Component {
 		console.log(productID);
 		return (
 			<>
-				<Skeleton />
-				{/* <Header />
-				<main className="products-display">
-					{productID ? <ProductDescription /> : <CategoryList />}
-				</main> */}
+				{!this.state.DOMisLoaded ? (
+					<Skeleton
+						style={this.state.DOMisLoaded ? 'display:none' : 'display:block'}
+					/>
+				) : (
+					<section onLoad={this.DOMHandler}>
+						<Header />
+						<main className="products-display">
+							{productID ? <ProductDescription /> : <CategoryList />}
+						</main>
+					</section>
+				)}
 			</>
 		);
 	}
