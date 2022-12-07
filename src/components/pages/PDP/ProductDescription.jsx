@@ -59,7 +59,7 @@ class ProductDescription extends Component {
 							prices: item.prices.filter(
 								(item) => item.currency.label === 'USD'
 							),
-							amount: function () {
+							get amount() {
 								return this.prices[0].amount;
 							},
 						};
@@ -68,7 +68,7 @@ class ProductDescription extends Component {
 					 * some product attribute length === 0, then return
 					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
 					 */
-					console.log(PDP[0].amount());
+					console.log(PDP[0].amount);
 
 					// let currencyAmount = PDP[0].prices[0].amount;
 
