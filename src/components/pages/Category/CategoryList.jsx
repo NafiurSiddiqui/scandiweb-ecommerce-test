@@ -43,8 +43,7 @@ export const GET_ALL_CATEGORIES = gql`
 
 class CategoryList extends Component {
 	render() {
-		// let { itemClicked } = this.state;
-		let { productID } = this.props.protductIDState;
+		// let { productID } = this.props.protductIDState;
 
 		return (
 			<section className={'category'}>
