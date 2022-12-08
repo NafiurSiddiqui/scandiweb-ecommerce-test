@@ -11,6 +11,16 @@ import ProgressiveImage from '../../Utilities/ProgressiveImage';
  */
 
 class ProductDescription extends Component {
+	constructor() {
+		super();
+
+		this.state = {
+			selectedImgSrc: '',
+		};
+
+		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
+	}
+
 	HTMLparser(products) {
 		let itemID = this.props.productIDState.productID;
 
@@ -32,7 +42,14 @@ class ProductDescription extends Component {
 		return parsedText;
 	}
 
+	selectedImgSrcHandler(src) {
+		this.setState({
+			selectedImgSrc: src,
+		});
+	}
+
 	render() {
+		console.log(this.state.selectedImgSrc);
 		let itemID = this.props.productIDState.productID;
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
@@ -66,46 +83,29 @@ class ProductDescription extends Component {
 					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
 					 */
 
-					console.log(PDP[0].images[0]);
-					console.log(PDP[0].amount);
-
-					// let currencyAmount = PDP[0].prices[0].amount;
-
-					// let filteredItems = filteredProduct[0].attributes.map((item) => {
-					// 	return [item.id, item.items];
-					// });
-
-					// console.log(filteredItems.map((item) => item[0]));
-					// let items = filteredItems.map((item) => item[1]);
-
-					// for (let i = 0; i < items.length; i++) {
-					// 	console.log(items[i].map((item) => item.id));
-					// }
-
 					return (
 						<>
 							<section className="pdp">
 								<div className="pdp-image">
 									<div className="pdp-image-gallery">
 										{PDP[0].images.map((item, index) => (
-											// <img
-											// 	loading="lazy"
-											// 	width="200"
-											// 	height="250"
-											// 	src={item}
-											// 	alt="products"
-											// 	key={index}
-											// 	className="pdp-image-gallery__image"
-											// />
-											<ProgressiveImage src={item} key={item} />
+											<ProgressiveImage
+												src={item}
+												key={item}
+												onClick={this.selectedImgSrcHandler}
+											/>
 										))}
 									</div>
 
 									<img
 										className="pdp-image-hero"
 										alt="product"
-										src={PDP[0].images[0]}
-									></img>
+										src={
+											this.state.selectedImgSrc
+												? this.state.selectedImgSrc
+												: PDP[0].images[0]
+										}
+									/>
 								</div>
 								<article className="pdp_pd">
 									<DescriptionCard />

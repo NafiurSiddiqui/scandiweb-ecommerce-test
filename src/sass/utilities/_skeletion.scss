@@ -1,5 +1,5 @@
 $bgColorLight: rgb(213, 213, 213);
-$bgColordark: rgb(171, 171, 171);
+$bgColorDark: rgb(171, 171, 171);
 
 .skeleton {
 	position: relative;
@@ -37,11 +37,11 @@ $bgColordark: rgb(171, 171, 171);
 
 		&__cart {
 			visibility: visible;
-			background-color: $bgColordark;
+			background-color: $bgColorDark;
 			width: 4rem;
 
 			&:hover {
-				background-color: $bgColordark !important;
+				background-color: $bgColorDark !important;
 			}
 		}
 	}
@@ -60,6 +60,17 @@ $bgColordark: rgb(171, 171, 171);
 			width: 60%;
 			height: 2rem;
 			background-color: $bgColorLight;
+		}
+	}
+
+	&-gallery {
+		@include flex(center, center, column);
+		height: 100%;
+		&__placeholder {
+			width: 4.5rem;
+			height: 4rem;
+			background-color: $bgColorDark;
+			margin: 1rem 0.2rem;
 		}
 	}
 }

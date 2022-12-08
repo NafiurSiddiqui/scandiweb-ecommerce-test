@@ -1,13 +1,12 @@
 .pdp {
 	padding: 0 3rem;
-	// @include flex(center, baseline, row);
 	display: flex;
 	height: 90%;
 	width: 100%;
 	&-image {
 		@include border(red);
 		height: 100%;
-		@include flex(space-between, center, row);
+		@include flex(space-between, null, row);
 		width: 100%;
 		&-gallery {
 			@include border(orange);
