@@ -82,6 +82,7 @@ class ProductDescription extends Component {
 					 * some product attribute length === 0, then return
 					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
 					 */
+					// console.log(PDP);
 
 					return (
 						<>
@@ -108,7 +109,7 @@ class ProductDescription extends Component {
 									/>
 								</div>
 								<article className="pdp_pd">
-									<DescriptionCard />
+									<DescriptionCard products={PDP} />
 									<Button>ADD TO CART</Button>
 									<p className="pd__description">{this.HTMLparser(products)}</p>
 								</article>

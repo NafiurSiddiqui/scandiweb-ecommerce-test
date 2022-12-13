@@ -1,7 +1,7 @@
 .pdp {
 	padding: 0 3rem;
 	display: flex;
-	height: 90%;
+	// height: 90%;
 	width: 100%;
 	&-image {
 		@include border(red);
@@ -34,7 +34,6 @@
 
 	&_pd {
 		@include border(orange);
-		height: 100%;
 		width: 18rem;
 	}
 }

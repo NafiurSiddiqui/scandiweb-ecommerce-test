@@ -7,6 +7,11 @@ import HeaderCart from '../Header/HeaderCart';
 import { getProductID } from '../store/categorySlice';
 
 class Header extends Component {
+	constructor() {
+		super();
+
+		this.resetProductID = this.resetProductID.bind(this);
+	}
 	resetProductID() {
 		this.props.getProductID('');
 	}

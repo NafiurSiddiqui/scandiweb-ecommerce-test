@@ -30,7 +30,7 @@ class App extends Component {
 
 	render() {
 		let { productID } = this.props.protductIDState;
-		console.log(productID);
+		// console.log(productID);
 		return (
 			<>
 				{!this.state.DOMisLoaded ? (
