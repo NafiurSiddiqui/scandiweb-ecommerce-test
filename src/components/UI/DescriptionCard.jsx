@@ -5,17 +5,6 @@ import React, { Component } from 'react';
  */
 
 export default class DescriptionCard extends Component {
-	renderAttributes(itemObj) {
-		for (const item of Object.entries(itemObj)) {
-			item.map((item) => {
-				return (
-					<ul>
-						<h4>{item}</h4>
-					</ul>
-				);
-			});
-		}
-	}
 	render() {
 		const { brand, name, images, attributesID, attributesItem, prices } =
 			this.props.products[0];
@@ -60,26 +49,22 @@ export default class DescriptionCard extends Component {
 					// </li>
 					// </ul>;
 					return (
-						<>
-							<div className="pd__attributions">
-								<li key={element} className="pd__attribution">
-									<span className="pd__attribution__ID">{element}</span>
-									<ul className="pd__attributions__items">
-										{itemExtraction[i].map((item) => (
-											<li
-												className="pd__attributions__item"
-												role={'button'}
-												key={item}
-											>
-												{item}
-											</li>
-										))}
-									</ul>
-								</li>
-							</div>
-							{/* <div key={element}>{element}</div>
-							<div key={i}>{itemExtraction[i]}</div> */}
-						</>
+						<ul key={i} className="pd__attributions">
+							<li key={element} className="pd__attribution">
+								<span className="pd__attribution__ID">{element}</span>
+								<ul className="pd__attribution__items">
+									{itemExtraction[i].map((item) => (
+										<li
+											className="pd__attribution__item"
+											role={'button'}
+											key={item}
+										>
+											{item}
+										</li>
+									))}
+								</ul>
+							</li>
+						</ul>
 					);
 				})}
 

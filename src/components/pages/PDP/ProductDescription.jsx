@@ -49,7 +49,6 @@ class ProductDescription extends Component {
 	}
 
 	render() {
-		console.log(this.state.selectedImgSrc);
 		let itemID = this.props.productIDState.productID;
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
