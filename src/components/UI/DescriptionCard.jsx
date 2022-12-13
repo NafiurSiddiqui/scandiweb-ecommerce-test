@@ -5,6 +5,17 @@ import React, { Component } from 'react';
  */
 
 export default class DescriptionCard extends Component {
+	renderAttributes(itemObj) {
+		for (const item of Object.entries(itemObj)) {
+			item.map((item) => {
+				return (
+					<ul>
+						<h4>{item}</h4>
+					</ul>
+				);
+			});
+		}
+	}
 	render() {
 		const { brand, name, images, attributesID, attributesItem, prices } =
 			this.props.products[0];
@@ -20,33 +31,41 @@ export default class DescriptionCard extends Component {
 			itemExtraction = items[1];
 		}
 
+		itemId.forEach((element, i) => {
+			itemObj[element] = itemExtraction[i];
+		});
+
+		for (const item of Object.entries(itemObj)) {
+			item.map((item) => {
+				return item;
+			});
+		}
+
 		return (
 			<article className="pd">
 				<div className="pd__headers">
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
 				</div>
-				{/* <ul className="pd__attributions">
-					{items.map((item) => {
-						// console.log(item);
-						return (
-							<li key={item} className="pd__attribution">
-								<span className="pd__attribution__ID">{item}</span>
-								<ul className="pd__attributions__items">
-									<li className="pd__attributions__item" role={'button'}></li>
-								</ul>
-							</li>
-						);
-					})}
-				</ul> */}
-				{/* {product.map((id, items) => {
+				{itemId.map((element, i) => {
+					// console.log(element, itemExtraction[i]);
+					// <ul className="pd__attributions">
+					// <li key={element} className="pd__attribution">
+					// 	<span className="pd__attribution__ID">{element}</span>
+					// 	<ul className="pd__attributions__items">
+					// 		<li className="pd__attributions__item" role={'button'}>
+					// 			{itemExtraction[i]}
+					// 		</li>
+					// 	</ul>
+					// </li>
+					// </ul>;
 					return (
-						<ul className="pd__attributions">
-							<li className="pd__attribution" key={id}>
-								<span className="pd__attribution__ID">{id}</span>
-								<ul className="pd__attributions__items">
-									{items.map((item) => {
-										return (
+						<>
+							<div className="pd__attributions">
+								<li key={element} className="pd__attribution">
+									<span className="pd__attribution__ID">{element}</span>
+									<ul className="pd__attributions__items">
+										{itemExtraction[i].map((item) => (
 											<li
 												className="pd__attributions__item"
 												role={'button'}
@@ -54,13 +73,15 @@ export default class DescriptionCard extends Component {
 											>
 												{item}
 											</li>
-										);
-									})}
-								</ul>
-							</li>
-						</ul>
+										))}
+									</ul>
+								</li>
+							</div>
+							{/* <div key={element}>{element}</div>
+							<div key={i}>{itemExtraction[i]}</div> */}
+						</>
 					);
-				})} */}
+				})}
 
 				<div className="pd__price">
 					<span className="pd__price-header">{}</span>
