@@ -6,29 +6,8 @@ import React, { Component } from 'react';
 
 export default class DescriptionCard extends Component {
 	render() {
-		const { brand, name, images, attributesID, attributesItem, prices } =
+		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products[0];
-		const product = this.props.products[0];
-		const items = [attributesID, attributesItem];
-
-		let itemId;
-		let itemExtraction;
-		let itemObj = {};
-
-		for (let i = 0; i < items.length; i++) {
-			itemId = items[0];
-			itemExtraction = items[1];
-		}
-
-		itemId.forEach((element, i) => {
-			itemObj[element] = itemExtraction[i];
-		});
-
-		for (const item of Object.entries(itemObj)) {
-			item.map((item) => {
-				return item;
-			});
-		}
 
 		return (
 			<article className="pd">
@@ -36,24 +15,13 @@ export default class DescriptionCard extends Component {
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
 				</div>
-				{itemId.map((element, i) => {
-					// console.log(element, itemExtraction[i]);
-					// <ul className="pd__attributions">
-					// <li key={element} className="pd__attribution">
-					// 	<span className="pd__attribution__ID">{element}</span>
-					// 	<ul className="pd__attributions__items">
-					// 		<li className="pd__attributions__item" role={'button'}>
-					// 			{itemExtraction[i]}
-					// 		</li>
-					// 	</ul>
-					// </li>
-					// </ul>;
+				{attributesID.map((element, i) => {
 					return (
 						<ul key={i} className="pd__attributions">
 							<li key={element} className="pd__attribution">
 								<span className="pd__attribution__ID">{element}</span>
 								<ul className="pd__attribution__items">
-									{itemExtraction[i].map((item) => (
+									{attributesItem[i].map((item) => (
 										<li
 											className="pd__attribution__item"
 											role={'button'}
