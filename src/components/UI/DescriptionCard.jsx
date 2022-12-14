@@ -14,12 +14,18 @@ export default class DescriptionCard extends Component {
 	}
 
 	itemClickHandler(e) {
+		if (e.target.dataset.clicked) {
+			e.target.dataset.clicked = true;
+			e.target.style.backgroundColor = 'red';
+		}
 		console.log(e.target.dataset.clicked);
+		return;
 	}
 
 	render() {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products[0];
+		// console.log(this.state.itemIsClicked);
 
 		return (
 			<article className="pd">
