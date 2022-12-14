@@ -5,6 +5,18 @@ import React, { Component } from 'react';
  */
 
 export default class DescriptionCard extends Component {
+	constructor() {
+		super();
+		this.state = {
+			itemIsClicked: false,
+		};
+		this.itemClickHandler = this.itemClickHandler.bind(this);
+	}
+
+	itemClickHandler(e) {
+		console.log(e.target.dataset.clicked);
+	}
+
 	render() {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products[0];
@@ -26,6 +38,8 @@ export default class DescriptionCard extends Component {
 											className="pd__attribution__item"
 											role={'button'}
 											key={item}
+											data-clicked={false}
+											onClick={this.itemClickHandler}
 										>
 											{item}
 										</li>
