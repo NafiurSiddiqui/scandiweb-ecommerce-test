@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 
 export default class AttributeItem extends Component {
 	render() {
-		const { propsKey, element, attributesItem, activeItem, onClick } =
-			this.props;
+		const {
+			propsKey,
+			element,
+			attributesItem,
+			activeItem,
+			activeItems,
+			onClick,
+		} = this.props;
 
-		// console.log(element);
+		// console.log();
 
 		return (
 			<ul key={propsKey} className="pd__attributions">
@@ -14,13 +20,13 @@ export default class AttributeItem extends Component {
 					<ul className="pd__attribution__items">
 						{attributesItem[propsKey].map((item) => {
 							let itemMatched = item === activeItem;
-							let itemClassGuard =
-								element === 'Color' ? 'itemColor' : 'itemActive';
-							console.log(item);
+							// console.log();
+							// let newMatch = activeItems.includes(item) === activeItem;
+
 							return (
 								<li
 									className={`pd__attribution__item ${
-										itemMatched ? itemClassGuard : ''
+										itemMatched ? 'itemActive' : ''
 									}`}
 									role={'button'}
 									key={item}

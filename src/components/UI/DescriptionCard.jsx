@@ -10,17 +10,30 @@ export default class DescriptionCard extends Component {
 		super();
 		this.state = {
 			activeItem: '',
+			activeItems: [],
+			targetDateSet: false,
 		};
 		this.itemClickHandler = this.itemClickHandler.bind(this);
 	}
 
 	itemClickHandler(e, item) {
-		if (e.target.dataset.clicked) {
+		this.setState((prev) => ({
+			activeItems: [...prev.activeItems, item],
+		}));
+		if (!e.target.dataset.clicked) {
 			e.target.dataset.clicked = true;
 			// e.target.style.backgroundColor = 'red';
+
+			// console.log(this.state.activeItems);
+		} else {
+			e.target.dataset.clicked = false;
+			if (this.state.activeItems.includes(item)) {
+				//pop the item
+				this.setState((prev) => ({
+					activeItems: prev.activeItems.filter((itemName) => itemName !== item),
+				}));
+			}
 		}
-		// console.log(e.target.dataset.clicked);
-		// console.log(e);
 
 		this.setState({
 			activeItem: item,
@@ -30,7 +43,7 @@ export default class DescriptionCard extends Component {
 	render() {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products[0];
-		// console.log(this.state.activeItem);
+		// console.log(this.state.activeItems);
 		return (
 			<article className="pd">
 				<div className="pd__headers">
@@ -68,6 +81,7 @@ export default class DescriptionCard extends Component {
 							element={element}
 							attributesItem={attributesItem}
 							activeItem={this.state.activeItem}
+							activeItems={this.state.activeItems}
 							key={i}
 							onClick={this.itemClickHandler}
 						/>
