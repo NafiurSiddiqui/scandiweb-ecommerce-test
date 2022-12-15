@@ -8,6 +8,8 @@ import ProgressiveImage from '../../Utilities/ProgressiveImage';
 
 /**
  * @className - 'PDP' = product description
+ * @Tasks -
+ * multiple attributes of the same item, can be selected and should be rendered accordingly.
  */
 
 class ProductDescription extends Component {

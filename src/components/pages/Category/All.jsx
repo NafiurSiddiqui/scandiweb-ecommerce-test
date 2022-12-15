@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import CategoryCard from './CategoryCard';
 import { GET_ALL_CATEGORIES } from './CategoryList';
 
+/**
+ * @TASK -
+ * Product brand and name are shown at the same line
+ */
+
 class CategoryAll extends Component {
 	render() {
 		return (
