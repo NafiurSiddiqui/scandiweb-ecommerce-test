@@ -9,46 +9,34 @@ export default class AttributionBtn extends Component {
 		this.toggleItemState = this.toggleItemState.bind(this);
 	}
 
-	toggleItemState(e, stateItem) {
-		// e.target.dataset.clicked = this.state.itemIsClicked;
-
+	toggleItemState(e) {
 		this.setState((prev) => ({
 			itemIsClicked: !prev.itemIsClicked,
 		}));
-		console.log(e.target.checked);
-		// e.target.dataset.clicked = stateItem;
+
+		e.target.checked
+			? this.setState({
+					itemIsClicked: true,
+			  })
+			: this.setState({
+					itemIsClicked: false,
+			  });
 	}
 
 	render() {
 		const { itemMatched, onClick, item, propsKey } = this.props;
-		// console.log(`STATE: ${this.state.itemIsClicked}`);
+		console.log(`STATE: ${this.state.itemIsClicked}`);
 		return (
 			<li
-				className={`pd__attribution__item ${itemMatched ? 'itemActive' : ''}`}
-				// className={`pd__attribution__item`}
+				className={`pd__attribution__item ${
+					this.state.itemIsClicked === true ? 'itemActive' : ''
+				}`}
 				role={'button'}
 				key={item}
 				data-clicked={false}
 				onClick={(e) => this.toggleItemState(e)}
-				style={{ position: 'relative', textAlign: 'center' }}
 			>
-				<input
-					type="checkbox"
-					name="attributeItem"
-					id="attributeItem"
-					style={{
-						position: 'absolute',
-						zIndex: '2',
-						backgroundColor: 'cyan',
-						width: '100%',
-						height: '2rem',
-						left: '-0.2rem',
-						top: '-0.01rem',
-						border: '3px solid blue',
-						cursor: 'pointer',
-						opacity: '0',
-					}}
-				/>
+				<input type="checkbox" name="attributeItem" id="attributeItem" />
 				{item}
 			</li>
 		);
