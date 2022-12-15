@@ -16,17 +16,35 @@ export default class DescriptionCard extends Component {
 		this.itemClickHandler = this.itemClickHandler.bind(this);
 	}
 
-	itemClickHandler(e, item) {
+	itemClickHandler(e, item, activeItems) {
 		this.setState((prev) => ({
 			activeItems: [...prev.activeItems, item],
 		}));
-		if (!e.target.dataset.clicked) {
+
+		if (this.state.activeItems.includes(item)) {
+			//pop the item
+			this.setState((prev) => ({
+				activeItems: prev.activeItems.filter((itemName) => itemName !== item),
+			}));
+		}
+
+		let target = e.target.dataset.clicked;
+
+		// const guardClass = this.state.activeItems.forEach(
+		// 	(items, i) => items === item
+		// );
+		// for (let i = 0; i < activeItems.length; i++) {
+		// 	console.log(activeItems[i] === item);
+		// }
+
+		if (e.target.dataset.clicked) {
 			e.target.dataset.clicked = true;
 			// e.target.style.backgroundColor = 'red';
 
 			// console.log(this.state.activeItems);
 		} else {
 			e.target.dataset.clicked = false;
+			// e.target.style.backgroundColor = 'white';
 			if (this.state.activeItems.includes(item)) {
 				//pop the item
 				this.setState((prev) => ({
@@ -43,7 +61,7 @@ export default class DescriptionCard extends Component {
 	render() {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products[0];
-		// console.log(this.state.activeItems);
+		console.log(this.state.activeItems);
 		return (
 			<article className="pd">
 				<div className="pd__headers">
