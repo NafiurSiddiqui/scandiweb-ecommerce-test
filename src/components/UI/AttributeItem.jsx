@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AttributionBtn from './AttributionBtn';
 
 export default class AttributeItem extends Component {
 	constructor() {
@@ -41,19 +42,20 @@ export default class AttributeItem extends Component {
 							// console.log(activeItems.forEach((item) => item === activeItem));
 
 							return (
-								<li
-									className={`pd__attribution__item ${
-										itemMatched ? 'itemActive' : ''
-									}`}
-									// className={`pd__attribution__item`}
-									role={'button'}
-									key={item}
-									data-clicked={false}
-									onClick={(e) => onClick(e, item, activeItems)}
-									style={{}}
-								>
-									{item}
-								</li>
+								// <li
+								// 	className={`pd__attribution__item ${
+								// 		itemMatched ? 'itemActive' : ''
+								// 	}`}
+								// 	// className={`pd__attribution__item`}
+								// 	role={'button'}
+								// 	key={item}
+								// 	data-clicked={false}
+								// 	onClick={(e) => onClick(e, item, activeItems)}
+								// 	style={{}}
+								// >
+								// 	{item}
+								// </li>
+								<AttributionBtn key={item} item={item} />
 							);
 						})}
 					</ul>
