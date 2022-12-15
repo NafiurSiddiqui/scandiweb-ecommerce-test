@@ -15,13 +15,13 @@ export default class AttributionBtn extends Component {
 		this.setState((prev) => ({
 			itemIsClicked: !prev.itemIsClicked,
 		}));
-		// console.log();
+		console.log(e.target.checked);
 		// e.target.dataset.clicked = stateItem;
 	}
 
 	render() {
 		const { itemMatched, onClick, item, propsKey } = this.props;
-		console.log(`STATE: ${this.state.itemIsClicked}`);
+		// console.log(`STATE: ${this.state.itemIsClicked}`);
 		return (
 			<li
 				className={`pd__attribution__item ${itemMatched ? 'itemActive' : ''}`}
@@ -33,7 +33,7 @@ export default class AttributionBtn extends Component {
 				style={{ position: 'relative', textAlign: 'center' }}
 			>
 				<input
-					type="radio"
+					type="checkbox"
 					name="attributeItem"
 					id="attributeItem"
 					style={{
@@ -46,6 +46,7 @@ export default class AttributionBtn extends Component {
 						top: '-0.01rem',
 						border: '3px solid blue',
 						cursor: 'pointer',
+						opacity: '0',
 					}}
 				/>
 				{item}
