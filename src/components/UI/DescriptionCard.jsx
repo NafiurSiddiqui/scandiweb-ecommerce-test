@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AttributeItem from './AttributeItem';
 
 /**
  * @className : PD = product description
@@ -38,30 +39,37 @@ export default class DescriptionCard extends Component {
 				</div>
 				{attributesID.map((element, i) => {
 					return (
-						<ul key={i} className="pd__attributions">
-							<li key={element} className="pd__attribution">
-								<span className="pd__attribution__ID">{element}</span>
-								<ul className="pd__attribution__items">
-									{attributesItem[i].map((item) => {
-										let itemMatched = item === this.state.activeItem;
+						// <ul key={i} className="pd__attributions">
+						// 	<li key={element} className="pd__attribution">
+						// 		<span className="pd__attribution__ID">{element}</span>
+						// 		<ul className="pd__attribution__items">
+						// 			{attributesItem[i].map((item) => {
+						// 				let itemMatched = item === this.state.activeItem;
 
-										return (
-											<li
-												className={`pd__attribution__item ${
-													itemMatched ? 'itemActive' : ''
-												}`}
-												role={'button'}
-												key={item}
-												data-clicked={false}
-												onClick={(e) => this.itemClickHandler(e, item)}
-											>
-												{item}
-											</li>
-										);
-									})}
-								</ul>
-							</li>
-						</ul>
+						// 				return (
+						// 					<li
+						// 						className={`pd__attribution__item ${
+						// 							itemMatched ? 'itemActive' : ''
+						// 						}`}
+						// 						role={'button'}
+						// 						key={item}
+						// 						data-clicked={false}
+						// 						onClick={(e) => this.itemClickHandler(e, item)}
+						// 					>
+						// 						{item}
+						// 					</li>
+						// 				);
+						// 			})}
+						// 		</ul>
+						// 	</li>
+						// </ul>
+						<AttributeItem
+							propsKey={i}
+							element={element}
+							attributesItem={attributesItem}
+							activeItem={this.state.activeItem}
+							key={i}
+						/>
 					);
 				})}
 
