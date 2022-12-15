@@ -5,15 +5,13 @@ export default class AttributionBtn extends Component {
 		super();
 		this.state = {
 			itemIsClicked: false,
+			colorSwatch: false,
 		};
 		this.toggleItemState = this.toggleItemState.bind(this);
 	}
 
 	toggleItemState(e) {
-		this.setState((prev) => ({
-			itemIsClicked: !prev.itemIsClicked,
-		}));
-
+		// console.log(e)
 		e.target.checked
 			? this.setState({
 					itemIsClicked: true,
@@ -25,7 +23,9 @@ export default class AttributionBtn extends Component {
 
 	render() {
 		const { itemMatched, onClick, item, propsKey } = this.props;
-		console.log(`STATE: ${this.state.itemIsClicked}`);
+		// console.log(`STATE: ${this.state.itemIsClicked}`);
+
+		console.log(item);
 		return (
 			<li
 				className={`pd__attribution__item ${
