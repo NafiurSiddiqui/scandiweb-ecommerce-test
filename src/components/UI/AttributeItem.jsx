@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 export default class AttributeItem extends Component {
 	render() {
-		const { propsKey, element, attributesItem, activeItem } = this.props;
+		const { propsKey, element, attributesItem, activeItem, onClick } =
+			this.props;
 		// console.log(attributesItem, propsKey);
 		return (
 			<ul key={propsKey} className="pd__attributions">
@@ -20,7 +21,7 @@ export default class AttributeItem extends Component {
 									role={'button'}
 									key={item}
 									data-clicked={false}
-									onClick={(e) => this.itemClickHandler(e, item)}
+									onClick={(e) => onClick(e, item)}
 								>
 									{item}
 								</li>
