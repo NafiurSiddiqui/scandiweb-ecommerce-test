@@ -4,7 +4,9 @@ export default class AttributeItem extends Component {
 	render() {
 		const { propsKey, element, attributesItem, activeItem, onClick } =
 			this.props;
-		// console.log(attributesItem, propsKey);
+
+		// console.log(element);
+
 		return (
 			<ul key={propsKey} className="pd__attributions">
 				<li key={element} className="pd__attribution">
@@ -12,16 +14,19 @@ export default class AttributeItem extends Component {
 					<ul className="pd__attribution__items">
 						{attributesItem[propsKey].map((item) => {
 							let itemMatched = item === activeItem;
-
+							let itemClassGuard =
+								element === 'Color' ? 'itemColor' : 'itemActive';
+							console.log(item);
 							return (
 								<li
 									className={`pd__attribution__item ${
-										itemMatched ? 'itemActive' : ''
+										itemMatched ? itemClassGuard : ''
 									}`}
 									role={'button'}
 									key={item}
 									data-clicked={false}
 									onClick={(e) => onClick(e, item)}
+									style={{}}
 								>
 									{item}
 								</li>
