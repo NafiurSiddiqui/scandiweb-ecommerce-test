@@ -11,7 +11,13 @@ export default class AttributeItem extends Component {
 					<span className="pd__attribution__ID">{element}</span>
 					<ul className="pd__attribution__items">
 						{attributesItem[propsKey].map((item) => {
-							return <AttributionBtn key={item} item={item} />;
+							return (
+								<AttributionBtn
+									key={item}
+									item={item}
+									attributeTitle={element}
+								/>
+							);
 						})}
 					</ul>
 				</li>

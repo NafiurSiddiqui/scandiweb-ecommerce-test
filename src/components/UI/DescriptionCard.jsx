@@ -61,7 +61,7 @@ export default class DescriptionCard extends Component {
 	render() {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products[0];
-		// console.log(this.state.activeItems);
+		// console.log(this.state.activeItem);
 		return (
 			<article className="pd">
 				<div className="pd__headers">
