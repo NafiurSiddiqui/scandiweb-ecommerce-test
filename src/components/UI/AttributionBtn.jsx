@@ -38,16 +38,15 @@ export default class AttributionBtn extends Component {
 		const { item } = this.props;
 		const { colorSwatch, itemColor, itemIsClicked } = this.state;
 		// console.log(colorSwatch, itemColor);
-		const colors = ['Green', 'Cyan', 'Blue', 'Black', 'White'];
+
 		let itemBackground =
 			colorSwatch === true
-				? { backgroundColor: item, minWidth: '2.5rem', margin: '0 0.2rem' }
+				? { backgroundColor: item, minWidth: '2.5rem' }
 				: { backgroundColor: 'none' };
 
 		return (
 			<li
 				className={`pd__attribution__item`}
-				role={'button'}
 				key={item}
 				data-clicked={false}
 				onClick={(e) => this.toggleItemState(e)}
