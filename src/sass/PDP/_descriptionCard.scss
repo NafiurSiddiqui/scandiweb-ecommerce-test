@@ -18,6 +18,10 @@
 			margin: 0.4rem 0;
 		}
 
+		&__item:not(:first-child) {
+			margin-left: 0.25rem;
+		}
+
 		&__item {
 			border: 1px solid black;
 			padding: 0.4rem;
