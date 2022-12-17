@@ -58,7 +58,7 @@ export default class AttributionBtn extends Component {
 
 		const colorItemIsSelected =
 			colorSwatch && itemIsClicked
-				? { outline: '2px solid lawngreen', outlineOffset: ' 0.1rem' }
+				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
 				: { outline: 'none' };
 
 		return (
