@@ -37,11 +37,21 @@ export default class AttributionBtn extends Component {
 	render() {
 		const { item } = this.props;
 		const { colorSwatch, itemColor, itemIsClicked } = this.state;
-		// console.log(colorSwatch, itemColor);
 
 		let itemBackground =
 			colorSwatch === true
-				? { backgroundColor: item, minWidth: '2.5rem' }
+				? {
+						backgroundColor:
+							item === 'Green'
+								? '#0F6450'
+								: item === 'White'
+								? '#D3D2D5'
+								: item === 'Black'
+								? '#2B2B2B'
+								: item,
+						minWidth: '2.5rem',
+						border: 'none',
+				  }
 				: { backgroundColor: 'none' };
 
 		return (
