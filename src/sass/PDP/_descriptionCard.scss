@@ -1,15 +1,21 @@
 .pd {
 	&__headers {
 		padding-bottom: 1rem;
-	}
-	&__attributions {
+
+		h3 {
+			font-weight: 600;
+		}
+
+		> h3 {
+			font-weight: 400;
+		}
 	}
 
 	&__attribution {
 		list-style-type: none;
 
 		&__ID {
-			font-weight: 600;
+			font-weight: 700;
 		}
 
 		&__items {

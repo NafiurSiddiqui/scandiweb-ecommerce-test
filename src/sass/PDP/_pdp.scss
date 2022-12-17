@@ -1,23 +1,26 @@
 .pdp {
 	padding: 0 3rem;
 	display: flex;
+	height: 80vh;
 	width: 100%;
 	&-image {
-		@include border(red);
 		height: 100%;
 		@include flex(space-between, null, row);
 		width: 100%;
 		&-gallery {
-			@include border(orange);
 			height: 100%;
 			width: 20%;
 			overflow-y: scroll;
+			&__image:not(:first-child) {
+				margin: 0.3rem 0;
+			}
 			&__image {
 				width: 100%;
 				object-fit: contain;
 				height: 5rem;
 				cursor: pointer;
-				@include border(red);
+
+				// box-shadow: 0 0 3px 1px rgba(67, 67, 67, 0.249);
 			}
 		}
 

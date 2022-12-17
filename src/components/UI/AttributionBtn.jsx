@@ -36,8 +36,8 @@ export default class AttributionBtn extends Component {
 
 	render() {
 		const { item } = this.props;
-		const { colorSwatch, itemColor, itemIsClicked } = this.state;
-		console.log(itemIsClicked);
+		const { colorSwatch, itemIsClicked } = this.state;
+
 		let itemBackground =
 			colorSwatch === true
 				? {
@@ -53,7 +53,7 @@ export default class AttributionBtn extends Component {
 						border: 'none',
 				  }
 				: !colorSwatch && itemIsClicked
-				? { backgroundColor: 'black', color: 'white' }
+				? { backgroundColor: '#1D1F22', color: 'white' }
 				: { backgroundColor: 'white' };
 
 		const colorItemIsSelected =
