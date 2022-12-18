@@ -50,6 +50,13 @@ class ProductDescription extends Component {
 		});
 	}
 
+	// isOverflown(element) {
+	// 	return (
+	// 		element.scrollHeight > element.clientHeight ||
+	// 		element.scrollWidth > element.clientWidth
+	// 	);
+	// }
+
 	render() {
 		let itemID = this.props.productIDState.productID;
 		return (
@@ -89,7 +96,7 @@ class ProductDescription extends Component {
 						<>
 							<section className="pdp">
 								<div className="pdp-image">
-									<div className="pdp-image-gallery">
+									<ul className="pdp-image-gallery">
 										{PDP[0].images.map((item, index) => (
 											<ProgressiveImage
 												src={item}
@@ -97,7 +104,7 @@ class ProductDescription extends Component {
 												onClick={this.selectedImgSrcHandler}
 											/>
 										))}
-									</div>
+									</ul>
 
 									<img
 										className="pdp-image-hero"

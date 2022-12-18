@@ -30,21 +30,11 @@ export default class DescriptionCard extends Component {
 
 		let target = e.target.dataset.clicked;
 
-		// const guardClass = this.state.activeItems.forEach(
-		// 	(items, i) => items === item
-		// );
-		// for (let i = 0; i < activeItems.length; i++) {
-		// 	console.log(activeItems[i] === item);
-		// }
-
 		if (e.target.dataset.clicked) {
 			e.target.dataset.clicked = true;
-			// e.target.style.backgroundColor = 'red';
-
-			// console.log(this.state.activeItems);
 		} else {
 			e.target.dataset.clicked = false;
-			// e.target.style.backgroundColor = 'white';
+
 			if (this.state.activeItems.includes(item)) {
 				//pop the item
 				this.setState((prev) => ({
@@ -70,30 +60,6 @@ export default class DescriptionCard extends Component {
 				</div>
 				{attributesID.map((element, i) => {
 					return (
-						// <ul key={i} className="pd__attributions">
-						// 	<li key={element} className="pd__attribution">
-						// 		<span className="pd__attribution__ID">{element}</span>
-						// 		<ul className="pd__attribution__items">
-						// 			{attributesItem[i].map((item) => {
-						// 				let itemMatched = item === this.state.activeItem;
-
-						// 				return (
-						// 					<li
-						// 						className={`pd__attribution__item ${
-						// 							itemMatched ? 'itemActive' : ''
-						// 						}`}
-						// 						role={'button'}
-						// 						key={item}
-						// 						data-clicked={false}
-						// 						onClick={(e) => this.itemClickHandler(e, item)}
-						// 					>
-						// 						{item}
-						// 					</li>
-						// 				);
-						// 			})}
-						// 		</ul>
-						// 	</li>
-						// </ul>
 						<AttributeItem
 							propsKey={i}
 							element={element}
