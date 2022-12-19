@@ -18,6 +18,7 @@ class ProductDescription extends Component {
 
 		this.state = {
 			selectedImgSrc: '',
+			overFlow: false,
 		};
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
@@ -50,12 +51,7 @@ class ProductDescription extends Component {
 		});
 	}
 
-	// isOverflown(element) {
-	// 	return (
-	// 		element.scrollHeight > element.clientHeight ||
-	// 		element.scrollWidth > element.clientWidth
-	// 	);
-	// }
+	isOverflown(element) {}
 
 	render() {
 		let itemID = this.props.productIDState.productID;
@@ -68,7 +64,7 @@ class ProductDescription extends Component {
 					const { products } = data.category;
 					//getting the right data
 					let filteredProduct = products.filter((item) => item.id === itemID);
-					//returning PDP as an OBJECT
+					//return PDP as an OBJECT
 					let PDP = filteredProduct.map((item) => {
 						return {
 							brand: item.brand,
@@ -86,17 +82,21 @@ class ProductDescription extends Component {
 							},
 						};
 					});
-					/**
-					 * some product attribute length === 0, then return
-					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
-					 */
-					// console.log(PDP);
+
+					let galleryOverflow = PDP[0].images.length > 6;
 
 					return (
 						<>
 							<section className="pdp">
 								<div className="pdp-image">
-									<ul className="pdp-image-gallery">
+									<ul
+										className="pdp-image-gallery"
+										style={
+											galleryOverflow
+												? { overflowY: 'scroll' }
+												: { overflowY: 'none' }
+										}
+									>
 										{PDP[0].images.map((item, index) => (
 											<ProgressiveImage
 												src={item}

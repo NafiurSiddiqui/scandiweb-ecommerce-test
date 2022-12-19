@@ -46,6 +46,15 @@ main {
 	height: 100%;
 }
 
+.btn {
+	background-color: #1fb747;
+	width: 100%;
+	padding: 1rem 2rem;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
 // DYNAMIC CLASSES
 .hide {
 	display: none;

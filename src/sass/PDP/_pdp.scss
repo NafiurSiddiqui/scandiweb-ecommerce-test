@@ -10,7 +10,7 @@
 		&-gallery {
 			height: 100%;
 			width: 20%;
-			overflow-y: scroll;
+			// overflow-y: scroll;
 			&__image:not(:first-child) {
 				margin: 0.3rem 0;
 			}
@@ -35,7 +35,6 @@
 	}
 
 	&_pd {
-		@include border(orange);
 		width: 18rem;
 	}
 }
