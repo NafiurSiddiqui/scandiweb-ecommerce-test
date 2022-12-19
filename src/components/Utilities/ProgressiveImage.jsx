@@ -21,7 +21,11 @@ export default class ProgressiveImage extends Component {
 
 	render() {
 		return (
-			<li className={this.state.isLoaded ? '' : 'skeleton-gallery'}>
+			<li
+				className={
+					this.state.isLoaded ? 'pdp__image-gallery-item' : 'skeleton-gallery'
+				}
+			>
 				{this.state.isLoaded ? null : (
 					<div className="skeleton-gallery__placeholder" />
 				)}
