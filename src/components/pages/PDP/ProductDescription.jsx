@@ -18,12 +18,14 @@ class ProductDescription extends Component {
 
 		this.state = {
 			selectedImgSrc: '',
-			overFlow: false,
+			txtOverFlow: false,
 		};
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
+		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
 	}
 
+	//PARSE HTML
 	HTMLparser(products) {
 		let itemID = this.props.productIDState.productID;
 
@@ -45,16 +47,29 @@ class ProductDescription extends Component {
 		return parsedText;
 	}
 
+	//IMAGE GALLERY
 	selectedImgSrcHandler(src) {
 		this.setState({
 			selectedImgSrc: src,
 		});
 	}
+	//description overflow handler
+	textOverFlowHandler(e) {
+		// console.log(e.target.textContent.length === 1172);
+		e.target.textContent.length >= 1172
+			? this.setState({ ...this.state, txtOverFlow: !this.state.txtOverFlow })
+			: this.setState(null);
 
-	isOverflown(element) {}
+		// let txtOverFlow = e.target.textContent.length === 1172 ? true : false;
+
+		// txtOverFlow
+		// 	? (e.target.style.display = '')
+		// 	: (e.target.style.dislay = '-webkit-box');
+	}
 
 	render() {
 		let itemID = this.props.productIDState.productID;
+		console.log(this.state.txtOverFlow);
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data, client }) => {
@@ -119,7 +134,27 @@ class ProductDescription extends Component {
 								<article className="pdp_pd">
 									<DescriptionCard products={PDP} priceHeading={true} />
 									<Button className="pdp__cart-btn">ADD TO CART</Button>
-									<p className="pd__description">{this.HTMLparser(products)}</p>
+									<p
+										className="pd__description"
+										onClick={this.textOverFlowHandler}
+										style={
+											this.state.txtOverFlow
+												? {
+														display: '-webkit-box',
+														WebkitLineClamp: '0',
+														WebkitBoxOrient: 'vertical',
+														overflowY: 'scroll',
+												  }
+												: {
+														display: '-webkit-box',
+														WebkitLineClamp: '6',
+														WebkitBoxOrient: 'vertical',
+														overflow: 'hidden',
+												  }
+										}
+									>
+										{this.HTMLparser(products)}
+									</p>
 								</article>
 							</section>
 						</>
