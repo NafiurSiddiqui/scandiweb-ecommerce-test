@@ -39,7 +39,6 @@ export default class DescriptionCard extends Component {
 							element={element}
 							attributesItem={attributesItem}
 							activeItem={this.state.activeItem}
-							activeItems={this.state.activeItems}
 							key={i}
 							onClick={this.itemClickHandler}
 						/>
