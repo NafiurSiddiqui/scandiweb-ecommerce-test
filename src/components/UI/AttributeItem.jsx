@@ -8,7 +8,7 @@ export default class AttributeItem extends Component {
 		return (
 			<ul key={propsKey} className="pd__attributions">
 				<li key={element} className="pd__attribution">
-					<span className="pd__attribution__ID">{element}:</span>
+					<span className="pd__attribution__ID">{element.toUpperCase()}:</span>
 					<ul className="pd__attribution__items">
 						{attributesItem[propsKey].map((item) => {
 							return (

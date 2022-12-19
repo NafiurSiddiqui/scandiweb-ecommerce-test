@@ -2,7 +2,7 @@
 	&__headers {
 		padding-bottom: 1rem;
 
-		h3 {
+		h2 {
 			font-weight: 600;
 		}
 
@@ -35,6 +35,13 @@
 			text-align: center;
 			position: relative;
 			cursor: pointer;
+		}
+	}
+
+	&__price {
+		@include flex(space-between, null, column);
+
+		&-header {
 		}
 	}
 }

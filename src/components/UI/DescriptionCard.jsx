@@ -49,9 +49,11 @@ export default class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, attributesID, attributesItem, prices } =
+		const { brand, name, attributesID, attributesItem } =
 			this.props.products[0];
-		// console.log(this.state.activeItem);
+
+		const { priceHeading } = this.props;
+
 		return (
 			<article className="pd">
 				<div className="pd__headers">
@@ -73,7 +75,7 @@ export default class DescriptionCard extends Component {
 				})}
 
 				<div className="pd__price">
-					<span className="pd__price-header">{}</span>
+					{priceHeading ? <h3 className="pd__price-header">PRICE:</h3> : null}
 					<span className="pd__price-price">
 						<span className="pd__price-price__symbol">$</span>
 						50.00
