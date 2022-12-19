@@ -55,16 +55,9 @@ class ProductDescription extends Component {
 	}
 	//description overflow handler
 	textOverFlowHandler(e) {
-		// console.log(e.target.textContent.length === 1172);
 		e.target.textContent.length >= 1172
 			? this.setState({ ...this.state, txtOverFlow: !this.state.txtOverFlow })
 			: this.setState(null);
-
-		// let txtOverFlow = e.target.textContent.length === 1172 ? true : false;
-
-		// txtOverFlow
-		// 	? (e.target.style.display = '')
-		// 	: (e.target.style.dislay = '-webkit-box');
 	}
 
 	render() {

@@ -10,39 +10,11 @@ export default class DescriptionCard extends Component {
 		super();
 		this.state = {
 			activeItem: '',
-			activeItems: [],
-			targetDateSet: false,
 		};
 		this.itemClickHandler = this.itemClickHandler.bind(this);
 	}
 
-	itemClickHandler(e, item, activeItems) {
-		this.setState((prev) => ({
-			activeItems: [...prev.activeItems, item],
-		}));
-
-		if (this.state.activeItems.includes(item)) {
-			//pop the item
-			this.setState((prev) => ({
-				activeItems: prev.activeItems.filter((itemName) => itemName !== item),
-			}));
-		}
-
-		let target = e.target.dataset.clicked;
-
-		if (e.target.dataset.clicked) {
-			e.target.dataset.clicked = true;
-		} else {
-			e.target.dataset.clicked = false;
-
-			if (this.state.activeItems.includes(item)) {
-				//pop the item
-				this.setState((prev) => ({
-					activeItems: prev.activeItems.filter((itemName) => itemName !== item),
-				}));
-			}
-		}
-
+	itemClickHandler(item) {
 		this.setState({
 			activeItem: item,
 		});
