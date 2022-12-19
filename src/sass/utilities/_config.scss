@@ -1,0 +1,23 @@
+// DELETE TESTS
+@mixin borderTest {
+	border: 1px solid black;
+}
+
+//MAIN-----
+
+$darkTxtColr: #1d1f22;
+
+@mixin border($color) {
+	border: 1px solid $color;
+}
+
+@mixin flex($jc, $ai, $dir) {
+	display: flex;
+	justify-content: $jc;
+	align-items: $ai;
+	flex-direction: $dir;
+}
+
+@mixin transition($seconds) {
+	transition: all #{$seconds}s ease-in-out;
+}
