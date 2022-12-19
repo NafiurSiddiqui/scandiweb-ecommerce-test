@@ -9,9 +9,12 @@ export const currencySlice = createSlice({
 	name: 'currency',
 	initialState,
 	reducers: {
-		setBodyIsClicked: () => {},
+		setBodyIsClicked: (state, action) => {
+			state.bodyIsClicked = !state.bodyIsClicked || action.payload;
+			// console.log('Body clicked');
+		},
 		setSelectedCurrency: (state, action) => {
-			state.bodyIsClicked = action.payload;
+			state.selectedCurrency = action.payload;
 		},
 	},
 });

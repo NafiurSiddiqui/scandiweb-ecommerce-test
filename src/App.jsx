@@ -5,6 +5,7 @@ import Skeleton from './components/Layout/skeleton';
 import CategoryList from './components/pages/Category/CategoryList';
 import ProductDescription from './components/pages/PDP/ProductDescription';
 import { getProductID } from './components/store/categorySlice';
+import { setBodyIsClicked } from './components/store/currencySlice';
 
 class App extends Component {
 	constructor(props) {
@@ -13,24 +14,29 @@ class App extends Component {
 			DOMisLoaded: false,
 		};
 
-		this.DOMHandler = this.DOMHandler.bind(this);
+		this.DOMloadHandler = this.DOMloadHandler.bind(this);
+		this.bodyClickHandler = this.bodyClickHandler.bind(this);
 	}
 
 	componentDidMount() {
-		window.addEventListener('load', this.DOMHandler);
+		window.addEventListener('load', this.DOMloadHandler);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('load', this.DOMHandler);
+		window.removeEventListener('load', this.DOMloadHandler);
 	}
 
-	DOMHandler() {
+	DOMloadHandler() {
 		this.setState({ DOMisLoaded: true });
 	}
 
+	bodyClickHandler() {
+		this.props.setBodyIsClicked();
+	}
+
 	render() {
-		let { productID } = this.props.protductIDState;
-		// console.log(productID);
+		let { productID } = this.props.productIDState;
+		// console.log(this.props);
 		return (
 			<>
 				{!this.state.DOMisLoaded ? (
@@ -38,7 +44,7 @@ class App extends Component {
 						style={this.state.DOMisLoaded ? 'display:none' : 'display:block'}
 					/>
 				) : (
-					<section onLoad={this.DOMHandler}>
+					<section onLoad={this.DOMloadHandler} onClick={this.bodyClickHandler}>
 						<Header />
 						<main className="products-display">
 							{productID ? <ProductDescription /> : <CategoryList />}
@@ -53,10 +59,10 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		protductIDState: state.category,
+		productIDState: state.category,
 	};
 };
 
-const mapDispatchToProps = { getProductID };
+const mapDispatchToProps = { getProductID, setBodyIsClicked };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

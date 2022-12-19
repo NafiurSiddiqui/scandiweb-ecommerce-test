@@ -62,7 +62,7 @@ class ProductDescription extends Component {
 
 	render() {
 		let itemID = this.props.productIDState.productID;
-		console.log(this.state.txtOverFlow);
+
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data, client }) => {
