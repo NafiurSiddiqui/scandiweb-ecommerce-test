@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setBodyIsClicked } from '../store/currencySlice';
+import { setBodyIsClicked, setCurrencyIsOpen } from '../store/currencySlice';
 
 class Currency extends Component {
 	//Get the value
@@ -16,21 +16,17 @@ class Currency extends Component {
 	}
 
 	currencyHandler() {
-		// if (this.props.bodyIsClicked) {
-
-		// }
-
-		// this.props.setBodyIsClicked(false);
-
-		this.setState((prev) => ({
-			currencyIsOpen: !prev.currencyIsOpen,
-		}));
+		// this.setState((prev) => ({
+		// 	currencyIsOpen: !prev.currencyIsOpen,
+		// }));
+		this.props.setCurrencyIsOpen();
 	}
 
 	render() {
-		let { bodyIsClicked } = this.props;
+		let { bodyIsClicked, currencyIsOpen } = this.props;
 		const currencyState = this.state.currencyIsOpen ? 'visible' : '';
-		console.log(bodyIsClicked);
+		// console.log(bodyIsClicked, `CurrencyClicked: ${currencyIsOpen}`);
+		console.log(setCurrencyIsOpen);
 
 		return (
 			<>
@@ -65,9 +61,10 @@ class Currency extends Component {
 const mapStateToProps = (state) => {
 	return {
 		bodyIsClicked: state.currency.bodyIsClicked,
+		currencyIsOpen: state.currency.currencyIsOpen,
 	};
 };
 
-const mapDispatchToProps = { setBodyIsClicked };
+const mapDispatchToProps = { setBodyIsClicked, setCurrencyIsOpen };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Currency);
