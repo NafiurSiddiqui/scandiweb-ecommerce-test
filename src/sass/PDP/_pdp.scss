@@ -3,6 +3,7 @@
 	display: flex;
 	height: 80vh;
 	width: 100%;
+	// line-height: 1.6rem;
 	&-image {
 		height: 100%;
 		@include flex(space-between, null, row);
@@ -10,7 +11,7 @@
 		&-gallery {
 			height: 100%;
 			width: 20%;
-			// overflow-y: scroll;
+
 			&__image:not(:first-child) {
 				margin: 0.3rem 0;
 			}

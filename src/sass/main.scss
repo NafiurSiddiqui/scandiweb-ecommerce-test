@@ -1,9 +1,9 @@
-@import './config';
+@import './utilities/config';
+@import './utilities/skeletion';
 @import './header/header';
 @import './category/categoryCard';
 @import './category/categoryList';
 @import './PDP/pdp';
-@import './utilities/skeletion';
 @import './PDP/descriptionCard';
 @import './PDP/attributionItem';
 
