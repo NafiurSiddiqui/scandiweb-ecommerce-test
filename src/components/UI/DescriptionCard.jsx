@@ -75,7 +75,7 @@ export default class DescriptionCard extends Component {
 				})}
 
 				<div className="pd__price">
-					{priceHeading ? <h3 className="pd__price-header">PRICE:</h3> : null}
+					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
 					<span className="pd__price-price">
 						<span className="pd__price-price__symbol">$</span>
 						50.00

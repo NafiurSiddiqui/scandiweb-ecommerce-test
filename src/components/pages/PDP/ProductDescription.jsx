@@ -118,7 +118,7 @@ class ProductDescription extends Component {
 								</div>
 								<article className="pdp_pd">
 									<DescriptionCard products={PDP} priceHeading={true} />
-									<Button>ADD TO CART</Button>
+									<Button className="pdp__cart-btn">ADD TO CART</Button>
 									<p className="pd__description">{this.HTMLparser(products)}</p>
 								</article>
 							</section>
