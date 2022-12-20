@@ -10,6 +10,7 @@ class Currency extends Component {
 		super();
 
 		this.currencyHandler = this.currencyHandler.bind(this);
+		this.selectedCurrencyHandler = this.selectedCurrencyHandler.bind(this);
 	}
 
 	//toggle currency dropdown menu on click outside
@@ -17,8 +18,14 @@ class Currency extends Component {
 		this.props.setCurrencyIsOpen(!this.props.currencyIsOpen);
 	}
 
+	//get & gloablly set the value
+	selectedCurrencyHandler(e) {
+		this.props.setSelectedCurrency(e.target.textContent);
+		// console.log(e.target.textContent);
+	}
+
 	render() {
-		let { currencyIsOpen, products } = this.props;
+		let { currencyIsOpen, products, selectedCurrency } = this.props;
 		const currencyState = currencyIsOpen ? 'visible' : '';
 		const allProducts = products?.products?.category?.products;
 		const prices = allProducts?.map((item, i) =>
@@ -34,7 +41,9 @@ class Currency extends Component {
 			<OutsideClickGuard className={`header-currency guard`}>
 				<div className={`header-currency`} onClick={this.currencyHandler}>
 					<div className={`header-currency__symbols`}>
-						<span className="header-currency__symbols__currency-symbol">$</span>
+						<span className="header-currency__symbols__currency-symbol">
+							{selectedCurrency[0]}
+						</span>
 
 						<span className={`header-currency__symbols__dropdown-symbol`}>
 							&#8964;
@@ -49,6 +58,7 @@ class Currency extends Component {
 									<li
 										className={`header-currency__currency-items__item `}
 										key={item.currency}
+										onClick={this.selectedCurrencyHandler}
 									>
 										{item.symbol} {item.currency}
 									</li>
