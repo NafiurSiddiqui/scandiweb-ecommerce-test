@@ -20,16 +20,10 @@ class ProductDescription extends Component {
 		this.state = {
 			selectedImgSrc: '',
 			txtOverFlow: false,
-			prodcuts: null,
 		};
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
-		this.getProductsHandler = this.getProductsHandler.bind(this);
-	}
-
-	componentDidMount(el) {
-		this.getProductsHandler(el);
 	}
 
 	//PARSE HTML
@@ -65,11 +59,6 @@ class ProductDescription extends Component {
 		e.target.textContent.length >= 1172
 			? this.setState({ ...this.state, txtOverFlow: !this.state.txtOverFlow })
 			: this.setState(null);
-	}
-
-	//Get products
-	getProductsHandler(el) {
-		this.props.setProducts(el);
 	}
 
 	render() {
