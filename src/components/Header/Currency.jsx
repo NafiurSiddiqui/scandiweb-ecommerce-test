@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setBodyIsClicked, setCurrencyIsOpen } from '../store/currencySlice';
+import { setCurrencyIsOpen } from '../store/currencySlice';
 import OutsideClickGuard from '../Utilities/OutsideClickGuard';
 
 class Currency extends Component {
@@ -59,6 +59,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { setBodyIsClicked, setCurrencyIsOpen };
+const mapDispatchToProps = { setCurrencyIsOpen };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Currency);

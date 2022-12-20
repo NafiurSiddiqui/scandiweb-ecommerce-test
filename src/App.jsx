@@ -5,7 +5,6 @@ import Skeleton from './components/Layout/skeleton';
 import CategoryList from './components/pages/Category/CategoryList';
 import ProductDescription from './components/pages/PDP/ProductDescription';
 import { getProductID } from './components/store/categorySlice';
-import { setBodyIsClicked } from './components/store/currencySlice';
 
 class App extends Component {
 	constructor(props) {
@@ -15,7 +14,6 @@ class App extends Component {
 		};
 
 		this.DOMloadHandler = this.DOMloadHandler.bind(this);
-		this.bodyClickHandler = this.bodyClickHandler.bind(this);
 	}
 
 	componentDidMount() {
@@ -30,14 +28,9 @@ class App extends Component {
 		this.setState({ DOMisLoaded: true });
 	}
 
-	bodyClickHandler() {
-		// this.props.setBodyIsClicked(true);
-		// console.log('what');
-	}
-
 	render() {
 		let { productID } = this.props.productIDState;
-		// console.log(`APP: ${this.props.bodyIsClicked}`);
+
 		return (
 			<>
 				{!this.state.DOMisLoaded ? (
@@ -45,7 +38,7 @@ class App extends Component {
 						style={this.state.DOMisLoaded ? 'display:none' : 'display:block'}
 					/>
 				) : (
-					<section onLoad={this.DOMloadHandler} onClick={this.bodyClickHandler}>
+					<section onLoad={this.DOMloadHandler}>
 						<Header />
 						<main className="products-display">
 							{productID ? <ProductDescription /> : <CategoryList />}
@@ -61,10 +54,9 @@ class App extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category,
-		bodyIsClicked: state.currency.bodyIsClicked,
 	};
 };
 
-const mapDispatchToProps = { getProductID, setBodyIsClicked };
+const mapDispatchToProps = { getProductID };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
