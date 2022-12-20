@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { setCurrencyIsOpen, setSelectedCurrency } from '../store/currencySlice';
 import OutsideClickGuard from '../Utilities/OutsideClickGuard';
 
+/**
+ * @selectedCurrency -[0]: to extract the symbol only.
+ */
+
 class Currency extends Component {
 	//Get the value
 	//render the value
@@ -21,7 +25,6 @@ class Currency extends Component {
 	//get & gloablly set the value
 	selectedCurrencyHandler(e) {
 		this.props.setSelectedCurrency(e.target.textContent);
-		// console.log(e.target.textContent);
 	}
 
 	render() {
@@ -42,10 +45,14 @@ class Currency extends Component {
 				<div className={`header-currency`} onClick={this.currencyHandler}>
 					<div className={`header-currency__symbols`}>
 						<span className="header-currency__symbols__currency-symbol">
-							{selectedCurrency[0]}
+							{selectedCurrency[0] ? selectedCurrency[0] : '$'}
 						</span>
 
-						<span className={`header-currency__symbols__dropdown-symbol`}>
+						<span
+							className={`header-currency__symbols__dropdown-symbol ${
+								currencyIsOpen ? 'currencyOpen' : ''
+							}`}
+						>
 							&#8964;
 						</span>
 					</div>
