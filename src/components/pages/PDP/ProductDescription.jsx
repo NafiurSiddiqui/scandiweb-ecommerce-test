@@ -72,6 +72,7 @@ class ProductDescription extends Component {
 					const { products } = data.category;
 					//getting the right data
 					let filteredProduct = products.filter((item) => item.id === itemID);
+
 					//return PDP as an OBJECT
 					let PDP = filteredProduct.map((item) => {
 						return {

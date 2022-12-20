@@ -12,8 +12,8 @@ export const currencySlice = createSlice({
 		setSelectedCurrency: (state, action) => {
 			state.selectedCurrency = action.payload;
 		},
-		setCurrencyIsOpen: (state) => {
-			state.currencyIsOpen = !state.currencyIsOpen;
+		setCurrencyIsOpen: (state, action) => {
+			state.currencyIsOpen = action.payload;
 		},
 	},
 });

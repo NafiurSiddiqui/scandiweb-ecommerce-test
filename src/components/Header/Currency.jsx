@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setCurrencyIsOpen } from '../store/currencySlice';
+import { setCurrencyIsOpen, setSelectedCurrency } from '../store/currencySlice';
 import OutsideClickGuard from '../Utilities/OutsideClickGuard';
 
 class Currency extends Component {
 	//Get the value
 	//render the value
-	//toggle currency dropdown menu on click outside
 	constructor() {
 		super();
 
 		this.currencyHandler = this.currencyHandler.bind(this);
 	}
 
+	//toggle currency dropdown menu on click outside
 	currencyHandler() {
-		this.props.setCurrencyIsOpen(true);
+		this.props.setCurrencyIsOpen(!this.props.currencyIsOpen);
 	}
 
 	render() {
@@ -54,11 +54,11 @@ class Currency extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		bodyIsClicked: state.currency.bodyIsClicked,
+		selectedCurrency: state.currency.selectedCurrency,
 		currencyIsOpen: state.currency.currencyIsOpen,
 	};
 };
 
-const mapDispatchToProps = { setCurrencyIsOpen };
+const mapDispatchToProps = { setCurrencyIsOpen, setSelectedCurrency };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Currency);
