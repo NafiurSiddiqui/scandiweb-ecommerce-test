@@ -59,22 +59,31 @@ class CategoryAll extends Component {
 						})
 					);
 
-					let matchedCurrencySymbol = currencies.map((item) =>
-						item
-							.map((item) => item.symbol, item.amount)
-							.filter((item) => item === selectedCurrency[0])
+					// let matchedCurrencySymbol = currencies.map((item) =>
+					// 	item
+					// 		.map((item) => item.symbol, item.amount)
+					// 		.filter((item) => item === selectedCurrency[0])
+					// );
+
+					// const matchedUserPrice = currencies
+					// 	.map((item) => item.find((el) => el.symbol === selectedCurrency[0]))
+					// 	.map((item) => {
+					// 		return {
+					// 			currency: item.currency,
+					// 			amount: item.amount,
+					// 		};
+					// 	});
+
+					const matchedUserPrice = currencies.map((item) =>
+						item.find((el) => {
+							if (selectedCurrency !== undefined) {
+								return el.currency === selectedCurrency;
+							} else {
+								return el.currency === 'USD';
+							}
+						})
 					);
 
-					const matchedUserPrice = currencies
-						.map((item) => item.find((el) => el.symbol === selectedCurrency[0]))
-						.map((item) => {
-							return {
-								currency: item.currency,
-								amount: item.amount,
-							};
-						});
-
-					console.log(matchedUserPrice);
 					return (
 						<>
 							<div>
@@ -82,12 +91,13 @@ class CategoryAll extends Component {
 							</div>
 
 							<ul className={'category-items'}>
-								{products.map((p) => {
+								{products.map((p, i) => {
 									let product = {
 										id: p.id,
 										image: p.gallery[0],
 										name: p.name,
-										// prices: p.prices.map((item) => item.amount).slice(0, 1),
+
+										// prices: matchedUserPrice[i].amount,
 										prices: '',
 										stock: p.inStock,
 									};
