@@ -97,8 +97,8 @@ class CategoryAll extends Component {
 										image: p.gallery[0],
 										name: p.name,
 
-										// prices: matchedUserPrice[i].amount,
-										prices: '',
+										prices: matchedUserPrice[i].amount,
+
 										stock: p.inStock,
 									};
 
