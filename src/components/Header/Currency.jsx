@@ -27,7 +27,7 @@ class Currency extends Component {
 		const currencyState = currencyIsOpen ? 'visible' : '';
 
 		return (
-			<OutsideClickGuard className={`header-currency-guard`}>
+			<OutsideClickGuard className={`header-currency guard`}>
 				<div className={`header-currency`} onClick={this.currencyHandler}>
 					<div className={`header-currency__symbols`}>
 						<span className="header-currency__symbols__currency-symbol">$</span>

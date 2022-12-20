@@ -55,9 +55,12 @@ $itemHover: #e2e2e2;
 		justify-content: space-between;
 		align-items: center;
 		height: 20vh;
+		&.guard {
+			width: 7rem;
+		}
 		&__symbols {
 			@include transition(0.16);
-			width: 2rem;
+			width: 2.5rem;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -85,7 +88,7 @@ $itemHover: #e2e2e2;
 			align-items: center;
 			flex-direction: column;
 			padding: 0.2rem 0;
-			width: 10rem;
+			width: 13rem;
 			text-align: center;
 			box-shadow: 0px 1px 3px rgba(198, 198, 198, 0.998);
 			z-index: 2;

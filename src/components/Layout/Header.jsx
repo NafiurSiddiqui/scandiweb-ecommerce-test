@@ -47,12 +47,12 @@ class Header extends Component {
 					<img src={logo} alt="Brand logo" className={'header-logo__logo'} />
 				</div>
 
-				<div className={'header-actions'}>
+				<section className={'header-actions'}>
 					<Currency />
 					{/* <OutsideClickGuard /> */}
 
 					<HeaderCart />
-				</div>
+				</section>
 			</header>
 		);
 	}
