@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	currencyIsOpen: false,
-	selectedCurrency: '',
+	selectedCurrency: '' || '$ USD',
 };
 
 export const currencySlice = createSlice({

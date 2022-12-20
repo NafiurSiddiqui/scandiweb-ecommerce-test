@@ -19,21 +19,24 @@ class CategoryCard extends Component {
 	}
 
 	render() {
+		const { index, productID, getProductID, image, inStock, heading, price } =
+			this.props;
+
 		return (
 			<li
 				className={'category-item'}
-				key={this.props.index}
-				onClick={() => this.props.getProductID(this.props.productID)}
+				key={index}
+				onClick={() => getProductID(productID)}
 			>
 				<div className={'category-item__image-wrapper'}>
 					<div
 						className={'category-item__image-wrapper__image'}
 						style={{
-							backgroundImage: `url(${this.props.image})`,
+							backgroundImage: `url(${image})`,
 							...this.style,
 						}}
 					></div>
-					{!this.props.inStock ? (
+					{!inStock ? (
 						<span className={'category-item__image-wrapper-outOfStock'}>
 							OUT OF STOCK
 						</span>
@@ -46,8 +49,8 @@ class CategoryCard extends Component {
 				</div>
 
 				<div className="category-item__meta-container">
-					<h2>{this.props.heading}</h2>
-					<p>${this.props.price}</p>
+					<h2>{heading}</h2>
+					<p>${price}</p>
 				</div>
 			</li>
 		);

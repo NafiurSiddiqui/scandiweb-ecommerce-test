@@ -8,6 +8,7 @@ import { GET_ALL_CATEGORIES } from './CategoryList';
 /**
  * @TASK -
  * Product brand and name are shown at the same line
+ * @selectedCurrency - need here.
  */
 
 class CategoryAll extends Component {
@@ -25,6 +26,8 @@ class CategoryAll extends Component {
 		this.props.setProducts(el);
 	}
 	render() {
+		const { selectedCurrency } = this.props;
+		// console.log(selectedCurrency);
 		return (
 			<Query
 				query={GET_ALL_CATEGORIES}
@@ -35,29 +38,43 @@ class CategoryAll extends Component {
 					if (loading || !data) return 'Loading ... ';
 					const products = data.category.products;
 
-					const allProducts = products?.products?.category?.products;
-					// console.log(allProducts);
-					const prices = allProducts?.map((item, i) =>
-						item.prices.map((item) => {
-							return {
-								currency: item.currency.label,
-								symbol: item.currency.symbol,
-							};
-						})
-					);
+					// const prices = products.map((item, i) =>
+					// 	item.prices.map((item) => {
+					// 		return {
+					// 			currency: item.currency.label,
+					// 			symbol: item.currency.symbol,
+					// 		};
+					// 	})
+					// );
 
-					//currencies captured here
+					// currencies captured here
+
 					const currencies = products.map((item) =>
 						item.prices.map((item) => {
 							return {
 								currency: item.currency.label,
 								symbol: item.currency.symbol,
+								amount: item.amount,
 							};
 						})
 					);
 
-					// console.log(currencies[0].map((item) => item.currency));
+					let matchedCurrencySymbol = currencies.map((item) =>
+						item
+							.map((item) => item.symbol, item.amount)
+							.filter((item) => item === selectedCurrency[0])
+					);
 
+					const matchedUserPrice = currencies
+						.map((item) => item.find((el) => el.symbol === selectedCurrency[0]))
+						.map((item) => {
+							return {
+								currency: item.currency,
+								amount: item.amount,
+							};
+						});
+
+					console.log(matchedUserPrice);
 					return (
 						<>
 							<div>
@@ -70,7 +87,8 @@ class CategoryAll extends Component {
 										id: p.id,
 										image: p.gallery[0],
 										name: p.name,
-										prices: p.prices.map((item) => item.amount).slice(0, 1),
+										// prices: p.prices.map((item) => item.amount).slice(0, 1),
+										prices: '',
 										stock: p.inStock,
 									};
 
@@ -98,6 +116,7 @@ const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category,
 		products: state.products,
+		selectedCurrency: state.currency.selectedCurrency,
 	};
 };
 
