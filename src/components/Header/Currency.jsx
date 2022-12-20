@@ -19,10 +19,8 @@ class Currency extends Component {
 
 	render() {
 		let { currencyIsOpen, products } = this.props;
-
 		const currencyState = currencyIsOpen ? 'visible' : '';
 		const allProducts = products?.products?.category?.products;
-		// console.log(allProducts);
 		const prices = allProducts?.map((item, i) =>
 			item.prices.map((item) => {
 				return {
@@ -31,17 +29,6 @@ class Currency extends Component {
 				};
 			})
 		);
-		// const prices = allProducts.map((item, i) =>
-		// 	item.prices.map((item) => {
-		// 		return {
-		// 			currency: item.currency,
-		// 			amount: item.amount,
-		// 		};
-		// 	})
-		// );
-
-		// console.log(prices[0].map((item) => item.symbol));
-		// console.log(prices);
 
 		return (
 			<OutsideClickGuard className={`header-currency guard`}>
@@ -63,24 +50,11 @@ class Currency extends Component {
 										className={`header-currency__currency-items__item `}
 										key={item.currency}
 									>
-										$ USD
 										{item.symbol} {item.currency}
 									</li>
 								);
 						  })
 						: null}
-
-					{/* <li className={`header-currency__currency-items__item `}>$ USD</li>
-					<li className={`header-currency__currency-items__item `}>
-						&euro;EURO
-					</li>
-					<li className={`header-currency__currency-items__item `}>
-						&#165;JPY
-					</li>
-					<li className={`header-currency__currency-items__item `}>$ AUD</li>
-					<li className={`header-currency__currency-items__item `}>
-						&#8381; RUB
-					</li> */}
 				</ul>
 			</OutsideClickGuard>
 		);
