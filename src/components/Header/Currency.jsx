@@ -9,21 +9,17 @@ class Currency extends Component {
 	//toggle currency dropdown menu on click outside
 	constructor() {
 		super();
-		this.state = {
-			// currencyIsOpen: false,
-		};
 
 		this.currencyHandler = this.currencyHandler.bind(this);
 	}
 
 	currencyHandler() {
-		this.props.setCurrencyIsOpen();
-		this.props.setBodyIsClicked(false);
+		this.props.setCurrencyIsOpen(true);
 	}
 
 	render() {
-		let { bodyIsClicked, currencyIsOpen } = this.props;
-		// const currencyState = currencyIsOpen ? 'visible' : '';
+		let { currencyIsOpen } = this.props;
+
 		const currencyState = currencyIsOpen ? 'visible' : '';
 
 		return (

@@ -5,7 +5,6 @@ import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
 import { getProductID } from '../store/categorySlice';
-import OutsideClickGuard from '../Utilities/OutsideClickGuard';
 
 class Header extends Component {
 	constructor() {
@@ -49,7 +48,6 @@ class Header extends Component {
 
 				<section className={'header-actions'}>
 					<Currency />
-					{/* <OutsideClickGuard /> */}
 
 					<HeaderCart />
 				</section>

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import Currency from '../Header/Currency';
+import { connect } from 'react-redux';
+import { setCurrencyIsOpen } from '../store/currencySlice';
 
-/**
- * Component that alerts if you click outside of it
- */
-export default class OutsideClickGuard extends Component {
+class OutsideClickGuard extends Component {
 	constructor(props) {
 		super(props);
 
@@ -20,19 +18,17 @@ export default class OutsideClickGuard extends Component {
 		document.removeEventListener('mousedown', this.handleClickOutside);
 	}
 
-	/**
-	 * Set the wrapper ref
-	 */
+	// Set the wrapper ref
+
 	setWrapperRef(node) {
 		this.wrapperRef = node;
 	}
 
-	/**
-	 * Alert if clicked on outside of element
-	 */
+	//  setCurrency to false if clicked on outside of currency
+
 	handleClickOutside(event) {
 		if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-			alert('You clicked outside of me!');
+			this.props.setCurrencyIsOpen(false);
 		}
 	}
 
@@ -44,3 +40,7 @@ export default class OutsideClickGuard extends Component {
 		);
 	}
 }
+
+const mapDispatchToProps = { setCurrencyIsOpen };
+
+export default connect(null, mapDispatchToProps)(OutsideClickGuard);
