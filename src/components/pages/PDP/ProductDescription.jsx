@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
+import { setProducts } from '../../store/productsSlice';
 
 /**
  * @className - 'PDP' = product description
@@ -19,10 +20,16 @@ class ProductDescription extends Component {
 		this.state = {
 			selectedImgSrc: '',
 			txtOverFlow: false,
+			prodcuts: null,
 		};
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
+		this.getProductsHandler = this.getProductsHandler.bind(this);
+	}
+
+	componentDidMount(el) {
+		this.getProductsHandler(el);
 	}
 
 	//PARSE HTML
@@ -60,11 +67,19 @@ class ProductDescription extends Component {
 			: this.setState(null);
 	}
 
+	//Get products
+	getProductsHandler(el) {
+		this.props.setProducts(el);
+	}
+
 	render() {
 		let itemID = this.props.productIDState.productID;
 
 		return (
-			<Query query={GET_ALL_CATEGORIES}>
+			<Query
+				query={GET_ALL_CATEGORIES}
+				onCompleted={(data) => this.getProductsHandler(data)}
+			>
 				{({ error, loading, data, client }) => {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';
@@ -91,7 +106,7 @@ class ProductDescription extends Component {
 							},
 						};
 					});
-
+					//gallery overflow guard
 					let galleryOverflow = PDP[0].images.length > 6;
 
 					return (
@@ -162,7 +177,10 @@ class ProductDescription extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category,
+		products: state.products,
 	};
 };
 
-export default connect(mapStateToProps)(ProductDescription);
+const mapDispatchToProps = { setProducts };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);
