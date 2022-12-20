@@ -19,8 +19,16 @@ class CategoryCard extends Component {
 	}
 
 	render() {
-		const { index, productID, getProductID, image, inStock, heading, price } =
-			this.props;
+		const {
+			index,
+			productID,
+			getProductID,
+			image,
+			inStock,
+			heading,
+			price,
+			currencySymbol,
+		} = this.props;
 
 		return (
 			<li
@@ -50,7 +58,10 @@ class CategoryCard extends Component {
 
 				<div className="category-item__meta-container">
 					<h2>{heading}</h2>
-					<p>${price}</p>
+					<p>
+						<span>{currencySymbol ? currencySymbol : '$'}</span>
+						{price}
+					</p>
 				</div>
 			</li>
 		);

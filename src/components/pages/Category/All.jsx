@@ -76,8 +76,8 @@ class CategoryAll extends Component {
 
 					const matchedUserPrice = currencies.map((item) =>
 						item.find((el) => {
-							if (selectedCurrency !== undefined) {
-								return el.currency === selectedCurrency;
+							if (selectedCurrency !== null) {
+								return el.currency === selectedCurrency.currency;
 							} else {
 								return el.currency === 'USD';
 							}
@@ -96,8 +96,7 @@ class CategoryAll extends Component {
 										id: p.id,
 										image: p.gallery[0],
 										name: p.name,
-
-										prices: matchedUserPrice[i].amount,
+										prices: matchedUserPrice[i]?.amount,
 
 										stock: p.inStock,
 									};
@@ -110,6 +109,7 @@ class CategoryAll extends Component {
 											price={product.prices}
 											inStock={product.stock}
 											productID={p.id}
+											currencySymbol={selectedCurrency?.symbol}
 										/>
 									);
 								})}

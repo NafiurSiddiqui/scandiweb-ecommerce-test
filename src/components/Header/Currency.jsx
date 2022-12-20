@@ -24,8 +24,11 @@ class Currency extends Component {
 
 	//get & gloablly set the value
 	selectedCurrencyHandler(e) {
-		this.props.setSelectedCurrency(e.target.lastChild.nodeValue);
-		// console.log(e.target.lastChild.nodeValue);
+		this.props.setSelectedCurrency({
+			currency: e.target.lastChild.nodeValue,
+			symbol: e.target.firstChild.innerText,
+		});
+		// console.log(e.target.lastChild.nodeValue, e.target.firstChild.innerText);
 	}
 
 	render() {
@@ -40,14 +43,13 @@ class Currency extends Component {
 				};
 			})
 		);
-		console.log(selectedCurrency);
 
 		return (
 			<OutsideClickGuard className={`header-currency guard`}>
 				<div className={`header-currency`} onClick={this.currencyHandler}>
 					<div className={`header-currency__symbols`}>
 						<span className="header-currency__symbols__currency-symbol">
-							{selectedCurrency[0] ? selectedCurrency[0] : '$'}
+							{selectedCurrency !== null ? selectedCurrency.symbol : '$'}
 						</span>
 
 						<span
