@@ -18,9 +18,13 @@ class Currency extends Component {
 	}
 
 	render() {
-		let { currencyIsOpen } = this.props;
+		let { currencyIsOpen, products } = this.props;
 
 		const currencyState = currencyIsOpen ? 'visible' : '';
+		const allProducts = products?.products?.category?.products;
+		const prices = allProducts.map((item) => item.prices);
+
+		console.log(prices.map((item) => item.curerncy));
 
 		return (
 			<OutsideClickGuard className={`header-currency guard`}>
@@ -56,6 +60,7 @@ const mapStateToProps = (state) => {
 	return {
 		selectedCurrency: state.currency.selectedCurrency,
 		currencyIsOpen: state.currency.currencyIsOpen,
+		products: state.products,
 	};
 };
 
