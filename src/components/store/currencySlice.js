@@ -11,7 +11,7 @@ export const currencySlice = createSlice({
 	initialState,
 	reducers: {
 		setBodyIsClicked: (state, action) => {
-			state.bodyIsClicked = !state.bodyIsClicked || action.payload;
+			state.bodyIsClicked = action.payload;
 		},
 		setSelectedCurrency: (state, action) => {
 			state.selectedCurrency = action.payload;

@@ -7,7 +7,6 @@ import './sass/main.scss';
 import store from './components/store/store';
 import { Provider } from 'react-redux';
 import ErrorBoundary from './components/Error/ErrorBoundary';
-import ModalContainer from './components/Utilities/Modal';
 
 const client = new ApolloClient({
 	uri: 'http://localhost:4000/',

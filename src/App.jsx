@@ -31,12 +31,13 @@ class App extends Component {
 	}
 
 	bodyClickHandler() {
-		this.props.setBodyIsClicked();
+		// this.props.setBodyIsClicked(true);
+		// console.log('what');
 	}
 
 	render() {
 		let { productID } = this.props.productIDState;
-		// console.log(this.props);
+		// console.log(`APP: ${this.props.bodyIsClicked}`);
 		return (
 			<>
 				{!this.state.DOMisLoaded ? (
@@ -60,6 +61,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category,
+		bodyIsClicked: state.currency.bodyIsClicked,
 	};
 };
 

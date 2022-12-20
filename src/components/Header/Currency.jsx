@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setBodyIsClicked, setCurrencyIsOpen } from '../store/currencySlice';
+import OutsideClickGuard from '../Utilities/OutsideClickGuard';
 
 class Currency extends Component {
 	//Get the value
@@ -9,27 +10,24 @@ class Currency extends Component {
 	constructor() {
 		super();
 		this.state = {
-			currencyIsOpen: false,
+			// currencyIsOpen: false,
 		};
 
 		this.currencyHandler = this.currencyHandler.bind(this);
 	}
 
 	currencyHandler() {
-		// this.setState((prev) => ({
-		// 	currencyIsOpen: !prev.currencyIsOpen,
-		// }));
 		this.props.setCurrencyIsOpen();
+		this.props.setBodyIsClicked(false);
 	}
 
 	render() {
 		let { bodyIsClicked, currencyIsOpen } = this.props;
-		const currencyState = this.state.currencyIsOpen ? 'visible' : '';
-		// console.log(bodyIsClicked, `CurrencyClicked: ${currencyIsOpen}`);
-		console.log(setCurrencyIsOpen);
+		// const currencyState = currencyIsOpen ? 'visible' : '';
+		const currencyState = currencyIsOpen ? 'visible' : '';
 
 		return (
-			<>
+			<OutsideClickGuard className={`header-currency-guard`}>
 				<div className={`header-currency`} onClick={this.currencyHandler}>
 					<div className={`header-currency__symbols`}>
 						<span className="header-currency__symbols__currency-symbol">$</span>
@@ -53,7 +51,7 @@ class Currency extends Component {
 						&#8381; RUB
 					</li>
 				</ul>
-			</>
+			</OutsideClickGuard>
 		);
 	}
 }
