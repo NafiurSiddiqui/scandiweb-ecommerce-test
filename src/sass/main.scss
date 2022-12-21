@@ -54,12 +54,15 @@ h4 {
 }
 
 .btn {
-	background-color: #1fb747;
+	background-color: #5ece7b;
 	width: 100%;
 	padding: 0.8rem 2rem;
 	color: white;
 	border: none;
 	cursor: pointer;
+	&:hover {
+		background-color: #37c45c;
+	}
 }
 
 // DYNAMIC CLASSES
