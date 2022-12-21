@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import CartItems from './CartItems';
+import CartPricing from './CartPricing';
 
 export default class CartContainer extends Component {
 	render() {
-		return <article>CartContainer</article>;
+		return (
+			<article className={this.props.className}>
+				<CartItems />
+				<CartPricing />
+			</article>
+		);
 	}
 }
