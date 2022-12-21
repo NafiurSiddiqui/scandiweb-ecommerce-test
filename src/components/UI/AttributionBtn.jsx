@@ -35,7 +35,7 @@ export default class AttributionBtn extends Component {
 	}
 
 	render() {
-		const { item } = this.props;
+		const { item, className } = this.props;
 		const { colorSwatch, itemIsClicked } = this.state;
 
 		let itemBackground =
@@ -63,7 +63,7 @@ export default class AttributionBtn extends Component {
 
 		return (
 			<li
-				className={`pd__attribution__item`}
+				className={`${className}__attribution__item`}
 				key={item}
 				data-clicked={false}
 				onClick={(e) => this.toggleItemState(e)}

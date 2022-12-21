@@ -24,12 +24,11 @@ export default class DescriptionCard extends Component {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products[0];
 
-		const { priceHeading } = this.props;
-		console.log(prices[0].currency.symbol);
+		const { priceHeading, className } = this.props;
 
 		return (
-			<article className="pd">
-				<div className="pd__headers">
+			<article className={className}>
+				<div className={`${className}__headers`}>
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
 				</div>
@@ -42,6 +41,7 @@ export default class DescriptionCard extends Component {
 							activeItem={this.state.activeItem}
 							key={i}
 							onClick={this.itemClickHandler}
+							className={className}
 						/>
 					);
 				})}

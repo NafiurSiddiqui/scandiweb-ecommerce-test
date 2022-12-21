@@ -135,7 +135,11 @@ class ProductDescription extends Component {
 									/>
 								</div>
 								<article className="pdp_pd">
-									<DescriptionCard products={PDP} priceHeading={true} />
+									<DescriptionCard
+										products={PDP}
+										priceHeading={true}
+										className="pd"
+									/>
 									<Button className="pdp__cart-btn">ADD TO CART</Button>
 									<p
 										className="pd__description"
