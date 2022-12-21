@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import CartContainer from './CartContainer';
 
 class Cart extends Component {
 	render() {
-		return <section>Cart</section>;
+		return <CartContainer />;
 	}
 }
 
