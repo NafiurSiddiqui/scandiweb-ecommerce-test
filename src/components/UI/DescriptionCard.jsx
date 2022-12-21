@@ -6,8 +6,8 @@ import AttributeItem from './AttributeItem';
  */
 
 export default class DescriptionCard extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			activeItem: '',
 		};
@@ -21,10 +21,11 @@ export default class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, attributesID, attributesItem } =
+		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products[0];
 
 		const { priceHeading } = this.props;
+		console.log(prices[0].currency.symbol);
 
 		return (
 			<article className="pd">
@@ -48,8 +49,10 @@ export default class DescriptionCard extends Component {
 				<div className="pd__price">
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
 					<span className="pd__price-price">
-						<span className="pd__price-price__symbol">$</span>
-						50.00
+						<span className="pd__price-price__symbol">
+							{prices[0].currency.symbol}
+						</span>
+						{prices[0].amount}
 					</span>
 				</div>
 			</article>

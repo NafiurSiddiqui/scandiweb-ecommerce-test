@@ -62,6 +62,8 @@ class ProductDescription extends Component {
 
 	render() {
 		let itemID = this.props.productIDState.productID;
+		const { selectedCurrency } = this.props;
+		console.log(selectedCurrency?.currency);
 
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
@@ -83,9 +85,16 @@ class ProductDescription extends Component {
 							attributesItem: item.attributes.map((item) =>
 								item.items.map((item) => item.id)
 							),
-							prices: item.prices.filter(
-								(item) => item.currency.label === 'USD'
-							),
+							// prices: item.prices.filter(
+							// 	(item) => item.currency.label === 'USD'
+							// ),
+							prices: item.prices.filter((item) => {
+								if (selectedCurrency !== null) {
+									return item.currency.label === selectedCurrency.currency;
+								} else {
+									return item.currency.label === 'USD';
+								}
+							}),
 							get amount() {
 								return this.prices[0].amount;
 							},
@@ -163,6 +172,7 @@ const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category,
 		products: state.products,
+		selectedCurrency: state.currency.selectedCurrency,
 	};
 };
 
