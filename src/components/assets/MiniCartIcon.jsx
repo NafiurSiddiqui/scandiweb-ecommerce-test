@@ -9,7 +9,9 @@ export default class MiniCartIcon extends Component {
 			light: '#eeeeee',
 		};
 	}
+
 	render() {
+		const { onClick } = this.props;
 		return (
 			<svg
 				width="20"
@@ -18,6 +20,7 @@ export default class MiniCartIcon extends Component {
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 				role={'button'}
+				onClick={onClick}
 				className={`${this.props.className} cart-btn`}
 			>
 				<path

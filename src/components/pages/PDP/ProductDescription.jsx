@@ -100,7 +100,7 @@ class ProductDescription extends Component {
 	}
 
 	render() {
-		const { productID, selectedCurrency, setSelectedProduct } = this.props;
+		const { productID, selectedCurrency } = this.props;
 
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
