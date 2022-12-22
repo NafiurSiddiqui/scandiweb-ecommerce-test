@@ -16,11 +16,12 @@ class CategoryCard extends Component {
 			height: '100%',
 			width: ' 100%',
 		};
+		this.addToCartHandler = this.addToCartHandler.bind(this);
 	}
 
-	// addToCart(){
-	// 	console.log('Hooked!');
-	// }
+	addToCartHandler() {
+		console.log('Hooked!');
+	}
 
 	render() {
 		const {
@@ -57,6 +58,7 @@ class CategoryCard extends Component {
 					<MiniCartIcon
 						color={'#ffffff'}
 						className={`category-item__image-wrapper__cart`}
+						onClick={this.addToCartHandler}
 					/>
 				</div>
 

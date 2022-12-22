@@ -28,40 +28,19 @@ class ProductDescription extends Component {
 	}
 
 	//PARSE HTML
-	// HTMLparser(products) {
-	// 	const { productID } = this.props;
+	HTMLparser(products) {
+		const { productID } = this.props;
 
-	// 	if (!productID) {
-	// 		return;
-	// 	}
-
-	// 	let selectedProduct = products.filter((item) => item.id === productID);
-
-	// 	const parser = new DOMParser();
-
-	// 	const testDOC = parser.parseFromString(
-	// 		selectedProduct[0].description,
-	// 		'text/html'
-	// 	);
-
-	// 	let parsedText = testDOC.documentElement.textContent;
-
-	// 	return parsedText;
-	// }
-
-	HTMLparser(selectedProduct) {
-		// const { productID } = this.props;
-
-		if (!selectedProduct) {
+		if (!productID) {
 			return;
 		}
 
-		// let selectedProduct = products.filter((item) => item.id === productID);
+		let selectedProduct = products.filter((item) => item.id === productID);
 
 		const parser = new DOMParser();
 
 		const testDOC = parser.parseFromString(
-			selectedProduct.description,
+			selectedProduct[0].description,
 			'text/html'
 		);
 
