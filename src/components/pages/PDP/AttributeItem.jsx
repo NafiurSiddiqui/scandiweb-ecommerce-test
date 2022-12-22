@@ -4,7 +4,7 @@ import AttributionBtn from './AttributionBtn';
 export default class AttributeItem extends Component {
 	render() {
 		const { propsKey, element, attributesItem, className } = this.props;
-		console.log(className);
+
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
 				<li key={element} className={`${className}__attribution`}>

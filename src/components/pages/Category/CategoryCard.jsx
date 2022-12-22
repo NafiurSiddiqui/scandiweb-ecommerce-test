@@ -30,11 +30,6 @@ class CategoryCard extends Component {
 			height: '100%',
 			width: ' 100%',
 		};
-		this.addToCartHandler = this.addToCartHandler.bind(this);
-	}
-
-	addToCartHandler() {
-		console.log('Hooked!');
 	}
 
 	render() {
@@ -48,6 +43,8 @@ class CategoryCard extends Component {
 			price,
 			currencySymbol,
 		} = this.props;
+
+		console.log(productID);
 
 		return (
 			<li className={'category-item'} key={index}>
@@ -69,7 +66,7 @@ class CategoryCard extends Component {
 					<MiniCartIcon
 						color={'#ffffff'}
 						className={`category-item__image-wrapper__cart`}
-						onClick={this.addToCartHandler}
+						itemID={productID}
 					/>
 				</div>
 

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class AttributionBtn extends Component {
+class AttributionBtn extends Component {
 	constructor() {
 		super();
 		this.state = {
 			itemIsClicked: false,
 			colorSwatch: false,
+			items: [],
 		};
 		this.toggleItemState = this.toggleItemState.bind(this);
 	}
@@ -75,3 +77,15 @@ export default class AttributionBtn extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		productID: state.category.productID,
+		products: state.products,
+		selectedCurrency: state.currency.selectedCurrency,
+	};
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AttributionBtn);

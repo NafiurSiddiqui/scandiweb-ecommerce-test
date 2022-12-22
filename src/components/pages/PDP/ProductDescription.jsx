@@ -142,8 +142,6 @@ class ProductDescription extends Component {
 					//gallery overflow guard
 					let galleryOverflow = PDP[0].images.length > 6;
 
-					//capture PDP for global use
-					// setSelectedProduct(PDP);
 					return (
 						<>
 							<section className="pdp">

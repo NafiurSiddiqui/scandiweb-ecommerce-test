@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class MiniCartIcon extends Component {
+class MiniCartIcon extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			dark: '#43464E',
 			light: '#eeeeee',
+			items: [],
 		};
+		this.addToCartHandler = this.addToCartHandler.bind(this);
+	}
+
+	addToCartHandler(e) {
+		const { itemID } = this.props;
+
+		console.log(itemID);
+
+		//! No product ID without clicking the image
 	}
 
 	render() {
-		const { onClick } = this.props;
 		return (
 			<svg
 				width="20"
@@ -20,7 +30,7 @@ export default class MiniCartIcon extends Component {
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 				role={'button'}
-				onClick={onClick}
+				onClick={(e) => this.addToCartHandler(e)}
 				className={`${this.props.className} cart-btn`}
 			>
 				<path
@@ -39,3 +49,15 @@ export default class MiniCartIcon extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		productID: state.category.productID,
+		products: state.products,
+		selectedCurrency: state.currency.selectedCurrency,
+	};
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiniCartIcon);

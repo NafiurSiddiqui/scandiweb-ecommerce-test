@@ -26,8 +26,6 @@ export default class DescriptionCard extends Component {
 
 		const { priceHeading, className } = this.props;
 
-		// console.log(this.state.selectedProduct);
-
 		return (
 			<article className={className}>
 				<div className={`${className}__headers`}>
