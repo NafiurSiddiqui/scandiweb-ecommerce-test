@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
+import { setSelectedProduct } from '../../store/productsSlice';
 
 /**
  * @className - 'PDP' = product description
@@ -27,19 +28,40 @@ class ProductDescription extends Component {
 	}
 
 	//PARSE HTML
-	HTMLparser(products) {
-		let itemID = this.props.productIDState.productID;
+	// HTMLparser(products) {
+	// 	const { productID } = this.props;
 
-		if (!itemID) {
+	// 	if (!productID) {
+	// 		return;
+	// 	}
+
+	// 	let selectedProduct = products.filter((item) => item.id === productID);
+
+	// 	const parser = new DOMParser();
+
+	// 	const testDOC = parser.parseFromString(
+	// 		selectedProduct[0].description,
+	// 		'text/html'
+	// 	);
+
+	// 	let parsedText = testDOC.documentElement.textContent;
+
+	// 	return parsedText;
+	// }
+
+	HTMLparser(selectedProduct) {
+		// const { productID } = this.props;
+
+		if (!selectedProduct) {
 			return;
 		}
 
-		let selectedProduct = products.filter((item) => item.id === itemID);
+		// let selectedProduct = products.filter((item) => item.id === productID);
 
 		const parser = new DOMParser();
 
 		const testDOC = parser.parseFromString(
-			selectedProduct[0].description,
+			selectedProduct.description,
 			'text/html'
 		);
 
@@ -63,29 +85,53 @@ class ProductDescription extends Component {
 
 	//get selected product item here
 	getSelectedProduct(data) {
-		//get the data
-		console.log(data);
+		const { productID, selectedCurrency } = this.props;
 		//filter the data
-		//return the data
+		let filteredProduct = data?.filter((item) => item.id === productID);
+
+		//convert to obj
+		let PDP = filteredProduct.map((item) => {
+			return {
+				brand: item.brand,
+				name: item.name,
+				images: item.gallery,
+				attributesID: item.attributes.map((item) => item.id),
+				attributesItem: item.attributes.map((item) =>
+					item.items.map((item) => item.id)
+				),
+				// prices: item.prices.filter(
+				// 	(item) => item.currency.label === 'USD'
+				// ),
+				prices: item.prices.filter((item) => {
+					if (selectedCurrency !== null) {
+						return item.currency.label === selectedCurrency.currency;
+					} else {
+						return item.currency.label === 'USD';
+					}
+				}),
+				get amount() {
+					return this.prices[0].amount;
+				},
+			};
+		});
+
+		return PDP[0];
 	}
 
 	render() {
-		let itemID = this.props.productIDState.productID;
-		const { selectedCurrency } = this.props;
-		// console.log(selectedCurrency?.currency);
+		const { productID, selectedCurrency, setSelectedProduct } = this.props;
 
 		return (
-			<Query
-				query={GET_ALL_CATEGORIES}
-				onCompleted={(data) => this.getSelectedProduct(data.category.products)}
-			>
+			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data, client }) => {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';
 
 					const { products } = data.category;
-					//getting the right data
-					let filteredProduct = products.filter((item) => item.id === itemID);
+					// getting the right data
+					let filteredProduct = products.filter(
+						(item) => item.id === productID
+					);
 
 					//return PDP as an OBJECT
 					let PDP = filteredProduct.map((item) => {
@@ -115,6 +161,8 @@ class ProductDescription extends Component {
 					//gallery overflow guard
 					let galleryOverflow = PDP[0].images.length > 6;
 
+					//capture PDP for global use
+					// setSelectedProduct(PDP);
 					return (
 						<>
 							<section className="pdp">
@@ -148,7 +196,7 @@ class ProductDescription extends Component {
 								</div>
 								<article className="pdp_pd">
 									<DescriptionCard
-										products={PDP}
+										products={PDP[0]}
 										priceHeading={true}
 										className="pd"
 									/>
@@ -186,10 +234,12 @@ class ProductDescription extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		productIDState: state.category,
+		productID: state.category.productID,
 		products: state.products,
 		selectedCurrency: state.currency.selectedCurrency,
 	};
 };
 
-export default connect(mapStateToProps)(ProductDescription);
+const mapDispatchToProps = { setSelectedProduct };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);
