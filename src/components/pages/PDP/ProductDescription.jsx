@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DescriptionCard from './DescriptionCard';
+import DescriptionCard from '../../UI/DescriptionCard';
 import Button from '../../UI/Button';
 import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
@@ -23,6 +23,7 @@ class ProductDescription extends Component {
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
+		this.getSelectedProduct = this.getSelectedProduct.bind(this);
 	}
 
 	//PARSE HTML
@@ -60,13 +61,24 @@ class ProductDescription extends Component {
 			: this.setState(null);
 	}
 
+	//get selected product item here
+	getSelectedProduct(data) {
+		//get the data
+		console.log(data);
+		//filter the data
+		//return the data
+	}
+
 	render() {
 		let itemID = this.props.productIDState.productID;
 		const { selectedCurrency } = this.props;
-		console.log(selectedCurrency?.currency);
+		// console.log(selectedCurrency?.currency);
 
 		return (
-			<Query query={GET_ALL_CATEGORIES}>
+			<Query
+				query={GET_ALL_CATEGORIES}
+				onCompleted={(data) => this.getSelectedProduct(data.category.products)}
+			>
 				{({ error, loading, data, client }) => {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';

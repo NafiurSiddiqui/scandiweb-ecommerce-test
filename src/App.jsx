@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './components/Layout/Header';
 import Skeleton from './components/Layout/skeleton';
+import Cart from './components/pages/Cart/Cart';
 import CategoryList from './components/pages/Category/CategoryList';
 import ProductDescription from './components/pages/PDP/ProductDescription';
 import { getProductID } from './components/store/categorySlice';
@@ -42,6 +43,7 @@ class App extends Component {
 						<Header />
 						<main className="products-display">
 							{productID ? <ProductDescription /> : <CategoryList />}
+							{/* <Cart /> */}
 						</main>
 					</section>
 				)}

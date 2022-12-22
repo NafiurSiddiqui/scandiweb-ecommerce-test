@@ -6,9 +6,10 @@ export default class CartItems extends Component {
 		const { selectedItems } = this.props;
 		return (
 			<ul className="cart-items">
-				{selectedItems.map((item) => {
+				{/* {selectedItems.map((item) => {
 					return <CartItem />;
-				})}
+				})} */}
+				<CartItem />
 			</ul>
 		);
 	}

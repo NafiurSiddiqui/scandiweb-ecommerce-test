@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AttributeItem from './AttributeItem';
+import AttributeItem from '../pages/PDP/AttributeItem';
 
 /**
  * @className : PD = product description
