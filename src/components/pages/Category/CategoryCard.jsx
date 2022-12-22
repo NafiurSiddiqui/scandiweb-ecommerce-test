@@ -18,6 +18,10 @@ class CategoryCard extends Component {
 		};
 	}
 
+	// addToCart(){
+	// 	console.log('Hooked!');
+	// }
+
 	render() {
 		const {
 			index,

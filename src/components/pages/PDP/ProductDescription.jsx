@@ -115,6 +115,8 @@ class ProductDescription extends Component {
 			};
 		});
 
+		this.props.setSelectedProduct(PDP[0]);
+
 		return PDP[0];
 	}
 

@@ -8,7 +8,10 @@ import { GET_ALL_CATEGORIES } from './CategoryList';
 /**
  * @TASK -
  * Product brand and name are shown at the same line
- * @selectedCurrency - need here.
+ * 1. Cart item total quantity badge on the cart icon should display the total cart item quantity not the cart item count.
+ * 2. It should be possible to add a product to the cart from PLP. But it shouldn’t be possible to add a product to the cart without selected attributes. In order to solve this, you can either:  
+-  Add a product to the cart from PLP only if it doesn’t have any attributes (like AirTag). 
+-  Add a product to the cart with first selected attributes as defaults. 
  */
 
 class CategoryAll extends Component {
@@ -38,17 +41,6 @@ class CategoryAll extends Component {
 					if (loading || !data) return 'Loading ... ';
 					const products = data.category.products;
 
-					// const prices = products.map((item, i) =>
-					// 	item.prices.map((item) => {
-					// 		return {
-					// 			currency: item.currency.label,
-					// 			symbol: item.currency.symbol,
-					// 		};
-					// 	})
-					// );
-
-					// currencies captured here
-
 					const currencies = products.map((item) =>
 						item.prices.map((item) => {
 							return {
@@ -58,21 +50,6 @@ class CategoryAll extends Component {
 							};
 						})
 					);
-
-					// let matchedCurrencySymbol = currencies.map((item) =>
-					// 	item
-					// 		.map((item) => item.symbol, item.amount)
-					// 		.filter((item) => item === selectedCurrency[0])
-					// );
-
-					// const matchedUserPrice = currencies
-					// 	.map((item) => item.find((el) => el.symbol === selectedCurrency[0]))
-					// 	.map((item) => {
-					// 		return {
-					// 			currency: item.currency,
-					// 			amount: item.amount,
-					// 		};
-					// 	});
 
 					const matchedUserPrice = currencies.map((item) =>
 						item.find((el) => {
