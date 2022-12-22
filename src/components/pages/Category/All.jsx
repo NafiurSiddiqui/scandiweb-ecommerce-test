@@ -27,7 +27,7 @@ class CategoryAll extends Component {
 	}
 	render() {
 		const { selectedCurrency } = this.props;
-		// console.log(selectedCurrency);
+
 		return (
 			<Query
 				query={GET_ALL_CATEGORIES}

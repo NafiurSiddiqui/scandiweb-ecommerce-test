@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addItemToCart } from '../store/cartSlice';
 
 class MiniCartIcon extends Component {
 	constructor(props) {
@@ -8,15 +9,12 @@ class MiniCartIcon extends Component {
 		this.state = {
 			dark: '#43464E',
 			light: '#eeeeee',
-			items: [],
 		};
 		this.addToCartHandler = this.addToCartHandler.bind(this);
 	}
 
-	addToCartHandler(e) {
-		const { itemID } = this.props;
-
-		console.log(itemID);
+	addToCartHandler() {
+		const { itemID, addItemToCart } = this.props;
 
 		//! No product ID without clicking the image
 	}
@@ -30,7 +28,7 @@ class MiniCartIcon extends Component {
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 				role={'button'}
-				onClick={(e) => this.addToCartHandler(e)}
+				onClick={this.addToCartHandler}
 				className={`${this.props.className} cart-btn`}
 			>
 				<path
@@ -55,9 +53,10 @@ const mapStateToProps = (state) => {
 		productID: state.category.productID,
 		products: state.products,
 		selectedCurrency: state.currency.selectedCurrency,
+		cartItems: state.cart.cartItems,
 	};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { addItemToCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MiniCartIcon);
