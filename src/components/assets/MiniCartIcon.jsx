@@ -9,17 +9,26 @@ class MiniCartIcon extends Component {
 		this.state = {
 			dark: '#43464E',
 			light: '#eeeeee',
+			itemHolder: [],
 		};
+
 		this.addToCartHandler = this.addToCartHandler.bind(this);
 	}
 
+	componentDidMount() {}
+
 	addToCartHandler() {
 		const { itemID, addItemToCart } = this.props;
+		this.setState((prev) => ({
+			itemHolder: [...prev.itemHolder, itemID],
+		}));
+		// addItemToCart(itemID);
 
 		//! No product ID without clicking the image
 	}
 
 	render() {
+		// console.log(this.state.itemHolder);
 		return (
 			<svg
 				width="20"
