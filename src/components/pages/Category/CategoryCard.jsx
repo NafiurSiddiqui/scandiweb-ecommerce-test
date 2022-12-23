@@ -58,7 +58,10 @@ class CategoryCard extends Component {
 						onClick={() => getProductID(productID)}
 					></div>
 					{!inStock ? (
-						<span className={'category-item__image-wrapper-outOfStock'}>
+						<span
+							className={'category-item__image-wrapper-outOfStock'}
+							onClick={() => getProductID(productID)}
+						>
 							OUT OF STOCK
 						</span>
 					) : null}

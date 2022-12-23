@@ -7,7 +7,6 @@ class AttributionBtn extends Component {
 		this.state = {
 			itemIsClicked: false,
 			colorSwatch: false,
-			items: [],
 		};
 		this.toggleItemState = this.toggleItemState.bind(this);
 	}

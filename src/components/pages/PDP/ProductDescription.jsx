@@ -78,9 +78,6 @@ class ProductDescription extends Component {
 				attributesItem: item.attributes.map((item) =>
 					item.items.map((item) => item.id)
 				),
-				// prices: item.prices.filter(
-				// 	(item) => item.currency.label === 'USD'
-				// ),
 				prices: item.prices.filter((item) => {
 					if (selectedCurrency !== null) {
 						return item.currency.label === selectedCurrency.currency;
@@ -124,9 +121,7 @@ class ProductDescription extends Component {
 							attributesItem: item.attributes.map((item) =>
 								item.items.map((item) => item.id)
 							),
-							// prices: item.prices.filter(
-							// 	(item) => item.currency.label === 'USD'
-							// ),
+
 							prices: item.prices.filter((item) => {
 								if (selectedCurrency !== null) {
 									return item.currency.label === selectedCurrency.currency;
@@ -137,6 +132,7 @@ class ProductDescription extends Component {
 							get amount() {
 								return this.prices[0].amount;
 							},
+							stock: item.inStock,
 						};
 					});
 					//gallery overflow guard
@@ -179,7 +175,9 @@ class ProductDescription extends Component {
 										priceHeading={true}
 										className="pd"
 									/>
-									<Button className="pdp__cart-btn">ADD TO CART</Button>
+									<Button className="pdp__cart-btn" disable={PDP[0].stock}>
+										ADD TO CART
+									</Button>
 									<p
 										className="pd__description"
 										onClick={this.textOverFlowHandler}
