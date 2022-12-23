@@ -6,6 +6,7 @@
 @import './PDP/pdp';
 @import './PDP/descriptionCard';
 @import './PDP/attributionItem';
+@import './cart/miniCart';
 
 *,
 *::before,
@@ -63,6 +64,16 @@ h4 {
 	&:hover {
 		background-color: #37c45c;
 	}
+}
+
+.modal {
+	background-color: #39374838;
+	height: 100%;
+	min-height: 100vh;
+	position: absolute;
+	width: 100%;
+	// top: 10vh;
+	top: 0;
 }
 
 // DYNAMIC CLASSES

@@ -45,7 +45,8 @@ class App extends Component {
 						<Header />
 						<main className="products-display">
 							{productIDState ? <ProductDescription /> : <CategoryList />}
-							{miniCartState ? <MiniCart /> : null}
+							{/* {miniCartState ? <MiniCart /> : null} */}
+							<MiniCart />
 						</main>
 					</section>
 				)}

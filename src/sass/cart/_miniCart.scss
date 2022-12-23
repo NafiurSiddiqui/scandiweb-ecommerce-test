@@ -1,0 +1,13 @@
+.mini-cart {
+	&-overlay {
+		top: 10vh !important;
+	}
+
+	&-container {
+		@include border(red);
+		width: 20.313rem;
+		background-color: white;
+		position: absolute;
+		right: 1rem;
+	}
+}
