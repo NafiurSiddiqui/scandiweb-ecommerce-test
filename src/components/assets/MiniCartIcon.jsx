@@ -18,17 +18,17 @@ class MiniCartIcon extends Component {
 	componentDidMount() {}
 
 	addToCartHandler() {
-		const { itemID, addItemToCart } = this.props;
-		this.setState((prev) => ({
-			itemHolder: [...prev.itemHolder, itemID],
-		}));
-		// addItemToCart(itemID);
+		const { itemID, addItemToCart, cartItems } = this.props;
 
-		//! No product ID without clicking the image
+		if (cartItems.includes(itemID)) {
+			return;
+		} else {
+			addItemToCart(itemID);
+		}
 	}
 
 	render() {
-		// console.log(this.state.itemHolder);
+		// console.log(this.props.cartItems);
 		return (
 			<svg
 				width="20"

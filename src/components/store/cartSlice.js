@@ -13,7 +13,8 @@ export const cartSlice = createSlice({
 			state.productID = action.payload;
 		},
 		addItemToCart: (state, action) => {
-			// state.cartItems.push(action.payload);
+			state.cartItems.push(action.payload);
+
 			// const existingCartItemIndex = state.cartItems.findIndex(
 			// 	(item) => item === action.payload
 			// );
