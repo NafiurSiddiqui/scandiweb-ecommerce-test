@@ -23,7 +23,6 @@ class MiniCartIcon extends Component {
 		const classGuard = e.target.classList[0] === 'header-cart__cart';
 
 		if (classGuard) {
-			console.log(classGuard);
 			return;
 		} else {
 			if (cartItems.includes(itemID)) {
@@ -35,7 +34,6 @@ class MiniCartIcon extends Component {
 	}
 
 	render() {
-		console.log(this.props.cartItems);
 		return (
 			<svg
 				width="20"

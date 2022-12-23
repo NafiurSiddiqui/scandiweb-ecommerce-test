@@ -31,8 +31,8 @@ class App extends Component {
 	}
 
 	render() {
-		let { productID } = this.props.productIDState;
-
+		let { productIDState, miniCartState } = this.props;
+		console.log(miniCartState);
 		return (
 			<>
 				{!this.state.DOMisLoaded ? (
@@ -43,7 +43,7 @@ class App extends Component {
 					<section onLoad={this.DOMloadHandler}>
 						<Header />
 						<main className="products-display">
-							{productID ? <ProductDescription /> : <CategoryList />}
+							{productIDState ? <ProductDescription /> : <CategoryList />}
 						</main>
 					</section>
 				)}
@@ -55,7 +55,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		productIDState: state.category,
+		productIDState: state.category.productID,
+		miniCartState: state.cart.miniCartIsOpen,
 	};
 };
 
