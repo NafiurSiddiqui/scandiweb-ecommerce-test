@@ -17,17 +17,25 @@ class MiniCartIcon extends Component {
 
 	componentDidMount() {}
 
-	addToCartHandler() {
+	addToCartHandler(e) {
 		const { itemID, addItemToCart, cartItems } = this.props;
 
-		if (cartItems.includes(itemID)) {
+		const classGuard = e.target.classList[0] === 'header-cart__cart';
+
+		if (classGuard) {
+			console.log(classGuard);
 			return;
 		} else {
-			addItemToCart(itemID);
+			if (cartItems.includes(itemID)) {
+				return;
+			} else {
+				addItemToCart(itemID);
+			}
 		}
 	}
 
 	render() {
+		console.log(this.props.cartItems);
 		return (
 			<svg
 				width="20"
@@ -36,7 +44,7 @@ class MiniCartIcon extends Component {
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 				role={'button'}
-				onClick={this.addToCartHandler}
+				onClick={(e) => this.addToCartHandler(e)}
 				className={`${this.props.className} cart-btn`}
 			>
 				<path

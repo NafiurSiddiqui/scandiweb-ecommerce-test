@@ -6,8 +6,6 @@ class HeaderCart extends Component {
 	render() {
 		const { cartItems } = this.props;
 
-		// console.log();
-
 		return (
 			<div className={`header-cart`}>
 				<MiniCartIcon color={'#43464E'} className={'header-cart__cart'} />
