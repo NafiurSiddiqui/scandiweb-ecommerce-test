@@ -9,5 +9,13 @@
 		background-color: white;
 		position: absolute;
 		right: 1rem;
+		padding: 1.5rem 0.8rem;
+	}
+
+	&__headers {
+		display: flex;
+	}
+	&__header {
+		font-size: 1rem;
 	}
 }

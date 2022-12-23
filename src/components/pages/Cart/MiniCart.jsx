@@ -9,7 +9,7 @@ export default class MiniCart extends Component {
 				<section className="mini-cart-container">
 					<div className="mini-cart__headers">
 						<h2 className="mini-cart__header">My Bag,</h2>
-						<h3 className="mini-cart__item-count">2items</h3>
+						<span className="mini-cart__item-count">2items</span>
 					</div>
 					<CartContainer className="mini-cart__items" />
 				</section>
