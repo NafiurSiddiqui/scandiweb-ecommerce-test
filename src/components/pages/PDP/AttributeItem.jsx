@@ -12,13 +12,14 @@ export default class AttributeItem extends Component {
 						{element.toUpperCase()}:
 					</h4>
 					<ul className={`${className}__attribution__items`}>
-						{attributesItem[propsKey].map((item) => {
+						{attributesItem[propsKey].map((item, i) => {
 							return (
 								<AttributionBtn
 									key={item}
 									item={item}
 									attributeTitle={element}
 									className={className}
+									index={i}
 								/>
 							);
 						})}
