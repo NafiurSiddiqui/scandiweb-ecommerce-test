@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from './components/Layout/Header';
 import Skeleton from './components/Layout/skeleton';
 import Cart from './components/pages/Cart/Cart';
+import MiniCart from './components/pages/Cart/MiniCart';
 import CategoryList from './components/pages/Category/CategoryList';
 import ProductDescription from './components/pages/PDP/ProductDescription';
 
@@ -32,7 +33,7 @@ class App extends Component {
 
 	render() {
 		let { productIDState, miniCartState } = this.props;
-		console.log(miniCartState);
+		// console.log();
 		return (
 			<>
 				{!this.state.DOMisLoaded ? (
@@ -44,6 +45,7 @@ class App extends Component {
 						<Header />
 						<main className="products-display">
 							{productIDState ? <ProductDescription /> : <CategoryList />}
+							{miniCartState ? <MiniCart /> : null}
 						</main>
 					</section>
 				)}

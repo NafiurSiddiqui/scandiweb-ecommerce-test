@@ -21,41 +21,42 @@ export default class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, attributesID, attributesItem, prices } =
-			this.props.products;
+		// const { brand, name, attributesID, attributesItem, prices } =
+		// 	this.props.products;
 
-		const { priceHeading, className } = this.props;
+		// const { priceHeading, className } = this.props;
 
 		return (
-			<article className={className}>
-				<div className={`${className}__headers`}>
-					<h2>{brand}</h2>
-					<h3>{name}</h3>
-				</div>
-				{attributesID.map((element, i) => {
-					return (
-						<AttributeItem
-							propsKey={i}
-							element={element}
-							attributesItem={attributesItem}
-							activeItem={this.state.activeItem}
-							key={i}
-							onClick={this.itemClickHandler}
-							className={className}
-						/>
-					);
-				})}
+			// <article className={className}>
+			// 	<div className={`${className}__headers`}>
+			// 		<h2>{brand}</h2>
+			// 		<h3>{name}</h3>
+			// 	</div>
+			// 	{attributesID.map((element, i) => {
+			// 		return (
+			// 			<AttributeItem
+			// 				propsKey={i}
+			// 				element={element}
+			// 				attributesItem={attributesItem}
+			// 				activeItem={this.state.activeItem}
+			// 				key={i}
+			// 				onClick={this.itemClickHandler}
+			// 				className={className}
+			// 			/>
+			// 		);
+			// 	})}
 
-				<div className="pd__price">
-					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
-					<span className="pd__price-price">
-						<span className="pd__price-price__symbol">
-							{prices[0].currency.symbol}
-						</span>
-						{prices[0].amount}
-					</span>
-				</div>
-			</article>
+			// 	<div className="pd__price">
+			// 		{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
+			// 		<span className="pd__price-price">
+			// 			<span className="pd__price-price__symbol">
+			// 				{prices[0].currency.symbol}
+			// 			</span>
+			// 			{prices[0].amount}
+			// 		</span>
+			// 	</div>
+			// </article>
+			<div>Hello</div>
 		);
 	}
 }

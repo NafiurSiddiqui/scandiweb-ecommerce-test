@@ -10,9 +10,12 @@ class HeaderCart extends Component {
 		this.openMiniCart = this.openMiniCart.bind(this);
 	}
 
-	openMiniCart() {}
+	openMiniCart() {
+		this.props.setMiniCartIsOpen();
+	}
 	render() {
-		const { cartItems } = this.props;
+		const { cartItems, miniCartState } = this.props;
+		console.log(miniCartState);
 
 		return (
 			<div className={`header-cart`} onClick={this.openMiniCart}>
