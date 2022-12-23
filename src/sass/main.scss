@@ -78,3 +78,12 @@ h4 {
 	cursor: pointer;
 	height: 2.5rem;
 }
+
+.btnDisable {
+	background-color: #c3c2c2;
+	cursor: not-allowed;
+
+	&:hover {
+		background-color: #c3c2c2;
+	}
+}
