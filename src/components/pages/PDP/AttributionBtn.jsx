@@ -39,7 +39,7 @@ class AttributionBtn extends Component {
 	render() {
 		const { item, className, index } = this.props;
 		const { colorSwatch, itemIsClicked } = this.state;
-		// console.log(itemIsClicked);
+
 		let itemBackground =
 			colorSwatch === true
 				? {
@@ -54,7 +54,9 @@ class AttributionBtn extends Component {
 						minWidth: '2.5rem',
 						border: 'none',
 				  }
-				: !colorSwatch && itemIsClicked
+				: !colorSwatch && !itemIsClicked && index === 0
+				? { backgroundColor: '#1D1F22', color: 'white' }
+				: !colorSwatch && itemIsClicked && index
 				? { backgroundColor: '#1D1F22', color: 'white' }
 				: { backgroundColor: 'white' };
 
