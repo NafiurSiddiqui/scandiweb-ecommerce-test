@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	cartItems: [],
 	totalAmount: 0,
+	miniCartIsOpen: false,
 };
 
 export const cartSlice = createSlice({
@@ -14,6 +15,9 @@ export const cartSlice = createSlice({
 		},
 		addItemToCart: (state, action) => {
 			state.cartItems.push(action.payload);
+		},
+		setMiniCartIsOpen: (state) => {
+			state.miniCartIsOpen = !state.miniCartIsOpen;
 		},
 	},
 });
