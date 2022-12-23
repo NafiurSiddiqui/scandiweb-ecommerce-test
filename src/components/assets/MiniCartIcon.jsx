@@ -28,7 +28,6 @@ class MiniCartIcon extends Component {
 	}
 
 	render() {
-		// console.log(this.props.cartItems);
 		return (
 			<svg
 				width="20"

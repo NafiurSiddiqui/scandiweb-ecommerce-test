@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import MiniCartIcon from '../assets/MiniCartIcon';
 
-export default class HeaderCart extends Component {
+class HeaderCart extends Component {
 	render() {
+		const { cartItems } = this.props;
+
+		// console.log();
+
 		return (
 			<div className={`header-cart`}>
 				<MiniCartIcon color={'#43464E'} className={'header-cart__cart'} />
 
-				<span className={`header-cart__badge`}></span>
+				<div
+					className={`header-cart__badge ${
+						cartItems.length > 0 ? 'visible' : ''
+					}`}
+				>
+					<span className="header-cart__badge-quantity">
+						{cartItems.length}
+					</span>
+				</div>
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		cartItems: state.cart.cartItems,
+	};
+};
+
+export default connect(mapStateToProps)(HeaderCart);
