@@ -12,4 +12,10 @@
 			}
 		}
 	}
+
+	&-items {
+		&__item {
+			@include border(orange);
+		}
+	}
 }

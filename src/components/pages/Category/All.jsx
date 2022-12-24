@@ -96,7 +96,7 @@ class CategoryAll extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category,
 		products: state.products,
@@ -104,6 +104,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { setProducts };
+export const mapDispatchToProps = { setProducts };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryAll);

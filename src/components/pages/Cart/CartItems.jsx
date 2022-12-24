@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setProducts } from '../../store/productsSlice';
+import { HOCState, mapStateToProps } from '../Category/All';
 import CartItem from './CartItem';
 
-export default class CartItems extends Component {
+class CartItems extends Component {
 	render() {
-		const { selectedItems } = this.props;
+		const { products, selectedProduct } = this.props;
 		return (
 			<ul className="cart-items">
 				{/* {selectedItems.map((item) => {
@@ -14,3 +17,5 @@ export default class CartItems extends Component {
 		);
 	}
 }
+
+export default connect(mapStateToProps)(CartItems);
