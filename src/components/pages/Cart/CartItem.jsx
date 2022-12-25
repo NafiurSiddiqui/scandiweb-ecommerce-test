@@ -52,7 +52,6 @@ class CartItem extends Component {
 
 	render() {
 		const { products, selectedCurrency } = this.props.products;
-		// console.log(products);
 
 		//filter out the cartItem
 		// let filteredProduct = products.filter((item) => item.id === productID);
@@ -93,11 +92,9 @@ class CartItem extends Component {
 			};
 		});
 
-		// console.log(PDP);
-
 		return (
 			<li className="cart-items__item">
-				<DescriptionCard className="cart-items__pd" products={PDP} />
+				<DescriptionCard className="cart-items__pd" products={PDP[0]} />
 
 				<CartQuantitiy />
 			</li>

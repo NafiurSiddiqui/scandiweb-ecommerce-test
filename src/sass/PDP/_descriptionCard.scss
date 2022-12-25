@@ -25,25 +25,6 @@
 		&__ID {
 			font-weight: 700;
 		}
-
-		&__items {
-			@include flex(null, center, row);
-			margin: 0.4rem 0;
-		}
-
-		&__item:not(:first-child) {
-			margin-left: 0.25rem;
-		}
-
-		&__item {
-			border: 1px solid #1d1f22;
-			padding: 0.4rem;
-			min-width: 3.2rem;
-			min-height: 2.25rem;
-			text-align: center;
-			position: relative;
-			cursor: pointer;
-		}
 	}
 
 	&__price {
@@ -59,4 +40,29 @@
 	&__description {
 		cursor: pointer;
 	}
+}
+
+.pd__attribution__items {
+	@include flex(null, center, row);
+	margin: 0.4rem 0;
+}
+
+.pd__attribution__item:not(:first-child),
+.cart-items__pd__attribution__item:not(:first-child) {
+	margin-left: 0.25rem;
+}
+
+.pd__attribution__item,
+.cart-items__pd__attribution__item {
+	border: 1px solid #1d1f22;
+	padding: 0.4rem;
+
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+}
+
+.pd__attribution__item {
+	min-width: 3.2rem;
+	min-height: 2.25rem;
 }

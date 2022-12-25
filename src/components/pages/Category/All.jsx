@@ -12,86 +12,74 @@ import { GET_ALL_CATEGORIES } from './CategoryList';
  */
 
 class CategoryAll extends Component {
-	constructor() {
+	constructor(props) {
 		super();
 
-		this.getProductsHandler = this.getProductsHandler.bind(this);
+		// this.getProductsHandler = this.getProductsHandler.bind(this);
 	}
 
-	componentDidMount(el) {
-		this.getProductsHandler(el);
-	}
-	//Get products
-	getProductsHandler(el) {
-		this.props.setProducts(el);
-	}
+	// componentDidMount(el) {
+	// 	this.getProductsHandler(el);
+	// }
+	// //Get products
+	// getProductsHandler(el) {
+	// 	this.props.setProducts(el);
+	// }
 	render() {
 		const { selectedCurrency } = this.props;
+		const { products } = this.props.products;
+
+		const currencies = products?.map((item) =>
+			item.prices.map((item) => {
+				return {
+					currency: item.currency.label,
+					symbol: item.currency.symbol,
+					amount: item.amount,
+				};
+			})
+		);
+
+		const matchedUserPrice = currencies?.map((item) =>
+			item.find((el) => {
+				if (selectedCurrency !== null) {
+					return el.currency === selectedCurrency.currency;
+				} else {
+					return el.currency === 'USD';
+				}
+			})
+		);
 
 		return (
-			<Query
-				query={GET_ALL_CATEGORIES}
-				onCompleted={(data) => this.getProductsHandler(data.category.products)}
-			>
-				{({ error, loading, data, client }) => {
-					if (error) return `something went wrong !!! ${error} `;
-					if (loading || !data) return 'Loading ... ';
-					const products = data.category.products;
+			<>
+				<div>
+					<h1 className={'category-title'}>All</h1>
+				</div>
 
-					const currencies = products.map((item) =>
-						item.prices.map((item) => {
-							return {
-								currency: item.currency.label,
-								symbol: item.currency.symbol,
-								amount: item.amount,
-							};
-						})
-					);
+				<ul className={'category-items'}>
+					{products?.map((p, i) => {
+						let product = {
+							id: p.id,
+							image: p.gallery[0],
+							name: p.name,
+							prices: matchedUserPrice[i]?.amount,
 
-					const matchedUserPrice = currencies.map((item) =>
-						item.find((el) => {
-							if (selectedCurrency !== null) {
-								return el.currency === selectedCurrency.currency;
-							} else {
-								return el.currency === 'USD';
-							}
-						})
-					);
+							stock: p.inStock,
+						};
 
-					return (
-						<>
-							<div>
-								<h1 className={'category-title'}>All</h1>
-							</div>
-
-							<ul className={'category-items'}>
-								{products.map((p, i) => {
-									let product = {
-										id: p.id,
-										image: p.gallery[0],
-										name: p.name,
-										prices: matchedUserPrice[i]?.amount,
-
-										stock: p.inStock,
-									};
-
-									return (
-										<CategoryCard
-											key={product.id}
-											image={product.image}
-											heading={product.name}
-											price={product.prices}
-											inStock={product.stock}
-											productID={p.id}
-											currencySymbol={selectedCurrency?.symbol}
-										/>
-									);
-								})}
-							</ul>
-						</>
-					);
-				}}
-			</Query>
+						return (
+							<CategoryCard
+								key={product.id}
+								image={product.image}
+								heading={product.name}
+								price={product.prices}
+								inStock={product.stock}
+								productID={p.id}
+								currencySymbol={selectedCurrency?.symbol}
+							/>
+						);
+					})}
+				</ul>
+			</>
 		);
 	}
 }
