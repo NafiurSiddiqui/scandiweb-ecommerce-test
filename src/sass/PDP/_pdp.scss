@@ -1,24 +1,30 @@
 .pdp {
 	padding: 0 3rem;
 	display: flex;
-	// height: 90%;
+	height: 80vh;
 	width: 100%;
 	&-image {
-		@include border(red);
 		height: 100%;
 		@include flex(space-between, null, row);
 		width: 100%;
 		&-gallery {
-			@include border(orange);
 			height: 100%;
 			width: 20%;
-			overflow-y: scroll;
+
+			&__image:not(:first-child) {
+				margin: 0.3rem 0;
+			}
+
 			&__image {
 				width: 100%;
 				object-fit: contain;
 				height: 5rem;
 				cursor: pointer;
-				@include border(red);
+				box-shadow: 0px 1px 3px 0px #d8d8d8;
+
+				&:hover {
+					box-shadow: 0px 1px 3px 1px #d2d2d2;
+				}
 			}
 		}
 
@@ -33,7 +39,10 @@
 	}
 
 	&_pd {
-		@include border(orange);
 		width: 18rem;
+	}
+
+	&__cart-btn {
+		margin: 1rem 0;
 	}
 }

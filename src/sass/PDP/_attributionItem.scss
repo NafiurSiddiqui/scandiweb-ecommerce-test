@@ -1,0 +1,12 @@
+input#attributeItem {
+	position: absolute;
+	z-index: 2;
+	background-color: cyan;
+	width: 100%;
+	height: 2rem;
+	left: -0.2rem;
+	top: -0.01rem;
+	border: 3px solid blue;
+	cursor: pointer;
+	opacity: 0;
+}

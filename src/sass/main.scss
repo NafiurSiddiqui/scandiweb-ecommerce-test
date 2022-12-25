@@ -1,9 +1,16 @@
-@import './config';
+@import './utilities/config';
+@import './utilities/skeletion';
 @import './header/header';
 @import './category/categoryCard';
 @import './category/categoryList';
 @import './PDP/pdp';
-@import './utilities/skeletion';
+@import './PDP/descriptionCard';
+@import './PDP/attributionItem';
+@import './cart/miniCart';
+@import './cart/Cart.scss';
+
+//------FONT
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 
 *,
 *::before,
@@ -15,16 +22,9 @@
 }
 
 body {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	// -webkit-font-smoothing: antialiased;
+	// -moz-osx-font-smoothing: grayscale;
+	font-family: 'Raleway', sans-serif;
 }
 
 ul li {
@@ -45,6 +45,35 @@ main {
 	height: 100%;
 }
 
+h1,
+h2,
+h3,
+h4 {
+	color: #1d1f22;
+}
+
+.btn {
+	background-color: #5ece7b;
+	width: 100%;
+	padding: 0.8rem 2rem;
+	color: white;
+	border: none;
+	cursor: pointer;
+	&:hover {
+		background-color: #37c45c;
+	}
+}
+
+.modal {
+	background-color: #39374838;
+	height: 100%;
+	min-height: 100vh;
+	position: absolute;
+	width: 100%;
+	// top: 10vh;
+	top: 0;
+}
+
 // DYNAMIC CLASSES
 .hide {
 	display: none;
@@ -57,4 +86,13 @@ main {
 .cart-btn {
 	cursor: pointer;
 	height: 2.5rem;
+}
+
+.btnDisable {
+	background-color: #c3c2c2;
+	cursor: not-allowed;
+
+	&:hover {
+		background-color: #c3c2c2;
+	}
 }

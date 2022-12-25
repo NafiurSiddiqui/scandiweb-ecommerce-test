@@ -5,9 +5,12 @@ import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
+import { setSelectedProduct } from '../../store/productsSlice';
 
 /**
  * @className - 'PDP' = product description
+ * @Tasks -
+ * multiple attributes of the same item, can be selected and should be rendered accordingly.
  */
 
 class ProductDescription extends Component {
@@ -16,19 +19,23 @@ class ProductDescription extends Component {
 
 		this.state = {
 			selectedImgSrc: '',
+			txtOverFlow: false,
 		};
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
+		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
+		this.getSelectedProduct = this.getSelectedProduct.bind(this);
 	}
 
+	//PARSE HTML
 	HTMLparser(products) {
-		let itemID = this.props.productIDState.productID;
+		const { productID } = this.props;
 
-		if (!itemID) {
+		if (!productID) {
 			return;
 		}
 
-		let selectedProduct = products.filter((item) => item.id === itemID);
+		let selectedProduct = products.filter((item) => item.id === productID);
 
 		const parser = new DOMParser();
 
@@ -42,15 +49,56 @@ class ProductDescription extends Component {
 		return parsedText;
 	}
 
+	//IMAGE GALLERY
 	selectedImgSrcHandler(src) {
 		this.setState({
 			selectedImgSrc: src,
 		});
 	}
+	//description overflow handler
+	textOverFlowHandler(e) {
+		e.target.textContent.length >= 1172
+			? this.setState({ ...this.state, txtOverFlow: !this.state.txtOverFlow })
+			: this.setState(null);
+	}
+
+	//get selected product item here
+	getSelectedProduct(data) {
+		const { productID, selectedCurrency } = this.props;
+		//filter the data
+		let filteredProduct = data?.filter((item) => item.id === productID);
+
+		//convert to obj
+		let PDP = filteredProduct.map((item) => {
+			return {
+				brand: item.brand,
+				name: item.name,
+				images: item.gallery,
+				attributesID: item.attributes.map((item) => item.id),
+				attributesItem: item.attributes.map((item) =>
+					item.items.map((item) => item.id)
+				),
+				prices: item.prices.filter((item) => {
+					if (selectedCurrency !== null) {
+						return item.currency.label === selectedCurrency.currency;
+					} else {
+						return item.currency.label === 'USD';
+					}
+				}),
+				get amount() {
+					return this.prices[0].amount;
+				},
+			};
+		});
+
+		this.props.setSelectedProduct(PDP[0]);
+
+		return PDP[0];
+	}
 
 	render() {
-		console.log(this.state.selectedImgSrc);
-		let itemID = this.props.productIDState.productID;
+		const { productID, selectedCurrency } = this.props;
+
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data, client }) => {
@@ -58,9 +106,12 @@ class ProductDescription extends Component {
 					if (loading || !data) return 'Loading ... ';
 
 					const { products } = data.category;
-					//getting the right data
-					let filteredProduct = products.filter((item) => item.id === itemID);
-					//returning PDP as an OBJECT
+					// getting the right data
+					let filteredProduct = products.filter(
+						(item) => item.id === productID
+					);
+
+					//return PDP as an OBJECT
 					let PDP = filteredProduct.map((item) => {
 						return {
 							brand: item.brand,
@@ -70,25 +121,35 @@ class ProductDescription extends Component {
 							attributesItem: item.attributes.map((item) =>
 								item.items.map((item) => item.id)
 							),
-							prices: item.prices.filter(
-								(item) => item.currency.label === 'USD'
-							),
+
+							prices: item.prices.filter((item) => {
+								if (selectedCurrency !== null) {
+									return item.currency.label === selectedCurrency.currency;
+								} else {
+									return item.currency.label === 'USD';
+								}
+							}),
 							get amount() {
 								return this.prices[0].amount;
 							},
+							stock: item.inStock,
 						};
 					});
-					/**
-					 * some product attribute length === 0, then return
-					 * else, see the kind of attributes they have.size or color or multiple attributes? get attributes
-					 */
-					// console.log(PDP);
+					//gallery overflow guard
+					let galleryOverflow = PDP[0].images.length > 6;
 
 					return (
 						<>
 							<section className="pdp">
 								<div className="pdp-image">
-									<div className="pdp-image-gallery">
+									<ul
+										className="pdp-image-gallery"
+										style={
+											galleryOverflow
+												? { overflowY: 'scroll' }
+												: { overflowY: 'none' }
+										}
+									>
 										{PDP[0].images.map((item, index) => (
 											<ProgressiveImage
 												src={item}
@@ -96,7 +157,7 @@ class ProductDescription extends Component {
 												onClick={this.selectedImgSrcHandler}
 											/>
 										))}
-									</div>
+									</ul>
 
 									<img
 										className="pdp-image-hero"
@@ -109,9 +170,35 @@ class ProductDescription extends Component {
 									/>
 								</div>
 								<article className="pdp_pd">
-									<DescriptionCard products={PDP} />
-									<Button>ADD TO CART</Button>
-									<p className="pd__description">{this.HTMLparser(products)}</p>
+									<DescriptionCard
+										products={PDP[0]}
+										priceHeading={true}
+										className="pd"
+									/>
+									<Button className="pdp__cart-btn" disable={PDP[0].stock}>
+										ADD TO CART
+									</Button>
+									<p
+										className="pd__description"
+										onClick={this.textOverFlowHandler}
+										style={
+											this.state.txtOverFlow
+												? {
+														display: '-webkit-box',
+														WebkitLineClamp: '0',
+														WebkitBoxOrient: 'vertical',
+														overflowY: 'scroll',
+												  }
+												: {
+														display: '-webkit-box',
+														WebkitLineClamp: '6',
+														WebkitBoxOrient: 'vertical',
+														overflow: 'hidden',
+												  }
+										}
+									>
+										{this.HTMLparser(products)}
+									</p>
 								</article>
 							</section>
 						</>
@@ -124,8 +211,12 @@ class ProductDescription extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		productIDState: state.category,
+		productID: state.category.productID,
+		products: state.products,
+		selectedCurrency: state.currency.selectedCurrency,
 	};
 };
 
-export default connect(mapStateToProps)(ProductDescription);
+const mapDispatchToProps = { setSelectedProduct };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);

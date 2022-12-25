@@ -1,14 +1,38 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addItemToCart } from '../store/cartSlice';
 
-export default class MiniCartIcon extends Component {
+class MiniCartIcon extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			dark: '#43464E',
 			light: '#eeeeee',
+			itemHolder: [],
 		};
+
+		this.addToCartHandler = this.addToCartHandler.bind(this);
 	}
+
+	componentDidMount() {}
+
+	addToCartHandler(e) {
+		const { itemID, addItemToCart, cartItems } = this.props;
+
+		const classGuard = e.target.classList[0] === 'header-cart__cart';
+
+		if (classGuard) {
+			return;
+		} else {
+			if (cartItems.includes(itemID)) {
+				return;
+			} else {
+				addItemToCart(itemID);
+			}
+		}
+	}
+
 	render() {
 		return (
 			<svg
@@ -18,6 +42,7 @@ export default class MiniCartIcon extends Component {
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 				role={'button'}
+				onClick={(e) => this.addToCartHandler(e)}
 				className={`${this.props.className} cart-btn`}
 			>
 				<path
@@ -36,3 +61,16 @@ export default class MiniCartIcon extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		productID: state.category.productID,
+		products: state.products,
+		selectedCurrency: state.currency.selectedCurrency,
+		cartItems: state.cart.cartItems,
+	};
+};
+
+const mapDispatchToProps = { addItemToCart };
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiniCartIcon);

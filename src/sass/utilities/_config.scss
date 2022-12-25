@@ -5,6 +5,8 @@
 
 //MAIN-----
 
+$darkTxtColr: #1d1f22;
+
 @mixin border($color) {
 	border: 1px solid $color;
 }

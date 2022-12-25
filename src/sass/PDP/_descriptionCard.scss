@@ -1,0 +1,62 @@
+.pd {
+	> h4 {
+		font-size: 0.9rem;
+	}
+
+	&__headers {
+		padding-bottom: 1rem;
+
+		h2 {
+			font-weight: 600;
+		}
+
+		h3 {
+			font-weight: 400;
+		}
+	}
+
+	&__attribution {
+		margin: 1rem 0;
+	}
+
+	&__attribution {
+		list-style-type: none;
+
+		&__ID {
+			font-weight: 700;
+		}
+
+		&__items {
+			@include flex(null, center, row);
+			margin: 0.4rem 0;
+		}
+
+		&__item:not(:first-child) {
+			margin-left: 0.25rem;
+		}
+
+		&__item {
+			border: 1px solid #1d1f22;
+			padding: 0.4rem;
+			min-width: 3.2rem;
+			min-height: 2.25rem;
+			text-align: center;
+			position: relative;
+			cursor: pointer;
+		}
+	}
+
+	&__price {
+		@include flex(space-between, null, column);
+		margin: 1rem 0;
+		&-price {
+			font-weight: bold;
+			color: $darkTxtColr;
+			font-size: 1.5rem;
+		}
+	}
+
+	&__description {
+		cursor: pointer;
+	}
+}

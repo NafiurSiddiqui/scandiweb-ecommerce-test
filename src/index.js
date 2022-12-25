@@ -6,6 +6,7 @@ import App from './App';
 import './sass/main.scss';
 import store from './components/store/store';
 import { Provider } from 'react-redux';
+import ErrorBoundary from './components/Error/ErrorBoundary';
 
 const client = new ApolloClient({
 	uri: 'http://localhost:4000/',
@@ -15,12 +16,14 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<ApolloProvider client={client}>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</ApolloProvider>
-		</Provider>
+		<ErrorBoundary>
+			<Provider store={store}>
+				<ApolloProvider client={client}>
+					<BrowserRouter>
+						<App />
+					</BrowserRouter>
+				</ApolloProvider>
+			</Provider>
+		</ErrorBoundary>
 	</React.StrictMode>
 );

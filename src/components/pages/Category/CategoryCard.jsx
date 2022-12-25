@@ -3,6 +3,20 @@ import MiniCartIcon from '../../assets/MiniCartIcon';
 import { connect } from 'react-redux';
 import { getProductID } from '../../store/categorySlice';
 
+/**
+ * @STATE -
+ * TotalCartItem
+ * Same item should not be selected and shown on the badge
+ * if, attirubtes selected then cartItem = selectedAttributes, else, first defaults.
+ */
+
+/**
+ * 1. Cart item total quantity badge on the cart icon should display the total cart item quantity not the cart item count.
+ * 2. It should be possible to add a product to the cart from PLP. But it shouldn’t be possible to add a product to the cart without selected attributes. In order to solve this, you can either:  
+-  Add a product to the cart from PLP only if it doesn’t have any attributes (like AirTag). 
+-  Add a product to the cart with first selected attributes as defaults. 
+ */
+
 class CategoryCard extends Component {
 	//if currency is selected, showSelectedCurrency || default
 
@@ -19,22 +33,35 @@ class CategoryCard extends Component {
 	}
 
 	render() {
+		const {
+			index,
+			productID,
+			getProductID,
+			image,
+			inStock,
+			heading,
+			price,
+			currencySymbol,
+		} = this.props;
+
+		// console.log(productID);
+
 		return (
-			<li
-				className={'category-item'}
-				key={this.props.index}
-				onClick={() => this.props.getProductID(this.props.productID)}
-			>
+			<li className={'category-item'} key={index}>
 				<div className={'category-item__image-wrapper'}>
 					<div
 						className={'category-item__image-wrapper__image'}
 						style={{
-							backgroundImage: `url(${this.props.image})`,
+							backgroundImage: `url(${image})`,
 							...this.style,
 						}}
+						onClick={() => getProductID(productID)}
 					></div>
-					{!this.props.inStock ? (
-						<span className={'category-item__image-wrapper-outOfStock'}>
+					{!inStock ? (
+						<span
+							className={'category-item__image-wrapper-outOfStock'}
+							onClick={() => getProductID(productID)}
+						>
 							OUT OF STOCK
 						</span>
 					) : null}
@@ -42,12 +69,16 @@ class CategoryCard extends Component {
 					<MiniCartIcon
 						color={'#ffffff'}
 						className={`category-item__image-wrapper__cart`}
+						itemID={productID}
 					/>
 				</div>
 
 				<div className="category-item__meta-container">
-					<h2>{this.props.heading}</h2>
-					<p>${this.props.price}</p>
+					<h2>{heading}</h2>
+					<p>
+						<span>{currencySymbol ? currencySymbol : '$'}</span>
+						{price}
+					</p>
 				</div>
 			</li>
 		);

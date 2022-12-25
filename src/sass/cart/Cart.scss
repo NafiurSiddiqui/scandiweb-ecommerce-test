@@ -1,0 +1,38 @@
+.cart {
+	&-btns {
+		@include flex(space-between, center, row);
+
+		&__btn {
+			width: 48% !important;
+
+			&.view-bag {
+				background-color: white !important;
+				color: #1d1f22;
+				border: 2px solid #1d1f22;
+			}
+		}
+	}
+
+	&-items {
+		&__item {
+			@include border(orange);
+			@include flex(space-between, center, row);
+		}
+
+		&__pd {
+			&__headers {
+				h2,
+				h3 {
+					font-size: 1rem;
+					font-weight: 400;
+				}
+			}
+
+			&__attribution {
+				&-header {
+					font-size: 1rem;
+				}
+			}
+		}
+	}
+}
