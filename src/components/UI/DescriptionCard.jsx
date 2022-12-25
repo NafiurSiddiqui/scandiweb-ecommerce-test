@@ -46,16 +46,6 @@ export default class DescriptionCard extends Component {
 					);
 				})}
 
-				{/* <AttributeItem
-					propsKey={i}
-					element={element}
-					attributesItem={attributesItem}
-					activeItem={this.state.activeItem}
-					key={i}
-					onClick={this.itemClickHandler}
-					className={className}
-				/> */}
-
 				<div className="pd__price">
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
 					<span className="pd__price-price">

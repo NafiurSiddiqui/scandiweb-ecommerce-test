@@ -8,13 +8,17 @@ class AttributionBtn extends Component {
 			itemIsClicked: false,
 			colorSwatch: false,
 			defaultChecked: true,
+			btnDisable: false,
 		};
 		this.toggleItemState = this.toggleItemState.bind(this);
 	}
 
 	componentDidMount() {
-		const { attributeTitle: title } = this.props;
+		const { attributeTitle: title, className } = this.props;
 
+		className === 'cart-items__pd'
+			? this.setState({ btnDisable: true })
+			: this.setState({ btnDisable: false });
 		if (title === 'Color') {
 			this.setState({
 				colorSwatch: true,
@@ -27,6 +31,9 @@ class AttributionBtn extends Component {
 	}
 
 	toggleItemState(e) {
+		if (this.state.btnDisable === true) {
+			return;
+		}
 		e.target.checked
 			? this.setState({
 					itemIsClicked: true,
