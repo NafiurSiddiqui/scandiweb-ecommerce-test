@@ -15,7 +15,7 @@ class HeaderCart extends Component {
 	}
 	render() {
 		const { cartItems, miniCartState } = this.props;
-		console.log(miniCartState);
+		// console.log(miniCartState);
 
 		return (
 			<div className={`header-cart`} onClick={this.openMiniCart}>

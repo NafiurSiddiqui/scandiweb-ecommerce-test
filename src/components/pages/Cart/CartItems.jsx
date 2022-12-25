@@ -7,6 +7,7 @@ import CartItem from './CartItem';
 class CartItems extends Component {
 	render() {
 		const { products, selectedProduct } = this.props;
+
 		return (
 			<ul className="cart-items">
 				{/* {selectedItems.map((item) => {

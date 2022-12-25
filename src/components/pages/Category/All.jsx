@@ -31,7 +31,7 @@ class CategoryAll extends Component {
 		return (
 			<Query
 				query={GET_ALL_CATEGORIES}
-				onCompleted={(data) => this.getProductsHandler(data)}
+				onCompleted={(data) => this.getProductsHandler(data.category.products)}
 			>
 				{({ error, loading, data, client }) => {
 					if (error) return `something went wrong !!! ${error} `;
