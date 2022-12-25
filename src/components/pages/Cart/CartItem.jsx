@@ -8,7 +8,15 @@ class CartItem extends Component {
 	render() {
 		// console.log(this.props);
 		const { products } = this.props.products;
-		console.log(products);
+		//filter out the cartItem
+		// getting the right data
+		// let filteredProduct = products.filter((item) => item.id === productID);
+		let filteredProduct = products.filter(
+			(item) => item.id === 'huarache-x-stussy-le'
+		);
+
+		console.log(filteredProduct);
+
 		return (
 			<li className="cart-items__item">
 				<DescriptionCard />
