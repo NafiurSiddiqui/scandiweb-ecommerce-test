@@ -8,12 +8,17 @@ class CartItems extends Component {
 	render() {
 		const { products, selectedProduct } = this.props;
 
+		//test
+
+		const cartItems = ['a', 'b', 'c'];
+		//---
+
 		return (
 			<ul className="cart-items">
-				{/* {selectedItems.map((item) => {
-					return <CartItem />;
-				})} */}
-				<CartItem />
+				{cartItems.map((item) => {
+					return <CartItem key={item} />;
+				})}
+				{/* <CartItem /> */}
 			</ul>
 		);
 	}

@@ -16,6 +16,7 @@
 	&-items {
 		&__item {
 			@include border(orange);
+			@include flex(space-between, center, row);
 		}
 	}
 }

@@ -11,11 +11,9 @@ class CartItem extends Component {
 		//filter out the cartItem
 		// getting the right data
 		// let filteredProduct = products.filter((item) => item.id === productID);
-		let filteredProduct = products.filter(
+		let filteredProduct = products?.filter(
 			(item) => item.id === 'huarache-x-stussy-le'
 		);
-
-		console.log(filteredProduct);
 
 		return (
 			<li className="cart-items__item">
