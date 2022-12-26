@@ -3,6 +3,8 @@ import ProgressiveImage from '../../Utilities/ProgressiveImage';
 
 export default class CartQuantitiy extends Component {
 	render() {
+		const { images } = this.props;
+
 		return (
 			<section className="cart-items__item__quantity-container">
 				<div className="quantity-container__quantity">
@@ -16,7 +18,9 @@ export default class CartQuantitiy extends Component {
 				</div>
 
 				<ul className="quantity-container__image-gallery">
-					<ProgressiveImage cartItem={true} />
+					{images.map((item) => (
+						<ProgressiveImage cartItem={true} images={item} key={item} />
+					))}
 				</ul>
 			</section>
 		);
