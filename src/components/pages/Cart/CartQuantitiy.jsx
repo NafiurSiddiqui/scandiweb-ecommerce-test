@@ -23,7 +23,7 @@ export default class CartQuantitiy extends Component {
 							cartItem={true}
 							images={item}
 							key={item}
-							className={'quantity-container'}
+							className={'quantity-container-image-item'}
 						/>
 					))}
 				</ul>
