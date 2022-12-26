@@ -42,6 +42,21 @@
 	}
 }
 
+.attribution__item-checkbox {
+	position: absolute;
+	z-index: 2;
+	background-color: cyan;
+	width: 100%;
+	height: 2rem;
+	left: -0.2rem;
+	top: -0.01rem;
+	border: 3px solid blue;
+	cursor: pointer;
+	opacity: 0;
+}
+
+//BOTH of cart and PDP attribute items here
+
 .pd__attribution__items {
 	@include flex(null, center, row);
 	margin: 0.4rem 0;
@@ -65,4 +80,9 @@
 .pd__attribution__item {
 	min-width: 3.2rem;
 	min-height: 2.25rem;
+}
+
+.cart-items__pd__attribution__item {
+	min-height: 1.2rem;
+	min-width: 2.5rem;
 }

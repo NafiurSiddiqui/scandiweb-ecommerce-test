@@ -52,12 +52,10 @@ class CartItem extends Component {
 
 	render() {
 		const { products, selectedCurrency } = this.props.products;
-
+		console.log(products);
 		//filter out the cartItem
 		// let filteredProduct = products.filter((item) => item.id === productID);
-		let filteredProduct = products?.filter(
-			(item) => item.id === 'huarache-x-stussy-le'
-		);
+		let filteredProduct = products?.filter((item) => item.id === 'ps-5');
 
 		// console.log(
 		// 	filteredProduct.map((item) =>

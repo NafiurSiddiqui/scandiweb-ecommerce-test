@@ -61,13 +61,17 @@ class AttributionBtn extends Component {
 						minWidth: '2.5rem',
 						border: 'none',
 				  }
+				: colorSwatch === true && this.state.btnDisable === true
+				? {
+						width: '1.5rem',
+				  }
 				: !colorSwatch && !itemIsClicked && index === 0
 				? { backgroundColor: '#1D1F22', color: 'white' }
 				: !colorSwatch && itemIsClicked && index
 				? { backgroundColor: '#1D1F22', color: 'white' }
 				: { backgroundColor: 'white' };
 
-		const defaultColor =
+		const defaultColorChecked =
 			colorSwatch && !itemIsClicked && index === 0
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
 				: colorSwatch && itemIsClicked && index
@@ -80,9 +84,14 @@ class AttributionBtn extends Component {
 				key={item}
 				data-clicked={false}
 				onClick={(e) => this.toggleItemState(e)}
-				style={{ ...itemBackground, ...defaultColor }}
+				style={{ ...itemBackground, ...defaultColorChecked }}
 			>
-				<input type="checkbox" name="attributeItem" id="attributeItem" />
+				<input
+					type="checkbox"
+					name={item}
+					id={item}
+					className={'attribution__item-checkbox'}
+				/>
 				{colorSwatch ? '' : item}
 			</li>
 		);
