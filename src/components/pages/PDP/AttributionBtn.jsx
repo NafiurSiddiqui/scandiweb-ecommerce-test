@@ -45,7 +45,7 @@ class AttributionBtn extends Component {
 
 	render() {
 		const { item, className, index } = this.props;
-		const { colorSwatch, itemIsClicked } = this.state;
+		const { colorSwatch, itemIsClicked, btnDisable } = this.state;
 
 		let itemBackground =
 			colorSwatch === true
@@ -58,17 +58,16 @@ class AttributionBtn extends Component {
 								: item === 'Black'
 								? '#2B2B2B'
 								: item,
-						minWidth: '2.5rem',
+						minWidth: btnDisable ? '1.1rem' : '2.5rem',
 						border: 'none',
-				  }
-				: colorSwatch === true && this.state.btnDisable === true
-				? {
-						width: '1.5rem',
 				  }
 				: !colorSwatch && !itemIsClicked && index === 0
 				? { backgroundColor: '#1D1F22', color: 'white' }
 				: !colorSwatch && itemIsClicked && index
-				? { backgroundColor: '#1D1F22', color: 'white' }
+				? {
+						backgroundColor: '#1D1F22',
+						color: 'white',
+				  }
 				: { backgroundColor: 'white' };
 
 		const defaultColorChecked =
@@ -84,7 +83,11 @@ class AttributionBtn extends Component {
 				key={item}
 				data-clicked={false}
 				onClick={(e) => this.toggleItemState(e)}
-				style={{ ...itemBackground, ...defaultColorChecked }}
+				style={{
+					...itemBackground,
+					...defaultColorChecked,
+					fontSize: btnDisable ? '0.834rem' : '',
+				}}
 			>
 				<input
 					type="checkbox"
