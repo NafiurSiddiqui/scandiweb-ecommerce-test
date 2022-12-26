@@ -12,11 +12,7 @@ export default class CartQuantitiy extends Component {
 				</div>
 
 				<ul className="quantity-container__image-gallery">
-					<ProgressiveImage />
-					<div className="quantity-conatiner__image-gallery-btns">
-						<span className="quantity-conatiner__image-gallery-btn">ᐳ</span>
-						<span className="quantity-conatiner__image-gallery-btn">ᐸ</span>
-					</div>
+					<ProgressiveImage cartItem={true} />
 				</ul>
 			</section>
 		);
