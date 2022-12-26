@@ -6,9 +6,13 @@ export default class CartQuantitiy extends Component {
 		return (
 			<section className="cart-items__item__quantity-container">
 				<div className="quantity-container__quantity">
-					<span className="quantity-container__quantity-btn">+</span>
+					<div className="quantity-container__quantity-btn" role={'button'}>
+						<span className="quantity-container__quantity-btn-symbol">+</span>
+					</div>
 					<span className="quantity-container__quantity-amount">1</span>
-					<span className="quantity-container__quantity-btn">-</span>
+					<div className="quantity-container__quantity-btn">
+						<span className="quantity-container__quantity-btn-symbol">-</span>
+					</div>
 				</div>
 
 				<ul className="quantity-container__image-gallery">
