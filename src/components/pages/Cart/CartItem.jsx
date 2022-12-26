@@ -92,7 +92,11 @@ class CartItem extends Component {
 
 		return (
 			<li className="cart-items__item">
-				<DescriptionCard className="cart-items__pd" products={PDP[0]} />
+				<DescriptionCard
+					className="cart-items__pd"
+					products={PDP[0]}
+					cartItem={true}
+				/>
 
 				<CartQuantitiy />
 			</li>

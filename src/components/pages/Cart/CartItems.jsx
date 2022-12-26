@@ -18,7 +18,6 @@ class CartItems extends Component {
 				{cartItems.map((item) => {
 					return <CartItem key={item} />;
 				})}
-				{/* <CartItem /> */}
 			</ul>
 		);
 	}

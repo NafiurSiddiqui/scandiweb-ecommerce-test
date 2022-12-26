@@ -23,8 +23,8 @@ export default class DescriptionCard extends Component {
 	render() {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products;
-		// console.log(this.props);
-		const { priceHeading, className } = this.props;
+		console.log(prices);
+		const { priceHeading, className, cartItem } = this.props;
 
 		return (
 			<article className={className}>
@@ -48,11 +48,14 @@ export default class DescriptionCard extends Component {
 
 				<div className="pd__price">
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
-					<span className="pd__price-price">
+					<span
+						className="pd__price-price"
+						style={{ fontSize: cartItem ? '1rem' : '' }}
+					>
 						<span className="pd__price-price__symbol">
-							{/* {prices?.currency?.symbol} */}
+							{prices[0].currency.symbol}
 						</span>
-						{/* {prices.amount} */}
+						{prices[0].amount}
 					</span>
 				</div>
 			</article>
