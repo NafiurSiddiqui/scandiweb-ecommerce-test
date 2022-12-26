@@ -42,30 +42,40 @@
 	}
 }
 
-.quantity-container {
-	&__image-gallery {
-		@include flex(center, center, row);
+.quantity {
+	&-wrapper {
+		text-align: center;
 	}
-	&__quantity {
-		min-height: 12rem;
-		@include flex(space-between, center, column);
-		color: $darkTxtColr;
+	&-container {
+		&__image-gallery {
+			@include flex(center, center, row);
+			position: relative;
 
-		&-btn {
-			width: 2rem;
-			height: 2rem;
-			font-size: 2.5rem;
-			@include flex(center, center, null);
-			border: 2px solid $darkTxtColr;
-			cursor: pointer;
-
-			&:hover {
-				background-color: rgb(237, 237, 237);
+			&-item {
+				position: absolute;
 			}
 		}
+		&__quantity {
+			min-height: 12rem;
+			@include flex(space-between, center, column);
+			color: $darkTxtColr;
 
-		&-amount {
-			font-size: 1.4rem;
+			&-btn {
+				width: 2rem;
+				height: 2rem;
+				font-size: 2.5rem;
+				@include flex(center, center, null);
+				border: 2px solid $darkTxtColr;
+				cursor: pointer;
+
+				&:hover {
+					background-color: rgb(237, 237, 237);
+				}
+			}
+
+			&-amount {
+				font-size: 1.4rem;
+			}
 		}
 	}
 }

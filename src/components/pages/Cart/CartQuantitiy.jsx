@@ -19,7 +19,12 @@ export default class CartQuantitiy extends Component {
 
 				<ul className="quantity-container__image-gallery">
 					{images.map((item) => (
-						<ProgressiveImage cartItem={true} images={item} key={item} />
+						<ProgressiveImage
+							cartItem={true}
+							images={item}
+							key={item}
+							className={'quantity-container'}
+						/>
 					))}
 				</ul>
 			</section>

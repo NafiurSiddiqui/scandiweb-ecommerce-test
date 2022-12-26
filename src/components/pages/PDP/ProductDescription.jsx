@@ -155,6 +155,7 @@ class ProductDescription extends Component {
 												src={item}
 												key={item}
 												onClick={this.selectedImgSrcHandler}
+												className={'pd'}
 											/>
 										))}
 									</ul>

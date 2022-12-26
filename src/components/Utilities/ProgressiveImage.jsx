@@ -20,11 +20,13 @@ export default class ProgressiveImage extends Component {
 	}
 
 	render() {
-		const { cartItem, images } = this.props;
+		const { cartItem, images, className } = this.props;
 		return (
 			<li
 				className={
-					this.state.isLoaded ? 'pdp__image-gallery-item' : 'skeleton-gallery'
+					this.state.isLoaded
+						? `${className} image-gallery-item`
+						: 'skeleton-gallery'
 				}
 			>
 				{this.state.isLoaded ? null : (
@@ -34,7 +36,7 @@ export default class ProgressiveImage extends Component {
 					style={this.state.isLoaded ? {} : { display: 'none' }}
 					src={images}
 					alt="product"
-					className="pdp-image-gallery__image"
+					className={`${className} image-gallery__image`}
 					onLoad={this.imageStateHandler}
 					onClick={this.imgSrcHandler}
 				/>
