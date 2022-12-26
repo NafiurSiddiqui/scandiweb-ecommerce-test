@@ -23,7 +23,7 @@ export default class DescriptionCard extends Component {
 	render() {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products;
-		console.log(prices);
+
 		const { priceHeading, className, cartItem } = this.props;
 
 		return (
