@@ -6,14 +6,18 @@ export default class CartQuantitiy extends Component {
 		const { images } = this.props;
 
 		return (
-			<section className="cart-items__item__quantity-container">
-				<div className="quantity-container__quantity">
-					<div className="quantity-container__quantity-btn" role={'button'}>
-						<span className="quantity-container__quantity-btn-symbol">+</span>
+			<section className="cart-quantity-container">
+				<div className="cart-quantity-container__actions">
+					<div className="cart-quantity-container__actions-btn" role={'button'}>
+						<span className="cart-quantity-container__actions-btn-symbol">
+							+
+						</span>
 					</div>
-					<span className="quantity-container__quantity-amount">1</span>
-					<div className="quantity-container__quantity-btn">
-						<span className="quantity-container__quantity-btn-symbol">-</span>
+					<span className="cart-quantity-container__actions-amount">1</span>
+					<div className="cart-quantity-container__actions-btn">
+						<span className="cart-quantity-container__actions-btn-symbol">
+							-
+						</span>
 					</div>
 				</div>
 

@@ -34,9 +34,6 @@
 }
 
 .quantity {
-	&-wrapper {
-		text-align: center;
-	}
 	&-container {
 		&__image-gallery {
 			@include flex(center, center, row);
@@ -49,34 +46,12 @@
 				position: absolute;
 			}
 		}
-		&__quantity {
-			min-height: 12rem;
-			@include flex(space-between, center, column);
-			color: $darkTxtColr;
-
-			&-btn {
-				width: 2rem;
-				height: 2rem;
-				font-size: 2.5rem;
-				@include flex(center, center, null);
-				border: 2px solid $darkTxtColr;
-				cursor: pointer;
-
-				&:hover {
-					background-color: rgb(237, 237, 237);
-				}
-			}
-
-			&-amount {
-				font-size: 1.4rem;
-			}
-		}
 	}
 }
 
 .quantity-container-image-item {
 	min-width: 10rem;
 	width: 100%;
-	// height: 8rem;
 	height: 100%;
+	margin: 0 0.3rem;
 }
