@@ -40,41 +40,23 @@
 			}
 		}
 	}
-}
 
-.quantity {
-	&-wrapper {
-		text-align: center;
-	}
-	&-container {
-		&__image-gallery {
-			@include flex(center, center, row);
-			position: relative;
-
-			&-item {
-				position: absolute;
-			}
+	&-quantity {
+		&-wrapper {
+			overflow: hidden;
 		}
-		&__quantity {
-			min-height: 12rem;
-			@include flex(space-between, center, column);
-			color: $darkTxtColr;
+
+		&__image-gallery {
+			&-btns {
+				text-align: right;
+				margin-right: 1rem;
+			}
 
 			&-btn {
-				width: 2rem;
-				height: 2rem;
-				font-size: 2.5rem;
-				@include flex(center, center, null);
-				border: 2px solid $darkTxtColr;
-				cursor: pointer;
-
-				&:hover {
-					background-color: rgb(237, 237, 237);
-				}
-			}
-
-			&-amount {
-				font-size: 1.4rem;
+				background-color: #000000ba;
+				color: white;
+				padding: 0.4rem 0.6rem;
+				margin: 0 0.4rem;
 			}
 		}
 	}

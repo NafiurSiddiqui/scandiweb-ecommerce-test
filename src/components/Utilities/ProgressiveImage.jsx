@@ -16,6 +16,10 @@ export default class ProgressiveImage extends Component {
 	}
 
 	imgSrcHandler(src) {
+		//return if cartItem
+		if (this.props.cartItem) {
+			return;
+		}
 		this.props.onClick(src.target.src);
 	}
 

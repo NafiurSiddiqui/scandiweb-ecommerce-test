@@ -101,9 +101,13 @@ class CartItem extends Component {
 				<div className="cart-quantity-wrapper">
 					<CartQuantitiy images={PDP[0].images} />
 
-					<div className="quantity-conatiner__image-gallery-btns">
-						<span className="quantity-conatiner__image-gallery-btn">ᐸ</span>
-						<span className="quantity-conatiner__image-gallery-btn">ᐳ</span>
+					<div className="cart-quantity__image-gallery-btns">
+						<span className="cart-quantity__image-gallery-btn" role={'button'}>
+							ᐸ
+						</span>
+						<span className="cart-quantity__image-gallery-btn" ole={'button'}>
+							ᐳ
+						</span>
 					</div>
 				</div>
 			</li>
