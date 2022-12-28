@@ -70,7 +70,7 @@ class App extends Component {
 									<main className="products-display">
 										{productIDState ? <ProductDescription /> : <CategoryList />}
 										{/* {miniCartState ? <MiniCart /> : null} */}
-										<MiniCart />
+										{/* <MiniCart /> */}
 									</main>
 								</section>
 							)}
