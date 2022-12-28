@@ -15,9 +15,11 @@ class CartItems extends Component {
 
 		return (
 			<ul className="cart-items">
-				{cartItems.map((item) => {
+				{/* {cartItems.map((item) => {
 					return <CartItem key={item} />;
-				})}
+				})} */}
+				<CartItem />
+				<CartItem />
 			</ul>
 		);
 	}

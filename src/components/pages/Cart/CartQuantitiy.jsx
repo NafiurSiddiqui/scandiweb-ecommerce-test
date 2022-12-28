@@ -4,7 +4,7 @@ import ProgressiveImage from '../../Utilities/ProgressiveImage';
 
 export default class CartQuantitiy extends Component {
 	render() {
-		const { images } = this.props;
+		const { images, imageCount } = this.props;
 
 		return (
 			<section className="cart-quantity-container">
@@ -29,6 +29,7 @@ export default class CartQuantitiy extends Component {
 							src={item}
 							key={item}
 							className={'quantity-container-image-item'}
+							imageCount={imageCount}
 							index={i}
 						/>
 					))}

@@ -15,9 +15,10 @@
 
 	&-items {
 		&__item {
-			@include border(rgb(190, 189, 187));
+			@include border(rgb(242, 241, 240));
 			@include flex(space-between, center, row);
 			position: relative;
+			margin: 0.6rem 0;
 		}
 
 		&__pd {

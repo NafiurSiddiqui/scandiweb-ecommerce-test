@@ -62,7 +62,7 @@ class ProgressiveImage extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		imageCount: state.counter.imageCount,
+		//delete if you are not using any state
 	};
 };
 export default connect(mapStateToProps)(ProgressiveImage);

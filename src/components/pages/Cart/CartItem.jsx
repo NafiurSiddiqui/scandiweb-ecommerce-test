@@ -11,8 +11,10 @@ class CartItem extends Component {
 
 		this.state = {
 			PDP: null,
+			imageCount: 0,
 		};
-		// this.handleProducts = this.handleProducts.bind(this);
+		this.incrementCount = this.incrementCount.bind(this);
+		this.decrementCount = this.decrementCount.bind(this);
 	}
 
 	componentDidMount() {
@@ -51,9 +53,22 @@ class CartItem extends Component {
 		});
 	}
 
+	incrementCount() {
+		this.setState({
+			imageCount: this.state.imageCount + 1,
+		});
+	}
+
+	decrementCount() {
+		this.setState({
+			imageCount: this.state.imageCount - 1,
+		});
+	}
+
 	render() {
 		const { products, selectedCurrency } = this.props.products;
-		const { increment, decrement, imageCount } = this.props;
+
+		const { imageCount } = this.state;
 
 		// console.log(imageCount);
 		//filter out the cartItem
@@ -116,7 +131,7 @@ class CartItem extends Component {
 				/>
 
 				<div className="cart-quantity-wrapper">
-					<CartQuantitiy images={PDP[0].images} />
+					<CartQuantitiy images={PDP[0].images} imageCount={imageCount} />
 
 					<div
 						className="cart-quantity__image-gallery-btns"
@@ -125,7 +140,7 @@ class CartItem extends Component {
 						<span
 							className="cart-quantity__image-gallery-btn"
 							role={'button'}
-							onClick={decrement}
+							onClick={this.decrementCount}
 							style={{ ...btnGuardLeft }}
 						>
 							ᐸ
@@ -133,7 +148,7 @@ class CartItem extends Component {
 						<span
 							className="cart-quantity__image-gallery-btn"
 							ole={'button'}
-							onClick={increment}
+							onClick={this.incrementCount}
 							style={{ ...btnGuardRight }}
 						>
 							ᐳ

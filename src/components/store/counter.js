@@ -22,7 +22,7 @@ export const counterSlice = createSlice({
 				return;
 			}
 			state.imageCount -= 1;
-			console.log(`After :`, current(state));
+			// console.log(`After :`, current(state));
 		},
 	},
 });
