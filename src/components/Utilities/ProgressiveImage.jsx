@@ -32,6 +32,7 @@ export default class ProgressiveImage extends Component {
 						? `${className} image-gallery-item`
 						: 'skeleton-gallery'
 				}
+				aria-label="current photo of the product"
 			>
 				{this.state.isLoaded ? null : (
 					<div className="skeleton-gallery__placeholder" />

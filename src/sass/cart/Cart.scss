@@ -54,9 +54,9 @@
 				color: $darkTxtColr;
 
 				&-btn {
-					width: 2rem;
-					height: 2rem;
-					font-size: 2.5rem;
+					width: 1.4rem;
+					height: 1.4rem;
+					font-size: 1.5rem;
 					@include flex(center, center, null);
 					border: 2px solid $darkTxtColr;
 					cursor: pointer;
@@ -67,7 +67,7 @@
 				}
 
 				&-amount {
-					font-size: 1.4rem;
+					font-size: 1rem;
 				}
 			}
 		}
