@@ -58,18 +58,30 @@
 	&-container {
 		&__image-gallery {
 			@include flex(center, center, row);
-			position: relative;
+			// position: relative;
+			position: absolute;
+			width: 50%;
 			height: 11rem;
-			&-item {
-				// position: absolute;
+		}
+
+		&-image-item {
+			// min-width: 6rem;
+			// width: 100%;
+			@include flex(center, center, null);
+			height: 100%;
+			margin: 0 0.3rem;
+			position: absolute;
+			inset: 0;
+			opacity: 0;
+			// @include border(orange);
+			& > img {
+				object-position: center;
+				width: 80%;
+			}
+
+			&[data-active] {
+				opacity: 1;
 			}
 		}
 	}
-}
-
-.quantity-container-image-item {
-	min-width: 6rem;
-	width: 100%;
-	height: 100%;
-	margin: 0 0.3rem;
 }

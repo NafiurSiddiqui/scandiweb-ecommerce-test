@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { decrement, increment } from '../../store/counter';
 import { setSelectedProduct } from '../../store/productsSlice';
 import DescriptionCard from '../../UI/DescriptionCard';
 import CartQuantitiy from './CartQuantitiy';
@@ -52,6 +53,8 @@ class CartItem extends Component {
 
 	render() {
 		const { products, selectedCurrency } = this.props.products;
+		const { increment, decrement } = this.props;
+
 		// console.log(products);
 		//filter out the cartItem
 		// let filteredProduct = products.filter((item) => item.id === productID);
@@ -102,10 +105,18 @@ class CartItem extends Component {
 					<CartQuantitiy images={PDP[0].images} />
 
 					<div className="cart-quantity__image-gallery-btns">
-						<span className="cart-quantity__image-gallery-btn" role={'button'}>
+						<span
+							className="cart-quantity__image-gallery-btn"
+							role={'button'}
+							onClick={decrement}
+						>
 							ᐸ
 						</span>
-						<span className="cart-quantity__image-gallery-btn" ole={'button'}>
+						<span
+							className="cart-quantity__image-gallery-btn"
+							ole={'button'}
+							onClick={increment}
+						>
 							ᐳ
 						</span>
 					</div>
@@ -123,6 +134,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { setSelectedProduct };
+const mapDispatchToProps = { setSelectedProduct, increment, decrement };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);

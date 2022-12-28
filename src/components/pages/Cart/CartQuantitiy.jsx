@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
 
 export default class CartQuantitiy extends Component {
@@ -22,12 +23,13 @@ export default class CartQuantitiy extends Component {
 				</div>
 
 				<ul className="quantity-container__image-gallery">
-					{images.map((item) => (
+					{images.map((item, i) => (
 						<ProgressiveImage
 							cartItem={true}
 							src={item}
 							key={item}
 							className={'quantity-container-image-item'}
+							index={i}
 						/>
 					))}
 				</ul>

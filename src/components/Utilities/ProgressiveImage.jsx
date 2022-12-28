@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 
 export default class ProgressiveImage extends Component {
 	constructor() {
@@ -6,6 +6,7 @@ export default class ProgressiveImage extends Component {
 		this.state = {
 			isLoaded: false,
 		};
+		this.nodeRef = createRef();
 
 		this.imageStateHandler = this.imageStateHandler.bind(this);
 		this.imgSrcHandler = this.imgSrcHandler.bind(this);
@@ -24,8 +25,9 @@ export default class ProgressiveImage extends Component {
 	}
 
 	render() {
-		const { cartItem, src, className } = this.props;
-		// console.log(this.state.isLoaded);
+		const { cartItem, src, className, index } = this.props;
+		// console.log();
+		let nodeRef = this.nodeRef.current?.dataset.active;
 
 		return (
 			<li
@@ -35,6 +37,10 @@ export default class ProgressiveImage extends Component {
 						: 'skeleton-gallery'
 				}
 				aria-label="current photo of the product"
+				// increase or decrease this index by clicking slider btns
+				data-active={index === 1 ? true : false}
+				ref={this.nodeRef}
+				// style={{opacity: cartItem && nodeRef ? '1': '0' }}
 			>
 				{this.state.isLoaded ? null : (
 					<div className="skeleton-gallery__placeholder" />
@@ -43,7 +49,9 @@ export default class ProgressiveImage extends Component {
 					style={this.state.isLoaded ? {} : { display: 'none' }}
 					src={src}
 					alt="product"
-					className={`${className} image-gallery__image`}
+					className={`${className}${
+						cartItem ? '__image' : ''
+					} image-gallery__image`}
 					onLoad={this.imageStateHandler}
 					onClick={this.imgSrcHandler}
 				/>
