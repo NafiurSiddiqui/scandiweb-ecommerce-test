@@ -25,7 +25,7 @@ export default class CartQuantitiy extends Component {
 					{images.map((item) => (
 						<ProgressiveImage
 							cartItem={true}
-							images={item}
+							src={item}
 							key={item}
 							className={'quantity-container-image-item'}
 						/>

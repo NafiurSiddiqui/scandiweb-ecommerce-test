@@ -24,7 +24,9 @@ export default class ProgressiveImage extends Component {
 	}
 
 	render() {
-		const { cartItem, images, className } = this.props;
+		const { cartItem, src, className } = this.props;
+		// console.log(this.state.isLoaded);
+
 		return (
 			<li
 				className={
@@ -39,7 +41,7 @@ export default class ProgressiveImage extends Component {
 				)}
 				<img
 					style={this.state.isLoaded ? {} : { display: 'none' }}
-					src={images}
+					src={src}
 					alt="product"
 					className={`${className} image-gallery__image`}
 					onLoad={this.imageStateHandler}

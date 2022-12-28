@@ -21,24 +21,21 @@ class App extends Component {
 		};
 		this.getProductsHandler = this.getProductsHandler.bind(this);
 
-		// this.DOMloadHandler = this.DOMloadHandler.bind(this);
+		this.DOMloadHandler = this.DOMloadHandler.bind(this);
 	}
 
-	// componentDidMount() {
-	// 	window.addEventListener('load', this.DOMloadHandler);
-	// }
-
-	// componentWillUnmount() {
-	// 	window.removeEventListener('load', this.DOMloadHandler);
-	// }
-
-	// DOMloadHandler() {
-	// 	this.setState({ DOMisLoaded: true });
-	// }
-
-	componentDidMount(el) {
-		this.getProductsHandler(el);
+	componentDidMount() {
+		window.addEventListener('load', this.DOMloadHandler);
 	}
+
+	componentWillUnmount() {
+		window.removeEventListener('load', this.DOMloadHandler);
+	}
+
+	DOMloadHandler() {
+		this.setState({ DOMisLoaded: true });
+	}
+
 	//Get products
 	getProductsHandler(el) {
 		this.props.setProducts(el);
@@ -46,7 +43,9 @@ class App extends Component {
 
 	render() {
 		let { productIDState, miniCartState } = this.props;
-		// console.log();
+		let { DOMisLoaded } = this.state;
+		// console.log(productIDState);
+
 		return (
 			<Query
 				query={GET_ALL_CATEGORIES}
@@ -61,8 +60,10 @@ class App extends Component {
 
 					return (
 						<>
-							{!data ? (
-								<Skeleton style={data ? 'display:none' : 'display:block'} />
+							{!DOMisLoaded ? (
+								<Skeleton
+									style={DOMisLoaded ? 'display:none' : 'display:block'}
+								/>
 							) : (
 								<section onLoad={this.DOMloadHandler}>
 									<Header />
