@@ -1,12 +1,12 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class ProgressiveImage extends Component {
+class ProgressiveImage extends Component {
 	constructor() {
 		super();
 		this.state = {
 			isLoaded: false,
 		};
-		this.nodeRef = createRef();
 
 		this.imageStateHandler = this.imageStateHandler.bind(this);
 		this.imgSrcHandler = this.imgSrcHandler.bind(this);
@@ -25,10 +25,12 @@ export default class ProgressiveImage extends Component {
 	}
 
 	render() {
-		const { cartItem, src, className, index } = this.props;
-		// console.log();
-		let nodeRef = this.nodeRef.current?.dataset.active;
-
+		const { cartItem, src, className, index, imageCount } = this.props;
+		//if index is equal to the state count
+		const miniCartStyle =
+			cartItem && index === imageCount
+				? { opacity: '1', zIndex: '2' }
+				: { opacity: '0', zIndex: '0' };
 		return (
 			<li
 				className={
@@ -37,10 +39,7 @@ export default class ProgressiveImage extends Component {
 						: 'skeleton-gallery'
 				}
 				aria-label="current photo of the product"
-				// increase or decrease this index by clicking slider btns
-				data-active={index === 1 ? true : false}
-				ref={this.nodeRef}
-				// style={{opacity: cartItem && nodeRef ? '1': '0' }}
+				style={{ ...miniCartStyle }}
 			>
 				{this.state.isLoaded ? null : (
 					<div className="skeleton-gallery__placeholder" />
@@ -59,3 +58,10 @@ export default class ProgressiveImage extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		imageCount: state.counter.imageCount,
+	};
+};
+export default connect(mapStateToProps)(ProgressiveImage);

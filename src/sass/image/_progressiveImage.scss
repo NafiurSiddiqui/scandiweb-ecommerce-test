@@ -73,15 +73,17 @@
 			position: absolute;
 			inset: 0;
 			opacity: 0;
+			z-index: 1;
 			// @include border(orange);
 			& > img {
 				object-position: center;
 				width: 80%;
 			}
 
-			&[data-active] {
-				opacity: 1;
-			}
+			// &[data-active] {
+			// 	opacity: 1;
+			// 	z-index: 2;
+			// }
 		}
 	}
 }

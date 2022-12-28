@@ -1,7 +1,7 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
-	GalleryCount: 0,
+	imageCount: 0,
 };
 
 export const counterSlice = createSlice({
@@ -10,12 +10,12 @@ export const counterSlice = createSlice({
 	reducers: {
 		increment: (state) => {
 			console.log(`before :`, current(state));
-			state.GalleryCount += 1;
+			state.imageCount += 1;
 			console.log(`After :`, current(state));
 		},
 		decrement: (state) => {
 			console.log(`before :`, current(state));
-			state.GalleryCount -= 1;
+			state.imageCount -= 1;
 			console.log(`After :`, current(state));
 		},
 	},
