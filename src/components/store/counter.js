@@ -8,13 +8,19 @@ export const counterSlice = createSlice({
 	name: 'counter',
 	initialState,
 	reducers: {
-		increment: (state) => {
-			console.log(`before :`, current(state));
+		increment: (state, action) => {
+			// console.log(`before :`, current(state));
+			// console.log('Current state:', current(state) < 0);
+
 			state.imageCount += 1;
-			console.log(`After :`, current(state));
+			// console.log(`After :`, current(state));
 		},
 		decrement: (state) => {
-			console.log(`before :`, current(state));
+			// console.log(`before :`, current(state));
+			if (state.imageCount === 0) {
+				console.log('Yes');
+				return;
+			}
 			state.imageCount -= 1;
 			console.log(`After :`, current(state));
 		},

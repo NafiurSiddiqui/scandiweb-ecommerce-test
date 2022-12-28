@@ -53,9 +53,9 @@ class CartItem extends Component {
 
 	render() {
 		const { products, selectedCurrency } = this.props.products;
-		const { increment, decrement } = this.props;
+		const { increment, decrement, imageCount } = this.props;
 
-		// console.log(products);
+		// console.log(imageCount);
 		//filter out the cartItem
 		// let filteredProduct = products.filter((item) => item.id === productID);
 		let filteredProduct = products?.filter((item) => item.id === 'ps-5');
@@ -93,6 +93,16 @@ class CartItem extends Component {
 			};
 		});
 
+		let imageLength = PDP[0]?.images.length;
+
+		let btnGuardRight = {
+			visibility: imageCount === imageLength - 1 ? 'hidden' : 'visible',
+		};
+
+		let btnGuardLeft = {
+			visibility: imageCount === 0 ? 'hidden' : 'visible',
+		};
+
 		return (
 			<li className="cart-items__item">
 				<DescriptionCard
@@ -109,6 +119,7 @@ class CartItem extends Component {
 							className="cart-quantity__image-gallery-btn"
 							role={'button'}
 							onClick={decrement}
+							style={{ ...btnGuardLeft }}
 						>
 							ᐸ
 						</span>
@@ -116,6 +127,7 @@ class CartItem extends Component {
 							className="cart-quantity__image-gallery-btn"
 							ole={'button'}
 							onClick={increment}
+							style={{ ...btnGuardRight }}
 						>
 							ᐳ
 						</span>
@@ -131,6 +143,7 @@ const mapStateToProps = (state) => {
 		productID: state.category.productID,
 		products: state.products,
 		selectedCurrency: state.currency.selectedCurrency,
+		imageCount: state.counter.imageCount,
 	};
 };
 

@@ -26,6 +26,7 @@ class ProgressiveImage extends Component {
 
 	render() {
 		const { cartItem, src, className, index, imageCount } = this.props;
+
 		//if index is equal to the state count
 		const miniCartStyle =
 			cartItem && index === imageCount
