@@ -30,6 +30,7 @@
 	&__price {
 		@include flex(space-between, null, column);
 		margin: 1rem 0;
+		order: 2;
 		&-price {
 			font-weight: bold;
 			color: $darkTxtColr;

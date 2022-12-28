@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setSelectedProduct } from '../../store/productsSlice';
 import DescriptionCard from '../../UI/DescriptionCard';
 import CartQuantitiy from './CartQuantitiy';
 

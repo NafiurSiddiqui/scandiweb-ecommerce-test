@@ -23,7 +23,10 @@
 
 		&__pd {
 			width: 50%;
+			line-height: 1.5rem;
+			@include flex(null, null, column);
 			&__headers {
+				order: 1;
 				h2,
 				h3 {
 					font-size: 1rem;
@@ -31,9 +34,13 @@
 				}
 			}
 
+			&__attributions {
+				order: 3;
+			}
+
 			&__attribution {
 				&-header {
-					font-size: 0.875rem;
+					font-size: 0.7rem;
 				}
 			}
 		}
