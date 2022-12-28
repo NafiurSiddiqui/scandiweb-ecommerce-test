@@ -103,6 +103,10 @@ class CartItem extends Component {
 			visibility: imageCount === 0 ? 'hidden' : 'visible',
 		};
 
+		const btnsGuard = {
+			visibility: imageLength === 1 ? 'hidden' : 'visible',
+		};
+
 		return (
 			<li className="cart-items__item">
 				<DescriptionCard
@@ -114,7 +118,10 @@ class CartItem extends Component {
 				<div className="cart-quantity-wrapper">
 					<CartQuantitiy images={PDP[0].images} />
 
-					<div className="cart-quantity__image-gallery-btns">
+					<div
+						className="cart-quantity__image-gallery-btns"
+						style={{ ...btnsGuard }}
+					>
 						<span
 							className="cart-quantity__image-gallery-btn"
 							role={'button'}
