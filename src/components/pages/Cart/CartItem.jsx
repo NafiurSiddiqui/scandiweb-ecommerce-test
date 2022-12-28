@@ -70,18 +70,10 @@ class CartItem extends Component {
 
 		const { imageCount } = this.state;
 
-		// console.log(imageCount);
 		//filter out the cartItem
 		// let filteredProduct = products.filter((item) => item.id === productID);
 		let filteredProduct = products?.filter((item) => item.id === 'ps-5');
 
-		// console.log(
-		// 	filteredProduct.map((item) =>
-		// 		item.prices.filter((item) => item.currency.label === 'USD')
-		// 	)
-		// );
-
-		// console.log(selectedCurrency === undefined);
 		// return PDP as an OBJECT
 
 		let PDP = filteredProduct?.map((item) => {
