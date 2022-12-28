@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { decrement, increment } from '../../store/counter';
+
 import { setSelectedProduct } from '../../store/productsSlice';
 import DescriptionCard from '../../UI/DescriptionCard';
 import CartQuantitiy from './CartQuantitiy';
@@ -165,10 +165,7 @@ const mapStateToProps = (state) => {
 		productID: state.category.productID,
 		products: state.products,
 		selectedCurrency: state.currency.selectedCurrency,
-		imageCount: state.counter.imageCount,
 	};
 };
 
-const mapDispatchToProps = { setSelectedProduct, increment, decrement };
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+export default connect(mapStateToProps)(CartItem);
