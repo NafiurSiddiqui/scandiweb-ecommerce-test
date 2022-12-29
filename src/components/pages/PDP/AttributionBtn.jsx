@@ -9,6 +9,10 @@ class AttributionBtn extends Component {
 			btnDisable: false,
 			defaultChecked: true,
 			itemIsChecked: false,
+			selectedAttributes: {
+				id: '',
+				value: '',
+			},
 		};
 
 		this.itemCheckHandler = this.itemCheckHandler.bind(this);
@@ -16,6 +20,13 @@ class AttributionBtn extends Component {
 
 	componentDidMount() {
 		const { attributeTitle: title, className } = this.props;
+
+		this.setState({
+			// selectedAttributes:{
+			// 	id:'',
+			// 	values:
+			// }
+		});
 
 		className === 'cart-items__pd'
 			? this.setState({ btnDisable: true })
@@ -33,7 +44,11 @@ class AttributionBtn extends Component {
 	}
 
 	itemCheckHandler(index, e) {
+		const { attributeTitle: attHeader } = this.props;
+
 		const attCheck = e.target.checked;
+		const attValue = e.target.name;
+
 		if (this.state.btnDisable === true) {
 			return;
 		}
@@ -44,18 +59,23 @@ class AttributionBtn extends Component {
 			});
 		}
 
-		attCheck
-			? this.setState({ itemIsChecked: attCheck })
-			: this.setState({ itemIsChecked: attCheck });
+		if (attCheck) {
+			this.setState({
+				itemIsChecked: attCheck,
+				selectedAttributes: { id: attHeader, value: attValue },
+			});
+		} else {
+			this.setState({ itemIsChecked: attCheck });
+		}
 	}
 
 	render() {
-		const { item, className, index } = this.props;
+		const { item, className, index, attributeTitle, defaultValue } = this.props;
 
 		const { colorSwatch, btnDisable, defaultChecked, itemIsChecked } =
 			this.state;
 
-		// console.log(itemIsChecked);
+		// console.log(defaultValue.map((item) => item[0]));
 
 		let itemBackground = colorSwatch
 			? {

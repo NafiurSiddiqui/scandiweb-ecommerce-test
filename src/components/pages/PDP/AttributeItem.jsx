@@ -22,6 +22,7 @@ export default class AttributeItem extends Component {
 									className={className}
 									index={i}
 									getSelectedValues={getSelectedValues}
+									defaultValue={attributesItem}
 								/>
 							);
 						})}
