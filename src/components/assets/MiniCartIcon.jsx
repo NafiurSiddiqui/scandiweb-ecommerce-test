@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addItemToCart } from '../store/cartSlice';
+import { addItemToCart, setMiniCartIsOpen } from '../store/cartSlice';
 
 class MiniCartIcon extends Component {
 	constructor(props) {
@@ -71,6 +71,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { addItemToCart };
+const mapDispatchToProps = { addItemToCart, setMiniCartIsOpen };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MiniCartIcon);

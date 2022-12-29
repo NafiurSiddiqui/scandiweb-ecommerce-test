@@ -42,9 +42,8 @@ class App extends Component {
 	}
 
 	render() {
-		let { productIDState, miniCartState } = this.props;
+		let { productIDState, miniCartIsOpen } = this.props;
 		let { DOMisLoaded } = this.state;
-		// console.log(productIDState);
 
 		return (
 			<Query
@@ -69,8 +68,7 @@ class App extends Component {
 									<Header />
 									<main className="products-display">
 										{productIDState ? <ProductDescription /> : <CategoryList />}
-										{/* {miniCartState ? <MiniCart /> : null} */}
-										<MiniCart />
+										{miniCartIsOpen ? <MiniCart /> : null}
 									</main>
 								</section>
 							)}
@@ -86,7 +84,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category.productID,
-		miniCartState: state.cart.miniCartIsOpen,
+		miniCartIsOpen: state.cart.miniCartIsOpen,
 	};
 };
 
