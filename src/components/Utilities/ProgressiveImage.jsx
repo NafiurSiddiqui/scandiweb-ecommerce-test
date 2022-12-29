@@ -40,7 +40,7 @@ class ProgressiveImage extends Component {
 						: 'skeleton-gallery'
 				}
 				aria-label="current photo of the product"
-				style={{ ...miniCartStyle }}
+				style={cartItem ? { ...miniCartStyle } : null}
 			>
 				{this.state.isLoaded ? null : (
 					<div className="skeleton-gallery__placeholder" />
