@@ -77,6 +77,11 @@
 					&:hover {
 						background-color: rgb(234, 234, 234);
 					}
+
+					&-symbol {
+						width: 100%;
+						text-align: center;
+					}
 				}
 
 				&-amount {
