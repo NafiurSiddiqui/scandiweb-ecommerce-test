@@ -8,8 +8,10 @@ class AttributionBtn extends Component {
 			itemIsClicked: false,
 			colorSwatch: false,
 			btnDisable: false,
+			defaultChecked: true,
 		};
 		this.toggleItemState = this.toggleItemState.bind(this);
+		this.defaultCheckHandler = this.defaultCheckHandler.bind(this);
 	}
 
 	componentDidMount() {
@@ -49,11 +51,22 @@ class AttributionBtn extends Component {
 			  });
 	}
 
-	render() {
-		const { item, className, index, getSelectedValues } = this.props;
-		// console.log(item);
+	defaultCheckHandler(index) {
+		if (index === 0) {
+			this.setState({
+				defaultChecked: !this.state.defaultChecked,
+			});
+		}
+		return;
+	}
 
-		const { colorSwatch, itemIsClicked, btnDisable } = this.state;
+	render() {
+		const { item, className, index } = this.props;
+
+		const { colorSwatch, itemIsClicked, btnDisable, defaultChecked } =
+			this.state;
+
+		// console.log(defaultChecked);
 
 		let itemBackground =
 			colorSwatch === true
@@ -69,7 +82,7 @@ class AttributionBtn extends Component {
 						minWidth: btnDisable ? '1.1rem' : '2.5rem',
 						border: 'none',
 				  }
-				: !colorSwatch && !itemIsClicked && index === 0
+				: !colorSwatch && defaultChecked && index === 0
 				? { backgroundColor: '#1D1F22', color: 'white' }
 				: !colorSwatch && itemIsClicked && index
 				? {
@@ -79,7 +92,7 @@ class AttributionBtn extends Component {
 				: { backgroundColor: 'white' };
 
 		const defaultColorChecked =
-			colorSwatch && !itemIsClicked && index === 0
+			colorSwatch && defaultChecked && index === 0
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
 				: colorSwatch && itemIsClicked && index
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
@@ -103,6 +116,7 @@ class AttributionBtn extends Component {
 					id={item}
 					className={'attribution__item-checkbox'}
 					defaultChecked={index === 0 ? true : false}
+					onChange={() => this.defaultCheckHandler(index)}
 				/>
 				{colorSwatch ? '' : item}
 			</li>
