@@ -15,13 +15,7 @@ export default class DescriptionCard extends Component {
 	}
 
 	getSelectedValues(values) {
-		// this.setState((prev) => ({
-		// 	selectedValues: { ...prev.state.selectedvalues, values },
-		// }));
-		// this.setState({
-		// 	selectedValues: this.state.selectedValues.push(values),
-		// });
-		// console.log('Clicked!');
+		console.log(values);
 	}
 
 	render() {

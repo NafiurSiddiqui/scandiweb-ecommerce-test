@@ -5,15 +5,13 @@ class AttributionBtn extends Component {
 	constructor() {
 		super();
 		this.state = {
-			itemIsClicked: false,
 			colorSwatch: false,
 			btnDisable: false,
 			defaultChecked: true,
 			itemIsChecked: false,
 		};
-		// this.toggleItemState = this.toggleItemState.bind(this);
+
 		this.itemCheckHandler = this.itemCheckHandler.bind(this);
-		// this.setDefaultCheck = this.setDefaultCheck.bind(this);
 	}
 
 	componentDidMount() {
@@ -34,40 +32,11 @@ class AttributionBtn extends Component {
 		}
 	}
 
-	// toggleItemState(e) {
-	// 	const attValue = e.target.name;
-	// 	const attCheck = e.target.checked;
-	// 	if (this.state.btnDisable === true) {
-	// 		return;
-	// 	}
-
-	// 	e.target.checked
-	// 		? this.setState({
-	// 				itemIsClicked: true,
-	// 		  })
-	// 		: this.setState({
-	// 				itemIsClicked: false,
-	// 		  });
-
-	// 	if (attCheck) {
-	// 		this.setState((prevState) => {
-	// 			let newSelectedValues = [...prevState.attItems];
-
-	// 			newSelectedValues.push(attValue);
-
-	// 			return { attItems: newSelectedValues };
-	// 		});
-	// 	} else {
-	// 		return;
-	// 	}
-	// }
-
 	itemCheckHandler(index, e) {
 		const attCheck = e.target.checked;
 		if (this.state.btnDisable === true) {
 			return;
 		}
-		console.log(attCheck);
 
 		if (index === 0) {
 			this.setState({
@@ -83,39 +52,10 @@ class AttributionBtn extends Component {
 	render() {
 		const { item, className, index } = this.props;
 
-		const {
-			colorSwatch,
-			itemIsClicked,
-			btnDisable,
-			defaultChecked,
-			attItems,
-			itemIsChecked,
-		} = this.state;
+		const { colorSwatch, btnDisable, defaultChecked, itemIsChecked } =
+			this.state;
 
 		// console.log(itemIsChecked);
-
-		// let itemBackground =
-		// 	colorSwatch === true
-		// 		? {
-		// 				backgroundColor:
-		// 					item === 'Green'
-		// 						? '#0F6450'
-		// 						: item === 'White'
-		// 						? '#D3D2D5'
-		// 						: item === 'Black'
-		// 						? '#2B2B2B'
-		// 						: item,
-		// 				minWidth: btnDisable ? '1.1rem' : '2.5rem',
-		// 				border: 'none',
-		// 		  }
-		// 		: !colorSwatch && defaultChecked && index === 0
-		// 		? { backgroundColor: '#1D1F22', color: 'white' }
-		// 		: !colorSwatch && itemIsClicked && index
-		// 		? {
-		// 				backgroundColor: '#1D1F22',
-		// 				color: 'white',
-		// 		  }
-		// 		: { backgroundColor: 'white' };
 
 		let itemBackground = colorSwatch
 			? {
