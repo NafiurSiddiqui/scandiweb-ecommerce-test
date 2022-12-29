@@ -13,6 +13,10 @@
 
 	&__headers {
 		display: flex;
+		margin: 0 0 2rem;
+		h2 {
+			margin-right: 0.4rem;
+		}
 	}
 	&__header {
 		font-size: 1rem;

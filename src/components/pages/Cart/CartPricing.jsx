@@ -3,9 +3,9 @@ import Button from '../../UI/Button';
 
 export default class CartPricing extends Component {
 	render() {
-		const { miniCart } = this.props;
+		const { miniCart, className } = this.props;
 		return (
-			<section className={this.props.className}>
+			<section className={className}>
 				{miniCart ? (
 					<span
 						className={`cartPage-tax-info`}
@@ -18,21 +18,16 @@ export default class CartPricing extends Component {
 						role={miniCart ? 'contentinfo' : ''}
 					></span>
 				) : null}
-				<div
-					className={`${this.props.className} price-info`}
-					role="contentinfo"
-				>
-					<span className="price-info__total">Total</span>
-					<span className="price-info__amount">$200</span>
+				<div className={`${className} price-info`} role="contentinfo">
+					<span className={`${className} price-info__total`}>Total</span>
+					<span className={`${className} price-info__amount`}>$200</span>
 				</div>
 
 				<div className="cart-btns">
 					{miniCart ? (
-						<Button className="cart-btns__btn view-bag">View Bag </Button>
+						<Button className="cart-btns__btn view-bag">VIEW BAG </Button>
 					) : null}
-					<Button className={`cart-btns__btn ${this.props.className} `}>
-						Checkout
-					</Button>
+					<Button className={`cart-btns__btn ${className} `}>CHECKOUT</Button>
 				</div>
 			</section>
 		);

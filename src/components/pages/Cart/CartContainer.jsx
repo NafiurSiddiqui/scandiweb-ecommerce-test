@@ -7,7 +7,7 @@ export default class CartContainer extends Component {
 		return (
 			<article className={this.props.className}>
 				<CartItems />
-				<CartPricing miniCart={true} />
+				<CartPricing miniCart={true} className={'cart-page'} />
 			</article>
 		);
 	}
