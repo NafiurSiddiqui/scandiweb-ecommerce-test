@@ -3,7 +3,8 @@ import AttributionBtn from './AttributionBtn';
 
 export default class AttributeItem extends Component {
 	render() {
-		const { propsKey, element, attributesItem, className } = this.props;
+		const { propsKey, element, attributesItem, className, getSelectedValues } =
+			this.props;
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
@@ -20,6 +21,7 @@ export default class AttributeItem extends Component {
 									attributeTitle={element}
 									className={className}
 									index={i}
+									getSelectedValues={getSelectedValues}
 								/>
 							);
 						})}

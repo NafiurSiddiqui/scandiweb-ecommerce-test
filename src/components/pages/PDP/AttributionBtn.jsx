@@ -7,7 +7,6 @@ class AttributionBtn extends Component {
 		this.state = {
 			itemIsClicked: false,
 			colorSwatch: false,
-			defaultChecked: true,
 			btnDisable: false,
 		};
 		this.toggleItemState = this.toggleItemState.bind(this);
@@ -31,9 +30,16 @@ class AttributionBtn extends Component {
 	}
 
 	toggleItemState(e) {
+		const { getSelectedValues } = this.props;
+
+		// const selectedValues = {id:};
+		console.log(e.target.parentNode.innerText);
+		console.log(e.target.checked);
+		// getSelectedValues();
 		if (this.state.btnDisable === true) {
 			return;
 		}
+
 		e.target.checked
 			? this.setState({
 					itemIsClicked: true,
@@ -44,7 +50,9 @@ class AttributionBtn extends Component {
 	}
 
 	render() {
-		const { item, className, index } = this.props;
+		const { item, className, index, getSelectedValues } = this.props;
+		// console.log(item);
+
 		const { colorSwatch, itemIsClicked, btnDisable } = this.state;
 
 		let itemBackground =
@@ -94,6 +102,7 @@ class AttributionBtn extends Component {
 					name={item}
 					id={item}
 					className={'attribution__item-checkbox'}
+					defaultChecked={index === 0 ? true : false}
 				/>
 				{colorSwatch ? '' : item}
 			</li>

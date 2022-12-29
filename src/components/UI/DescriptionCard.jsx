@@ -9,18 +9,19 @@ export default class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeItem: '',
 			selectedValues: [],
 		};
-		this.itemClickHandler = this.itemClickHandler.bind(this);
+		this.getSelectedValues = this.getSelectedValues.bind(this);
 	}
 
-	itemClickHandler(item) {
-		this.setState({
-			activeItem: item,
-		});
-
-		console.log('What?');
+	getSelectedValues(values) {
+		// this.setState((prev) => ({
+		// 	selectedValues: { ...prev.state.selectedvalues, values },
+		// }));
+		// this.setState({
+		// 	selectedValues: this.state.selectedValues.push(values),
+		// });
+		// console.log('Clicked!');
 	}
 
 	render() {
@@ -41,10 +42,9 @@ export default class DescriptionCard extends Component {
 							propsKey={i}
 							element={element}
 							attributesItem={attributesItem}
-							activeItem={this.state.activeItem}
 							key={i}
-							onClick={this.itemClickHandler}
 							className={className}
+							getSelectedValues={this.getSelectedValues}
 						/>
 					);
 				})}
