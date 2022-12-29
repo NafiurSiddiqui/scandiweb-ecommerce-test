@@ -139,7 +139,7 @@ class AttributionBtn extends Component {
 		const defaultColorChecked =
 			colorSwatch && defaultChecked && index === 0
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
-				: colorSwatch && itemIsClicked && index
+				: colorSwatch && itemIsChecked
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
 				: { outline: 'none' };
 
@@ -148,7 +148,6 @@ class AttributionBtn extends Component {
 				className={`${className}__attribution__item`}
 				key={item}
 				data-clicked={false}
-				// onClick={(e) => this.toggleItemState(e)}
 				style={{
 					...itemBackground,
 					...defaultColorChecked,
@@ -160,7 +159,6 @@ class AttributionBtn extends Component {
 					name={item}
 					id={item}
 					className={'attribution__item-checkbox'}
-					// defaultChecked={index === 0 ? this.setDefaultCheck : false}
 					checked={index === 0 ? defaultChecked : itemIsChecked}
 					onChange={(e) => this.itemCheckHandler(index, e)}
 				/>
