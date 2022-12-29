@@ -10,6 +10,7 @@ export default class DescriptionCard extends Component {
 		super(props);
 		this.state = {
 			activeItem: '',
+			selectedValues: [],
 		};
 		this.itemClickHandler = this.itemClickHandler.bind(this);
 	}
@@ -18,6 +19,8 @@ export default class DescriptionCard extends Component {
 		this.setState({
 			activeItem: item,
 		});
+
+		console.log('What?');
 	}
 
 	render() {
