@@ -19,20 +19,13 @@ class AttributionBtn extends Component {
 	}
 
 	componentDidMount() {
-		const { attributeTitle: title, className } = this.props;
-
-		this.setState({
-			// selectedAttributes:{
-			// 	id:'',
-			// 	values:
-			// }
-		});
+		const { attributeTitle: attHeader, className } = this.props;
 
 		className === 'cart-items__pd'
 			? this.setState({ btnDisable: true })
 			: this.setState({ btnDisable: false });
 
-		if (title === 'Color') {
+		if (attHeader === 'Color') {
 			this.setState({
 				colorSwatch: true,
 			});
@@ -74,8 +67,6 @@ class AttributionBtn extends Component {
 
 		const { colorSwatch, btnDisable, defaultChecked, itemIsChecked } =
 			this.state;
-
-		// console.log(defaultValue.map((item) => item[0]));
 
 		let itemBackground = colorSwatch
 			? {
