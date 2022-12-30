@@ -12,6 +12,7 @@ export default class AttributeItem extends Component {
 			},
 		};
 	}
+
 	render() {
 		const { propsKey, element, attributesItem, className, getSelectedValues } =
 			this.props;

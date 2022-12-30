@@ -131,7 +131,6 @@ class AttributionBtn extends Component {
 			<li
 				className={`${className}__attribution__item`}
 				key={item}
-				data-clicked={false}
 				style={{
 					...itemBackground,
 					...defaultColorChecked,
