@@ -28,13 +28,16 @@ class Currency extends Component {
 			currency: e.target.lastChild.nodeValue,
 			symbol: e.target.firstChild.innerText,
 		});
-		// console.log(e.target.lastChild.nodeValue, e.target.firstChild.innerText);
 	}
 
 	render() {
 		let { currencyIsOpen, products, selectedCurrency } = this.props;
 		const currencyState = currencyIsOpen ? 'visible' : '';
-		const allProducts = products?.products?.category?.products;
+
+		// const allProducts = products?.products?.category?.products;
+		const allProducts = products?.products;
+		console.log(allProducts);
+
 		const prices = allProducts?.map((item, i) =>
 			item.prices.map((item) => {
 				return {

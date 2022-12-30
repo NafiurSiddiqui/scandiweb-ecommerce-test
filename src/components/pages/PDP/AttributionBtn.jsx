@@ -5,22 +5,35 @@ class AttributionBtn extends Component {
 	constructor() {
 		super();
 		this.state = {
-			itemIsClicked: false,
 			colorSwatch: false,
 			btnDisable: false,
-			defaultChecked: true,
+			defaultIsChecked: true,
+			itemIsChecked: false,
+			selectedAttributes: {
+				id: '',
+				value: '',
+			},
 		};
-		this.toggleItemState = this.toggleItemState.bind(this);
-		this.defaultCheckHandler = this.defaultCheckHandler.bind(this);
+
+		this.itemCheckHandler = this.itemCheckHandler.bind(this);
 	}
 
 	componentDidMount() {
-		const { attributeTitle: title, className } = this.props;
+		const { attributeTitle: attHeader, className } = this.props;
+
+		const { defaultIsChecked, itemIsChecked } = this.state;
+
+		// console.log(attHeader);
+
+		//run a check if the itemIsChecked or not
+		// console.log(this.state.itemIsChecked);
+		//which index of the item isChecked?
 
 		className === 'cart-items__pd'
 			? this.setState({ btnDisable: true })
 			: this.setState({ btnDisable: false });
-		if (title === 'Color') {
+
+		if (attHeader === 'Color') {
 			this.setState({
 				colorSwatch: true,
 			});
@@ -29,72 +42,88 @@ class AttributionBtn extends Component {
 				colorSwatch: false,
 			});
 		}
+
+		/**
+		 * @settingSelectedValues : default and clickedState
+		 * 	defaultISChecked && itemIsNotchecked
+		 * set default values for items
+		 * else, set the checkedValue
+		 */
+
+		if (defaultIsChecked && !itemIsChecked) {
+			this.setState({
+				selectedAttributes: {
+					id: attHeader,
+					value: '',
+				},
+			});
+		}
 	}
 
-	toggleItemState(e) {
-		const { getSelectedValues } = this.props;
+	componentDidUpdate() {
+		// console.log(this.state.itemIsChecked);
+	}
 
-		// const selectedValues = {id:};
-		console.log(e.target.parentNode.innerText);
-		console.log(e.target.checked);
-		// getSelectedValues();
+	itemCheckHandler(index, e) {
+		const { attributeTitle: attHeader } = this.props;
+
+		const attCheck = e.target.checked;
+		const attValue = e.target.name;
+
 		if (this.state.btnDisable === true) {
 			return;
 		}
 
-		e.target.checked
-			? this.setState({
-					itemIsClicked: true,
-			  })
-			: this.setState({
-					itemIsClicked: false,
-			  });
-	}
-
-	defaultCheckHandler(index) {
 		if (index === 0) {
 			this.setState({
-				defaultChecked: !this.state.defaultChecked,
+				defaultIsChecked: !this.state.defaultIsChecked,
 			});
 		}
-		return;
+
+		if (attCheck) {
+			this.setState({
+				itemIsChecked: attCheck,
+				selectedAttributes: { id: attHeader, value: attValue },
+			});
+		} else {
+			this.setState({ itemIsChecked: attCheck });
+		}
 	}
 
 	render() {
-		const { item, className, index } = this.props;
+		const { item, className, index, attributeTitle, defaultValue } = this.props;
 
-		const { colorSwatch, itemIsClicked, btnDisable, defaultChecked } =
-			this.state;
+		const {
+			colorSwatch,
+			btnDisable,
+			defaultIsChecked,
+			itemIsChecked,
+			selectedAttributes,
+		} = this.state;
 
-		// console.log(defaultChecked);
-
-		let itemBackground =
-			colorSwatch === true
-				? {
-						backgroundColor:
-							item === 'Green'
-								? '#0F6450'
-								: item === 'White'
-								? '#D3D2D5'
-								: item === 'Black'
-								? '#2B2B2B'
-								: item,
-						minWidth: btnDisable ? '1.1rem' : '2.5rem',
-						border: 'none',
-				  }
-				: !colorSwatch && defaultChecked && index === 0
-				? { backgroundColor: '#1D1F22', color: 'white' }
-				: !colorSwatch && itemIsClicked && index
-				? {
-						backgroundColor: '#1D1F22',
-						color: 'white',
-				  }
-				: { backgroundColor: 'white' };
+		let itemBackground = colorSwatch
+			? {
+					backgroundColor:
+						item === 'Green'
+							? '#0F6450'
+							: item === 'White'
+							? '#D3D2D5'
+							: item === 'Black'
+							? '#2B2B2B'
+							: item,
+					minWidth: btnDisable ? '1.1rem' : '2.5rem',
+					border: 'none',
+			  }
+			: !colorSwatch && index === 0 && defaultIsChecked
+			? { backgroundColor: '#1D1F22', color: 'white' }
+			: !colorSwatch && itemIsChecked
+			? { backgroundColor: '#1D1F22', color: 'white' }
+			: { backgroundColor: 'white' };
 
 		const defaultColorChecked =
-			colorSwatch && defaultChecked && index === 0
+			colorSwatch && defaultIsChecked && index === 0
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
-				: colorSwatch && itemIsClicked && index
+				: colorSwatch && itemIsChecked
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
 				: { outline: 'none' };
 
@@ -102,8 +131,6 @@ class AttributionBtn extends Component {
 			<li
 				className={`${className}__attribution__item`}
 				key={item}
-				data-clicked={false}
-				onClick={(e) => this.toggleItemState(e)}
 				style={{
 					...itemBackground,
 					...defaultColorChecked,
@@ -115,8 +142,8 @@ class AttributionBtn extends Component {
 					name={item}
 					id={item}
 					className={'attribution__item-checkbox'}
-					defaultChecked={index === 0 ? true : false}
-					onChange={() => this.defaultCheckHandler(index)}
+					checked={index === 0 ? defaultIsChecked : itemIsChecked}
+					onChange={(e) => this.itemCheckHandler(index, e)}
 				/>
 				{colorSwatch ? '' : item}
 			</li>
