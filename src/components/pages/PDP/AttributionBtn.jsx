@@ -9,10 +9,7 @@ class AttributionBtn extends Component {
 			btnDisable: false,
 			defaultIsChecked: true,
 			itemIsChecked: false,
-			selectedAttributes: {
-				id: '',
-				value: '',
-			},
+			selectedAttribute: '',
 		};
 
 		this.itemCheckHandler = this.itemCheckHandler.bind(this);
@@ -50,14 +47,11 @@ class AttributionBtn extends Component {
 		 * else, set the checkedValue
 		 */
 
-		if (defaultIsChecked && !itemIsChecked) {
-			this.setState({
-				selectedAttributes: {
-					id: attHeader,
-					value: '',
-				},
-			});
-		}
+		// if (defaultIsChecked && !itemIsChecked) {
+		// 	this.setState({
+		// 		selectedAttribute:
+		// 	});
+		// }
 	}
 
 	componentDidUpdate() {
@@ -65,10 +59,10 @@ class AttributionBtn extends Component {
 	}
 
 	itemCheckHandler(index, e) {
-		const { attributeTitle: attHeader } = this.props;
+		const { attributeTitle: attHeader, itemCheckHandler } = this.props;
 
 		const attCheck = e.target.checked;
-		const attValue = e.target.name;
+		const attValue = e.target.value;
 
 		if (this.state.btnDisable === true) {
 			return;
@@ -83,22 +77,26 @@ class AttributionBtn extends Component {
 		if (attCheck) {
 			this.setState({
 				itemIsChecked: attCheck,
-				selectedAttributes: { id: attHeader, value: attValue },
+				selectedAttribute: attValue,
 			});
+
+			itemCheckHandler(attValue);
 		} else {
-			this.setState({ itemIsChecked: attCheck });
+			this.setState({ itemIsChecked: attCheck, selectedAttribute: 'default' });
 		}
 	}
 
 	render() {
 		const { item, className, index, attributeTitle, defaultValue } = this.props;
 
+		// console.log(this.state.selectedAttribute);
+
 		const {
 			colorSwatch,
 			btnDisable,
 			defaultIsChecked,
 			itemIsChecked,
-			selectedAttributes,
+			selectedAttribute,
 		} = this.state;
 
 		let itemBackground = colorSwatch
@@ -137,15 +135,16 @@ class AttributionBtn extends Component {
 					fontSize: btnDisable ? '0.834rem' : '',
 				}}
 			>
+				<label htmlFor="item">{colorSwatch ? '' : item}</label>
 				<input
 					type="checkbox"
 					name={item}
 					id={item}
+					value={item}
 					className={'attribution__item-checkbox'}
 					checked={index === 0 ? defaultIsChecked : itemIsChecked}
 					onChange={(e) => this.itemCheckHandler(index, e)}
 				/>
-				{colorSwatch ? '' : item}
 			</li>
 		);
 	}
