@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import AttributionBtn from './AttributionBtn';
 
 export default class AttributeItem extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			selectedItems: {
+				header: '',
+				values: [],
+			},
+		};
+	}
 	render() {
 		const { propsKey, element, attributesItem, className, getSelectedValues } =
 			this.props;
