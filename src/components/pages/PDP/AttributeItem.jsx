@@ -6,12 +6,12 @@ export default class AttributeItem extends Component {
 		super(props);
 
 		this.state = {
-			itemChecked: [],
+			itemValues: [],
 		};
-		this.itemCheckHandler = this.itemCheckHandler.bind(this);
+		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 	}
 
-	itemCheckHandler = (value) => {
+	itemValuesHandler = (value) => {
 		this.setState((prev) => ({
 			itemChecked: [...prev.itemChecked, value],
 		}));
@@ -21,7 +21,7 @@ export default class AttributeItem extends Component {
 		const { propsKey, element, attributesItem, className, getSelectedValues } =
 			this.props;
 
-		console.log(this.state.itemChecked);
+		console.log(this.state.itemValues);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
@@ -39,7 +39,7 @@ export default class AttributeItem extends Component {
 									className={className}
 									index={i}
 									getSelectedValues={getSelectedValues}
-									itemCheckHandler={this.itemCheckHandler}
+									itemValuesHandler={this.itemValuesHandler}
 									defaultValue={attributesItem}
 								/>
 							);

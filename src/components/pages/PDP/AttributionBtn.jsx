@@ -83,6 +83,7 @@ class AttributionBtn extends Component {
 			itemCheckHandler(attValue);
 		} else {
 			this.setState({ itemIsChecked: attCheck, selectedAttribute: 'default' });
+			// itemCheckHandler()
 		}
 	}
 
