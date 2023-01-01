@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { setSelectedProduct } from '../../store/productsSlice';
 import AttributionBtn from './AttributionBtn';
 
@@ -36,22 +36,30 @@ class AttributeItem extends Component {
 		// }
 	}
 
-	itemValuesHandler = (itemValue) => {
-		// this.setState((prev) => ({
-		// 	selectedProduct: {
-		// 		itemValues: [...prev.selectedProduct.itemValues, itemValue],
-		// 	},
-		// }));
+	// componentDidUpdate(prevProps, prevState) {
+	// 	const { setSelectedProduct } = this.props;
+	// 	const { id, itemValues } = this.state;
 
+	// 	const selectedGlobalItems = {
+	// 		attributeId: prevState.id,
+	// 		attributeItems: prevState.itemValues,
+	// 	};
+	// 	// console.log(selectedGlobalItems);
+	// 	// setSelectedProduct(selectedGlobalItems);
+	// }
+
+	itemValuesHandler = (itemValue) => {
 		this.setState((prev) => ({
 			itemValues: [...prev.itemValues, itemValue],
 		}));
 	};
 
-	itemHeaderHandler = (header) => {
-		if (this.state.id.includes(header)) {
-			return;
-		}
+	itemHeaderHandler = (e, header) => {
+		//dodge if item not checked
+		if (!e.target.checked) return;
+		//refrain from duplication
+		if (this.state.id.includes(header)) return;
+
 		this.setState((prev) => ({
 			id: [...prev.id, header],
 		}));
@@ -77,7 +85,7 @@ class AttributeItem extends Component {
 				<li
 					key={element}
 					className={`${className}__attribution`}
-					onClick={() => this.itemHeaderHandler(element)}
+					onClick={(e) => this.itemHeaderHandler(e, element)}
 				>
 					<h4 className={`${className}__attribution-header`}>
 						{element.toUpperCase()}:
