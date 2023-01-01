@@ -14,17 +14,8 @@ import { GET_ALL_CATEGORIES } from './CategoryList';
 class CategoryAll extends Component {
 	constructor(props) {
 		super();
-
-		// this.getProductsHandler = this.getProductsHandler.bind(this);
 	}
 
-	// componentDidMount(el) {
-	// 	this.getProductsHandler(el);
-	// }
-	// //Get products
-	// getProductsHandler(el) {
-	// 	this.props.setProducts(el);
-	// }
 	render() {
 		const { selectedCurrency } = this.props;
 		const { products } = this.props.products;
