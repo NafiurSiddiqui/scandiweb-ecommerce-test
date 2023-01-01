@@ -212,7 +212,7 @@ class ProductDescription extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		productID: state.category.productID,
+		productID: state.products.productID,
 		products: state.products,
 		selectedCurrency: state.currency.selectedCurrency,
 	};

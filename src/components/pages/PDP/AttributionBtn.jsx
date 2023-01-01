@@ -59,10 +59,11 @@ class AttributionBtn extends Component {
 	}
 
 	itemCheckHandler(index, e) {
-		const { attributeTitle: attHeader, itemCheckHandler } = this.props;
+		const { attributeTitle: attHeader, itemValuesHandler } = this.props;
 
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
+		// console.log(e);
 
 		if (this.state.btnDisable === true) {
 			return;
@@ -80,10 +81,9 @@ class AttributionBtn extends Component {
 				selectedAttribute: attValue,
 			});
 
-			itemCheckHandler(attValue);
+			itemValuesHandler(attValue);
 		} else {
 			this.setState({ itemIsChecked: attCheck, selectedAttribute: 'default' });
-			// itemCheckHandler()
 		}
 	}
 
@@ -153,7 +153,7 @@ class AttributionBtn extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		productID: state.category.productID,
+		productID: state.products.productID,
 		products: state.products,
 		selectedCurrency: state.currency.selectedCurrency,
 	};

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MiniCartIcon from '../../assets/MiniCartIcon';
 import { connect } from 'react-redux';
-import { getProductID } from '../../store/categorySlice';
+import { getProductID } from '../../store/productsSlice';
 
 /**
  * @STATE -
@@ -44,6 +44,8 @@ class CategoryCard extends Component {
 			currencySymbol,
 		} = this.props;
 
+		// console.log(productID);
+
 		return (
 			<li className={'category-item'} key={index}>
 				<div className={'category-item__image-wrapper'}>
@@ -85,7 +87,7 @@ class CategoryCard extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		protductIDState: state.category,
+		protductID: state.products,
 	};
 };
 

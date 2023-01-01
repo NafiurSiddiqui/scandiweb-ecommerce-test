@@ -10,8 +10,7 @@ import CategoryList, {
 } from './components/pages/Category/CategoryList';
 import ProductDescription from './components/pages/PDP/ProductDescription';
 
-import { getProductID } from './components/store/categorySlice';
-import { setProducts } from './components/store/productsSlice';
+import { getProductID, setProducts } from './components/store/productsSlice';
 
 class App extends Component {
 	constructor(props) {
@@ -42,8 +41,9 @@ class App extends Component {
 	}
 
 	render() {
-		let { productIDState, miniCartIsOpen } = this.props;
+		let { productID, miniCartIsOpen } = this.props;
 		let { DOMisLoaded } = this.state;
+		console.log(productID);
 
 		return (
 			<Query
@@ -67,7 +67,7 @@ class App extends Component {
 								<section onLoad={this.DOMloadHandler}>
 									<Header />
 									<main className="products-display">
-										{productIDState ? <ProductDescription /> : <CategoryList />}
+										{productID ? <ProductDescription /> : <CategoryList />}
 										{miniCartIsOpen ? <MiniCart /> : null}
 									</main>
 								</section>
@@ -83,7 +83,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		productIDState: state.category.productID,
+		productID: state.products.productID,
 		miniCartIsOpen: state.cart.miniCartIsOpen,
 	};
 };

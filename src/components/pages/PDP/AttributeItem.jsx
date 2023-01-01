@@ -13,7 +13,7 @@ export default class AttributeItem extends Component {
 
 	itemValuesHandler = (value) => {
 		this.setState((prev) => ({
-			itemChecked: [...prev.itemChecked, value],
+			itemValues: [...prev.itemValues, value],
 		}));
 	};
 
@@ -25,7 +25,11 @@ export default class AttributeItem extends Component {
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
-				<li key={element} className={`${className}__attribution`}>
+				<li
+					key={element}
+					className={`${className}__attribution`}
+					onClick={(e) => console.log(element, e)}
+				>
 					<h4 className={`${className}__attribution-header`}>
 						{element.toUpperCase()}:
 					</h4>
@@ -38,7 +42,6 @@ export default class AttributeItem extends Component {
 									attributeTitle={element}
 									className={className}
 									index={i}
-									getSelectedValues={getSelectedValues}
 									itemValuesHandler={this.itemValuesHandler}
 									defaultValue={attributesItem}
 								/>
