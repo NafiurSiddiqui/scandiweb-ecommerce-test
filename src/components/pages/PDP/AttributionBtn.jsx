@@ -59,7 +59,11 @@ class AttributionBtn extends Component {
 	}
 
 	itemCheckHandler(index, e) {
-		const { attributeTitle: attHeader, itemValuesHandler } = this.props;
+		const {
+			attributeTitle: attHeader,
+			itemValuesHandler,
+			productID,
+		} = this.props;
 
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
@@ -88,9 +92,10 @@ class AttributionBtn extends Component {
 	}
 
 	render() {
-		const { item, className, index, attributeTitle, defaultValue } = this.props;
+		const { item, className, index, attributeTitle, defaultValue, productID } =
+			this.props;
 
-		// console.log(this.state.selectedAttribute);
+		// console.log(productID);
 
 		const {
 			colorSwatch,

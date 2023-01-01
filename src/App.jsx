@@ -43,7 +43,6 @@ class App extends Component {
 	render() {
 		let { productID, miniCartIsOpen } = this.props;
 		let { DOMisLoaded } = this.state;
-		console.log(productID);
 
 		return (
 			<Query

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AttributeItem from '../pages/PDP/AttributeItem';
 
 /**
  * @className : PD = product description
  */
 
-export default class DescriptionCard extends Component {
+class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -26,7 +27,8 @@ export default class DescriptionCard extends Component {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products;
 
-		const { priceHeading, className, cartItem } = this.props;
+		const { priceHeading, className, cartItem, productID } = this.props;
+		console.log(productID);
 
 		return (
 			<article className={className}>
@@ -43,6 +45,7 @@ export default class DescriptionCard extends Component {
 							key={i}
 							className={className}
 							getSelectedValues={this.getSelectedValues}
+							productID={productID}
 						/>
 					);
 				})}
@@ -63,3 +66,11 @@ export default class DescriptionCard extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		productID: state.products.productID,
+	};
+};
+
+export default connect(mapStateToProps)(DescriptionCard);
