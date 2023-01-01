@@ -15,7 +15,7 @@ export const productsSlice = createSlice({
 			state.products = action.payload;
 		},
 		setSelectedProduct: (state, action) => {
-			state.selectedProduct = action.payload;
+			state.selectedProduct.push(action.payload);
 			console.log(current(state));
 		},
 		getProductID: (state, action) => {

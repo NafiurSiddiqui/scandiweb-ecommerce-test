@@ -20,7 +20,16 @@ class AttributeItem extends Component {
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
 	}
 
-	componentDidMount() {
+	// componentWillUpdate(nextProps, nextState) {
+	// 	if (
+	// 		this.state.id === nextState.id &&
+	// 		this.state.itemValues.includes(...nextState.itemValues)
+	// 	) {
+	// 		return;
+	// 	}
+	// }
+
+	componentDidMount(prevProps) {
 		// const { id, attCheck } = this.state.selectedProduct;
 		// const { defaultSelection } = this.props;
 		//capture the selected product here for global use.
@@ -36,17 +45,19 @@ class AttributeItem extends Component {
 		// }
 	}
 
-	// componentDidUpdate(prevProps, prevState) {
-	// 	const { setSelectedProduct } = this.props;
-	// 	const { id, itemValues } = this.state;
+	componentDidUpdate(prevProps, prevState) {
+		const { setSelectedProduct } = this.props;
+		const { id, itemValues } = this.state;
 
-	// 	const selectedGlobalItems = {
-	// 		attributeId: prevState.id,
-	// 		attributeItems: prevState.itemValues,
-	// 	};
-	// 	// console.log(selectedGlobalItems);
-	// 	// setSelectedProduct(selectedGlobalItems);
-	// }
+		// console.log(prevState.id !== );
+
+		console.log(id, itemValues);
+		console.log(prevState.id, prevState);
+
+		// setSelectedProduct(id, itemValues);
+		// console.log(prevState);
+		// console.log(selectedGlobalItems);
+	}
 
 	itemValuesHandler = (itemValue) => {
 		this.setState((prev) => ({
@@ -78,7 +89,7 @@ class AttributeItem extends Component {
 		// console.log(defaultSelection);
 		const { id, itemValues } = this.state;
 
-		console.log(id, itemValues);
+		// console.log(id, itemValues);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>

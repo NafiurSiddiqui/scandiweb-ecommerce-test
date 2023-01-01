@@ -9,6 +9,7 @@ class AttributionBtn extends Component {
 			btnDisable: false,
 			defaultIsChecked: true,
 			itemIsChecked: false,
+			// selectedAttribute: '',
 			selectedAttribute: '',
 		};
 
@@ -61,6 +62,8 @@ class AttributionBtn extends Component {
 			productID,
 		} = this.props;
 
+		const { selectedAttribute } = this.state;
+
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
 		// console.log(attValue);
@@ -75,15 +78,15 @@ class AttributionBtn extends Component {
 			});
 		}
 
-		if (attCheck) {
-			this.setState({
+		if (attCheck && !selectedAttribute.includes(attValue)) {
+			this.setState((prev) => ({
 				itemIsChecked: attCheck,
-				selectedAttribute: attValue,
-			});
+				selectedAttribute: [...prev.selectedAttribute, attValue],
+			}));
 
 			itemValuesHandler(attValue);
 		} else {
-			this.setState({ itemIsChecked: attCheck, selectedAttribute: 'default' });
+			this.setState({ itemIsChecked: attCheck });
 		}
 	}
 
@@ -91,7 +94,7 @@ class AttributionBtn extends Component {
 		const { item, className, index, attributeTitle, defaultValue, productID } =
 			this.props;
 
-		// console.log(this.state.defaultIsChecked);
+		// console.log(this.state.selectedAttribute);
 
 		const {
 			colorSwatch,
