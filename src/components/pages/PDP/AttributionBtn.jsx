@@ -54,10 +54,6 @@ class AttributionBtn extends Component {
 		// }
 	}
 
-	componentDidUpdate() {
-		// console.log(this.state.itemIsChecked);
-	}
-
 	itemCheckHandler(index, e) {
 		const {
 			attributeTitle: attHeader,
@@ -67,7 +63,7 @@ class AttributionBtn extends Component {
 
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
-		// console.log(e);
+		// console.log(attValue);
 
 		if (this.state.btnDisable === true) {
 			return;
@@ -95,7 +91,7 @@ class AttributionBtn extends Component {
 		const { item, className, index, attributeTitle, defaultValue, productID } =
 			this.props;
 
-		// console.log(productID);
+		// console.log(this.state.defaultIsChecked);
 
 		const {
 			colorSwatch,

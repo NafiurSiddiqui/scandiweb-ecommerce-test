@@ -135,6 +135,7 @@ class ProductDescription extends Component {
 							stock: item.inStock,
 						};
 					});
+
 					//gallery overflow guard
 					let galleryOverflow = PDP[0].images.length > 6;
 

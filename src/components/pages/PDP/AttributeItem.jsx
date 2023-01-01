@@ -1,40 +1,83 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setSelectedProduct } from '../../store/productsSlice';
 import AttributionBtn from './AttributionBtn';
 
-export default class AttributeItem extends Component {
+class AttributeItem extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			selectedProduct: {
-				id: this.props.productID,
-				itemValues: [],
-			},
+			// selectedProduct: {
+			// 	id: this.props.productID,
+			// 	itemValues: [],
+			// },
+
+			id: [],
+			itemValues: [],
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
+		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
 	}
 
-	itemValuesHandler = (value) => {
+	componentDidMount() {
+		// const { id, attCheck } = this.state.selectedProduct;
+		// const { defaultSelection } = this.props;
+		//capture the selected product here for global use.
+		// selectedProduct.itemValues.length === 0?
+		//itemValues.length === 0?capture the default item[0]: itemValues
+		// if (attCheck === false) {
+		// 	this.setState({
+		// 		selectedProduct: {
+		// 			id: id,
+		// 			itemValues: defaultSelection,
+		// 		},
+		// 	});
+		// }
+	}
+
+	itemValuesHandler = (itemValue) => {
+		// this.setState((prev) => ({
+		// 	selectedProduct: {
+		// 		itemValues: [...prev.selectedProduct.itemValues, itemValue],
+		// 	},
+		// }));
+
 		this.setState((prev) => ({
-			selectedProduct: {
-				id: prev.selectedProduct.id,
-				itemValues: [...prev.selectedProduct.itemValues, value],
-			},
+			itemValues: [...prev.itemValues, itemValue],
+		}));
+	};
+
+	itemHeaderHandler = (header) => {
+		if (this.state.id.includes(header)) {
+			return;
+		}
+		this.setState((prev) => ({
+			id: [...prev.id, header],
 		}));
 	};
 
 	render() {
-		const { propsKey, element, attributesItem, className, getSelectedValues } =
-			this.props;
+		const {
+			propsKey,
+			element,
+			attributesItem,
+			className,
+			getSelectedValues,
+			defaultSelection,
+		} = this.props;
 
-		console.log(this.state.selectedProduct);
+		// console.log(defaultSelection);
+		const { id, itemValues } = this.state;
+
+		console.log(id, itemValues);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
 				<li
 					key={element}
 					className={`${className}__attribution`}
-					onClick={(e) => console.log(element, e)}
+					onClick={() => this.itemHeaderHandler(element)}
 				>
 					<h4 className={`${className}__attribution-header`}>
 						{element.toUpperCase()}:
@@ -59,3 +102,7 @@ export default class AttributeItem extends Component {
 		);
 	}
 }
+
+const mapDispatchToProps = { setSelectedProduct };
+
+export default connect(null, mapDispatchToProps)(AttributeItem);
