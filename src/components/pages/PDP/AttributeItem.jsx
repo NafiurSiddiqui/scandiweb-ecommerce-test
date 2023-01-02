@@ -18,6 +18,7 @@ class AttributeItem extends Component {
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
+		this.removeValuesHandler = this.removeValuesHandler.bind(this);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -33,6 +34,12 @@ class AttributeItem extends Component {
 		this.setState((prev) => ({
 			itemValues: [...prev.itemValues, itemValue],
 		}));
+	};
+
+	removeValuesHandler = (itemValue) => {
+		this.setState({
+			itemValues: this.state.itemValues.filter((value) => value !== itemValue),
+		});
 	};
 
 	itemHeaderHandler = (e, header) => {
@@ -56,10 +63,7 @@ class AttributeItem extends Component {
 			defaultSelection,
 		} = this.props;
 
-		// console.log(defaultSelection);
 		const { id, itemValues } = this.state;
-
-		// console.log(id, itemValues);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
@@ -81,6 +85,7 @@ class AttributeItem extends Component {
 									className={className}
 									index={i}
 									itemValuesHandler={this.itemValuesHandler}
+									removeValuesHandler={this.removeValuesHandler}
 									defaultValue={attributesItem}
 								/>
 							);
