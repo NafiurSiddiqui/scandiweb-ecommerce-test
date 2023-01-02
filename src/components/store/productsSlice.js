@@ -18,22 +18,30 @@ export const productsSlice = createSlice({
 			let itemValues = action.payload.itemValues;
 			let itemHeading = action.payload.id;
 
-			const ItemIsInProducts = state.selectedProduct.map(
-				(item) => item.id === itemHeading
+			const itemIsInProducts = state.selectedProduct?.map(
+				(item) => item?.id === itemHeading
 			);
 
-			if (itemValues.length === 0) {
-				// console.log(state.selectedProduct.find((item) => item.id));
-				console.log('yes, 0');
+			// console.log(itemIsInProducts);
+			//if itemHead is in the products, push the items to the values only
 
+			if (itemIsInProducts) {
+				let newItems = {
+					id: itemHeading,
+					itemValues: [...itemValues],
+				};
+
+				state.selectedProduct.push(newItems);
+			}
+
+			if (itemValues?.length === 0) {
 				const removedItem = state.selectedProduct.map(
 					(item) => item.itemValues.length !== 0
 				);
 
-				console.log(removedItem);
+				// state.selectedProduct.itemValues = removedItem;
 			}
-			state.selectedProduct.push(action.payload);
-			console.log(current(state.selectedProduct));
+			// console.log(current(state.selectedProduct));
 		},
 		getProductID: (state, action) => {
 			state.productID = action.payload;

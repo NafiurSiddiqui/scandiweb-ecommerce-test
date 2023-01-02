@@ -10,17 +10,23 @@ class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			selectedBrand: this.props.products.name,
 			selectedValues: [],
 		};
 		this.getSelectedValues = this.getSelectedValues.bind(this);
 	}
 
 	getSelectedValues(values) {
-		// console.log(values);
+		const { selectedValues } = this.state;
+		// console.log(Object.values(values));
+		// const uniqueValues = [...new Set(values.map((item) => item.itemValues))];
 
 		this.setState((prev) => ({
-			selectedValues: [...prev.selectedValues, values],
+			selectedValues: [...prev.selectedValues, Object.values(values)],
 		}));
+		// this.setState({
+		// 	selecteValues: Object.values(values),
+		// });
 	}
 
 	render() {
@@ -29,6 +35,8 @@ class DescriptionCard extends Component {
 
 		const { priceHeading, className, cartItem, productID, selectedProduct } =
 			this.props;
+
+		// console.log(this.state);
 
 		//DEFAULT Selected items
 		const mappedDefaultItem = attributesItem.map((item) => item[0]);

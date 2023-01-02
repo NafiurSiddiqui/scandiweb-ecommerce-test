@@ -21,11 +21,18 @@ class AttributeItem extends Component {
 		const { id, itemValues } = this.state;
 
 		if (prevState.itemValues.length !== this.state.itemValues.length) {
-			setSelectedProduct({ id: id, itemValues: itemValues });
+			// setSelectedProduct({
+			// 	id: id,
+			// 	itemValues: itemValues,
+			// });
+
+			getSelectedValues({ id, itemValues });
 		}
 	}
 
 	itemValuesHandler = (itemValue) => {
+		const { itemValues } = this.state;
+
 		this.setState((prev) => ({
 			itemValues: [...prev.itemValues, itemValue],
 		}));
@@ -61,7 +68,7 @@ class AttributeItem extends Component {
 
 		const { id, itemValues } = this.state;
 
-		console.log(selectedProduct);
+		// console.log(id, itemValues);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
