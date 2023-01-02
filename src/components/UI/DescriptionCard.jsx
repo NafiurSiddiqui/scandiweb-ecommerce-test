@@ -16,7 +16,7 @@ class DescriptionCard extends Component {
 	}
 
 	getSelectedValues(values) {
-		console.log(values);
+		// console.log(values);
 
 		this.setState((prev) => ({
 			selectedValues: [...prev.selectedValues, values],
@@ -29,8 +29,6 @@ class DescriptionCard extends Component {
 
 		const { priceHeading, className, cartItem, productID, selectedProduct } =
 			this.props;
-
-		// console.log(selectedProduct);
 
 		//DEFAULT Selected items
 		const mappedDefaultItem = attributesItem.map((item) => item[0]);

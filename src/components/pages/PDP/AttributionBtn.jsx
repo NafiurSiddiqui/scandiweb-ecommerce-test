@@ -66,7 +66,6 @@ class AttributionBtn extends Component {
 
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
-		// console.log(attValue);
 
 		if (this.state.btnDisable === true) {
 			return;
@@ -77,13 +76,12 @@ class AttributionBtn extends Component {
 				defaultIsChecked: !this.state.defaultIsChecked,
 			});
 		}
-		// && !selectedAttribute.includes(attValue)
+
 		if (attCheck) {
 			this.setState({
 				itemIsChecked: attCheck,
 				selectedAttribute: attValue,
 			});
-			// console.log('SET');
 
 			itemValuesHandler(attValue);
 		} else {
@@ -95,15 +93,6 @@ class AttributionBtn extends Component {
 			removeValuesHandler(attValue);
 			console.log('Remove!');
 		}
-		//  else {
-		// 	// this.setState({ itemIsChecked: attCheck, selectedAttribute:[] });
-		// 	this.setState({
-		// 		itemIsChecked: attCheck,
-		// 		selectedAttribute: this.state.selectedAttribute.filter(
-		// 			(i) => i !== attValue
-		// 		),
-		// 	});
-		// }
 	}
 
 	render() {

@@ -8,12 +8,7 @@ class AttributeItem extends Component {
 		super(props);
 
 		this.state = {
-			// selectedProduct: {
-			// 	id: this.props.productID,
-			// 	itemValues: [],
-			// },
-
-			id: [],
+			id: '',
 			itemValues: [],
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
@@ -46,11 +41,11 @@ class AttributeItem extends Component {
 		//dodge if item not checked
 		if (!e.target.checked) return;
 		//refrain from duplication
-		if (this.state.id.includes(header)) return;
+		if (this.state.id === header) return;
 
-		this.setState((prev) => ({
-			id: [...prev.id, header],
-		}));
+		this.setState({
+			id: header,
+		});
 	};
 
 	render() {
@@ -61,9 +56,12 @@ class AttributeItem extends Component {
 			className,
 			getSelectedValues,
 			defaultSelection,
+			selectedProduct,
 		} = this.props;
 
 		const { id, itemValues } = this.state;
+
+		console.log(selectedProduct);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
@@ -97,6 +95,13 @@ class AttributeItem extends Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		productID: state.products.productID,
+		selectedProduct: state.products.selectedProduct,
+	};
+};
+
 const mapDispatchToProps = { setSelectedProduct };
 
-export default connect(null, mapDispatchToProps)(AttributeItem);
+export default connect(mapStateToProps, mapDispatchToProps)(AttributeItem);

@@ -15,6 +15,23 @@ export const productsSlice = createSlice({
 			state.products = action.payload;
 		},
 		setSelectedProduct: (state, action) => {
+			let itemValues = action.payload.itemValues;
+			let itemHeading = action.payload.id;
+
+			const ItemIsInProducts = state.selectedProduct.map(
+				(item) => item.id === itemHeading
+			);
+
+			if (itemValues.length === 0) {
+				// console.log(state.selectedProduct.find((item) => item.id));
+				console.log('yes, 0');
+
+				const removedItem = state.selectedProduct.map(
+					(item) => item.itemValues.length !== 0
+				);
+
+				console.log(removedItem);
+			}
 			state.selectedProduct.push(action.payload);
 			console.log(current(state.selectedProduct));
 		},
