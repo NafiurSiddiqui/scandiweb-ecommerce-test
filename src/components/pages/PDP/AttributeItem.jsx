@@ -20,43 +20,13 @@ class AttributeItem extends Component {
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
 	}
 
-	// componentWillUpdate(nextProps, nextState) {
-	// 	if (
-	// 		this.state.id === nextState.id &&
-	// 		this.state.itemValues.includes(...nextState.itemValues)
-	// 	) {
-	// 		return;
-	// 	}
-	// }
-
-	componentDidMount(prevProps) {
-		// const { id, attCheck } = this.state.selectedProduct;
-		// const { defaultSelection } = this.props;
-		//capture the selected product here for global use.
-		// selectedProduct.itemValues.length === 0?
-		//itemValues.length === 0?capture the default item[0]: itemValues
-		// if (attCheck === false) {
-		// 	this.setState({
-		// 		selectedProduct: {
-		// 			id: id,
-		// 			itemValues: defaultSelection,
-		// 		},
-		// 	});
-		// }
-	}
-
 	componentDidUpdate(prevProps, prevState) {
-		const { setSelectedProduct } = this.props;
+		const { setSelectedProduct, getSelectedValues } = this.props;
 		const { id, itemValues } = this.state;
 
-		// console.log(prevState.id !== );
-
-		console.log(id, itemValues);
-		console.log(prevState.id, prevState);
-
-		// setSelectedProduct(id, itemValues);
-		// console.log(prevState);
-		// console.log(selectedGlobalItems);
+		if (prevState.itemValues.length !== this.state.itemValues.length) {
+			setSelectedProduct({ id: id, itemValues: itemValues });
+		}
 	}
 
 	itemValuesHandler = (itemValue) => {

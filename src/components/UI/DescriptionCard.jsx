@@ -27,7 +27,10 @@ class DescriptionCard extends Component {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products;
 
-		const { priceHeading, className, cartItem, productID } = this.props;
+		const { priceHeading, className, cartItem, productID, selectedProduct } =
+			this.props;
+
+		console.log(selectedProduct);
 
 		//DEFAULT Selected items
 		const mappedDefaultItem = attributesItem.map((item) => item[0]);
@@ -80,6 +83,7 @@ class DescriptionCard extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productID: state.products.productID,
+		selectedProduct: state.products.selectedProduct,
 	};
 };
 
