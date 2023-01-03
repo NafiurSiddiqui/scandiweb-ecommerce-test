@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AttributeItem from '../pages/PDP/AttributeItem';
+import Button from './Button';
 
 /**
  * @className : PD = product description
@@ -20,35 +21,38 @@ class DescriptionCard extends Component {
 	componentDidMount() {
 		const { selectedValues } = this.state;
 		const { attributesItem, attributesID } = this.props.products;
+		const { getItemValues } = this.props;
 
 		//DEFAULT Selected items
 		const mappedDefaultItem = attributesItem.map((item) => item[0]);
 
 		const defaultSelection = attributesID.reduce((acc, key, index) => {
 			acc[key] = mappedDefaultItem[index];
+
 			return acc;
 		}, {});
 
-		console.log(defaultSelection);
+		getItemValues(defaultSelection);
 	}
 
 	getSelectedValues(id, itemValues) {
 		const { selectedValues } = this.state;
-
+		const { getItemValues } = this.props;
 		let sameId;
 
 		sameId = selectedValues.includes(id) ? true : false;
-
-		console.log(selectedValues.includes(id));
 
 		if (sameId) {
 			this.setState({
 				selectedValues: [id, itemValues],
 			});
+			getItemValues({ id, itemValues });
 		} else {
 			this.setState((prev) => ({
 				selectedValues: [...prev.selectedValues, id, itemValues],
 			}));
+
+			// getItemValues({ id, itemValues });
 		}
 	}
 
@@ -56,12 +60,14 @@ class DescriptionCard extends Component {
 		const { brand, name, attributesID, attributesItem, prices } =
 			this.props.products;
 
-		const { priceHeading, className, cartItem, productID, selectedProduct } =
-			this.props;
-
-		// console.log(this.state.selectedValues);
-
-		// console.log(defaultSelection);
+		const {
+			priceHeading,
+			className,
+			cartItem,
+			productID,
+			selectedProduct,
+			products,
+		} = this.props;
 
 		return (
 			<article className={className}>
@@ -95,6 +101,14 @@ class DescriptionCard extends Component {
 						{prices[0].amount}
 					</span>
 				</div>
+
+				<Button
+					className="pdp__cart-btn"
+					disable={products.stock}
+					// onClick={() => addItemToCart()}
+				>
+					ADD TO CART
+				</Button>
 			</article>
 		);
 	}

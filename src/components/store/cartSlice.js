@@ -14,7 +14,8 @@ export const cartSlice = createSlice({
 			state.productID = action.payload;
 		},
 		addItemToCart: (state, action) => {
-			state.cartItems.push(action.payload);
+			// state.cartItems.push(action.payload);
+			console.log('Get the values');
 		},
 		setMiniCartIsOpen: (state) => {
 			state.miniCartIsOpen = !state.miniCartIsOpen;

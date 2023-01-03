@@ -6,6 +6,7 @@ import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
 import { setSelectedProduct } from '../../store/productsSlice';
+import { addItemToCart } from '../../store/cartSlice';
 
 /**
  * @className - 'PDP' = product description
@@ -20,10 +21,12 @@ class ProductDescription extends Component {
 		this.state = {
 			selectedImgSrc: '',
 			txtOverFlow: false,
+			itemValues: [],
 		};
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
+		this.getItemValues = this.getItemValues.bind(this);
 	}
 
 	//PARSE HTML
@@ -60,9 +63,13 @@ class ProductDescription extends Component {
 			? this.setState({ ...this.state, txtOverFlow: !this.state.txtOverFlow })
 			: this.setState(null);
 	}
+	//Get the selections
+	getItemValues(values) {
+		// console.log(values);
+	}
 
 	render() {
-		const { productID, selectedCurrency } = this.props;
+		const { productID, selectedCurrency, addItemToCart } = this.props;
 
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
@@ -140,11 +147,10 @@ class ProductDescription extends Component {
 									<DescriptionCard
 										products={PDP[0]}
 										priceHeading={true}
+										getItemValues={this.getItemValues}
 										className="pd"
 									/>
-									<Button className="pdp__cart-btn" disable={PDP[0].stock}>
-										ADD TO CART
-									</Button>
+
 									<p
 										className="pd__description"
 										onClick={this.textOverFlowHandler}
@@ -184,6 +190,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { setSelectedProduct };
+const mapDispatchToProps = { setSelectedProduct, addItemToCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);
