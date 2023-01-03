@@ -35,19 +35,6 @@ class AttributionBtn extends Component {
 				colorSwatch: false,
 			});
 		}
-
-		/**
-		 * @settingSelectedValues : default and clickedState
-		 * 	defaultISChecked && itemIsNotchecked
-		 * set default values for items
-		 * else, set the checkedValue
-		 */
-
-		// if (defaultIsChecked && !itemIsChecked) {
-		// 	this.setState({
-		// 		selectedAttribute:
-		// 	});
-		// }
 	}
 
 	itemCheckHandler(index, e) {

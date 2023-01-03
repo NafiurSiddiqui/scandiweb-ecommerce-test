@@ -17,6 +17,21 @@ class DescriptionCard extends Component {
 		this.getSelectedValues = this.getSelectedValues.bind(this);
 	}
 
+	componentDidMount() {
+		const { selectedValues } = this.state;
+		const { attributesItem, attributesID } = this.props.products;
+
+		//DEFAULT Selected items
+		const mappedDefaultItem = attributesItem.map((item) => item[0]);
+
+		const defaultSelection = attributesID.reduce((acc, key, index) => {
+			acc[key] = mappedDefaultItem[index];
+			return acc;
+		}, {});
+
+		console.log(defaultSelection);
+	}
+
 	getSelectedValues(id, itemValues) {
 		const { selectedValues } = this.state;
 
@@ -46,14 +61,6 @@ class DescriptionCard extends Component {
 
 		// console.log(this.state.selectedValues);
 
-		//DEFAULT Selected items
-		const mappedDefaultItem = attributesItem.map((item) => item[0]);
-
-		const defaultSelection = attributesID.reduce((acc, key, index) => {
-			acc[key] = mappedDefaultItem[index];
-			return acc;
-		}, {});
-
 		// console.log(defaultSelection);
 
 		return (
@@ -72,7 +79,6 @@ class DescriptionCard extends Component {
 							className={className}
 							getSelectedValues={this.getSelectedValues}
 							productID={productID}
-							defaultSelection={defaultSelection}
 						/>
 					);
 				})}
