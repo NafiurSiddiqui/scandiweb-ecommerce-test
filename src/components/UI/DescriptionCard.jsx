@@ -12,6 +12,7 @@ class DescriptionCard extends Component {
 		this.state = {
 			selectedBrand: this.props.products.name,
 			selectedValues: [],
+			defaultSelection: {},
 		};
 		this.getSelectedValues = this.getSelectedValues.bind(this);
 	}
@@ -48,13 +49,10 @@ class DescriptionCard extends Component {
 		//DEFAULT Selected items
 		const mappedDefaultItem = attributesItem.map((item) => item[0]);
 
-		const defaultSelection = {
-			attributesID: ' DEFAULT',
-			attributesItem: mappedDefaultItem,
-		};
-
-		// console.log(attributesID);
-		// console.log(mappedDefaultItem);
+		const defaultSelection = attributesID.reduce((acc, key, index) => {
+			acc[key] = mappedDefaultItem[index];
+			return acc;
+		}, {});
 
 		// console.log(defaultSelection);
 
