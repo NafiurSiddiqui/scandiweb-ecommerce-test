@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AttributeItem from '../pages/PDP/AttributeItem';
+import { addItemToCart } from '../store/cartSlice';
 import Button from './Button';
 
 /**
@@ -21,23 +22,20 @@ class DescriptionCard extends Component {
 	componentDidMount() {
 		const { selectedValues } = this.state;
 		const { attributesItem, attributesID } = this.props.products;
-		const { getItemValues } = this.props;
 
 		//DEFAULT Selected items
 		const mappedDefaultItem = attributesItem.map((item) => item[0]);
 
-		const defaultSelection = attributesID.reduce((acc, key, index) => {
+		attributesID.reduce((acc, key, index) => {
 			acc[key] = mappedDefaultItem[index];
 
 			return acc;
 		}, {});
-
-		getItemValues(defaultSelection);
 	}
 
 	getSelectedValues(id, itemValues) {
 		const { selectedValues } = this.state;
-		const { getItemValues } = this.props;
+
 		let sameId;
 
 		sameId = selectedValues.includes(id) ? true : false;
@@ -46,13 +44,10 @@ class DescriptionCard extends Component {
 			this.setState({
 				selectedValues: [id, itemValues],
 			});
-			getItemValues({ id, itemValues });
 		} else {
 			this.setState((prev) => ({
 				selectedValues: [...prev.selectedValues, id, itemValues],
 			}));
-
-			// getItemValues({ id, itemValues });
 		}
 	}
 
@@ -67,6 +62,7 @@ class DescriptionCard extends Component {
 			productID,
 			selectedProduct,
 			products,
+			addItemToCart,
 		} = this.props;
 
 		return (
@@ -105,7 +101,7 @@ class DescriptionCard extends Component {
 				<Button
 					className="pdp__cart-btn"
 					disable={products.stock}
-					// onClick={() => addItemToCart()}
+					onClick={() => addItemToCart()}
 				>
 					ADD TO CART
 				</Button>
@@ -121,4 +117,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(DescriptionCard);
+export default connect(mapStateToProps, { addItemToCart })(DescriptionCard);

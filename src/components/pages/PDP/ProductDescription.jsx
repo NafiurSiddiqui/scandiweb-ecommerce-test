@@ -21,12 +21,10 @@ class ProductDescription extends Component {
 		this.state = {
 			selectedImgSrc: '',
 			txtOverFlow: false,
-			itemValues: [],
 		};
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
-		this.getItemValues = this.getItemValues.bind(this);
 	}
 
 	//PARSE HTML
@@ -63,13 +61,9 @@ class ProductDescription extends Component {
 			? this.setState({ ...this.state, txtOverFlow: !this.state.txtOverFlow })
 			: this.setState(null);
 	}
-	//Get the selections
-	getItemValues(values) {
-		// console.log(values);
-	}
 
 	render() {
-		const { productID, selectedCurrency, addItemToCart } = this.props;
+		const { productID, selectedCurrency } = this.props;
 
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
