@@ -26,7 +26,8 @@ class AttributeItem extends Component {
 			// 	itemValues: itemValues,
 			// });
 
-			getSelectedValues({ id, itemValues });
+			// getSelectedValues({ id, itemValues });
+			getSelectedValues(id, itemValues);
 		}
 	}
 
