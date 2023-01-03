@@ -102,6 +102,7 @@ class DescriptionCard extends Component {
 					className="pdp__cart-btn"
 					disable={products.stock}
 					onClick={() => addItemToCart()}
+					cartItem={cartItem}
 				>
 					ADD TO CART
 				</Button>

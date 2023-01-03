@@ -72,6 +72,7 @@ class ProductDescription extends Component {
 					if (loading || !data) return 'Loading ... ';
 
 					const { products } = data.category;
+
 					// getting the right data
 					let filteredProduct = products.filter(
 						(item) => item.id === productID
