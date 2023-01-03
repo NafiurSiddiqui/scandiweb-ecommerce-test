@@ -24,7 +24,6 @@ class ProductDescription extends Component {
 
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
-		// this.getSelectedProduct = this.getSelectedProduct.bind(this);
 	}
 
 	//PARSE HTML
@@ -61,40 +60,6 @@ class ProductDescription extends Component {
 			? this.setState({ ...this.state, txtOverFlow: !this.state.txtOverFlow })
 			: this.setState(null);
 	}
-
-	//get selected product item here
-	// getSelectedProduct(data) {
-	// 	const { productID, selectedCurrency } = this.props;
-	// 	//filter the data
-	// 	let filteredProduct = data?.filter((item) => item.id === productID);
-
-	// 	//convert to obj
-	// 	let PDP = filteredProduct.map((item) => {
-	// 		return {
-	// 			brand: item.brand,
-	// 			name: item.name,
-	// 			images: item.gallery,
-	// 			attributesID: item.attributes.map((item) => item.id),
-	// 			attributesItem: item.attributes.map((item) =>
-	// 				item.items.map((item) => item.id)
-	// 			),
-	// 			prices: item.prices.filter((item) => {
-	// 				if (selectedCurrency !== null) {
-	// 					return item.currency.label === selectedCurrency.currency;
-	// 				} else {
-	// 					return item.currency.label === 'USD';
-	// 				}
-	// 			}),
-	// 			get amount() {
-	// 				return this.prices[0].amount;
-	// 			},
-	// 		};
-	// 	});
-
-	// 	this.props.setSelectedProduct(PDP[0]);
-
-	// 	return PDP[0];
-	// }
 
 	render() {
 		const { productID, selectedCurrency } = this.props;

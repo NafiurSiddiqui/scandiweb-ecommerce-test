@@ -18,8 +18,7 @@ class DescriptionCard extends Component {
 
 	getSelectedValues(id, itemValues) {
 		const { selectedValues } = this.state;
-		// console.log(Object.values(values));
-		// const uniqueValues = [...new Set(values.map((item) => item.itemValues))];
+
 		let sameId;
 
 		sameId = selectedValues.includes(id) ? true : false;
@@ -44,7 +43,7 @@ class DescriptionCard extends Component {
 		const { priceHeading, className, cartItem, productID, selectedProduct } =
 			this.props;
 
-		console.log(this.state.selectedValues);
+		// console.log(this.state.selectedValues);
 
 		//DEFAULT Selected items
 		const mappedDefaultItem = attributesItem.map((item) => item[0]);
@@ -53,6 +52,9 @@ class DescriptionCard extends Component {
 			attributesID: ' DEFAULT',
 			attributesItem: mappedDefaultItem,
 		};
+
+		// console.log(attributesID);
+		// console.log(mappedDefaultItem);
 
 		// console.log(defaultSelection);
 

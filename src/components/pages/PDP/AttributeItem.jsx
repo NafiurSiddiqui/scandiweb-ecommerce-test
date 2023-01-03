@@ -17,23 +17,16 @@ class AttributeItem extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { setSelectedProduct, getSelectedValues } = this.props;
+		const { getSelectedValues } = this.props;
 		const { id, itemValues } = this.state;
 
 		if (prevState.itemValues.length !== this.state.itemValues.length) {
-			// setSelectedProduct({
-			// 	id: id,
-			// 	itemValues: itemValues,
-			// });
-
 			// getSelectedValues({ id, itemValues });
 			getSelectedValues(id, itemValues);
 		}
 	}
 
 	itemValuesHandler = (itemValue) => {
-		const { itemValues } = this.state;
-
 		this.setState((prev) => ({
 			itemValues: [...prev.itemValues, itemValue],
 		}));

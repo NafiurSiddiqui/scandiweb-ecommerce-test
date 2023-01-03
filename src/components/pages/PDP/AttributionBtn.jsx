@@ -22,10 +22,6 @@ class AttributionBtn extends Component {
 
 		// console.log(attHeader);
 
-		//run a check if the itemIsChecked or not
-		// console.log(this.state.itemIsChecked);
-		//which index of the item isChecked?
-
 		className === 'cart-items__pd'
 			? this.setState({ btnDisable: true })
 			: this.setState({ btnDisable: false });
