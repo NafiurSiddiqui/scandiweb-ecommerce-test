@@ -26,29 +26,53 @@ class DescriptionCard extends Component {
 		//DEFAULT Selected items
 		const mappedDefaultItem = attributesItem.map((item) => item[0]);
 
-		attributesID.reduce((acc, key, index) => {
+		const defaultSelection = attributesID.reduce((acc, key, index) => {
 			acc[key] = mappedDefaultItem[index];
 
 			return acc;
 		}, {});
+
+		this.setState({
+			defaultSelection: defaultSelection,
+		});
 	}
 
 	getSelectedValues(id, itemValues) {
 		const { selectedValues } = this.state;
 
-		let sameId;
+		// let sameId;
 
-		sameId = selectedValues.includes(id) ? true : false;
+		// sameId = selectedValues.includes(id) ? true : false;
+		// const sameID = selectedValues.map((item) => item.id === id);
 
-		if (sameId) {
-			this.setState({
-				selectedValues: [id, itemValues],
-			});
-		} else {
-			this.setState((prev) => ({
-				selectedValues: [...prev.selectedValues, id, itemValues],
-			}));
-		}
+		// console.log(sameID);
+
+		// if (sameID) {
+		// 	this.setState({
+		// 		// selectedValues: [id, itemValues],
+		// 		selectedValues: [{ id, itemValues }],
+		// 	});
+		// } else {
+		// 	this.setState((prev) => ({
+		// 		// selectedValues: [...prev.selectedValues, id, itemValues],
+		// 		selectedValues: [{ ...prev.selectedValues, id, itemValues }],
+		// 	}));
+		// }
+
+		this.setState((prevState) => {
+			//find the index of the item with matching ID
+			const index = prevState.selectedValues.findIndex(
+				(item) => item.id === id
+			);
+
+			//if the id is found, update the itemValues
+
+			if (index !== -1) {
+				prevState.selectedValues[index].itemValues = itemValues;
+			} else {
+				prevState.selectedValues.push({ id, itemValues });
+			}
+		});
 	}
 
 	render() {
@@ -64,6 +88,9 @@ class DescriptionCard extends Component {
 			products,
 			addItemToCart,
 		} = this.props;
+
+		console.log(this.state.selectedValues);
+		// console.log(this.state.defaultSelection);
 
 		return (
 			<article className={className}>
