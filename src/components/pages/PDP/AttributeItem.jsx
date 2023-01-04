@@ -49,6 +49,10 @@ class AttributeItem extends Component {
 		});
 	};
 
+	itemIsChecked(e) {
+		console.log(e);
+	}
+
 	render() {
 		const {
 			propsKey,
