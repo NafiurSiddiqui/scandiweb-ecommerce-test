@@ -10,6 +10,7 @@ class AttributeItem extends Component {
 		this.state = {
 			id: '',
 			itemValues: [],
+			items: [],
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
@@ -27,9 +28,12 @@ class AttributeItem extends Component {
 			items: item[1],
 		}));
 
-		console.log(mappedAttributes);
+		// console.log(mappedAttributes);
 
 		//set the attributes to state
+		this.setState({
+			items: mappedAttributes,
+		});
 		// console.log('Mounted');
 	}
 
@@ -81,8 +85,9 @@ class AttributeItem extends Component {
 			selectedProduct,
 		} = this.props;
 
-		const { id, itemValues } = this.state;
+		const { id, itemValues, items } = this.state;
 
+		console.log(items);
 		// console.log(Object.entries(attributes));
 
 		// console.log(attributesItem);
