@@ -24,17 +24,17 @@ class DescriptionCard extends Component {
 		const { attributesItem, attributesID } = this.props.products;
 
 		//DEFAULT Selected items
-		const mappedDefaultItem = attributesItem.map((item) => item[0]);
+		// const mappedDefaultItem = attributesItem.map((item) => item[0]);
 
-		const defaultSelection = attributesID.reduce((acc, key, index) => {
-			acc[key] = mappedDefaultItem[index];
+		// const defaultSelection = attributesID.reduce((acc, key, index) => {
+		// 	acc[key] = mappedDefaultItem[index];
 
-			return acc;
-		}, {});
+		// 	return acc;
+		// }, {});
 
-		this.setState({
-			defaultSelection: defaultSelection,
-		});
+		// this.setState({
+		// 	defaultSelection: defaultSelection,
+		// });
 	}
 
 	getSelectedValues(id, itemValues) {

@@ -104,7 +104,25 @@ class ProductDescription extends Component {
 					});
 
 					//gallery overflow guard
+
 					let galleryOverflow = PDP[0].images.length > 6;
+
+					//converted attributes
+					const attID = PDP[0].attributesID;
+					const attItems = PDP[0].attributesItem;
+
+					const mappedAttItems = attItems.map((item, i) =>
+						item.map((item) => ({ values: item, isChecked: false }))
+					);
+
+					console.log(mappedAttItems);
+
+					const attributes = attID.reduce((acc, key, index) => {
+						acc[key] = attItems[index];
+						return acc;
+					}, {});
+
+					// console.log(attributes);
 
 					return (
 						<>
