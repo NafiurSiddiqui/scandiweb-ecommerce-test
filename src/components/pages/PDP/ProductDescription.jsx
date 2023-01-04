@@ -120,8 +120,6 @@ class ProductDescription extends Component {
 						return acc;
 					}, {});
 
-					console.log(attributes);
-
 					return (
 						<>
 							<section className="pdp">
@@ -159,6 +157,7 @@ class ProductDescription extends Component {
 										products={PDP[0]}
 										priceHeading={true}
 										getItemValues={this.getItemValues}
+										attributes={attributes}
 										className="pd"
 									/>
 

@@ -65,13 +65,10 @@ class DescriptionCard extends Component {
 			className,
 			cartItem,
 			productID,
-			selectedProduct,
 			products,
+			attributes,
 			addItemToCart,
 		} = this.props;
-
-		// console.log(this.state.selectedValues);
-		// console.log(this.state.defaultSelection);
 
 		return (
 			<article className={className}>
@@ -85,6 +82,7 @@ class DescriptionCard extends Component {
 							propsKey={i}
 							attHeader={attHeader}
 							attributesItem={attributesItem}
+							attributes={attributes}
 							key={i}
 							className={className}
 							getSelectedValues={this.getSelectedValues}

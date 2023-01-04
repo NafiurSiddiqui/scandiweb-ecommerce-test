@@ -16,6 +16,23 @@ class AttributeItem extends Component {
 		this.removeValuesHandler = this.removeValuesHandler.bind(this);
 	}
 
+	componentDidMount() {
+		//Get the attributes
+		const { attributes } = this.props;
+		let items = [];
+		console.log();
+		//map the attributes
+		const mappedAttributes = Object.entries(attributes).map((item, i) => ({
+			title: item[0],
+			items: item[1],
+		}));
+
+		console.log(mappedAttributes);
+
+		//set the attributes to state
+		// console.log('Mounted');
+	}
+
 	componentDidUpdate(prevProps, prevState) {
 		const { getSelectedValues } = this.props;
 		const { id, itemValues } = this.state;
@@ -57,6 +74,7 @@ class AttributeItem extends Component {
 			propsKey,
 			attHeader,
 			attributesItem,
+			attributes,
 			className,
 			getSelectedValues,
 			defaultSelection,
@@ -65,7 +83,9 @@ class AttributeItem extends Component {
 
 		const { id, itemValues } = this.state;
 
-		// console.log(id, itemValues);
+		// console.log(Object.entries(attributes));
+
+		// console.log(attributesItem);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
@@ -78,7 +98,28 @@ class AttributeItem extends Component {
 						{attHeader.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
-						{attributesItem[propsKey].map((item, i) => {
+						{/* {console.log(
+							Object.entries(attributes)[propsKey][1].map((item, i) => {
+								return item.values;
+							})
+						)} */}
+
+						{Object.entries(attributes)[propsKey][1].map((item, i) => {
+							return (
+								<AttributionBtn
+									key={item.values}
+									item={item.values}
+									attributeTitle={attHeader}
+									className={className}
+									index={i}
+									itemValuesHandler={this.itemValuesHandler}
+									removeValuesHandler={this.removeValuesHandler}
+									defaultValue={attributesItem}
+								/>
+							);
+						})}
+
+						{/* {attributesItem[propsKey].map((item, i) => {
 							return (
 								<AttributionBtn
 									key={item}
@@ -91,7 +132,7 @@ class AttributeItem extends Component {
 									defaultValue={attributesItem}
 								/>
 							);
-						})}
+						})} */}
 					</ul>
 				</li>
 			</ul>
