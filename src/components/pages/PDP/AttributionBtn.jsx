@@ -9,7 +9,6 @@ class AttributionBtn extends Component {
 			btnDisable: false,
 			defaultIsChecked: true,
 			itemIsChecked: false,
-			selectedAttribute: '',
 		};
 
 		this.itemCheckHandler = this.itemCheckHandler.bind(this);
@@ -81,13 +80,8 @@ class AttributionBtn extends Component {
 		const { item, className, index, attributeTitle, defaultValue, productID } =
 			this.props;
 
-		const {
-			colorSwatch,
-			btnDisable,
-			defaultIsChecked,
-			itemIsChecked,
-			selectedAttribute,
-		} = this.state;
+		const { colorSwatch, btnDisable, defaultIsChecked, itemIsChecked } =
+			this.state;
 
 		let itemBackground = colorSwatch
 			? {

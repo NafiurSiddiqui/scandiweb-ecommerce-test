@@ -21,7 +21,6 @@ class AttributeItem extends Component {
 		const { id, itemValues } = this.state;
 
 		if (prevState.itemValues.length !== this.state.itemValues.length) {
-			// getSelectedValues({ id, itemValues });
 			getSelectedValues(id, itemValues);
 		}
 	}
@@ -56,7 +55,7 @@ class AttributeItem extends Component {
 	render() {
 		const {
 			propsKey,
-			element,
+			attHeader,
 			attributesItem,
 			className,
 			getSelectedValues,
@@ -71,12 +70,12 @@ class AttributeItem extends Component {
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
 				<li
-					key={element}
+					key={attHeader}
 					className={`${className}__attribution`}
-					onClick={(e) => this.itemHeaderHandler(e, element)}
+					onClick={(e) => this.itemHeaderHandler(e, attHeader)}
 				>
 					<h4 className={`${className}__attribution-header`}>
-						{element.toUpperCase()}:
+						{attHeader.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
 						{attributesItem[propsKey].map((item, i) => {
@@ -84,7 +83,7 @@ class AttributeItem extends Component {
 								<AttributionBtn
 									key={item}
 									item={item}
-									attributeTitle={element}
+									attributeTitle={attHeader}
 									className={className}
 									index={i}
 									itemValuesHandler={this.itemValuesHandler}

@@ -79,11 +79,11 @@ class DescriptionCard extends Component {
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
 				</div>
-				{attributesID?.map((element, i) => {
+				{attributesID?.map((attHeader, i) => {
 					return (
 						<AttributeItem
 							propsKey={i}
-							element={element}
+							attHeader={attHeader}
 							attributesItem={attributesItem}
 							key={i}
 							className={className}
