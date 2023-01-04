@@ -74,7 +74,6 @@ class AttributionBtn extends Component {
 			});
 
 			removeValuesHandler(attValue);
-			console.log('Remove!');
 		}
 	}
 

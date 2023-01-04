@@ -38,27 +38,6 @@ class DescriptionCard extends Component {
 	}
 
 	getSelectedValues(id, itemValues) {
-		const { selectedValues } = this.state;
-
-		// let sameId;
-
-		// sameId = selectedValues.includes(id) ? true : false;
-		// const sameID = selectedValues.map((item) => item.id === id);
-
-		// console.log(sameID);
-
-		// if (sameID) {
-		// 	this.setState({
-		// 		// selectedValues: [id, itemValues],
-		// 		selectedValues: [{ id, itemValues }],
-		// 	});
-		// } else {
-		// 	this.setState((prev) => ({
-		// 		// selectedValues: [...prev.selectedValues, id, itemValues],
-		// 		selectedValues: [{ ...prev.selectedValues, id, itemValues }],
-		// 	}));
-		// }
-
 		this.setState((prevState) => {
 			//find the index of the item with matching ID
 			const index = prevState.selectedValues.findIndex(
@@ -72,6 +51,8 @@ class DescriptionCard extends Component {
 			} else {
 				prevState.selectedValues.push({ id, itemValues });
 			}
+
+			return { itemValues: prevState.itemValues };
 		});
 	}
 
@@ -89,7 +70,7 @@ class DescriptionCard extends Component {
 			addItemToCart,
 		} = this.props;
 
-		console.log(this.state.selectedValues);
+		// console.log(this.state.selectedValues);
 		// console.log(this.state.defaultSelection);
 
 		return (
