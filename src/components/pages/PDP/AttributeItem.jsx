@@ -20,8 +20,7 @@ class AttributeItem extends Component {
 	componentDidMount() {
 		//Get the attributes
 		const { attributes } = this.props;
-		let items = [];
-		console.log();
+
 		//map the attributes
 		const mappedAttributes = Object.entries(attributes).map((item, i) => ({
 			title: item[0],
@@ -87,10 +86,15 @@ class AttributeItem extends Component {
 
 		const { id, itemValues, items } = this.state;
 
-		console.log(items);
-		// console.log(Object.entries(attributes));
+		const itemsMapped = items
+			.map((item) => item.items)
+			.map((item) => item.map((item) => item.values));
 
-		// console.log(attributesItem);
+		const test = items.map((item) => item.items.map((item) => item.values));
+
+		console.log(test[propsKey]);
+		// console.log(attributesItem[propsKey].map((item) => item));
+		console.log(attributesItem[propsKey]);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
@@ -109,11 +113,11 @@ class AttributeItem extends Component {
 							})
 						)} */}
 
-						{Object.entries(attributes)[propsKey][1].map((item, i) => {
+						{itemsMapped.map((item, i) => {
 							return (
 								<AttributionBtn
-									key={item.values}
-									item={item.values}
+									key={i}
+									item={item}
 									attributeTitle={attHeader}
 									className={className}
 									index={i}

@@ -83,6 +83,8 @@ class AttributionBtn extends Component {
 		const { colorSwatch, btnDisable, defaultIsChecked, itemIsChecked } =
 			this.state;
 
+		// console.log(item);
+
 		let itemBackground = colorSwatch
 			? {
 					backgroundColor:
