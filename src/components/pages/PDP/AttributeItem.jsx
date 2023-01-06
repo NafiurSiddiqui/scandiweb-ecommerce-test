@@ -150,7 +150,7 @@ class AttributeItem extends Component {
 									removeValuesHandler={this.removeValuesHandler}
 									itemCheckHandler={this.itemCheckHandler}
 									defaultCheckHandler={this.defaultCheckHandler}
-									itemIsChecked={item.isChecked}
+									itemIsChecked2={item.isChecked}
 									defaultValue={attributesItem}
 								/>
 							);

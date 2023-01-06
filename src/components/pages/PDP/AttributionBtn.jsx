@@ -92,13 +92,39 @@ class AttributionBtn extends Component {
 	}
 
 	render() {
-		const { item, className, index, attributeTitle, defaultValue, productID } =
-			this.props;
+		const {
+			item,
+			className,
+			index,
+			attributeTitle,
+			defaultValue,
+			productID,
+			itemIsChecked2,
+		} = this.props;
 
 		const { colorSwatch, btnDisable, defaultIsChecked, itemIsChecked } =
 			this.state;
 
-		// console.log(item);
+		console.log(itemIsChecked2);
+
+		// let itemBackground = colorSwatch
+		// 	? {
+		// 			backgroundColor:
+		// 				item === 'Green'
+		// 					? '#0F6450'
+		// 					: item === 'White'
+		// 					? '#D3D2D5'
+		// 					: item === 'Black'
+		// 					? '#2B2B2B'
+		// 					: item,
+		// 			minWidth: btnDisable ? '1.1rem' : '2.5rem',
+		// 			border: 'none',
+		// 	  }
+		// 	: !colorSwatch && index === 0 && defaultIsChecked
+		// 	? { backgroundColor: '#1D1F22', color: 'white' }
+		// 	: !colorSwatch && itemIsChecked
+		// 	? { backgroundColor: '#1D1F22', color: 'white' }
+		// 	: { backgroundColor: 'white' };
 
 		let itemBackground = colorSwatch
 			? {
