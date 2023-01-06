@@ -139,16 +139,12 @@ class AttributionBtn extends Component {
 					minWidth: btnDisable ? '1.1rem' : '2.5rem',
 					border: 'none',
 			  }
-			: !colorSwatch && index === 0 && defaultIsChecked
-			? { backgroundColor: '#1D1F22', color: 'white' }
-			: !colorSwatch && itemIsChecked
+			: !colorSwatch && itemIsChecked2
 			? { backgroundColor: '#1D1F22', color: 'white' }
 			: { backgroundColor: 'white' };
 
 		const defaultColorChecked =
-			colorSwatch && defaultIsChecked && index === 0
-				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
-				: colorSwatch && itemIsChecked
+			colorSwatch && itemIsChecked2
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
 				: { outline: 'none' };
 
