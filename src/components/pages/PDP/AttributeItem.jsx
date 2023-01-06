@@ -11,33 +11,16 @@ class AttributeItem extends Component {
 			id: '',
 			itemValues: [],
 			items: [],
-			defaultState: true,
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
 		this.removeValuesHandler = this.removeValuesHandler.bind(this);
 		this.itemCheckHandler = this.itemCheckHandler.bind(this);
-		this.defaultCheckHandler = this.defaultCheckHandler.bind(this);
 	}
 
 	componentDidMount() {
 		//Get the attributes
-		const { attributes, propsKey, attHeader, attributesItem } = this.props;
-
-		//map the attributes
-		// const mappedAttributes = Object.entries(attributes[attHeader]).map(
-		// 	(item, i) => ({
-		// 		title: attHeader,
-		// 		items: item[1],
-		// 	})
-		// );
-
-		// const defaultMapped = attributesItem.map((item, i) =>
-		// 	i === 0 ? { ...item.values , item.isChecked true } : attributesItem
-		// );
-		// console.log();
-		// console.log(attributes);
-		// console.log(mappedAttributes);
+		const { attributesItem } = this.props;
 
 		//set the attributes to state
 		this.setState({
@@ -78,15 +61,7 @@ class AttributeItem extends Component {
 		});
 	};
 
-	defaultCheckHandler(value) {
-		//get the value
-
-		//set the value to state
-		this.setState({
-			// defaultState: defaultIsChecked,
-		});
-	}
-
+	// ! DO not delete this handler ↙️
 	itemCheckHandler(value) {
 		this.setState((prevState) => ({
 			items: prevState.items.map((item) =>
@@ -149,7 +124,6 @@ class AttributeItem extends Component {
 									itemValuesHandler={this.itemValuesHandler}
 									removeValuesHandler={this.removeValuesHandler}
 									itemCheckHandler={this.itemCheckHandler}
-									defaultCheckHandler={this.defaultCheckHandler}
 									itemIsChecked2={item.isChecked}
 									defaultValue={attributesItem}
 								/>

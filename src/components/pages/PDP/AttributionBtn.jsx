@@ -5,10 +5,8 @@ class AttributionBtn extends Component {
 	constructor() {
 		super();
 		this.state = {
-			colorSwatch: false,
-			btnDisable: false,
-			defaultIsChecked: true,
-			itemIsChecked: false,
+			colorSwatch: false, //!KEEP
+			btnDisable: false, //!KEEP
 		};
 
 		this.btnCheckHandler = this.btnCheckHandler.bind(this);
@@ -36,28 +34,18 @@ class AttributionBtn extends Component {
 		}
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		const { defaultCheckHandler } = this.props;
-		const { defaultIsChecked } = this.state;
+	// componentDidUpdate(prevProps, prevState) {
+	// 	const { defaultCheckHandler } = this.props;
+	// 	const { defaultIsChecked } = this.state;
 
-		// console.log(prevState.defaultIsChecked);
+	// 	if (prevState.defaultIsChecked !== defaultIsChecked) {
+	// 		defaultCheckHandler(defaultIsChecked);
+	// 	}
+	// }
 
-		if (prevState.defaultIsChecked !== defaultIsChecked) {
-			defaultCheckHandler(defaultIsChecked);
-		}
-	}
-
-	btnCheckHandler(index, e) {
-		const {
-			attributeTitle: attHeader,
-			itemValuesHandler,
-			removeValuesHandler,
-			itemCheckHandler,
-			productID,
-			setItemCheck,
-		} = this.props;
-
-		const { selectedAttribute } = this.state;
+	btnCheckHandler(e) {
+		const { itemValuesHandler, removeValuesHandler, itemCheckHandler } =
+			this.props;
 
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
@@ -66,65 +54,24 @@ class AttributionBtn extends Component {
 			return;
 		}
 
-		if (index === 0) {
-			this.setState({
-				defaultIsChecked: !this.state.defaultIsChecked,
-			});
-		}
-
 		itemCheckHandler(attValue);
 
-		if (attCheck) {
-			this.setState({
-				itemIsChecked: attCheck,
-				selectedAttribute: attValue,
-			});
+		// if (attCheck) {
+		// 	itemValuesHandler(attValue);
+		// } else {
+		// 	removeValuesHandler(attValue);
+		// }
 
-			itemValuesHandler(attValue);
-		} else {
-			this.setState({
-				itemIsChecked: attCheck,
-				selectedAttribute: '',
-			});
-
-			removeValuesHandler(attValue);
-		}
+		attCheck ? itemValuesHandler(attValue) : removeValuesHandler(attValue);
 	}
 
 	render() {
-		const {
-			item,
-			className,
-			index,
-			attributeTitle,
-			defaultValue,
-			productID,
-			itemIsChecked2,
-		} = this.props;
+		const { item, className, index, itemIsChecked2 } = this.props;
 
 		const { colorSwatch, btnDisable, defaultIsChecked, itemIsChecked } =
 			this.state;
 
 		console.log(itemIsChecked2);
-
-		// let itemBackground = colorSwatch
-		// 	? {
-		// 			backgroundColor:
-		// 				item === 'Green'
-		// 					? '#0F6450'
-		// 					: item === 'White'
-		// 					? '#D3D2D5'
-		// 					: item === 'Black'
-		// 					? '#2B2B2B'
-		// 					: item,
-		// 			minWidth: btnDisable ? '1.1rem' : '2.5rem',
-		// 			border: 'none',
-		// 	  }
-		// 	: !colorSwatch && index === 0 && defaultIsChecked
-		// 	? { backgroundColor: '#1D1F22', color: 'white' }
-		// 	: !colorSwatch && itemIsChecked
-		// 	? { backgroundColor: '#1D1F22', color: 'white' }
-		// 	: { backgroundColor: 'white' };
 
 		let itemBackground = colorSwatch
 			? {
@@ -166,7 +113,7 @@ class AttributionBtn extends Component {
 					value={item}
 					className={'attribution__item-checkbox'}
 					checked={index === 0 ? defaultIsChecked : itemIsChecked}
-					onChange={(e) => this.btnCheckHandler(index, e)}
+					onChange={(e) => this.btnCheckHandler(e)}
 				/>
 			</li>
 		);
