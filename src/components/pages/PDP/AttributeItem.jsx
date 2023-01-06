@@ -115,7 +115,7 @@ class AttributeItem extends Component {
 
 		// const test = items.map((item) => item.items.map((item) => item.values));
 
-		console.log(items);
+		// console.log(items);
 		// console.log(attributesItem[propsKey].map((item) => item));
 		// console.log(attributes);
 
@@ -138,6 +138,7 @@ class AttributeItem extends Component {
 					</h4>
 					<ul className={`pd__attribution__items`}>
 						{items.map((item, i) => {
+							// console.log(item);
 							return (
 								<AttributionBtn
 									key={i}
