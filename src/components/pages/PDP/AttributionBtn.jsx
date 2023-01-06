@@ -36,12 +36,24 @@ class AttributionBtn extends Component {
 		}
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		const { defaultCheckHandler } = this.props;
+		const { defaultIsChecked } = this.state;
+
+		// console.log(prevState.defaultIsChecked);
+
+		if (prevState.defaultIsChecked !== defaultIsChecked) {
+			defaultCheckHandler(defaultIsChecked);
+		}
+	}
+
 	itemCheckHandler(index, e) {
 		const {
 			attributeTitle: attHeader,
 			itemValuesHandler,
 			removeValuesHandler,
 			productID,
+			setItemCheck,
 		} = this.props;
 
 		const { selectedAttribute } = this.state;

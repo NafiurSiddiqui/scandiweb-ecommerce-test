@@ -15,6 +15,8 @@ class AttributeItem extends Component {
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
 		this.removeValuesHandler = this.removeValuesHandler.bind(this);
+		this.itemCheckHandler = this.itemCheckHandler.bind(this);
+		this.defaultCheckHandler = this.defaultCheckHandler.bind(this);
 	}
 
 	componentDidMount() {
@@ -28,13 +30,18 @@ class AttributeItem extends Component {
 		// 		items: item[1],
 		// 	})
 		// );
-		// console.log(attributesItem);
+
+		// const defaultMapped = attributesItem.map((item, i) =>
+		// 	i === 0 ? { ...item.values , item.isChecked true } : attributesItem
+		// );
+		// console.log();
 		// console.log(attributes);
 		// console.log(mappedAttributes);
 
 		//set the attributes to state
 		this.setState({
 			items: attributesItem,
+			// items: defaultMapped,
 		});
 	}
 
@@ -70,8 +77,13 @@ class AttributeItem extends Component {
 		});
 	};
 
-	itemIsChecked(e) {
-		console.log(e);
+	defaultCheckHandler(defaultIsChecked) {
+		//get the value
+		console.log(defaultIsChecked);
+	}
+
+	itemCheckHandler(value) {
+		// console.log();
 	}
 
 	render() {
@@ -117,7 +129,6 @@ class AttributeItem extends Component {
 					</h4>
 					<ul className={`pd__attribution__items`}>
 						{items.map((item, i) => {
-							console.log(item.values);
 							return (
 								<AttributionBtn
 									key={i}
@@ -127,6 +138,8 @@ class AttributeItem extends Component {
 									index={i}
 									itemValuesHandler={this.itemValuesHandler}
 									removeValuesHandler={this.removeValuesHandler}
+									itemCheckHandler={this.itemCheckHandler}
+									defaultCheckHandler={this.defaultCheckHandler}
 									itemIsChecked={item.isChecked}
 									defaultValue={attributesItem}
 								/>

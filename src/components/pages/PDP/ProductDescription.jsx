@@ -111,11 +111,16 @@ class ProductDescription extends Component {
 					const attID = PDP[0].attributesID;
 					const attItems = PDP[0].attributesItem;
 
-					const mappedAttItems = attItems.map((item, i) =>
-						item.map((item) => ({ values: item, isChecked: false }))
+					// const mappedAttItems = attItems.map((item, i) =>
+					// 	item.map((item) => ({ values: item, isChecked: false }))
+					// );
+
+					const mappedAttItems = attItems.map((itemT, i) =>
+						itemT.map((item, index) => {
+							return { values: item, isChecked: index === 0 };
+						})
 					);
 
-					// console.log(attID);
 					// console.log(mappedAttItems);
 
 					const attributes = attID.reduce((acc, key, index) => {
