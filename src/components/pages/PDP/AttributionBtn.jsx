@@ -13,11 +13,7 @@ class AttributionBtn extends Component {
 	}
 
 	componentDidMount() {
-		const { attributeTitle: attHeader, className } = this.props;
-
-		const { defaultIsChecked, itemIsChecked } = this.state;
-
-		// console.log(attHeader);
+		const { attHeader, className } = this.props;
 
 		className === 'cart-items__pd'
 			? this.setState({ btnDisable: true })
@@ -33,15 +29,6 @@ class AttributionBtn extends Component {
 			});
 		}
 	}
-
-	// componentDidUpdate(prevProps, prevState) {
-	// 	const { defaultCheckHandler } = this.props;
-	// 	const { defaultIsChecked } = this.state;
-
-	// 	if (prevState.defaultIsChecked !== defaultIsChecked) {
-	// 		defaultCheckHandler(defaultIsChecked);
-	// 	}
-	// }
 
 	btnCheckHandler(e) {
 		const { itemValuesHandler, removeValuesHandler, itemCheckHandler } =
@@ -66,12 +53,9 @@ class AttributionBtn extends Component {
 	}
 
 	render() {
-		const { item, className, index, itemIsChecked2 } = this.props;
+		const { item, className, index, itemIsChecked } = this.props;
 
-		const { colorSwatch, btnDisable, defaultIsChecked, itemIsChecked } =
-			this.state;
-
-		console.log(itemIsChecked2);
+		const { colorSwatch, btnDisable } = this.state;
 
 		let itemBackground = colorSwatch
 			? {
@@ -86,12 +70,12 @@ class AttributionBtn extends Component {
 					minWidth: btnDisable ? '1.1rem' : '2.5rem',
 					border: 'none',
 			  }
-			: !colorSwatch && itemIsChecked2
+			: !colorSwatch && itemIsChecked
 			? { backgroundColor: '#1D1F22', color: 'white' }
 			: { backgroundColor: 'white' };
 
 		const defaultColorChecked =
-			colorSwatch && itemIsChecked2
+			colorSwatch && itemIsChecked
 				? { outline: '2px solid #5ECE7B', outlineOffset: ' 0.1rem' }
 				: { outline: 'none' };
 
@@ -112,7 +96,7 @@ class AttributionBtn extends Component {
 					id={item}
 					value={item}
 					className={'attribution__item-checkbox'}
-					checked={index === 0 ? defaultIsChecked : itemIsChecked}
+					checked={itemIsChecked}
 					onChange={(e) => this.btnCheckHandler(e)}
 				/>
 			</li>

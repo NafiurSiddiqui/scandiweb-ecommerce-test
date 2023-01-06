@@ -25,7 +25,6 @@ class AttributeItem extends Component {
 		//set the attributes to state
 		this.setState({
 			items: attributesItem,
-			// items: defaultMapped,
 		});
 	}
 
@@ -62,6 +61,7 @@ class AttributeItem extends Component {
 	};
 
 	// ! DO not delete this handler ↙️
+
 	itemCheckHandler(value) {
 		this.setState((prevState) => ({
 			items: prevState.items.map((item) =>
@@ -71,35 +71,9 @@ class AttributeItem extends Component {
 	}
 
 	render() {
-		const {
-			propsKey,
-			attHeader,
-			attributesItem,
-			attributes,
-			className,
-			getSelectedValues,
-			defaultSelection,
-			selectedProduct,
-		} = this.props;
+		const { propsKey, attHeader, attributesItem, className } = this.props;
 
-		const { id, itemValues, items } = this.state;
-
-		// const itemsMapped = items
-		// 	.map((item) => item.items)
-		// 	.map((item) => item.map((item) => item.values));
-
-		// const test = items.map((item) => item.items.map((item) => item.values));
-
-		// console.log(items);
-		// console.log(attributesItem[propsKey].map((item) => item));
-		// console.log(attributes);
-
-		const mappedItems = attributesItem.map((item) => item.values);
-		const mappedItemCheck = attributesItem.map((item) => item.isChecked);
-		// console.log(mappedItems);
-		// console.log(mappedItemCheck);
-
-		// console.log(items);
+		const { items } = this.state;
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
@@ -113,53 +87,21 @@ class AttributeItem extends Component {
 					</h4>
 					<ul className={`pd__attribution__items`}>
 						{items.map((item, i) => {
-							// console.log(item);
 							return (
 								<AttributionBtn
 									key={i}
 									item={item.value}
-									attributeTitle={attHeader}
+									attHeader={attHeader}
 									className={className}
 									index={i}
 									itemValuesHandler={this.itemValuesHandler}
 									removeValuesHandler={this.removeValuesHandler}
 									itemCheckHandler={this.itemCheckHandler}
-									itemIsChecked2={item.isChecked}
+									itemIsChecked={item.isChecked}
 									defaultValue={attributesItem}
 								/>
 							);
 						})}
-
-						{/* {mappedItems.map((item, i) => {
-							return (
-								<AttributionBtn
-									key={i}
-									item={item}
-									attributeTitle={attHeader}
-									className={className}
-									index={i}
-									itemValuesHandler={this.itemValuesHandler}
-									removeValuesHandler={this.removeValuesHandler}
-									itemIsChecked={mappedItemCheck[i]}
-									defaultValue={attributesItem}
-								/>
-							);
-						})} */}
-
-						{/* {attributesItem[propsKey].map((item, i) => {
-							return (
-								<AttributionBtn
-									key={item}
-									item={item}
-									attributeTitle={attHeader}
-									className={className}
-									index={i}
-									itemValuesHandler={this.itemValuesHandler}
-									removeValuesHandler={this.removeValuesHandler}
-									defaultValue={attributesItem}
-								/>
-							);
-						})} */}
 					</ul>
 				</li>
 			</ul>
