@@ -78,18 +78,21 @@ class AttributeItem extends Component {
 		});
 	};
 
-	defaultCheckHandler(defaultIsChecked) {
+	defaultCheckHandler(value) {
 		//get the value
-		console.log(defaultIsChecked);
 
 		//set the value to state
 		this.setState({
-			defaultState: defaultIsChecked,
+			// defaultState: defaultIsChecked,
 		});
 	}
 
 	itemCheckHandler(value) {
-		// console.log();
+		this.setState((prevState) => ({
+			items: prevState.items.map((item) =>
+				item.value === value ? { ...item, isChecked: !item.isChecked } : item
+			),
+		}));
 	}
 
 	render() {
@@ -138,7 +141,7 @@ class AttributeItem extends Component {
 							return (
 								<AttributionBtn
 									key={i}
-									item={item.values}
+									item={item.value}
 									attributeTitle={attHeader}
 									className={className}
 									index={i}

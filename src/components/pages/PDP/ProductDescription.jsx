@@ -117,7 +117,7 @@ class ProductDescription extends Component {
 
 					const mappedAttItems = attItems.map((itemT, i) =>
 						itemT.map((item, index) => {
-							return { values: item, isChecked: index === 0 };
+							return { value: item, isChecked: index === 0 };
 						})
 					);
 

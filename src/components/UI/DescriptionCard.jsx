@@ -72,7 +72,7 @@ class DescriptionCard extends Component {
 
 		const items = Object.entries(attributes).map((item) => [
 			item[0],
-			item[1].map((item) => item.values),
+			item[1].map((item) => item.value),
 			item[1].map((item) => item.isChecked),
 		]);
 

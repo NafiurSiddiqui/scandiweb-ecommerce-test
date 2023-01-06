@@ -11,7 +11,7 @@ class AttributionBtn extends Component {
 			itemIsChecked: false,
 		};
 
-		this.itemCheckHandler = this.itemCheckHandler.bind(this);
+		this.btnCheckHandler = this.btnCheckHandler.bind(this);
 	}
 
 	componentDidMount() {
@@ -47,11 +47,12 @@ class AttributionBtn extends Component {
 		}
 	}
 
-	itemCheckHandler(index, e) {
+	btnCheckHandler(index, e) {
 		const {
 			attributeTitle: attHeader,
 			itemValuesHandler,
 			removeValuesHandler,
+			itemCheckHandler,
 			productID,
 			setItemCheck,
 		} = this.props;
@@ -70,6 +71,8 @@ class AttributionBtn extends Component {
 				defaultIsChecked: !this.state.defaultIsChecked,
 			});
 		}
+
+		itemCheckHandler(attValue);
 
 		if (attCheck) {
 			this.setState({
@@ -141,7 +144,7 @@ class AttributionBtn extends Component {
 					value={item}
 					className={'attribution__item-checkbox'}
 					checked={index === 0 ? defaultIsChecked : itemIsChecked}
-					onChange={(e) => this.itemCheckHandler(index, e)}
+					onChange={(e) => this.btnCheckHandler(index, e)}
 				/>
 			</li>
 		);
