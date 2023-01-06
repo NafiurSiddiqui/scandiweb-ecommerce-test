@@ -10,7 +10,7 @@ class AttributeItem extends Component {
 		this.state = {
 			id: '',
 			itemValues: [],
-			items: [],
+			// items: [],
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
@@ -19,14 +19,17 @@ class AttributeItem extends Component {
 
 	componentDidMount() {
 		//Get the attributes
-		const { attributes } = this.props;
+		const { attributes, propsKey, attHeader } = this.props;
 
 		//map the attributes
-		const mappedAttributes = Object.entries(attributes).map((item, i) => ({
-			title: item[0],
-			items: item[1],
-		}));
-
+		const mappedAttributes = Object.entries(attributes[attHeader]).map(
+			(item, i) => ({
+				title: attHeader,
+				items: item[1],
+			})
+		);
+		// console.log(attHeader);
+		// console.log(attributes);
 		// console.log(mappedAttributes);
 
 		//set the attributes to state
@@ -86,15 +89,22 @@ class AttributeItem extends Component {
 
 		const { id, itemValues, items } = this.state;
 
-		const itemsMapped = items
-			.map((item) => item.items)
-			.map((item) => item.map((item) => item.values));
+		// const itemsMapped = items
+		// 	.map((item) => item.items)
+		// 	.map((item) => item.map((item) => item.values));
 
-		const test = items.map((item) => item.items.map((item) => item.values));
+		// const test = items.map((item) => item.items.map((item) => item.values));
 
-		console.log(test[propsKey]);
+		// console.log(test);
 		// console.log(attributesItem[propsKey].map((item) => item));
-		console.log(attributesItem[propsKey]);
+		// console.log(attributes);
+
+		const mappedItems = attributesItem.map((item) => item.values);
+		const mappedItemCheck = attributesItem.map((item) => item.isChecked);
+		console.log(mappedItems);
+		console.log(mappedItemCheck);
+
+		// console.log(items);
 
 		return (
 			<ul key={propsKey} className={`${className}__attributions`}>
@@ -107,13 +117,7 @@ class AttributeItem extends Component {
 						{attHeader.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
-						{/* {console.log(
-							Object.entries(attributes)[propsKey][1].map((item, i) => {
-								return item.values;
-							})
-						)} */}
-
-						{itemsMapped.map((item, i) => {
+						{mappedItems.map((item, i) => {
 							return (
 								<AttributionBtn
 									key={i}

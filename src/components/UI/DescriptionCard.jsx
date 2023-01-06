@@ -70,13 +70,38 @@ class DescriptionCard extends Component {
 			addItemToCart,
 		} = this.props;
 
+		const items = Object.entries(attributes).map((item) => [
+			item[0],
+			item[1].map((item) => item.values),
+			item[1].map((item) => item.isChecked),
+		]);
+
+		console.log(items.map((item) => item[1]));
+
+		// console.log(attributesItem);
+
 		return (
 			<article className={className}>
 				<div className={`${className}__headers`}>
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
 				</div>
-				{attributesID?.map((attHeader, i) => {
+				{Object.entries(attributes).map((item, i) => {
+					return (
+						<AttributeItem
+							propsKey={i}
+							attHeader={item[0]}
+							attributesItem={item[1]}
+							attributes={attributes}
+							key={i}
+							className={className}
+							getSelectedValues={this.getSelectedValues}
+							productID={productID}
+						/>
+					);
+				})}
+
+				{/* {attributesID?.map((attHeader, i) => {
 					return (
 						<AttributeItem
 							propsKey={i}
@@ -89,7 +114,7 @@ class DescriptionCard extends Component {
 							productID={productID}
 						/>
 					);
-				})}
+				})} */}
 
 				<div className="pd__price">
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
