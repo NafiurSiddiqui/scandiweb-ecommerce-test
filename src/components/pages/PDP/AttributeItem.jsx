@@ -10,7 +10,7 @@ class AttributeItem extends Component {
 		this.state = {
 			id: '',
 			itemValues: [],
-			// items: [],
+			items: [],
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
@@ -19,24 +19,23 @@ class AttributeItem extends Component {
 
 	componentDidMount() {
 		//Get the attributes
-		const { attributes, propsKey, attHeader } = this.props;
+		const { attributes, propsKey, attHeader, attributesItem } = this.props;
 
 		//map the attributes
-		const mappedAttributes = Object.entries(attributes[attHeader]).map(
-			(item, i) => ({
-				title: attHeader,
-				items: item[1],
-			})
-		);
-		// console.log(attHeader);
+		// const mappedAttributes = Object.entries(attributes[attHeader]).map(
+		// 	(item, i) => ({
+		// 		title: attHeader,
+		// 		items: item[1],
+		// 	})
+		// );
+		// console.log(attributesItem);
 		// console.log(attributes);
 		// console.log(mappedAttributes);
 
 		//set the attributes to state
 		this.setState({
-			items: mappedAttributes,
+			items: attributesItem,
 		});
-		// console.log('Mounted');
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -95,14 +94,14 @@ class AttributeItem extends Component {
 
 		// const test = items.map((item) => item.items.map((item) => item.values));
 
-		// console.log(test);
+		console.log(items);
 		// console.log(attributesItem[propsKey].map((item) => item));
 		// console.log(attributes);
 
 		const mappedItems = attributesItem.map((item) => item.values);
 		const mappedItemCheck = attributesItem.map((item) => item.isChecked);
-		console.log(mappedItems);
-		console.log(mappedItemCheck);
+		// console.log(mappedItems);
+		// console.log(mappedItemCheck);
 
 		// console.log(items);
 
@@ -117,7 +116,24 @@ class AttributeItem extends Component {
 						{attHeader.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
-						{mappedItems.map((item, i) => {
+						{items.map((item, i) => {
+							console.log(item.values);
+							return (
+								<AttributionBtn
+									key={i}
+									item={item.values}
+									attributeTitle={attHeader}
+									className={className}
+									index={i}
+									itemValuesHandler={this.itemValuesHandler}
+									removeValuesHandler={this.removeValuesHandler}
+									itemIsChecked={item.isChecked}
+									defaultValue={attributesItem}
+								/>
+							);
+						})}
+
+						{/* {mappedItems.map((item, i) => {
 							return (
 								<AttributionBtn
 									key={i}
@@ -127,10 +143,11 @@ class AttributeItem extends Component {
 									index={i}
 									itemValuesHandler={this.itemValuesHandler}
 									removeValuesHandler={this.removeValuesHandler}
+									itemIsChecked={mappedItemCheck[i]}
 									defaultValue={attributesItem}
 								/>
 							);
-						})}
+						})} */}
 
 						{/* {attributesItem[propsKey].map((item, i) => {
 							return (

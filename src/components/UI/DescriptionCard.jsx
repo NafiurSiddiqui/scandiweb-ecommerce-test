@@ -76,7 +76,7 @@ class DescriptionCard extends Component {
 			item[1].map((item) => item.isChecked),
 		]);
 
-		console.log(items.map((item) => item[1]));
+		// console.log(items.map((item) => item[1]));
 
 		// console.log(attributesItem);
 
