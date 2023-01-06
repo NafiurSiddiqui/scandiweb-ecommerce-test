@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DescriptionCard from '../../UI/DescriptionCard';
-import Button from '../../UI/Button';
+
 import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
