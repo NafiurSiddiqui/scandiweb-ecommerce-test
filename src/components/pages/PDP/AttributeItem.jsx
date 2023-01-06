@@ -11,6 +11,7 @@ class AttributeItem extends Component {
 			id: '',
 			itemValues: [],
 			items: [],
+			defaultState: true,
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
@@ -80,6 +81,11 @@ class AttributeItem extends Component {
 	defaultCheckHandler(defaultIsChecked) {
 		//get the value
 		console.log(defaultIsChecked);
+
+		//set the value to state
+		this.setState({
+			defaultState: defaultIsChecked,
+		});
 	}
 
 	itemCheckHandler(value) {
