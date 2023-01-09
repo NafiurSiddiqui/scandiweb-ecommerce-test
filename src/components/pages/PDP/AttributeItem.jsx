@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { setSelectedProduct } from '../../store/productsSlice';
 import AttributionBtn from './AttributionBtn';
 
@@ -30,13 +30,13 @@ class AttributeItem extends Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		const { getSelectedValues } = this.props;
-		const { id, itemValues, btnItems } = this.state;
+		const { id, itemValues } = this.state;
 
 		// console.log(btnItems);
 
 		if (prevState.itemValues.length !== this.state.itemValues.length) {
 			getSelectedValues(id, itemValues);
-			console.log('it does');
+			// console.log('it does');
 		}
 	}
 
@@ -77,9 +77,7 @@ class AttributeItem extends Component {
 		const { itemIndex, attHeader, attributesItem, className, updateItems } =
 			this.props;
 
-		const { btnItems, itemValues } = this.state;
-
-		// console.log(itemValues);
+		const { btnItems } = this.state;
 
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>

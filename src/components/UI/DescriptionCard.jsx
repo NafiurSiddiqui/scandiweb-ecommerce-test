@@ -52,22 +52,23 @@ class DescriptionCard extends Component {
 	updateItems(itemIndex, btnIndex) {
 		console.log(itemIndex, btnIndex);
 
-		//create a new array
+		this.setState((prevState) => {
+			const updatedItems = prevState.items.map((item, index) => {
+				if (index === itemIndex) {
+					const updatedCheck = item[1].map((btn, isCheckIndex) => {
+						if (isCheckIndex === btnIndex) {
+							return { ...btn, isChecked: !btn.isChecked };
+						}
 
-		const newItems = [...this.state.items];
+						return btn;
+					});
 
-		// this.setState((prevState) => {
-		// 	//make a new array
-		// 	const newItems = [...prevState.items];
-
-		// 	// console.log(newItems[itemIndex][1][btnIndex].isChecked);
-		// 	//update the new array
-		// 	newItems[itemIndex][1][btnIndex].isChecked =
-		// 		!newItems[itemIndex][1][btnIndex].isChecked;
-
-		// 	// console.log(newItems);
-		// 	return { items: newItems };
-		// });
+					return [item[0], updatedCheck];
+				}
+				return item;
+			});
+			return { items: updatedItems };
+		});
 	}
 
 	sendItemToCart() {
