@@ -36,6 +36,7 @@ class AttributeItem extends Component {
 
 		if (prevState.itemValues.length !== this.state.itemValues.length) {
 			getSelectedValues(id, itemValues);
+			console.log('it does');
 		}
 	}
 

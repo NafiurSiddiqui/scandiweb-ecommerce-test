@@ -24,7 +24,7 @@ class DescriptionCard extends Component {
 	componentDidMount() {
 		const { attributes } = this.props;
 
-		// console.log(Object.entries(attributes));
+		// console.log('Does it?');
 		this.setState({
 			items: Object.entries(attributes),
 		});
@@ -52,15 +52,18 @@ class DescriptionCard extends Component {
 	updateItems(itemIndex, btnIndex) {
 		console.log(itemIndex, btnIndex);
 
-		this.setState((prevState) => {
-			//make a new array
-			const newItems = [...prevState.items];
-			//update the new array
-			newItems[itemIndex][1][btnIndex].isChecked =
-				!newItems[itemIndex][1][btnIndex].isChecked;
+		// this.setState((prevState) => {
+		// 	//make a new array
+		// 	const newItems = [...prevState.items];
 
-			return { items: newItems };
-		});
+		// 	// console.log(newItems[itemIndex][1][btnIndex].isChecked);
+		// 	//update the new array
+		// 	newItems[itemIndex][1][btnIndex].isChecked =
+		// 		!newItems[itemIndex][1][btnIndex].isChecked;
+
+		// 	// console.log(newItems);
+		// 	return { items: newItems };
+		// });
 	}
 
 	sendItemToCart() {
@@ -72,7 +75,7 @@ class DescriptionCard extends Component {
 		const { brand, name, prices } = this.props.products;
 		const { items, selectedValues } = this.state;
 
-		// console.log(items);
+		console.log(items);
 
 		const {
 			priceHeading,
