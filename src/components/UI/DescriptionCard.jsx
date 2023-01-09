@@ -52,6 +52,10 @@ class DescriptionCard extends Component {
 	updateItems(itemIndex, btnIndex) {
 		console.log(itemIndex, btnIndex);
 
+		//create a new array
+
+		const newItems = [...this.state.items];
+
 		// this.setState((prevState) => {
 		// 	//make a new array
 		// 	const newItems = [...prevState.items];
