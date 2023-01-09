@@ -10,7 +10,7 @@ class AttributeItem extends Component {
 		this.state = {
 			id: '',
 			itemValues: [],
-			items: [],
+			btnItems: [],
 		};
 		this.itemValuesHandler = this.itemValuesHandler.bind(this);
 		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
@@ -24,13 +24,15 @@ class AttributeItem extends Component {
 
 		//set the attributes to state
 		this.setState({
-			items: attributesItem,
+			btnItems: attributesItem,
 		});
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		const { getSelectedValues } = this.props;
-		const { id, itemValues } = this.state;
+		const { id, itemValues, btnItems } = this.state;
+
+		// console.log(btnItems);
 
 		if (prevState.itemValues.length !== this.state.itemValues.length) {
 			getSelectedValues(id, itemValues);
@@ -64,19 +66,22 @@ class AttributeItem extends Component {
 
 	itemCheckHandler(value) {
 		this.setState((prevState) => ({
-			items: prevState.items.map((item) =>
+			btnItems: prevState.btnItems.map((item) =>
 				item.value === value ? { ...item, isChecked: !item.isChecked } : item
 			),
 		}));
 	}
 
 	render() {
-		const { propsKey, attHeader, attributesItem, className } = this.props;
+		const { itemIndex, attHeader, attributesItem, className, updateItems } =
+			this.props;
 
-		const { items } = this.state;
+		const { btnItems, itemValues } = this.state;
+
+		// console.log(itemValues);
 
 		return (
-			<ul key={propsKey} className={`${className}__attributions`}>
+			<ul key={itemIndex} className={`${className}__attributions`}>
 				<li
 					key={attHeader}
 					className={`${className}__attribution`}
@@ -86,17 +91,19 @@ class AttributeItem extends Component {
 						{attHeader.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
-						{items.map((item, i) => {
+						{btnItems.map((item, btnIndex) => {
 							return (
 								<AttributionBtn
-									key={i}
+									key={btnIndex}
 									item={item.value}
 									attHeader={attHeader}
 									className={className}
-									index={i}
+									btnIndex={btnIndex}
+									itemIndex={itemIndex}
 									itemValuesHandler={this.itemValuesHandler}
 									removeValuesHandler={this.removeValuesHandler}
 									itemCheckHandler={this.itemCheckHandler}
+									updateItems={updateItems}
 									itemIsChecked={item.isChecked}
 									defaultValue={attributesItem}
 								/>

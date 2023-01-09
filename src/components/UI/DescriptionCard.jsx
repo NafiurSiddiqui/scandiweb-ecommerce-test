@@ -15,8 +15,19 @@ class DescriptionCard extends Component {
 			selectedBrand: this.props.products.name,
 			selectedValues: [],
 			defaultSelection: {},
+			items: [],
 		};
 		this.getSelectedValues = this.getSelectedValues.bind(this);
+		this.updateItems = this.updateItems.bind(this);
+	}
+
+	componentDidMount() {
+		const { attributes } = this.props;
+
+		// console.log(Object.entries(attributes));
+		this.setState({
+			items: Object.entries(attributes),
+		});
 	}
 
 	getSelectedValues(id, itemValues) {
@@ -38,8 +49,30 @@ class DescriptionCard extends Component {
 		});
 	}
 
+	updateItems(itemIndex, btnIndex) {
+		console.log(itemIndex, btnIndex);
+
+		this.setState((prevState) => {
+			//make a new array
+			const newItems = [...prevState.items];
+			//update the new array
+			newItems[itemIndex][1][btnIndex].isChecked =
+				!newItems[itemIndex][1][btnIndex].isChecked;
+
+			return { items: newItems };
+		});
+	}
+
+	sendItemToCart() {
+		// console.log(this.state.selectedValues);
+		// addItemToCart()
+	}
+
 	render() {
 		const { brand, name, prices } = this.props.products;
+		const { items, selectedValues } = this.state;
+
+		// console.log(items);
 
 		const {
 			priceHeading,
@@ -50,6 +83,9 @@ class DescriptionCard extends Component {
 			attributes,
 			addItemToCart,
 		} = this.props;
+
+		// console.log(selectedValues);
+		// console.log(Object.entries(attributes));
 
 		// const items = Object.entries(attributes).map((item) => [
 		// 	item[0],
@@ -67,7 +103,27 @@ class DescriptionCard extends Component {
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
 				</div>
-				{attributes
+				{items ? (
+					items.map((item, itemIndex) => {
+						return (
+							<AttributeItem
+								itemIndex={itemIndex}
+								attHeader={item[0]}
+								attributesItem={item[1]}
+								attributes={attributes}
+								key={itemIndex}
+								className={className}
+								getSelectedValues={this.getSelectedValues}
+								updateItems={this.updateItems}
+								productID={productID}
+							/>
+						);
+					})
+				) : (
+					<p>Something went wrong</p>
+				)}
+
+				{/* {attributes
 					? Object.entries(attributes).map((item, i) => {
 							return (
 								<AttributeItem
@@ -82,7 +138,7 @@ class DescriptionCard extends Component {
 								/>
 							);
 					  })
-					: null}
+					: null} */}
 
 				{/* {attributesID?.map((attHeader, i) => {
 					return (

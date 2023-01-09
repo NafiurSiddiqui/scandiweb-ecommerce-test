@@ -30,9 +30,13 @@ class AttributionBtn extends Component {
 		}
 	}
 
-	btnCheckHandler(e) {
-		const { itemValuesHandler, removeValuesHandler, itemCheckHandler } =
-			this.props;
+	btnCheckHandler(e, itemIndex, btnIndex) {
+		const {
+			itemValuesHandler,
+			removeValuesHandler,
+			itemCheckHandler,
+			updateItems,
+		} = this.props;
 
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
@@ -43,17 +47,13 @@ class AttributionBtn extends Component {
 
 		itemCheckHandler(attValue);
 
-		// if (attCheck) {
-		// 	itemValuesHandler(attValue);
-		// } else {
-		// 	removeValuesHandler(attValue);
-		// }
-
 		attCheck ? itemValuesHandler(attValue) : removeValuesHandler(attValue);
+
+		updateItems(itemIndex, btnIndex);
 	}
 
 	render() {
-		const { item, className, index, itemIsChecked } = this.props;
+		const { item, className, btnIndex, itemIndex, itemIsChecked } = this.props;
 
 		const { colorSwatch, btnDisable } = this.state;
 
@@ -97,7 +97,7 @@ class AttributionBtn extends Component {
 					value={item}
 					className={'attribution__item-checkbox'}
 					checked={itemIsChecked}
-					onChange={(e) => this.btnCheckHandler(e)}
+					onChange={(e) => this.btnCheckHandler(e, itemIndex, btnIndex)}
 				/>
 			</li>
 		);
