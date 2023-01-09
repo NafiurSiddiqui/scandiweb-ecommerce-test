@@ -8,6 +8,8 @@ class CartItems extends Component {
 	render() {
 		const { products, selectedProduct } = this.props;
 
+		console.log(products);
+
 		//test
 
 		const cartItems = ['a', 'b', 'c'];

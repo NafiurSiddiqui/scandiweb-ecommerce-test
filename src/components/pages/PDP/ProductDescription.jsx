@@ -115,13 +115,11 @@ class ProductDescription extends Component {
 					// 	item.map((item) => ({ values: item, isChecked: false }))
 					// );
 
-					const mappedAttItems = attItems.map((itemT, i) =>
+					const mappedAttItems = attItems.map((itemT) =>
 						itemT.map((item, index) => {
 							return { value: item, isChecked: index === 0 };
 						})
 					);
-
-					// console.log(mappedAttItems);
 
 					const attributes = attID.reduce((acc, key, index) => {
 						acc[key] = mappedAttItems[index];
