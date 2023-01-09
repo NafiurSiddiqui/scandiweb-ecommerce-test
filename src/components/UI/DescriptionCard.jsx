@@ -75,19 +75,29 @@ class DescriptionCard extends Component {
 		const { items, selectedBrand } = this.state;
 		const { addItemToCart } = this.props;
 
+		const convertedItems = {};
+
+		for (const [key, value] of items) {
+			convertedItems[key] = {
+				title: key,
+				items: value,
+			};
+		}
+
+		console.log(convertedItems);
+
 		const cartItem = {
 			id: selectedBrand,
+			items: items,
 		};
 
-		console.log(cartItem);
-		addItemToCart(cartItem);
+		// console.log(cartItem);
+		// addItemToCart(cartItem);
 	}
 
 	render() {
 		const { brand, name, prices } = this.props.products;
 		const { items } = this.state;
-
-		// console.log(items);
 
 		const {
 			priceHeading,
@@ -96,7 +106,6 @@ class DescriptionCard extends Component {
 			productID,
 			products,
 			attributes,
-			addItemToCart,
 		} = this.props;
 
 		return (
