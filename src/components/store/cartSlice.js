@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
 	cartItems: [],
@@ -14,8 +14,10 @@ export const cartSlice = createSlice({
 			state.productID = action.payload;
 		},
 		addItemToCart: (state, action) => {
-			// state.cartItems.push(action.payload);
-			console.log('Get the values');
+			console.log('Before:', current(state.cartItems));
+			state.cartItems.push(action.payload);
+			console.log(action.payload);
+			console.log('After:', current(state.cartItems));
 		},
 		setMiniCartIsOpen: (state) => {
 			state.miniCartIsOpen = !state.miniCartIsOpen;

@@ -14,11 +14,11 @@ class DescriptionCard extends Component {
 		this.state = {
 			selectedBrand: this.props.products.name,
 			selectedValues: [],
-			defaultSelection: {},
 			items: [],
 		};
 		this.getSelectedValues = this.getSelectedValues.bind(this);
 		this.updateItems = this.updateItems.bind(this);
+		this.cartItemHandler = this.cartItemHandler.bind(this);
 	}
 
 	componentDidMount() {
@@ -71,16 +71,23 @@ class DescriptionCard extends Component {
 		});
 	}
 
-	sendItemToCart() {
-		// console.log(this.state.selectedValues);
-		// addItemToCart()
+	cartItemHandler() {
+		const { items, selectedBrand } = this.state;
+		const { addItemToCart } = this.props;
+
+		const cartItem = {
+			id: selectedBrand,
+		};
+
+		console.log(cartItem);
+		addItemToCart(cartItem);
 	}
 
 	render() {
 		const { brand, name, prices } = this.props.products;
-		const { items, selectedValues } = this.state;
+		const { items } = this.state;
 
-		console.log(items);
+		// console.log(items);
 
 		const {
 			priceHeading,
@@ -91,19 +98,6 @@ class DescriptionCard extends Component {
 			attributes,
 			addItemToCart,
 		} = this.props;
-
-		// console.log(selectedValues);
-		// console.log(Object.entries(attributes));
-
-		// const items = Object.entries(attributes).map((item) => [
-		// 	item[0],
-		// 	item[1].map((item) => item.value),
-		// 	item[1].map((item) => item.isChecked),
-		// ]);
-
-		// console.log(items.map((item) => item[1]));
-
-		// console.log(attributesItem);
 
 		return (
 			<article className={className}>
@@ -131,38 +125,6 @@ class DescriptionCard extends Component {
 					<p>Something went wrong</p>
 				)}
 
-				{/* {attributes
-					? Object.entries(attributes).map((item, i) => {
-							return (
-								<AttributeItem
-									propsKey={i}
-									attHeader={item[0]}
-									attributesItem={item[1]}
-									attributes={attributes}
-									key={i}
-									className={className}
-									getSelectedValues={this.getSelectedValues}
-									productID={productID}
-								/>
-							);
-					  })
-					: null} */}
-
-				{/* {attributesID?.map((attHeader, i) => {
-					return (
-						<AttributeItem
-							propsKey={i}
-							attHeader={attHeader}
-							attributesItem={attributesItem}
-							attributes={attributes}
-							key={i}
-							className={className}
-							getSelectedValues={this.getSelectedValues}
-							productID={productID}
-						/>
-					);
-				})} */}
-
 				<div className="pd__price">
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
 					<span
@@ -179,7 +141,7 @@ class DescriptionCard extends Component {
 				<Button
 					className="pdp__cart-btn"
 					disable={products.stock}
-					onClick={() => addItemToCart()}
+					onClick={this.cartItemHandler}
 					cartItem={cartItem}
 				>
 					ADD TO CART
