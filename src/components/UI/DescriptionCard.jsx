@@ -84,7 +84,7 @@ class DescriptionCard extends Component {
 			};
 		}
 
-		console.log(convertedItems);
+		// console.log(convertedItems);
 
 		const cartItem = {
 			id: selectedBrand,
@@ -92,7 +92,7 @@ class DescriptionCard extends Component {
 		};
 
 		// console.log(cartItem);
-		// addItemToCart(cartItem);
+		addItemToCart(cartItem);
 	}
 
 	render() {

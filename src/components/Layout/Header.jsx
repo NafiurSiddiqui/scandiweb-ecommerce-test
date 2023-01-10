@@ -58,7 +58,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		productIDState: state.category,
+		// productIDState: state.category,
 	};
 };
 
