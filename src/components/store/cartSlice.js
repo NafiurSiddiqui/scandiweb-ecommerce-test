@@ -55,30 +55,6 @@ export const cartSlice = createSlice({
 	},
 });
 
-// export const saveStateToLocalStorage = (state) => {
-// 	try {
-// 		const serializedState = JSON.stringify(state);
-// 		localStorage.setItem('cartState', serializedState);
-// 	} catch (error) {
-// 		alert(error);
-// 	}
-// };
-
-// const loadFromLocalStorage = () => {
-// 	try {
-// 		const serializedState = localStorage.getItem('cartState');
-
-// 		if (serializedState === null) return undefined;
-
-// 		return JSON.parse(serializedState);
-// 	} catch (error) {
-// 		alert(error);
-// 		return undefined;
-// 	}
-// };
-
-// export const persistedState = loadFromLocalStorage();
-
 export const { addItemToCart, setMiniCartIsOpen } = cartSlice.actions;
 
 export default cartSlice.reducer;
