@@ -16,30 +16,37 @@ export const cartSlice = createSlice({
 		addItemToCart: (state, action) => {
 			// state.cartItems.push(action.payload);
 			// console.log('Before:', current(state.cartItems));
-			// const { id, items } = action.payload;
-			// const itemIndex = state.cartItems.findIndex((item) => item.id === id);
-			// if (itemIndex === -1) {
-			// 	state.cartItems.push({ id, items });
-			// } else {
-			// 	//item exist, update the new value
-			// 	items.forEach((item, index) => {
-			// 		const nestedItemIndex = state.cartItems[itemIndex].items.findIndex(
-			// 			(title) => title[0] === item[0]
-			// 		);
-			// console.log(
-			// 	state.cartItems[itemIndex].items.findIndex((i) =>
-			// 		console.log(i[0] === item[0])
-			// 	),
-			// 	item[0]
-			// );
-			// 		if (nestedItemIndex === -1) {
-			// 			state.cartItems[itemIndex].items.push(item);
-			// 		} else {
-			// 			state.cartItems[itemIndex].items[nestedItemIndex].isChecked =
-			// 				item.isChecked;
-			// 		}
-			// 	});
-			// }
+			// const { id, items } = action?.payload;
+
+			const id = action.payload[0];
+			const items = action.payload[1];
+
+			console.log(action.payload);
+
+			const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
+			if (itemIndex === -1) {
+				state.cartItems.push([action.payload]);
+			} else {
+				//item exist, update the new value
+				console.log('same id');
+				items.forEach((item, index) => {
+					const nestedItemIndex = state.cartItems[itemIndex].items.findIndex(
+						(title) => title[0] === item[0]
+					);
+					console.log(
+						state.cartItems[itemIndex].items.findIndex((i) =>
+							console.log(i[0] === item[0])
+						),
+						item[0]
+					);
+					if (nestedItemIndex === -1) {
+						state.cartItems[itemIndex].items.push(item);
+					} else {
+						state.cartItems[itemIndex].items[nestedItemIndex].isChecked =
+							item.isChecked;
+					}
+				});
+			}
 			// console.log('After:', current(state.cartItems));
 		},
 		setMiniCartIsOpen: (state) => {

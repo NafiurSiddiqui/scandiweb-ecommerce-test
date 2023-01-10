@@ -25,9 +25,12 @@ class DescriptionCard extends Component {
 		const { attributes } = this.props;
 
 		// console.log('Does it?');
-		this.setState({
-			items: Object.entries(attributes),
-		});
+
+		if (attributes) {
+			this.setState({
+				items: Object.entries(attributes),
+			});
+		}
 	}
 
 	getSelectedValues(id, itemValues) {
@@ -50,8 +53,6 @@ class DescriptionCard extends Component {
 	}
 
 	updateItems(itemIndex, btnIndex) {
-		console.log(itemIndex, btnIndex);
-
 		this.setState((prevState) => {
 			const updatedItems = prevState.items.map((item, index) => {
 				if (index === itemIndex) {
@@ -86,11 +87,7 @@ class DescriptionCard extends Component {
 
 		// console.log(convertedItems);
 
-		const cartItem = {
-			id: selectedBrand,
-			items: items,
-		};
-
+		const cartItem = [selectedBrand, items];
 		// console.log(cartItem);
 		addItemToCart(cartItem);
 	}
