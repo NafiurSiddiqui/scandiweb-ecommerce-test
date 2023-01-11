@@ -12,7 +12,7 @@ class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedBrand: this.props.products.name,
+			selectedTitle: this.props.products.name,
 			selectedValues: [],
 			items: [],
 		};
@@ -73,22 +73,24 @@ class DescriptionCard extends Component {
 	}
 
 	cartItemHandler() {
-		const { items, selectedBrand } = this.state;
-		const { addItemToCart } = this.props;
+		const { items, selectedTitle } = this.state;
+		const { addItemToCart, cartItems } = this.props;
 
-		const convertedItems = {};
+		const itemIndex = cartItems?.findIndex((item) => item[0] === selectedTitle);
 
-		for (const [key, value] of items) {
-			convertedItems[key] = {
-				title: key,
-				items: value,
-			};
-		}
+		cartItems?.forEach((item) => {
+			const nestedItemIndex = cartItems[itemIndex][1].findIndex(
+				(nestedItem) => nestedItem[0] === item[0]
+			);
+			console.log(nestedItemIndex);
+		});
 
-		// console.log(convertedItems);
+		console.log(itemIndex);
 
-		const cartItem = [selectedBrand, items];
-		// console.log(cartItem);
+		// console.log(cartItems[0][1]);
+
+		const cartItem = [selectedTitle, items];
+		// console.log(cartItems);
 		addItemToCart(cartItem);
 	}
 
@@ -161,6 +163,7 @@ const mapStateToProps = (state) => {
 	return {
 		productID: state.products.productID,
 		selectedProduct: state.products.selectedProduct,
+		cartItems: state.cart.cartItems,
 	};
 };
 
