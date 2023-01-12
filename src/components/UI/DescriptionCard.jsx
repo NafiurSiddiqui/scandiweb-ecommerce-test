@@ -80,53 +80,71 @@ class DescriptionCard extends Component {
 		const itemIndex = cartItems?.findIndex((item) => item[0] === selectedTitle);
 
 		// console.log(itemIndex);
-
-		const userItems = [selectedTitle, items];
+		let userItems = [selectedTitle, items];
 
 		// addItemToCart(userItems);
 		if (itemIndex !== -1) {
 			const existingItem = cartItems[itemIndex];
 
-			// console.log(...existingItem[1]);
 			// console.log(...existingItem[1].slice(0, itemIndex));
-
+			let itemIsChecked;
+			let cartItemIsChecked;
 			for (let i = 0; i < existingItem[1].length; i++) {
-				let nestedIndex = -1;
-				let flag = false;
-				// console.log(...existingItem[1].slice(nestedIndex + 1));
-				// console.log(existingItem[1][i][1].map((item) => item.value));
-				// console.log(userItems[1][i][1].map((userVal) => userVal.value));
-				let itemIsChecked = userItems[1][i][1].map((item) => item.isChecked);
+				itemIsChecked = userItems[1][i][1].map((item) => item.isChecked);
+				cartItemIsChecked = existingItem[1][i][1].map((item) => item.isChecked);
 				let itemValue = existingItem[1][i][1].map((item) => item.value);
-				let updatedValues = existingItem[1][i][1].map((val, index) => {
-					// console.log(val.value);
-					// console.log(itemValue[index]);
-					// console.log(itemIsChecked[index]);
-
-					if (val.value === itemValue[index]) {
-						flag = true;
-						nestedIndex = i;
-						return { ...val, isChecked: itemIsChecked[index] };
-					}
-					return val;
-				});
-				if (flag) {
-					const updatedItem = [
-						existingItem[0],
-						[
-							...existingItem[1].slice(0, nestedIndex),
-							updatedValues,
-							...existingItem[1].slice(nestedIndex + 1),
-						],
-					];
-					addItemToCart([
-						...cartItems.slice(0, itemIndex),
-						updatedItem,
-						...cartItems.slice(itemIndex + 1),
-					]);
-					break;
-				}
 			}
+
+			//if item does not match
+			const itemCheck = itemIsChecked.every(
+				(val, i) => val === cartItemIsChecked[i]
+			);
+
+			if (!itemCheck) {
+				//remove the index of the existing item
+				// userItems = [...cartItems.splice(itemIndex, itemIndex + 1)];
+				//push the new userItems
+			}
+
+			// for (let i = 0; i < existingItem[1].length; i++) {
+			// 	let nestedIndex = -1;
+			// 	let flag = false;
+			// 	// console.log(...existingItem[1].slice(nestedIndex + 1));
+			// 	// console.log(existingItem[1][i][1].map((item) => item.value));
+			// 	// console.log(userItems[1][i][1].map((userVal) => userVal.value));
+			// 	let itemIsChecked = userItems[1][i][1].map((item) => item.isChecked);
+			// 	let itemValue = existingItem[1][i][1].map((item) => item.value);
+			// 	let updatedValues = existingItem[1][i][1].map((val, index) => {
+			// 		// console.log(itemValue[index]);
+			// 		// console.log(itemIsChecked[index]);
+
+			// 		// console.log(val.isChecked === itemIsChecked[index]);
+
+			// 		if (val.value === itemValue[index]) {
+			// 			flag = true;
+			// 			console.log('Val === same');
+			// 			nestedIndex = i;
+			// 			return { ...val, isChecked: itemIsChecked[index] };
+			// 		}
+			// 		return val;
+			// 	});
+			// 	if (flag) {
+			// 		const updatedItem = [
+			// 			existingItem[0],
+			// 			[
+			// 				...existingItem[1].slice(0, nestedIndex),
+			// 				updatedValues,
+			// 				...existingItem[1].slice(nestedIndex + 1),
+			// 			],
+			// 		];
+			// 		addItemToCart([
+			// 			...cartItems.slice(0, itemIndex),
+			// 			updatedItem,
+			// 			...cartItems.slice(itemIndex + 1),
+			// 		]);
+			// 		break;
+			// 	}
+			// }
 		} else {
 			addItemToCart(...cartItems, userItems);
 		}
