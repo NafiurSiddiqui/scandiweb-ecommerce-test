@@ -79,18 +79,50 @@ class DescriptionCard extends Component {
 		//find the cart item
 		const itemIndex = cartItems?.findIndex((item) => item[0] === selectedTitle);
 
-		const cartItem = [selectedTitle, items];
+		// console.log(itemIndex);
 
-		addItemToCart(cartItem);
+		const userItems = [selectedTitle, items];
+
+		// addItemToCart(userItems);
+		if (itemIndex !== -1) {
+			const existingItem = cartItems[itemIndex];
+
+			// console.log(existingItem);
+
+			for (let i = 0; i < existingItem[1].length; i++) {
+				let nestedIndex = -1;
+				let flag = false;
+				console.log(existingItem[1][i][1].map((item) => item.value));
+				console.log(userItems[1][i][1]);
+				let updatedValues = existingItem[1][i][1].map((val) => {
+					if (val.value === userItems[1][i][1].value) {
+						return { ...val, isChecked: userItems[1][i][1].isChecked };
+					}
+					return val;
+				});
+				if (flag) {
+					const updatedItem = [
+						existingItem[0],
+						[
+							...existingItem[1].slice(0, nestedIndex),
+							updatedValues,
+							...existingItem[1].slice(nestedIndex + 1),
+						],
+					];
+					addItemToCart([
+						...cartItems.slice(0, itemIndex),
+						updatedItem,
+						...cartItems.slice(itemIndex + 1),
+					]);
+					break;
+				}
+			}
+		} else {
+			addItemToCart(...cartItems, userItems);
+		}
 
 		console.log(cartItems);
-		//if the item already exist in the cart slice
-		if (itemIndex !== -1) {
-			//find the position of the item
-			//go through each item
-			//if found a match with cartItems[1]
-			//update the boolean state with this.state.items[1]
-		}
+		// console.log(userItems);
 	}
 
 	render() {
