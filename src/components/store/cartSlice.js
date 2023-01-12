@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
 			const id = action?.payload[0];
 			const items = action?.payload[1];
 
-			const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
+			// const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
 
 			// console.log(state.cartItems.findIndex((item)=>))
 
@@ -35,25 +35,24 @@ export const cartSlice = createSlice({
 
 			// console.log(state.cartItems[itemIndex]);
 
-			if (itemIndex === -1) {
-				state.cartItems.push(action?.payload);
-			} else {
-				//item exist, update the new value
-				console.log('same id');
-				items.forEach((item, index) => {
-					// const nestedItemIndex = state.cartItems[itemIndex].items.findIndex(
-					// 	(title) => title[0] === item[0]
-					// );
-					// console.log(itemIndex);
-					// console.log(state.cartItems[0]);
-					// if (nestedItemIndex === -1) {
-					// 	state.cartItems[itemIndex].items.push(item);
-					// } else {
-					// 	state.cartItems[itemIndex].items[nestedItemIndex].isChecked =
-					// 		item.isChecked;
-					// }
-				});
-			}
+			// if (itemIndex === -1) {
+			state.cartItems.push(action?.payload);
+			// } else {
+			//item exist, update the new value
+			// console.log('same id');
+			// items.forEach((item, index) => {
+			// const nestedItemIndex = state.cartItems[itemIndex].items.findIndex(
+			// 	(title) => title[0] === item[0]
+			// );
+
+			// if (nestedItemIndex === -1) {
+			// 	state.cartItems[itemIndex].items.push(item);
+			// } else {
+			// 	state.cartItems[itemIndex].items[nestedItemIndex].isChecked =
+			// 		item.isChecked;
+			// }
+			// });
+			// }
 			// console.log('After:', current(state.cartItems));
 		},
 		setMiniCartIsOpen: (state) => {

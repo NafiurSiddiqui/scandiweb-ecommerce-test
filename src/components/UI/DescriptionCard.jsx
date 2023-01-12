@@ -76,22 +76,21 @@ class DescriptionCard extends Component {
 		const { items, selectedTitle } = this.state;
 		const { addItemToCart, cartItems } = this.props;
 
+		//find the cart item
 		const itemIndex = cartItems?.findIndex((item) => item[0] === selectedTitle);
 
-		cartItems?.forEach((item) => {
-			const nestedItemIndex = cartItems[itemIndex][1].findIndex(
-				(nestedItem) => nestedItem[0] === item[0]
-			);
-			console.log(nestedItemIndex);
-		});
-
-		console.log(itemIndex);
-
-		// console.log(cartItems[0][1]);
-
 		const cartItem = [selectedTitle, items];
-		// console.log(cartItems);
+
 		addItemToCart(cartItem);
+
+		console.log(cartItems);
+		//if the item already exist in the cart slice
+		if (itemIndex !== -1) {
+			//find the position of the item
+			//go through each item
+			//if found a match with cartItems[1]
+			//update the boolean state with this.state.items[1]
+		}
 	}
 
 	render() {
