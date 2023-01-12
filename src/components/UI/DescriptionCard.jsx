@@ -87,16 +87,26 @@ class DescriptionCard extends Component {
 		if (itemIndex !== -1) {
 			const existingItem = cartItems[itemIndex];
 
-			// console.log(existingItem);
+			// console.log(...existingItem[1]);
+			// console.log(...existingItem[1].slice(0, itemIndex));
 
 			for (let i = 0; i < existingItem[1].length; i++) {
 				let nestedIndex = -1;
 				let flag = false;
-				console.log(existingItem[1][i][1].map((item) => item.value));
-				console.log(userItems[1][i][1]);
-				let updatedValues = existingItem[1][i][1].map((val) => {
-					if (val.value === userItems[1][i][1].value) {
-						return { ...val, isChecked: userItems[1][i][1].isChecked };
+				// console.log(...existingItem[1].slice(nestedIndex + 1));
+				// console.log(existingItem[1][i][1].map((item) => item.value));
+				// console.log(userItems[1][i][1].map((userVal) => userVal.value));
+				let itemIsChecked = userItems[1][i][1].map((item) => item.isChecked);
+				let itemValue = existingItem[1][i][1].map((item) => item.value);
+				let updatedValues = existingItem[1][i][1].map((val, index) => {
+					// console.log(val.value);
+					// console.log(itemValue[index]);
+					// console.log(itemIsChecked[index]);
+
+					if (val.value === itemValue[index]) {
+						flag = true;
+						nestedIndex = i;
+						return { ...val, isChecked: itemIsChecked[index] };
 					}
 					return val;
 				});
@@ -121,7 +131,8 @@ class DescriptionCard extends Component {
 			addItemToCart(...cartItems, userItems);
 		}
 
-		console.log(cartItems);
+		console.log(`state: `, cartItems);
+		// console.log(cartItems.slice(0, 0), cartItems.slice(0, 1));
 		// console.log(userItems);
 	}
 
