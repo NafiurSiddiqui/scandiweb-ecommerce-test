@@ -16,8 +16,8 @@ const store = configureStore({
 	reducer: {
 		currency: currencySliceReducer,
 		products: productsSliceReducer,
-		cart: cartSliceReducer,
-		// cart: persistedReducer,
+		// cart: cartSliceReducer,
+		cart: persistedReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
@@ -27,4 +27,4 @@ const store = configureStore({
 
 export default store;
 
-// export const persistedStore = persistStore(store);
+export const persistedStore = persistStore(store);

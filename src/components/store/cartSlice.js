@@ -1,4 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
+import { produce } from 'immer';
 
 const initialState = {
 	cartItems: [],
@@ -14,47 +15,53 @@ export const cartSlice = createSlice({
 			state.productID = action.payload;
 		},
 		addItemToCart: (state, action) => {
-			// console.log('Before:', current(state.cartItems));
-			// const { id, items } = action?.payload;
-			// state.cartItems.push(action.payload);
-
-			// console.log(action.payload);
-
 			const id = action?.payload[0];
 			const items = action?.payload[1];
 
-			// const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
+			// console.log(name, options);
 
-			// console.log(state.cartItems.findIndex((item)=>))
+			const existingItem = state.cartItems.find((item) => item[0] === id);
 
-			// console.log(id, items);
+			if (existingItem) {
+				let isSame = true;
 
-			// items.forEach((item) =>
-			// 	console.log(item[1].find((item) => item['value'] === '512G'))
-			// );
+				items.forEach(([attributeName, { value, isChecked }]) => {
+					// console.log(existingItem[1]);
+					const existingOption = existingItem[1].find(
+						(item) => item[0] === attributeName
+					);
 
-			// console.log(state.cartItems[itemIndex]);
+					if (existingOption) {
+						// console.log(JSON.stringify(existingOption[1]));
+						if (existingOption[1].isChecked !== isChecked) {
+							// console.log('not same');
+							isSame = false;
+						} else {
+							isSame = false;
+						}
+					}
+				});
 
-			// if (itemIndex === -1) {
-			state.cartItems.push(action?.payload);
-			// } else {
-			//item exist, update the new value
-			// console.log('same id');
-			// items.forEach((item, index) => {
-			// const nestedItemIndex = state.cartItems[itemIndex].items.findIndex(
-			// 	(title) => title[0] === item[0]
-			// );
+				if (isSame) {
+					return;
+				} else {
+					// const updatedItems = state.cartItems.filter((item) => item[0] !== id);
 
-			// if (nestedItemIndex === -1) {
-			// 	state.cartItems[itemIndex].items.push(item);
-			// } else {
-			// 	state.cartItems[itemIndex].items[nestedItemIndex].isChecked =
-			// 		item.isChecked;
-			// }
-			// });
-			// }
-			// console.log('After:', current(state.cartItems));
+					const newState = Object.assign({}, state);
+
+					newState.cartItems = state.cartItems.filter((item) => item[0] !== id);
+
+					newState.cartItems.push(action.payload);
+
+					return newState;
+
+					// state.cartItems.push(updatedItems);
+				}
+			} else {
+				state.cartItems.push(action.payload);
+			}
 		},
+
 		setMiniCartIsOpen: (state) => {
 			state.miniCartIsOpen = !state.miniCartIsOpen;
 		},
