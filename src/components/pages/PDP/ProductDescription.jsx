@@ -7,6 +7,7 @@ import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
 import { setSelectedProduct } from '../../store/productsSlice';
 import { addItemToCart } from '../../store/cartSlice';
+import productHandler from '../../Utilities/ProductHandler';
 
 /**
  * @className - 'PDP' = product description
@@ -110,21 +111,19 @@ class ProductDescription extends Component {
 					//converted attributes
 					const attID = PDP[0].attributesID;
 					const attItems = PDP[0].attributesItem;
-
-					// const mappedAttItems = attItems.map((item, i) =>
-					// 	item.map((item) => ({ values: item, isChecked: false }))
-					// );
-
+					//default values set
 					const mappedAttItems = attItems.map((itemT) =>
 						itemT.map((item, index) => {
 							return { value: item, isChecked: index === 0 };
 						})
 					);
-
+					//attribites data structure
 					const attributes = attID.reduce((acc, key, index) => {
 						acc[key] = mappedAttItems[index];
 						return acc;
 					}, {});
+
+					// const [PDP, galleryOverflow, ]
 
 					return (
 						<>

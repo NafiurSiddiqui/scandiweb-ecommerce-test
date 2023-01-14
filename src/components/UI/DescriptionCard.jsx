@@ -106,8 +106,6 @@ class DescriptionCard extends Component {
 			attributes,
 		} = this.props;
 
-		console.log(cartItems);
-
 		return (
 			<article className={className}>
 				<div className={`${className}__headers`}>

@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	cartItems: [],
@@ -17,8 +17,6 @@ export const cartSlice = createSlice({
 			const id = action?.payload[0];
 			const items = action?.payload[1];
 
-			console.log('CUR', current(state.cartItems));
-
 			const existingItem = state.cartItems.find((item) => item[0] === id);
 			const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
 
@@ -36,7 +34,6 @@ export const cartSlice = createSlice({
 						const existingItemCheck = existingOption[1].map(
 							(item) => item.isChecked
 						);
-						console.log(existingItemCheck);
 
 						const equal = existingItemCheck.every(
 							(item, i) => item === newItemCheck[i]

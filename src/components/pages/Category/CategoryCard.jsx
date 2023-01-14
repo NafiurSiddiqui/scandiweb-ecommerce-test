@@ -70,6 +70,7 @@ class CategoryCard extends Component {
 						color={'#ffffff'}
 						className={`category-item__image-wrapper__cart`}
 						itemID={productID}
+						inStock={inStock}
 					/>
 				</div>
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItemToCart, setMiniCartIsOpen } from '../store/cartSlice';
+import productHandler from '../Utilities/ProductHandler';
 
 class MiniCartIcon extends Component {
 	constructor(props) {
@@ -15,21 +16,21 @@ class MiniCartIcon extends Component {
 		this.addToCartHandler = this.addToCartHandler.bind(this);
 	}
 
-	componentDidMount() {}
-
 	addToCartHandler(e) {
-		const { itemID, addItemToCart, cartItems } = this.props;
-
+		const { itemID, addItemToCart, products, selectedCurrency, inStock } =
+			this.props;
+		//if cartIcon is from header
 		const classGuard = e.target.classList[0] === 'header-cart__cart';
 
+		const userItems = productHandler(products, itemID, selectedCurrency);
+
 		if (classGuard) {
+			//following miniIcon wont work in header
 			return;
 		} else {
-			if (cartItems.includes(itemID)) {
-				return;
-			} else {
-				addItemToCart(itemID);
-			}
+			if (!inStock) return;
+
+			addItemToCart(userItems);
 		}
 	}
 
@@ -64,8 +65,7 @@ class MiniCartIcon extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		productID: state.products,
-		products: state.products,
+		products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
 		cartItems: state.cart.cartItems,
 	};
