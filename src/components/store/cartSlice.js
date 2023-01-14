@@ -1,5 +1,4 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { produce } from 'immer';
 
 const initialState = {
 	cartItems: [],
@@ -18,34 +17,22 @@ export const cartSlice = createSlice({
 			const id = action?.payload[0];
 			const items = action?.payload[1];
 
-			// console.log(name, options);
 			console.log('CUR', current(state.cartItems));
 
 			const existingItem = state.cartItems.find((item) => item[0] === id);
 			const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
 
-			// console.log(JSON.stringify(state.cartItems[itemIndex]));
-
 			if (existingItem) {
 				let isSame = true;
 
-				// console.log(items);
-
 				items.forEach((item) => {
-					// console.log(existingItem[1]);
-					// console.log(item[1].map((item) => item.isChecked));
 					let newItemCheck = item[1].map((item) => item.isChecked);
 
-					console.log(newItemCheck);
 					const existingOption = existingItem[1].find(
 						(nestedItem) => nestedItem[0] === item[0]
 					);
 
-					// console.log(existingOption);
-
 					if (existingOption) {
-						// console.log(JSON.stringify(existingOption[1]));
-						// console.log(existingOption[1].map((item) => item.isChecked));
 						const existingItemCheck = existingOption[1].map(
 							(item) => item.isChecked
 						);
@@ -55,8 +42,6 @@ export const cartSlice = createSlice({
 							(item, i) => item === newItemCheck[i]
 						);
 
-						console.log(!equal);
-
 						if (!equal) {
 							isSame = false;
 						}
@@ -64,15 +49,11 @@ export const cartSlice = createSlice({
 				});
 
 				if (isSame) {
-					console.log('Duplicate push');
-					console.log('CUR', current(state.cartItems));
 					return;
 				} else {
 					let newCartItems = [...state.cartItems];
-					// console.log(JSON.stringify(newCartItems));
 
 					newCartItems.splice(itemIndex, 1);
-					// console.log(JSON.stringify(newCartItems));
 
 					newCartItems.push(action.payload);
 
@@ -80,11 +61,8 @@ export const cartSlice = createSlice({
 						...state,
 						cartItems: newCartItems,
 					};
-					// state.cartItems.push(newCartItems);
 				}
 			} else {
-				// state.cartItems.push(action.payload);
-
 				return {
 					...state,
 					cartItems: [...state.cartItems, action.payload],
