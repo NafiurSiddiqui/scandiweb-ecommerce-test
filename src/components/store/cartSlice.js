@@ -19,46 +19,76 @@ export const cartSlice = createSlice({
 			const items = action?.payload[1];
 
 			// console.log(name, options);
+			console.log('CUR', current(state.cartItems));
 
 			const existingItem = state.cartItems.find((item) => item[0] === id);
+			const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
+
+			// console.log(JSON.stringify(state.cartItems[itemIndex]));
 
 			if (existingItem) {
 				let isSame = true;
 
-				items.forEach(([attributeName, { value, isChecked }]) => {
+				// console.log(items);
+
+				items.forEach((item) => {
 					// console.log(existingItem[1]);
+					// console.log(item[1].map((item) => item.isChecked));
+					let newItemCheck = item[1].map((item) => item.isChecked);
+
+					console.log(newItemCheck);
 					const existingOption = existingItem[1].find(
-						(item) => item[0] === attributeName
+						(nestedItem) => nestedItem[0] === item[0]
 					);
+
+					// console.log(existingOption);
 
 					if (existingOption) {
 						// console.log(JSON.stringify(existingOption[1]));
-						if (existingOption[1].isChecked !== isChecked) {
-							// console.log('not same');
-							isSame = false;
-						} else {
+						// console.log(existingOption[1].map((item) => item.isChecked));
+						const existingItemCheck = existingOption[1].map(
+							(item) => item.isChecked
+						);
+						console.log(existingItemCheck);
+
+						const equal = existingItemCheck.every(
+							(item, i) => item === newItemCheck[i]
+						);
+
+						console.log(!equal);
+
+						if (!equal) {
 							isSame = false;
 						}
 					}
 				});
 
 				if (isSame) {
+					console.log('Duplicate push');
+					console.log('CUR', current(state.cartItems));
 					return;
 				} else {
-					// const updatedItems = state.cartItems.filter((item) => item[0] !== id);
+					let newCartItems = [...state.cartItems];
+					// console.log(JSON.stringify(newCartItems));
 
-					const newState = Object.assign({}, state);
+					newCartItems.splice(itemIndex, 1);
+					// console.log(JSON.stringify(newCartItems));
 
-					newState.cartItems = state.cartItems.filter((item) => item[0] !== id);
+					newCartItems.push(action.payload);
 
-					newState.cartItems.push(action.payload);
-
-					return newState;
-
-					// state.cartItems.push(updatedItems);
+					return {
+						...state,
+						cartItems: newCartItems,
+					};
+					// state.cartItems.push(newCartItems);
 				}
 			} else {
-				state.cartItems.push(action.payload);
+				// state.cartItems.push(action.payload);
+
+				return {
+					...state,
+					cartItems: [...state.cartItems, action.payload],
+				};
 			}
 		},
 

@@ -150,7 +150,7 @@ class DescriptionCard extends Component {
 		// 	addItemToCart(...cartItems, userItems);
 		// }
 
-		addItemToCart(...cartItems, userItems);
+		addItemToCart(userItems);
 
 		// console.log(`state: `, cartItems);
 		// console.log(cartItems.slice(0, 0), cartItems.slice(0, 1));
