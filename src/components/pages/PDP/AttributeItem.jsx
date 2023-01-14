@@ -21,7 +21,7 @@ class AttributeItem extends Component {
 	componentDidMount() {
 		//Get the attributes
 		const { attributesItem } = this.props;
-
+		// console.log(attributesItem);
 		//set the attributes to state
 		this.setState({
 			btnItems: attributesItem,
@@ -78,6 +78,7 @@ class AttributeItem extends Component {
 			this.props;
 
 		const { btnItems } = this.state;
+		console.log(itemIndex);
 
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>

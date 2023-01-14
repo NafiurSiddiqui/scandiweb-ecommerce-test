@@ -14,7 +14,8 @@ class DescriptionCard extends Component {
 		this.state = {
 			selectedTitle: this.props.products.name,
 			selectedValues: [],
-			items: [],
+			// items: [],
+			userItems: [],
 		};
 		this.getSelectedValues = this.getSelectedValues.bind(this);
 		this.updateItems = this.updateItems.bind(this);
@@ -22,13 +23,14 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { attributes } = this.props;
+		// const { attributes } = this.props;
+		const { items } = this.props;
 
 		// console.log('Does it?');
 
-		if (attributes) {
+		if (items) {
 			this.setState({
-				items: Object.entries(attributes),
+				userItems: items,
 			});
 		}
 	}
@@ -54,7 +56,8 @@ class DescriptionCard extends Component {
 
 	updateItems(itemIndex, btnIndex) {
 		this.setState((prevState) => {
-			const updatedItems = prevState.items.map((item, index) => {
+			const updatedItems = prevState.userItems[1].map((item, index) => {
+				// console.log(itemIndex);
 				if (index === itemIndex) {
 					const updatedCheck = item[1].map((btn, isCheckIndex) => {
 						if (isCheckIndex === btnIndex) {
@@ -73,29 +76,31 @@ class DescriptionCard extends Component {
 	}
 
 	cartItemHandler() {
-		const { items, selectedTitle } = this.state;
+		const { items, selectedTitle, userItems } = this.state;
 		const { addItemToCart } = this.props;
 
-		let userItems = [selectedTitle, items];
+		console.log(userItems);
 
-		const mappedItems = items.map((item) =>
-			item[1].map((item) => item.isChecked)
-		);
-		//checks if any of the attributes has not been selected
-		const itemsNotChecked = mappedItems.some((items) =>
-			items.every((item) => item === false)
-		);
-		//alert if items are unchecked
-		if (itemsNotChecked) {
-			alert('Please select at lease one option');
-		} else {
-			addItemToCart(userItems);
-		}
+		// let userItems = [selectedTitle, items];
+
+		// const mappedItems = items.map((item) =>
+		// 	item[1].map((item) => item.isChecked)
+		// );
+		// //checks if any of the attributes has not been selected
+		// const itemsNotChecked = mappedItems.some((items) =>
+		// 	items.every((item) => item === false)
+		// );
+		// //alert if items are unchecked
+		// if (itemsNotChecked) {
+		// 	alert('Please select at lease one option');
+		// } else {
+		// 	addItemToCart(userItems);
+		// }
 	}
 
 	render() {
 		const { brand, name, prices } = this.props.products;
-		const { items } = this.state;
+		const { userItems } = this.state;
 
 		const {
 			priceHeading,
@@ -104,7 +109,10 @@ class DescriptionCard extends Component {
 			productID,
 			products,
 			attributes,
+			items,
 		} = this.props;
+
+		console.log(userItems[1]?.map((item) => item[1]));
 
 		return (
 			<article className={className}>
@@ -112,14 +120,15 @@ class DescriptionCard extends Component {
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
 				</div>
-				{items ? (
-					items.map((item, itemIndex) => {
+				{userItems[1] ? (
+					userItems[1]?.map((item, itemIndex) => {
+						console.log(itemIndex);
 						return (
 							<AttributeItem
 								itemIndex={itemIndex}
 								attHeader={item[0]}
 								attributesItem={item[1]}
-								attributes={attributes}
+								attributes={items[1]}
 								key={itemIndex}
 								className={className}
 								getSelectedValues={this.getSelectedValues}
