@@ -75,55 +75,61 @@ class ProductDescription extends Component {
 					const { products } = data.category;
 
 					// getting the right data
-					let filteredProduct = products.filter(
-						(item) => item.id === productID
-					);
+					// let filteredProduct = products.filter(
+					// 	(item) => item.id === productID
+					// );
 
 					//return PDP as an OBJECT
-					let PDP = filteredProduct.map((item) => {
-						return {
-							brand: item.brand,
-							name: item.name,
-							images: item.gallery,
-							attributesID: item.attributes.map((item) => item.id),
-							attributesItem: item.attributes.map((item) =>
-								item.items.map((item) => item.id)
-							),
+					// let PDP = filteredProduct.map((item) => {
+					// 	return {
+					// 		brand: item.brand,
+					// 		name: item.name,
+					// 		images: item.gallery,
+					// 		attributesID: item.attributes.map((item) => item.id),
+					// 		attributesItem: item.attributes.map((item) =>
+					// 			item.items.map((item) => item.id)
+					// 		),
 
-							prices: item.prices.filter((item) => {
-								if (selectedCurrency !== null) {
-									return item.currency.label === selectedCurrency.currency;
-								} else {
-									return item.currency.label === 'USD';
-								}
-							}),
-							get amount() {
-								return this.prices[0].amount;
-							},
-							stock: item.inStock,
-						};
-					});
+					// 		prices: item.prices.filter((item) => {
+					// 			if (selectedCurrency !== null) {
+					// 				return item.currency.label === selectedCurrency.currency;
+					// 			} else {
+					// 				return item.currency.label === 'USD';
+					// 			}
+					// 		}),
+					// 		get amount() {
+					// 			return this.prices[0].amount;
+					// 		},
+					// 		stock: item.inStock,
+					// 	};
+					// });
 
 					//gallery overflow guard
 
-					let galleryOverflow = PDP[0].images.length > 6;
+					// let galleryOverflow = PDP[0].images.length > 6;
 
 					//converted attributes
-					const attID = PDP[0].attributesID;
-					const attItems = PDP[0].attributesItem;
-					//default values set
-					const mappedAttItems = attItems.map((itemT) =>
-						itemT.map((item, index) => {
-							return { value: item, isChecked: index === 0 };
-						})
-					);
+					// const attID = PDP[0].attributesID;
+					// const attItems = PDP[0].attributesItem;
+					// //default values set
+					// const mappedAttItems = attItems.map((itemT) =>
+					// 	itemT.map((item, index) => {
+					// 		return { value: item, isChecked: index === 0 };
+					// 	})
+					// );
 					//attribites data structure
-					const attributes = attID.reduce((acc, key, index) => {
-						acc[key] = mappedAttItems[index];
-						return acc;
-					}, {});
+					// const attributes = attID.reduce((acc, key, index) => {
+					// 	acc[key] = mappedAttItems[index];
+					// 	return acc;
+					// }, {});
 
-					// const [PDP, galleryOverflow, ]
+					const [PDP, galleryOverflow, attributes] = productHandler(
+						products,
+						productID,
+						selectedCurrency
+					);
+
+					console.log(PDP);
 
 					return (
 						<>
