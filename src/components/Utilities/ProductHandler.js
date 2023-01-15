@@ -50,7 +50,7 @@ function productHandler(products, productID, selectedCurrency) {
 
 	const items = Object.entries(attributes);
 
-	const userItems = [productID, items];
+	const userItems = [productID, items, { quantity: 0 }];
 
 	// return userItems;
 	return [PDP, galleryOverflow, attributes, userItems];

@@ -12,7 +12,7 @@ class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedTitle: this.props.products.name,
+			selectedTitle: this.props.productID,
 			selectedValues: [],
 			items: [],
 		};
@@ -76,7 +76,7 @@ class DescriptionCard extends Component {
 		const { items, selectedTitle } = this.state;
 		const { addItemToCart } = this.props;
 
-		let userItems = [selectedTitle, items];
+		let userItems = [selectedTitle, items, { quantity: 0 }];
 
 		const mappedItems = items.map((item) =>
 			item[1].map((item) => item.isChecked)
@@ -95,7 +95,7 @@ class DescriptionCard extends Component {
 
 	render() {
 		const { brand, name, prices } = this.props.products;
-		const { items } = this.state;
+		const { items, selectedTitle } = this.state;
 
 		const {
 			priceHeading,

@@ -46,13 +46,41 @@ export const cartSlice = createSlice({
 				});
 
 				if (isSame) {
-					return;
+					//check how many of them are isChecked and raise quanity
+					let itemCount = 0;
+
+					items.forEach((item) => {
+						itemCount += item[1].filter(
+							(nestedItem) => nestedItem.isChecked
+						).length;
+					});
+
+					let newCartItems = [...state.cartItems];
+
+					let updatedItem = { ...newCartItems[itemIndex] };
+
+					updatedItem[2] = {
+						...updatedItem[2],
+						quantity: updatedItem[2].quantity + itemCount,
+					};
+
+					newCartItems[itemIndex] = updatedItem;
+
+					return {
+						...state,
+						cartItems: newCartItems,
+					};
+					//if no new items isChecked, raise 1
 				} else {
 					let newCartItems = [...state.cartItems];
 
 					newCartItems.splice(itemIndex, 1);
 
-					newCartItems.push(action.payload);
+					let newItem = { ...action.payload };
+
+					newItem[2] = { quantity: 1 };
+
+					newCartItems.push(newItem);
 
 					return {
 						...state,
@@ -60,9 +88,16 @@ export const cartSlice = createSlice({
 					};
 				}
 			} else {
+				let newCartItems = [...state.cartItems];
+				let newItem = { ...action.payload };
+
+				newItem[2] = { quantity: 1 };
+
+				newCartItems.push(newItem);
+
 				return {
 					...state,
-					cartItems: [...state.cartItems, action.payload],
+					cartItems: newCartItems,
 				};
 			}
 		},
