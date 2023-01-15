@@ -10,7 +10,6 @@ class MiniCartIcon extends Component {
 		this.state = {
 			dark: '#43464E',
 			light: '#eeeeee',
-			itemHolder: [],
 		};
 
 		this.addToCartHandler = this.addToCartHandler.bind(this);
@@ -22,15 +21,15 @@ class MiniCartIcon extends Component {
 		//if cartIcon is from header
 		const classGuard = e.target.classList[0] === 'header-cart__cart';
 
-		const userItems = productHandler(products, itemID, selectedCurrency);
+		const [...userItems] = productHandler(products, itemID, selectedCurrency);
 
 		if (classGuard) {
 			//following miniIcon wont work in header
 			return;
 		} else {
 			if (!inStock) return;
-
-			addItemToCart(userItems);
+			//userItems[3] = defined data structure
+			addItemToCart(userItems[3]);
 		}
 	}
 
