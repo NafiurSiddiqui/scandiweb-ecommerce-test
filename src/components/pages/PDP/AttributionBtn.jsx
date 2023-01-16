@@ -57,6 +57,9 @@ class AttributionBtn extends Component {
 			this.props;
 
 		const { colorSwatch } = this.state;
+		const largeBtnGuard = item.length > 2;
+
+		console.log(largeBtnGuard);
 
 		let itemBackground = colorSwatch
 			? {
@@ -88,7 +91,7 @@ class AttributionBtn extends Component {
 					...itemBackground,
 					...defaultColorChecked,
 					fontSize: miniCart ? '0.75rem' : '',
-					minWidth: miniCart ? '1.1rem' : '2.5rem',
+					minWidth: miniCart ? (largeBtnGuard ? '1.1rem' : '1.5rem') : '2.5rem',
 					padding: miniCart ? '0.2rem' : '0.4rem',
 				}}
 			>
