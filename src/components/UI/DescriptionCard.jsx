@@ -122,7 +122,10 @@ class DescriptionCard extends Component {
 		} = this.props;
 
 		return (
-			<article className={className}>
+			<article
+				className={className}
+				style={{ lineHeight: miniCart ? '1.1rem' : '1.5rem' }}
+			>
 				<div className={`${className}__headers`}>
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
