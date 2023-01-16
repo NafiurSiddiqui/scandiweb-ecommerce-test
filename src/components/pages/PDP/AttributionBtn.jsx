@@ -35,12 +35,13 @@ class AttributionBtn extends Component {
 			removeValuesHandler,
 			itemCheckHandler,
 			updateItems,
+			miniCart,
 		} = this.props;
 
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
 
-		if (this.state.miniCart === true) {
+		if (miniCart === true) {
 			return;
 		}
 
@@ -98,6 +99,7 @@ class AttributionBtn extends Component {
 					name={item}
 					id={item}
 					value={item}
+					style={{ cursor: miniCart ? 'not-allowed' : 'pointer' }}
 					className={'attribution__item-checkbox'}
 					checked={itemIsChecked}
 					onChange={(e) => this.btnCheckHandler(e, itemIndex, btnIndex)}
