@@ -22,9 +22,22 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { attributes } = this.props;
+		const { attributes, miniCart } = this.props;
 
-		// console.log('Does it?');
+		if (miniCart && attributes) {
+			const attHeaders = attributes[1].map((item) => item[0]);
+			const attItems = attributes[1].map((item) => item[1]);
+
+			const selectedAttributes = attHeaders.reduce((acc, key, index) => {
+				acc[key] = attItems[index];
+				return acc;
+			}, {});
+
+			this.setState({
+				items: Object.entries(selectedAttributes),
+			});
+			return;
+		}
 
 		if (attributes) {
 			this.setState({
@@ -97,8 +110,9 @@ class DescriptionCard extends Component {
 
 	render() {
 		const { brand, name, prices } = this.props.products;
-		const { items, selectedTitle } = this.state;
+		const { items } = this.state;
 
+		console.log(items);
 		const {
 			priceHeading,
 			className,

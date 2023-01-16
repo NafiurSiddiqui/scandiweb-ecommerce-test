@@ -6,7 +6,7 @@ class CartItems extends Component {
 	render() {
 		const { products, cartItems } = this.props;
 
-		console.log(cartItems);
+		// console.log(cartItems);
 
 		// const cartItems = ['a', 'b', 'c'];
 		//---
@@ -14,7 +14,8 @@ class CartItems extends Component {
 		return (
 			<ul className="cart-items">
 				{cartItems.map((item) => {
-					return <CartItem key={item[0]} />;
+					console.log(item);
+					return <CartItem key={item[0]} cartItem={item} />;
 				})}
 			</ul>
 		);

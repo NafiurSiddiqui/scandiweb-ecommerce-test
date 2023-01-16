@@ -66,12 +66,15 @@ class CartItem extends Component {
 
 	render() {
 		const { products, selectedCurrency } = this.props.products;
+		const { cartItem } = this.props;
+
+		// console.log(cartItem);
 
 		const { imageCount } = this.state;
 
 		//filter out the cartItem
-		// let filteredProduct = products.filter((item) => item.id === productID);
-		let filteredProduct = products?.filter((item) => item.id === 'ps-5');
+
+		let filteredProduct = products?.filter((item) => item.id === cartItem[0]);
 
 		// return PDP as an OBJECT
 
@@ -119,6 +122,7 @@ class CartItem extends Component {
 					className="cart-items__pd"
 					products={PDP[0]}
 					miniCart={true}
+					attributes={cartItem}
 				/>
 
 				<div className="cart-quantity-wrapper">
