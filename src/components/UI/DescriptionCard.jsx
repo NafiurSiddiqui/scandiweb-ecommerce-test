@@ -102,7 +102,7 @@ class DescriptionCard extends Component {
 		const {
 			priceHeading,
 			className,
-			cartItems,
+			miniCart,
 			productID,
 			products,
 			attributes,
@@ -138,7 +138,7 @@ class DescriptionCard extends Component {
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
 					<span
 						className="pd__price-price"
-						style={{ fontSize: cartItems ? '1rem' : '' }}
+						style={{ fontSize: miniCart ? '1rem' : '' }}
 					>
 						<span className="pd__price-price__symbol">
 							{prices[0].currency.symbol}
@@ -151,7 +151,7 @@ class DescriptionCard extends Component {
 					className="pdp__cart-btn"
 					disable={products.stock}
 					onClick={this.cartItemHandler}
-					cartItem={cartItems}
+					miniCart={miniCart}
 				>
 					ADD TO CART
 				</Button>

@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setProducts } from '../../store/productsSlice';
-import { mapStateToProps } from '../Category/All';
 import CartItem from './CartItem';
 
 class CartItems extends Component {
 	render() {
-		const { products, selectedProduct } = this.props;
+		const { products, cartItems } = this.props;
 
-		console.log(products);
+		console.log(cartItems);
 
-		//test
-
-		const cartItems = ['a', 'b', 'c'];
+		// const cartItems = ['a', 'b', 'c'];
 		//---
 
 		return (
 			<ul className="cart-items">
 				{cartItems.map((item) => {
-					return <CartItem key={item} />;
+					return <CartItem key={item[0]} />;
 				})}
 			</ul>
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		cartItems: state.cart.cartItems,
+	};
+};
 
 export default connect(mapStateToProps)(CartItems);

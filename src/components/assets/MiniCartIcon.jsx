@@ -21,6 +21,8 @@ class MiniCartIcon extends Component {
 		//if cartIcon is from header
 		const classGuard = e.target.classList[0] === 'header-cart__cart';
 
+		if (!products || !itemID) return;
+
 		const [...userItems] = productHandler(products, itemID, selectedCurrency);
 
 		if (classGuard) {

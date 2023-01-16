@@ -118,7 +118,7 @@ class CartItem extends Component {
 				<DescriptionCard
 					className="cart-items__pd"
 					products={PDP[0]}
-					cartItem={true}
+					miniCart={true}
 				/>
 
 				<div className="cart-quantity-wrapper">

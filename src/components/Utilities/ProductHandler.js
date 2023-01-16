@@ -46,12 +46,16 @@ function productHandler(products, productID, selectedCurrency) {
 		return acc;
 	}, {});
 
-	const items = Object.entries(attributes);
+	if (!attributes) {
+		return;
+	} else {
+		const items = Object.entries(attributes);
 
-	const userItems = [productID, items, { quantity: 0 }];
+		const userItems = [productID, items, { quantity: 0 }];
 
-	// return userItems;
-	return [PDP, galleryOverflow, attributes, userItems];
+		// return userItems;
+		return [PDP, galleryOverflow, attributes, userItems];
+	}
 }
 
 export default productHandler;
