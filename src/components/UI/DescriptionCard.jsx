@@ -112,7 +112,6 @@ class DescriptionCard extends Component {
 		const { brand, name, prices } = this.props.products;
 		const { items } = this.state;
 
-		console.log(items);
 		const {
 			priceHeading,
 			className,
@@ -141,6 +140,7 @@ class DescriptionCard extends Component {
 								getSelectedValues={this.getSelectedValues}
 								updateItems={this.updateItems}
 								productID={productID}
+								miniCart={miniCart}
 							/>
 						);
 					})
