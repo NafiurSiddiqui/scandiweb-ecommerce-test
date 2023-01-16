@@ -72,7 +72,7 @@ class CartItem extends Component {
 		const { products, selectedCurrency } = this.props.products;
 		const { cartItem } = this.props;
 
-		// console.log(cartItem);
+		const quantity = cartItem[2].quantity;
 
 		const { imageCount } = this.state;
 
@@ -130,7 +130,11 @@ class CartItem extends Component {
 				/>
 
 				<div className="cart-quantity-wrapper">
-					<CartQuantitiy images={PDP[0].images} imageCount={imageCount} />
+					<CartQuantitiy
+						images={PDP[0].images}
+						imageCount={imageCount}
+						quantity={quantity}
+					/>
 
 					<div
 						className="cart-quantity__image-gallery-btns"

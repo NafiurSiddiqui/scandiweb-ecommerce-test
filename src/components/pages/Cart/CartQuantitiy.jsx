@@ -26,7 +26,7 @@ export default class CartQuantitiy extends Component {
 	}
 
 	render() {
-		const { images, imageCount } = this.props;
+		const { images, imageCount, quantity } = this.props;
 		const { itemCount } = this.state;
 
 		return (
@@ -45,7 +45,7 @@ export default class CartQuantitiy extends Component {
 						</span>
 					</div>
 					<span className="cart-quantity-container__actions-amount">
-						{itemCount}
+						{quantity || itemCount}
 					</span>
 					<div className="cart-quantity-container__actions-btn">
 						<span
