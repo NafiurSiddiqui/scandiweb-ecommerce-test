@@ -76,6 +76,8 @@ class DescriptionCard extends Component {
 		const { items, selectedTitle } = this.state;
 		const { addItemToCart } = this.props;
 
+		console.log(items);
+
 		let userItems = [selectedTitle, items, { quantity: 0 }];
 
 		const mappedItems = items.map((item) =>

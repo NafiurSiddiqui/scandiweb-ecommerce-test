@@ -2,8 +2,6 @@ function productHandler(products, productID, selectedCurrency) {
 	// getting the right data
 	let filteredProduct = products?.filter((item) => item.id === productID);
 
-	// console.log(products, productID, selectedCurrency);
-
 	// return PDP as an OBJECT
 	let PDP = filteredProduct?.map((item) => {
 		return {

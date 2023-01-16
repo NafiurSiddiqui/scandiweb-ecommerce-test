@@ -17,6 +17,8 @@ export const cartSlice = createSlice({
 			const id = action?.payload[0];
 			const items = action?.payload[1];
 
+			// console.log(items);
+
 			const existingItem = state.cartItems.find((item) => item[0] === id);
 			const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
 
@@ -24,6 +26,7 @@ export const cartSlice = createSlice({
 				let newCheckedItems = 0;
 				items.forEach((item) => {
 					let newItemCheck = item[1].map((item) => item.isChecked);
+
 					const existingOption = existingItem[1].find(
 						(nestedItem) => nestedItem[0] === item[0]
 					);
@@ -31,7 +34,10 @@ export const cartSlice = createSlice({
 						const existingItemCheck = existingOption[1].map(
 							(item) => item.isChecked
 						);
+
 						newItemCheck.forEach((check, index) => {
+							// console.log('checkIndex ', existingItemCheck[index]);
+							console.log('Check ', check);
 							if (check && !existingItemCheck[index]) {
 								newCheckedItems++;
 							}
@@ -39,8 +45,10 @@ export const cartSlice = createSlice({
 					}
 				});
 				let newCartItems = [...state.cartItems];
+
 				newCartItems[itemIndex] = {
 					...newCartItems[itemIndex],
+					1: items,
 					2: {
 						...newCartItems[itemIndex][2],
 						quantity: newCartItems[itemIndex][2].quantity + newCheckedItems + 1,
