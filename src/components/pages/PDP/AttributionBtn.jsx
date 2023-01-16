@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class AttributionBtn extends Component {
 	constructor() {
@@ -59,8 +58,6 @@ class AttributionBtn extends Component {
 		const { colorSwatch } = this.state;
 		const largeBtnGuard = item.length > 2;
 
-		console.log(largeBtnGuard);
-
 		let itemBackground = colorSwatch
 			? {
 					backgroundColor:
@@ -110,14 +107,4 @@ class AttributionBtn extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		productID: state.products.productID,
-		products: state.products,
-		selectedCurrency: state.currency.selectedCurrency,
-	};
-};
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AttributionBtn);
+export default AttributionBtn;

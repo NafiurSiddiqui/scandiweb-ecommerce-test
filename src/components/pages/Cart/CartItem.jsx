@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import DescriptionCard from '../../UI/DescriptionCard';
 import CartQuantitiy from './CartQuantitiy';
 
+/**
+ * @cartItem = ['productID', [items]]
+ */
+
 class CartItem extends Component {
 	constructor(props) {
 		super(props);
