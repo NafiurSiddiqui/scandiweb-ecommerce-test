@@ -14,62 +14,71 @@ export const cartSlice = createSlice({
 			state.productID = action.payload;
 		},
 		addItemToCart: (state, action) => {
-			const id = action?.payload[0];
-			const items = action?.payload[1];
+			const id = action.payload[0];
+			const items = action.payload[1];
+			const existingItem = state.cartItems.cartItems.find(
+				(item) => item[0] === id
+			);
 
-			const existingItem = state.cartItems.find((item) => item[0] === id);
-			const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
-			//Item exist
 			if (existingItem) {
-				let newCheckedItems = 0;
-
-				items.forEach((item) => {
-					//check for each item check
-					let newItemCheck = item[1].map((item) => item.isChecked);
-					//check if the item match with incoming item
-					const existingOption = existingItem[1].find(
-						(nestedItem) => nestedItem[0] === item[0]
-					);
-					if (existingOption) {
-						const existingItemCheck = existingOption[1].map(
-							(item) => item.isChecked
-						);
-						//if exisitng is different than newItem
-						newItemCheck.forEach((check, index) => {
-							if (check && !existingItemCheck[index]) {
-								//updatQuantity
-								newCheckedItems++;
-							}
-						});
-					}
-				});
-				//make a copy of the exisiting state
-				let newCartItems = [...state.cartItems];
-
-				newCartItems[itemIndex] = {
-					...newCartItems[itemIndex],
-					1: items,
-					2: {
-						...newCartItems[itemIndex][2],
-						quantity: newCartItems[itemIndex][2].quantity + newCheckedItems + 1,
-					},
-				};
-				return {
-					...state,
-					cartItems: newCartItems,
-				};
+				if (JSON.stringify(existingItem[1]) !== JSON.stringify(items)) {
+					let newItem = { ...action.payload };
+					newItem[2] = { quantity: 1 };
+					state.cartItems.push(newItem);
+				} else {
+					existingItem[2].quantity++;
+				}
 			} else {
-				//if items are same
-				let newCartItems = [...state.cartItems];
 				let newItem = { ...action.payload };
 				newItem[2] = { quantity: 1 };
-				newCartItems.push(newItem);
-				return {
-					...state,
-					cartItems: newCartItems,
-				};
+				state.cartItems.push(newItem);
 			}
 		},
+		// addItemToCart: (state, action) => {
+		// 	const id = action.payload[0];
+		// 	const items = action.payload[1];
+		// 	const existingItem = state.cartItems.find((item) => item[0] === id);
+
+		// 	if (existingItem) {
+		// 		if (JSON.stringify(existingItem[1]) !== JSON.stringify(items)) {
+		// 			items.forEach((item) => {
+		// 				let newItemCheck = item[1].map((item) => item.isChecked);
+
+		// 				for (let i = 0; i < newItemCheck.length; i++) {
+		// 					if (newItemCheck[i]) {
+		// 						let newCartItem = {
+		// 							0: id,
+		// 							1: [item[0], { value: item[1][i].value, isChecked: true }],
+		// 							2: { quantity: 1 },
+		// 						};
+		// 						state.cartItems.push(newCartItem);
+		// 					} else {
+		// 						item[1][i].isChecked = false;
+		// 					}
+		// 				}
+		// 			});
+		// 		} else {
+		// 			existingItem[2].quantity++;
+		// 		}
+		// 	} else {
+		// 		items.forEach((item) => {
+		// 			let newItemCheck = item[1].map((item) => item.isChecked);
+		// 			for (let i = 0; i < newItemCheck.length; i++) {
+		// 				if (newItemCheck[i]) {
+		// 					let newCartItem = {
+		// 						0: id,
+		// 						1: [item[0], { value: item[1][i].value, isChecked: true }],
+		// 						2: { quantity: 1 },
+		// 					};
+		// 					state.cartItems.push(newCartItem);
+		// 				} else {
+		// 					item[1][i].isChecked = false;
+		// 				}
+		// 			}
+		// 		});
+		// 	}
+		// },
+
 		setMiniCartIsOpen: (state) => {
 			state.miniCartIsOpen = !state.miniCartIsOpen;
 		},
