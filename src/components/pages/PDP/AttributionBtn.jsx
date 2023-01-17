@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class AttributionBtn extends Component {
 	constructor() {
@@ -36,12 +35,13 @@ class AttributionBtn extends Component {
 			removeValuesHandler,
 			itemCheckHandler,
 			updateItems,
+			miniCart,
 		} = this.props;
 
 		const attCheck = e.target.checked;
 		const attValue = e.target.value;
 
-		if (this.state.btnDisable === true) {
+		if (miniCart === true) {
 			return;
 		}
 
@@ -53,9 +53,11 @@ class AttributionBtn extends Component {
 	}
 
 	render() {
-		const { item, className, btnIndex, itemIndex, itemIsChecked } = this.props;
+		const { item, className, btnIndex, itemIndex, itemIsChecked, miniCart } =
+			this.props;
 
-		const { colorSwatch, btnDisable } = this.state;
+		const { colorSwatch } = this.state;
+		const largeBtnGuard = item.length > 2;
 
 		let itemBackground = colorSwatch
 			? {
@@ -67,7 +69,7 @@ class AttributionBtn extends Component {
 							: item === 'Black'
 							? '#2B2B2B'
 							: item,
-					minWidth: btnDisable ? '1.1rem' : '2.5rem',
+					minWidth: miniCart ? '1.1rem' : '2.5rem',
 					border: 'none',
 			  }
 			: !colorSwatch && itemIsChecked
@@ -86,7 +88,9 @@ class AttributionBtn extends Component {
 				style={{
 					...itemBackground,
 					...defaultColorChecked,
-					fontSize: btnDisable ? '0.834rem' : '',
+					fontSize: miniCart ? '0.75rem' : '',
+					minWidth: miniCart ? (largeBtnGuard ? '1.1rem' : '1.5rem') : '2.5rem',
+					padding: miniCart ? '0.2rem' : '0.4rem',
 				}}
 			>
 				<label htmlFor="item">{colorSwatch ? '' : item}</label>
@@ -95,6 +99,7 @@ class AttributionBtn extends Component {
 					name={item}
 					id={item}
 					value={item}
+					style={{ cursor: miniCart ? 'not-allowed' : 'pointer' }}
 					className={'attribution__item-checkbox'}
 					checked={itemIsChecked}
 					onChange={(e) => this.btnCheckHandler(e, itemIndex, btnIndex)}
@@ -104,14 +109,4 @@ class AttributionBtn extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		productID: state.products.productID,
-		products: state.products,
-		selectedCurrency: state.currency.selectedCurrency,
-	};
-};
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AttributionBtn);
+export default AttributionBtn;

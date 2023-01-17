@@ -12,7 +12,7 @@ class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedTitle: this.props.products.name,
+			selectedTitle: this.props.productID,
 			selectedValues: [],
 			// items: [],
 			userItems: [],
@@ -23,10 +23,22 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		// const { attributes } = this.props;
-		const { items } = this.props;
+		const { attributes, miniCart } = this.props;
 
-		// console.log('Does it?');
+		if (miniCart && attributes) {
+			const attHeaders = attributes[1].map((item) => item[0]);
+			const attItems = attributes[1].map((item) => item[1]);
+
+			const selectedAttributes = attHeaders.reduce((acc, key, index) => {
+				acc[key] = attItems[index];
+				return acc;
+			}, {});
+
+			this.setState({
+				items: Object.entries(selectedAttributes),
+			});
+			return;
+		}
 
 		if (items) {
 			this.setState({
@@ -79,7 +91,9 @@ class DescriptionCard extends Component {
 		const { items, selectedTitle, userItems } = this.state;
 		const { addItemToCart } = this.props;
 
-		console.log(userItems);
+		console.log(items);
+
+		let userItems = [selectedTitle, items, { quantity: 0 }];
 
 		// let userItems = [selectedTitle, items];
 
@@ -105,7 +119,7 @@ class DescriptionCard extends Component {
 		const {
 			priceHeading,
 			className,
-			cartItems,
+			miniCart,
 			productID,
 			products,
 			attributes,
@@ -115,7 +129,10 @@ class DescriptionCard extends Component {
 		console.log(userItems[1]?.map((item) => item[1]));
 
 		return (
-			<article className={className}>
+			<article
+				className={className}
+				style={{ lineHeight: miniCart ? '1.1rem' : '1.5rem' }}
+			>
 				<div className={`${className}__headers`}>
 					<h2>{brand}</h2>
 					<h3>{name}</h3>
@@ -134,6 +151,7 @@ class DescriptionCard extends Component {
 								getSelectedValues={this.getSelectedValues}
 								updateItems={this.updateItems}
 								productID={productID}
+								miniCart={miniCart}
 							/>
 						);
 					})
@@ -145,7 +163,7 @@ class DescriptionCard extends Component {
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
 					<span
 						className="pd__price-price"
-						style={{ fontSize: cartItems ? '1rem' : '' }}
+						style={{ fontSize: miniCart ? '1rem' : '' }}
 					>
 						<span className="pd__price-price__symbol">
 							{prices[0].currency.symbol}
@@ -158,7 +176,7 @@ class DescriptionCard extends Component {
 					className="pdp__cart-btn"
 					disable={products.stock}
 					onClick={this.cartItemHandler}
-					cartItem={cartItems}
+					miniCart={miniCart}
 				>
 					ADD TO CART
 				</Button>

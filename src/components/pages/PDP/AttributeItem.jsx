@@ -74,8 +74,14 @@ class AttributeItem extends Component {
 	}
 
 	render() {
-		const { itemIndex, attHeader, attributesItem, className, updateItems } =
-			this.props;
+		const {
+			itemIndex,
+			attHeader,
+			attributesItem,
+			className,
+			updateItems,
+			miniCart,
+		} = this.props;
 
 		const { btnItems } = this.state;
 		console.log(itemIndex);
@@ -106,6 +112,7 @@ class AttributeItem extends Component {
 									updateItems={updateItems}
 									itemIsChecked={item.isChecked}
 									defaultValue={attributesItem}
+									miniCart={miniCart}
 								/>
 							);
 						})}

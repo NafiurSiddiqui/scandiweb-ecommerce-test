@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import DescriptionCard from '../../UI/DescriptionCard';
 import CartQuantitiy from './CartQuantitiy';
 
+/**
+ * @cartItem = ['productID', [items]]
+ */
+
 class CartItem extends Component {
 	constructor(props) {
 		super(props);
@@ -66,12 +70,15 @@ class CartItem extends Component {
 
 	render() {
 		const { products, selectedCurrency } = this.props.products;
+		const { cartItem } = this.props;
+
+		const quantity = cartItem[2].quantity;
 
 		const { imageCount } = this.state;
 
 		//filter out the cartItem
-		// let filteredProduct = products.filter((item) => item.id === productID);
-		let filteredProduct = products?.filter((item) => item.id === 'ps-5');
+
+		let filteredProduct = products?.filter((item) => item.id === cartItem[0]);
 
 		// return PDP as an OBJECT
 
@@ -118,11 +125,16 @@ class CartItem extends Component {
 				<DescriptionCard
 					className="cart-items__pd"
 					products={PDP[0]}
-					cartItem={true}
+					miniCart={true}
+					attributes={cartItem}
 				/>
 
 				<div className="cart-quantity-wrapper">
-					<CartQuantitiy images={PDP[0].images} imageCount={imageCount} />
+					<CartQuantitiy
+						images={PDP[0].images}
+						imageCount={imageCount}
+						quantity={quantity}
+					/>
 
 					<div
 						className="cart-quantity__image-gallery-btns"

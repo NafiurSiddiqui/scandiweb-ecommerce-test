@@ -1,9 +1,13 @@
 function productHandler(products, productID, selectedCurrency) {
 	// getting the right data
+<<<<<<< HEAD
 	let filteredProduct = products.filter((item) => item.id === productID);
+=======
+	let filteredProduct = products?.filter((item) => item.id === productID);
+>>>>>>> main
 
 	// return PDP as an OBJECT
-	let PDP = filteredProduct.map((item) => {
+	let PDP = filteredProduct?.map((item) => {
 		return {
 			brand: item.brand,
 			name: item.name,
@@ -13,7 +17,7 @@ function productHandler(products, productID, selectedCurrency) {
 				item.items.map((item) => item.id)
 			),
 
-			prices: item.prices.filter((item) => {
+			prices: item?.prices?.filter((item) => {
 				if (selectedCurrency !== null) {
 					return item.currency.label === selectedCurrency.currency;
 				} else {
@@ -29,29 +33,33 @@ function productHandler(products, productID, selectedCurrency) {
 
 	//gallery overFlow guard
 
-	let galleryOverflow = PDP[0].images.length > 6;
+	let galleryOverflow = PDP[0]?.images?.length > 6;
 
 	//converted attributes
-	const attID = PDP[0].attributesID;
-	const attItems = PDP[0].attributesItem;
+	const attID = PDP[0]?.attributesID;
+	const attItems = PDP[0]?.attributesItem;
 	//default values set
-	const mappedAttItems = attItems.map((itemT) =>
+	const mappedAttItems = attItems?.map((itemT) =>
 		itemT.map((item, index) => {
 			return { value: item, isChecked: index === 0 };
 		})
 	);
 
-	const attributes = attID.reduce((acc, key, index) => {
+	const attributes = attID?.reduce((acc, key, index) => {
 		acc[key] = mappedAttItems[index];
 		return acc;
 	}, {});
 
-	const items = Object.entries(attributes);
+	if (!attributes) {
+		return;
+	} else {
+		const items = Object.entries(attributes);
 
-	const userItems = [productID, items];
+		const userItems = [productID, items, { quantity: 0 }];
 
-	// return userItems;
-	return [PDP, galleryOverflow, userItems];
+		// return userItems;
+		return [PDP, galleryOverflow, attributes, userItems];
+	}
 }
 
 export default productHandler;
