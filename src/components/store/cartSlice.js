@@ -17,16 +17,16 @@ export const cartSlice = createSlice({
 			const id = action?.payload[0];
 			const items = action?.payload[1];
 
-			// console.log(items);
-
 			const existingItem = state.cartItems.find((item) => item[0] === id);
 			const itemIndex = state.cartItems.findIndex((item) => item[0] === id);
-
+			//Item exist
 			if (existingItem) {
 				let newCheckedItems = 0;
-				items.forEach((item) => {
-					let newItemCheck = item[1].map((item) => item.isChecked);
 
+				items.forEach((item) => {
+					//check for each item check
+					let newItemCheck = item[1].map((item) => item.isChecked);
+					//check if the item match with incoming item
 					const existingOption = existingItem[1].find(
 						(nestedItem) => nestedItem[0] === item[0]
 					);
@@ -34,16 +34,16 @@ export const cartSlice = createSlice({
 						const existingItemCheck = existingOption[1].map(
 							(item) => item.isChecked
 						);
-
+						//if exisitng is different than newItem
 						newItemCheck.forEach((check, index) => {
-							// console.log('checkIndex ', existingItemCheck[index]);
-							console.log('Check ', check);
 							if (check && !existingItemCheck[index]) {
+								//updatQuantity
 								newCheckedItems++;
 							}
 						});
 					}
 				});
+				//make a copy of the exisiting state
 				let newCartItems = [...state.cartItems];
 
 				newCartItems[itemIndex] = {
@@ -59,6 +59,7 @@ export const cartSlice = createSlice({
 					cartItems: newCartItems,
 				};
 			} else {
+				//if items are same
 				let newCartItems = [...state.cartItems];
 				let newItem = { ...action.payload };
 				newItem[2] = { quantity: 1 };
