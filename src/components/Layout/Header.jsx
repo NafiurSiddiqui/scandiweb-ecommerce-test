@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
-import { getProductID } from '../store/categorySlice';
+import { getProductID } from '../store/productsSlice';
 
 class Header extends Component {
 	constructor() {

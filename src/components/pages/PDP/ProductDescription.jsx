@@ -68,7 +68,7 @@ class ProductDescription extends Component {
 
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
-				{({ error, loading, data, client }) => {
+				{({ error, loading, data }) => {
 					if (error) return `something went wrong !!! ${error} `;
 					if (loading || !data) return 'Loading ... ';
 

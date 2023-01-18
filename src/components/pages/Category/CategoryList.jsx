@@ -2,7 +2,6 @@ import { gql } from '@apollo/client';
 import { Component, Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { getProductID } from '../../store/categorySlice';
 
 const CategoryAll = lazy(() => import('./All'));
 const CategoryClothes = lazy(() => import('./Clothes'));
@@ -43,8 +42,6 @@ export const GET_ALL_CATEGORIES = gql`
 
 class CategoryList extends Component {
 	render() {
-		// let { productID } = this.props.protductIDState;
-
 		return (
 			<section className={'category'}>
 				<Suspense fallback={<span>Loading...</span>}>
@@ -66,6 +63,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { getProductID };
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);
+export default connect(mapStateToProps)(CategoryList);

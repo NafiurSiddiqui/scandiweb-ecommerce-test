@@ -18,6 +18,7 @@ export const cartSlice = createSlice({
 			const id = action.payload[0];
 			const items = action.payload[1];
 
+			//Recursive model
 			function recursiveCheck(items, newItemValues) {
 				items.forEach((item) => {
 					if (Array.isArray(item[1])) {
@@ -37,6 +38,7 @@ export const cartSlice = createSlice({
 
 			let newItemValues = [];
 			recursiveCheck(items, newItemValues);
+
 			let existingItem = state.cartItems.find(
 				(cartItem) =>
 					cartItem[0] === id &&
