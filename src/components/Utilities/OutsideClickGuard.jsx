@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setMiniCartIsOpen } from '../store/cartSlice';
 import { setCurrencyIsOpen } from '../store/currencySlice';
 
 class OutsideClickGuard extends Component {
@@ -11,6 +12,9 @@ class OutsideClickGuard extends Component {
 	}
 
 	componentDidMount() {
+		// console.log(miniCartIsOpen);
+		// console.log(this.wrapperRef);
+
 		document.addEventListener('mousedown', this.handleClickOutside);
 	}
 
@@ -25,14 +29,23 @@ class OutsideClickGuard extends Component {
 	}
 
 	handleClickOutside(event) {
-		const { currencyIsOpen, miniCartIsOpen } = this.props;
-
-		console.log(miniCartIsOpen);
+		const {
+			currencyIsOpen,
+			miniCartIsOpen,
+			setCurrencyIsOpen,
+			setMiniCartIsOpen,
+		} = this.props;
 
 		//  setCurrency to false if clicked on outside of currency
 		if (currencyIsOpen) {
 			if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-				this.props.setCurrencyIsOpen(false);
+				setCurrencyIsOpen(false);
+			}
+		}
+
+		if (miniCartIsOpen) {
+			if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+				console.log(event.target.closest('.mini-cart-container'));
 			}
 		}
 	}
@@ -53,6 +66,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { setCurrencyIsOpen };
+const mapDispatchToProps = { setCurrencyIsOpen, setMiniCartIsOpen };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OutsideClickGuard);
