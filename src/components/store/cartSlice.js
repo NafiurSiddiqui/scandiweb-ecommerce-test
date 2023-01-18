@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
 	cartItems: [],
@@ -44,6 +44,7 @@ export const cartSlice = createSlice({
 					cartItem[0] === id &&
 					JSON.stringify(cartItem[1]) === JSON.stringify(newItemValues)
 			);
+
 			if (existingItem) {
 				existingItem[2].quantity++;
 			} else {
@@ -58,9 +59,31 @@ export const cartSlice = createSlice({
 		setMiniCartIsOpen: (state) => {
 			state.miniCartIsOpen = !state.miniCartIsOpen;
 		},
+		incrementItem: (state, action) => {
+			console.log('now,', current(state.cartItems));
+			const { cartItems } = state;
+			const id = action.payload[0];
+			const items = action.payload[1];
+
+			let existingItem = state.cartItems.find(
+				(cartItem) =>
+					cartItem[0] === id &&
+					JSON.stringify(cartItem[1]) === JSON.stringify(items)
+			);
+
+			console.log(JSON.stringify(existingItem[2]));
+			console.log(existingItem);
+
+			if (existingItem) {
+				existingItem[2].quantity++;
+			}
+
+			console.log('update', current(state.cartItems));
+		},
 	},
 });
 
-export const { addItemToCart, setMiniCartIsOpen } = cartSlice.actions;
+export const { addItemToCart, setMiniCartIsOpen, incrementItem } =
+	cartSlice.actions;
 
 export default cartSlice.reducer;

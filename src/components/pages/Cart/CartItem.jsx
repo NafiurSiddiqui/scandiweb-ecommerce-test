@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { incrementItem } from '../../store/cartSlice';
 
 import DescriptionCard from '../../UI/DescriptionCard';
 import CartQuantitiy from './CartQuantitiy';
@@ -70,7 +71,7 @@ class CartItem extends Component {
 
 	render() {
 		const { products, selectedCurrency } = this.props.products;
-		const { cartItem } = this.props;
+		const { cartItem, incrementItem } = this.props;
 
 		const quantity = cartItem[2].quantity;
 
@@ -134,6 +135,8 @@ class CartItem extends Component {
 						images={PDP[0].images}
 						imageCount={imageCount}
 						quantity={quantity}
+						incrementItem={incrementItem}
+						attributes={cartItem}
 					/>
 
 					<div
@@ -171,4 +174,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(CartItem);
+const mapDispatchToProps = { incrementItem };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
