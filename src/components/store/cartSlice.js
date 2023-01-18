@@ -93,6 +93,29 @@ export const cartSlice = createSlice({
 			);
 
 			if (existingItem) {
+				//REMOVE IF 0
+				if (existingItem[2].quantity === 1) {
+					console.log('REMOVE IT NOW');
+
+					let itemIndex = cartItems.findIndex(
+						(item) =>
+							item[0] === id &&
+							JSON.stringify(item[1]) === JSON.stringify(items)
+					);
+
+					console.log(itemIndex);
+
+					let removedCartItem = cartItems.filter(
+						(item) =>
+							item[0] !== id &&
+							JSON.stringify(item[1]) !== JSON.stringify(items)
+					);
+
+					return {
+						...state,
+						cartItems: removedCartItem,
+					};
+				}
 				existingItem[2].quantity--;
 			}
 
