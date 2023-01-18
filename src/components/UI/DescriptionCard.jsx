@@ -24,14 +24,20 @@ class DescriptionCard extends Component {
 	componentDidMount() {
 		const { attributes, miniCart } = this.props;
 
+		console.log(attributes);
+
 		if (miniCart && attributes) {
-			const attHeaders = attributes[1].map((item) => item[0]);
-			const attItems = attributes[1].map((item) => item[1]);
+			const attHeaders = attributes[1].map((item) => item.name);
+			const attItems = attributes[1].map((item) => item.values);
+
+			console.log(attHeaders, attItems);
 
 			const selectedAttributes = attHeaders.reduce((acc, key, index) => {
 				acc[key] = attItems[index];
 				return acc;
 			}, {});
+
+			// console.log(selectedAttributes);
 
 			this.setState({
 				items: Object.entries(selectedAttributes),
