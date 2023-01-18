@@ -96,7 +96,7 @@ class AttributeItem extends Component {
 						{attHeader.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
-						{btnItems.map((item, btnIndex) => {
+						{btnItems?.map((item, btnIndex) => {
 							return (
 								<AttributionBtn
 									key={btnIndex}

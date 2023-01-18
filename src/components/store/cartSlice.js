@@ -13,72 +13,163 @@ export const cartSlice = createSlice({
 		setCartItems: (state, action) => {
 			state.productID = action.payload;
 		},
-		addItemToCart: (state, action) => {
-			const id = action.payload[0];
-			const items = action.payload[1];
-			const existingItem = state.cartItems.cartItems.find(
-				(item) => item[0] === id
-			);
 
-			if (existingItem) {
-				if (JSON.stringify(existingItem[1]) !== JSON.stringify(items)) {
-					let newItem = { ...action.payload };
-					newItem[2] = { quantity: 1 };
-					state.cartItems.push(newItem);
-				} else {
-					existingItem[2].quantity++;
-				}
-			} else {
-				let newItem = { ...action.payload };
-				newItem[2] = { quantity: 1 };
-				state.cartItems.push(newItem);
-			}
-		},
 		// addItemToCart: (state, action) => {
 		// 	const id = action.payload[0];
 		// 	const items = action.payload[1];
-		// 	const existingItem = state.cartItems.find((item) => item[0] === id);
+		// 	let newItemValues = [];
 
+		// 	function recursiveCheck(items) {
+		// 		items.forEach((item) => {
+		// 			if (Array.isArray(item[1])) {
+		// 				recursiveCheck(item[1]);
+		// 			} else {
+		// 				newItemValues.push({
+		// 					value: item.value,
+		// 					isChecked: item.isChecked,
+		// 				});
+		// 			}
+		// 		});
+		// 	}
+
+		// 	recursiveCheck(items);
+		// 	let existingItem = state.cartItems.find(
+		// 		(cartItem) =>
+		// 			cartItem[0] === id &&
+		// 			JSON.stringify(cartItem[1]) ===
+		// 				JSON.stringify([items[0][0], newItemValues])
+		// 	);
 		// 	if (existingItem) {
-		// 		if (JSON.stringify(existingItem[1]) !== JSON.stringify(items)) {
-		// 			items.forEach((item) => {
-		// 				let newItemCheck = item[1].map((item) => item.isChecked);
+		// 		existingItem[2].quantity++;
+		// 	} else {
+		// 		let newCartItem = {
+		// 			0: id,
+		// 			1: [items[0][0], newItemValues],
+		// 			2: { quantity: 1 },
+		// 		};
+		// 		state.cartItems.push(newCartItem);
+		// 	}
+		// },
+		// addItemToCart: (state, action) => {
+		// 	const id = action.payload[0];
+		// 	const items = action.payload[1];
+		// 	let newItemValues = [];
 
-		// 				for (let i = 0; i < newItemCheck.length; i++) {
-		// 					if (newItemCheck[i]) {
-		// 						let newCartItem = {
-		// 							0: id,
-		// 							1: [item[0], { value: item[1][i].value, isChecked: true }],
-		// 							2: { quantity: 1 },
-		// 						};
-		// 						state.cartItems.push(newCartItem);
-		// 					} else {
-		// 						item[1][i].isChecked = false;
-		// 					}
+		// 	console.log(id, items);
+
+		// 	function recursiveCheck(items) {
+		// 		items.forEach((item) => {
+		// 			item[1].forEach((subitem) => {
+		// 				if (Array.isArray(subitem)) {
+		// 					recursiveCheck(subitem);
+		// 				} else {
+		// 					newItemValues.push({
+		// 						value: subitem.value,
+		// 						isChecked: subitem.isChecked,
+		// 					});
 		// 				}
 		// 			});
-		// 		} else {
-		// 			existingItem[2].quantity++;
-		// 		}
+		// 		});
+		// 	}
+
+		// 	recursiveCheck(items);
+		// 	let existingItem = state.cartItems.find(
+		// 		(cartItem) =>
+		// 			cartItem[0] === id &&
+		// 			JSON.stringify(cartItem[1]) ===
+		// 				JSON.stringify([items[0][0], newItemValues])
+		// 	);
+		// 	if (existingItem) {
+		// 		existingItem[2].quantity++;
 		// 	} else {
+		// 		let newCartItem = {
+		// 			0: id,
+		// 			1: [items[0][0], newItemValues],
+		// 			2: { quantity: 1 },
+		// 		};
+		// 		state.cartItems.push(newCartItem);
+		// 	}
+		// },
+
+		// addItemToCart: (state, action) => {
+		// 	const id = action.payload[0];
+		// 	const items = action.payload[1];
+
+		// 	function recursiveCheck(items) {
 		// 		items.forEach((item) => {
-		// 			let newItemCheck = item[1].map((item) => item.isChecked);
-		// 			for (let i = 0; i < newItemCheck.length; i++) {
-		// 				if (newItemCheck[i]) {
+		// 			if (Array.isArray(item[1])) {
+		// 				let newItemValues = [];
+		// 				item[1].forEach((subitem) => {
+		// 					if (typeof subitem === 'object') {
+		// 						newItemValues.push({
+		// 							value: subitem.value,
+		// 							isChecked: subitem.isChecked,
+		// 						});
+		// 					} else if (Array.isArray(subitem)) {
+		// 						recursiveCheck(subitem);
+		// 					}
+		// 				});
+		// 				let existingItem = state.cartItems.find(
+		// 					(cartItem) =>
+		// 						cartItem[0] === id &&
+		// 						JSON.stringify(cartItem[1]) ===
+		// 							JSON.stringify([item[0], newItemValues])
+		// 				);
+		// 				if (existingItem) {
+		// 					existingItem[2].quantity++;
+		// 				} else {
 		// 					let newCartItem = {
 		// 						0: id,
-		// 						1: [item[0], { value: item[1][i].value, isChecked: true }],
+		// 						1: [item[0], newItemValues],
 		// 						2: { quantity: 1 },
 		// 					};
 		// 					state.cartItems.push(newCartItem);
-		// 				} else {
-		// 					item[1][i].isChecked = false;
 		// 				}
 		// 			}
 		// 		});
 		// 	}
+		// 	recursiveCheck(items);
 		// },
 
+		addItemToCart: (state, action) => {
+			const id = action.payload[0];
+			const items = action.payload[1];
+
+			function recursiveCheck(items, newItemValues) {
+				items.forEach((item) => {
+					if (Array.isArray(item[1])) {
+						let subItemValues = [];
+						item[1].forEach((subitem) => {
+							if (subitem.hasOwnProperty('value')) {
+								subItemValues.push({
+									value: subitem.value,
+									isChecked: subitem.isChecked,
+								});
+							}
+						});
+						newItemValues.push({ name: item[0], values: subItemValues });
+					}
+				});
+			}
+
+			let newItemValues = [];
+			recursiveCheck(items, newItemValues);
+			let existingItem = state.cartItems.find(
+				(cartItem) =>
+					cartItem[0] === id &&
+					JSON.stringify(cartItem[1]) === JSON.stringify(newItemValues)
+			);
+			if (existingItem) {
+				existingItem[2].quantity++;
+			} else {
+				let newCartItem = {
+					0: id,
+					1: newItemValues,
+					2: { quantity: 1 },
+				};
+				state.cartItems.push(newCartItem);
+			}
+		},
 		setMiniCartIsOpen: (state) => {
 			state.miniCartIsOpen = !state.miniCartIsOpen;
 		},

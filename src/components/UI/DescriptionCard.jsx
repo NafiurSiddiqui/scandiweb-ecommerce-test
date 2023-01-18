@@ -89,7 +89,7 @@ class DescriptionCard extends Component {
 		const { items, selectedTitle } = this.state;
 		const { addItemToCart } = this.props;
 
-		console.log(items);
+		// console.log(items);
 
 		let userItems = [selectedTitle, items, { quantity: 0 }];
 

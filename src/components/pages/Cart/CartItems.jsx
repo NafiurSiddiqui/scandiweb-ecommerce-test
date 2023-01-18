@@ -8,8 +8,8 @@ class CartItems extends Component {
 
 		return (
 			<ul className="cart-items">
-				{cartItems.map((item) => {
-					return <CartItem key={item[0]} cartItem={item} />;
+				{cartItems.map((item, i) => {
+					return <CartItem key={i} cartItem={item} />;
 				})}
 			</ul>
 		);
