@@ -45,7 +45,9 @@ class OutsideClickGuard extends Component {
 
 		if (miniCartIsOpen) {
 			if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-				console.log(event.target.closest('.mini-cart-container'));
+				if (!event.target.closest('.mini-cart-container')) {
+					setMiniCartIsOpen(false);
+				}
 			}
 		}
 	}
