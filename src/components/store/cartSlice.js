@@ -65,7 +65,7 @@ export const cartSlice = createSlice({
 			const id = action.payload[0];
 			const items = action.payload[1];
 
-			let existingItem = state.cartItems.find(
+			let existingItem = cartItems.find(
 				(cartItem) =>
 					cartItem[0] === id &&
 					JSON.stringify(cartItem[1]) === JSON.stringify(items)
@@ -80,10 +80,32 @@ export const cartSlice = createSlice({
 
 			console.log('update', current(state.cartItems));
 		},
+		decrementItem: (state, action) => {
+			console.log('now,', current(state.cartItems));
+			const { cartItems } = state;
+			const id = action.payload[0];
+			const items = action.payload[1];
+
+			let existingItem = cartItems.find(
+				(cartItem) =>
+					cartItem[0] === id &&
+					JSON.stringify(cartItem[1]) === JSON.stringify(items)
+			);
+
+			if (existingItem) {
+				existingItem[2].quantity--;
+			}
+
+			console.log('update', current(state.cartItems));
+		},
 	},
 });
 
-export const { addItemToCart, setMiniCartIsOpen, incrementItem } =
-	cartSlice.actions;
+export const {
+	addItemToCart,
+	setMiniCartIsOpen,
+	incrementItem,
+	decrementItem,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

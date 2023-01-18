@@ -10,20 +10,17 @@ export default class CartQuantitiy extends Component {
 			itemCount: 0,
 		};
 		this.incrementItemHandler = this.incrementItemHandler.bind(this);
-		this.decreaseItemCount = this.decreaseItemCount.bind(this);
+		this.decrementItemHandler = this.decrementItemHandler.bind(this);
 	}
 
 	incrementItemHandler() {
 		const { incrementItem, attributes } = this.props;
-
-		// console.log(attributes);
 		incrementItem(attributes);
 	}
 
-	decreaseItemCount() {
-		this.setState({
-			itemCount: this.state.itemCount - 1,
-		});
+	decrementItemHandler() {
+		const { decrementItem, attributes } = this.props;
+		decrementItem(attributes);
 	}
 
 	render() {
@@ -51,7 +48,7 @@ export default class CartQuantitiy extends Component {
 					<div className="cart-quantity-container__actions-btn">
 						<span
 							className="cart-quantity-container__actions-btn-symbol"
-							onClick={this.decreaseItemCount}
+							onClick={this.decrementItemHandler}
 							role={'button'}
 						>
 							-
