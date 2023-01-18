@@ -60,7 +60,6 @@ export const cartSlice = createSlice({
 			state.miniCartIsOpen = !state.miniCartIsOpen;
 		},
 		incrementItem: (state, action) => {
-			console.log('now,', current(state.cartItems));
 			const { cartItems } = state;
 			const id = action.payload[0];
 			const items = action.payload[1];
@@ -71,17 +70,11 @@ export const cartSlice = createSlice({
 					JSON.stringify(cartItem[1]) === JSON.stringify(items)
 			);
 
-			console.log(JSON.stringify(existingItem[2]));
-			console.log(existingItem);
-
 			if (existingItem) {
 				existingItem[2].quantity++;
 			}
-
-			console.log('update', current(state.cartItems));
 		},
 		decrementItem: (state, action) => {
-			console.log('now,', current(state.cartItems));
 			const { cartItems } = state;
 			const id = action.payload[0];
 			const items = action.payload[1];
@@ -103,8 +96,6 @@ export const cartSlice = createSlice({
 							JSON.stringify(item[1]) === JSON.stringify(items)
 					);
 
-					console.log(itemIndex);
-
 					let removedCartItem = cartItems.filter(
 						(item) =>
 							item[0] !== id &&
@@ -119,7 +110,7 @@ export const cartSlice = createSlice({
 				existingItem[2].quantity--;
 			}
 
-			console.log('update', current(state.cartItems));
+			// console.log('update', current(state.cartItems));
 		},
 	},
 });

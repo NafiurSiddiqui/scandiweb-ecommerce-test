@@ -27,8 +27,13 @@ class OutsideClickGuard extends Component {
 	//  setCurrency to false if clicked on outside of currency
 
 	handleClickOutside(event) {
-		if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-			this.props.setCurrencyIsOpen(false);
+		const { currencyIsOpen } = this.props;
+
+		if (currencyIsOpen) {
+			if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+				this.props.setCurrencyIsOpen(false);
+				console.log('it is');
+			}
 		}
 	}
 
@@ -41,6 +46,12 @@ class OutsideClickGuard extends Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		currencyIsOpen: state.currency.currencyIsOpen,
+	};
+};
+
 const mapDispatchToProps = { setCurrencyIsOpen };
 
-export default connect(null, mapDispatchToProps)(OutsideClickGuard);
+export default connect(mapStateToProps, mapDispatchToProps)(OutsideClickGuard);
