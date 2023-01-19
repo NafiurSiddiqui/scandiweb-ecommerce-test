@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { decrementItem, incrementItem } from '../../store/cartSlice';
 
 import DescriptionCard from '../../UI/DescriptionCard';
+import productHandler from '../../Utilities/ProductHandler';
 import CartQuantitiy from './CartQuantitiy';
 
 /**
@@ -70,42 +71,14 @@ class CartItem extends Component {
 	}
 
 	render() {
-		const { products, selectedCurrency } = this.props.products;
+		const { products, selectedCurrency } = this.props;
 		const { cartItem, incrementItem, decrementItem } = this.props;
 
 		const quantity = cartItem[2].quantity;
 
 		const { imageCount } = this.state;
 
-		//filter out the cartItem
-
-		let filteredProduct = products?.filter((item) => item.id === cartItem[0]);
-
-		// return PDP as an OBJECT
-
-		let PDP = filteredProduct?.map((item) => {
-			return {
-				brand: item.brand,
-				name: item.name,
-				images: item.gallery,
-				attributesID: item.attributes.map((item) => item.id),
-				attributesItem: item.attributes.map((item) =>
-					item.items.map((item) => item.id)
-				),
-
-				prices: item.prices.filter((item) => {
-					if (selectedCurrency !== undefined || null) {
-						return item.currency.label === selectedCurrency.currency;
-					} else {
-						return item.currency.label === 'USD';
-					}
-				}),
-				get amount() {
-					return this.prices[0].amount;
-				},
-				stock: item.inStock,
-			};
-		});
+		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
 		let imageLength = PDP[0]?.images.length;
 
@@ -170,7 +143,7 @@ class CartItem extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productID: state.products.productID,
-		products: state.products,
+		products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
 	};
 };

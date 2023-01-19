@@ -109,18 +109,12 @@ class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, prices } = this.props.products;
+		const { brand, name, prices, stock } = this.props.products;
 		const { items } = this.state;
 
-		const {
-			priceHeading,
-			className,
-			miniCart,
-			productID,
-			products,
-			attributes,
-		} = this.props;
-
+		const { priceHeading, className, miniCart, productID, attributes } =
+			this.props;
+		// console.log(products);
 		return (
 			<article
 				className={className}
@@ -158,15 +152,15 @@ class DescriptionCard extends Component {
 						style={{ fontSize: miniCart ? '1rem' : '' }}
 					>
 						<span className="pd__price-price__symbol">
-							{prices[0].currency.symbol}
+							{prices[0]?.currency?.symbol}
 						</span>
-						{prices[0].amount}
+						{prices[0]?.amount}
 					</span>
 				</div>
 
 				<Button
 					className="pdp__cart-btn"
-					disable={products.stock}
+					disable={stock}
 					onClick={this.cartItemHandler}
 					miniCart={miniCart}
 				>

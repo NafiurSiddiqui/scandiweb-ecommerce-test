@@ -15,7 +15,7 @@ function productHandler(products, productID, selectedCurrency) {
 
 			prices: item?.prices?.filter((item) => {
 				if (selectedCurrency !== null) {
-					return item.currency.label === selectedCurrency.currency;
+					return item.currency.label === selectedCurrency?.currency;
 				} else {
 					return item.currency.label === 'USD';
 				}
