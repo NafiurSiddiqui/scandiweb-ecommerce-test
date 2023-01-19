@@ -1,9 +1,7 @@
-import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setProducts } from '../../store/productsSlice';
 import CategoryCard from './CategoryCard';
-import { GET_ALL_CATEGORIES } from './CategoryList';
 
 /**
  * @TASK -
