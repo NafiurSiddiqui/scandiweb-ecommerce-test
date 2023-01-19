@@ -15,47 +15,10 @@ class CartItem extends Component {
 		super(props);
 
 		this.state = {
-			PDP: null,
 			imageCount: 0,
 		};
 		this.incrementCount = this.incrementCount.bind(this);
 		this.decrementCount = this.decrementCount.bind(this);
-	}
-
-	componentDidMount() {
-		const { products, selectedCurrency } = this.props.products;
-
-		let filteredProduct = products?.filter(
-			(item) => item.id === 'huarache-x-stussy-le'
-		);
-
-		let PDP = filteredProduct?.map((item) => {
-			return {
-				brand: item.brand,
-				name: item.name,
-				images: item.gallery,
-				attributesID: item.attributes.map((item) => item.id),
-				attributesItem: item.attributes.map((item) =>
-					item.items.map((item) => item.id)
-				),
-
-				prices: item.prices.filter((item) => {
-					if (selectedCurrency !== undefined || null) {
-						return item.currency.label === selectedCurrency.currency;
-					} else {
-						return item.currency.label === 'USD';
-					}
-				}),
-				get amount() {
-					return this.prices[0].amount;
-				},
-				stock: item.inStock,
-			};
-		});
-
-		this.setState({
-			PDP: PDP,
-		});
 	}
 
 	incrementCount() {

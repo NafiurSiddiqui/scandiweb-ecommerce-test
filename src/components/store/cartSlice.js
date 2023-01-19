@@ -2,7 +2,8 @@ import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
 	cartItems: [],
-	totalAmount: 0,
+	// totalAmount: 0,
+	cartTotal: 0,
 	miniCartIsOpen: false,
 };
 
@@ -111,6 +112,9 @@ export const cartSlice = createSlice({
 			}
 
 			// console.log('update', current(state.cartItems));
+		},
+		cartTotalHandler: (state, action) => {
+			//?
 		},
 	},
 });
