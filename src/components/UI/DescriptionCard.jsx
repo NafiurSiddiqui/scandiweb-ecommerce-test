@@ -112,9 +112,17 @@ class DescriptionCard extends Component {
 		const { brand, name, prices, stock } = this.props.products;
 		const { items } = this.state;
 
-		const { priceHeading, className, miniCart, productID, attributes } =
-			this.props;
-		// console.log(products);
+		const {
+			priceHeading,
+			className,
+			miniCart,
+			productID,
+			attributes,
+			quantity,
+		} = this.props;
+
+		let cartCalculation = prices[0]?.amount * quantity;
+
 		return (
 			<article
 				className={className}
@@ -154,7 +162,7 @@ class DescriptionCard extends Component {
 						<span className="pd__price-price__symbol">
 							{prices[0]?.currency?.symbol}
 						</span>
-						{prices[0]?.amount}
+						{miniCart ? cartCalculation : prices[0]?.amount}
 					</span>
 				</div>
 

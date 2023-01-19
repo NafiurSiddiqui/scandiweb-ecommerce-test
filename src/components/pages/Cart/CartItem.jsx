@@ -101,6 +101,7 @@ class CartItem extends Component {
 					products={PDP[0]}
 					miniCart={true}
 					attributes={cartItem}
+					quantity={quantity}
 				/>
 
 				<div className="cart-quantity-wrapper">
