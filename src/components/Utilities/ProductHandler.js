@@ -34,6 +34,7 @@ function productHandler(products, productID, selectedCurrency) {
 	//converted attributes
 	const attID = PDP[0]?.attributesID;
 	const attItems = PDP[0]?.attributesItem;
+
 	//default values set
 	const mappedAttItems = attItems?.map((itemT) =>
 		itemT.map((item, index) => {

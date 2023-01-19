@@ -19,26 +19,6 @@ class CategoryAll extends Component {
 		const { selectedCurrency } = this.props;
 		const { products } = this.props.products;
 
-		// const currencies = products?.map((item) =>
-		// 	item.prices.map((item) => {
-		// 		return {
-		// 			currency: item.currency.label,
-		// 			symbol: item.currency.symbol,
-		// 			amount: item.amount,
-		// 		};
-		// 	})
-		// );
-
-		// const matchedUserPrice = currencies?.map((item) =>
-		// 	item.find((el) => {
-		// 		if (selectedCurrency !== null) {
-		// 			return el.currency === selectedCurrency.currency;
-		// 		} else {
-		// 			return el.currency === 'USD';
-		// 		}
-		// 	})
-		// );
-
 		const matchedUserPrice = userCurrency(products, selectedCurrency);
 
 		return (
@@ -54,7 +34,6 @@ class CategoryAll extends Component {
 							image: p.gallery[0],
 							name: p.name,
 							prices: matchedUserPrice[i]?.amount,
-
 							stock: p.inStock,
 						};
 
