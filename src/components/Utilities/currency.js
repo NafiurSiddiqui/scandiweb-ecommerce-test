@@ -1,4 +1,4 @@
-export function selectedCurrency(products, selectedCurrency) {
+export function userCurrency(products, selectedCurrency) {
 	//extracting only price items
 	const currencies = products?.map((item) =>
 		item.prices.map((item) => {

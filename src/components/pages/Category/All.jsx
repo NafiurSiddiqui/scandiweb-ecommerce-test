@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setProducts } from '../../store/productsSlice';
+import { userCurrency } from '../../Utilities/currency';
 import CategoryCard from './CategoryCard';
 
 /**
@@ -18,25 +19,27 @@ class CategoryAll extends Component {
 		const { selectedCurrency } = this.props;
 		const { products } = this.props.products;
 
-		const currencies = products?.map((item) =>
-			item.prices.map((item) => {
-				return {
-					currency: item.currency.label,
-					symbol: item.currency.symbol,
-					amount: item.amount,
-				};
-			})
-		);
+		// const currencies = products?.map((item) =>
+		// 	item.prices.map((item) => {
+		// 		return {
+		// 			currency: item.currency.label,
+		// 			symbol: item.currency.symbol,
+		// 			amount: item.amount,
+		// 		};
+		// 	})
+		// );
 
-		const matchedUserPrice = currencies?.map((item) =>
-			item.find((el) => {
-				if (selectedCurrency !== null) {
-					return el.currency === selectedCurrency.currency;
-				} else {
-					return el.currency === 'USD';
-				}
-			})
-		);
+		// const matchedUserPrice = currencies?.map((item) =>
+		// 	item.find((el) => {
+		// 		if (selectedCurrency !== null) {
+		// 			return el.currency === selectedCurrency.currency;
+		// 		} else {
+		// 			return el.currency === 'USD';
+		// 		}
+		// 	})
+		// );
+
+		const matchedUserPrice = userCurrency(products, selectedCurrency);
 
 		return (
 			<>
