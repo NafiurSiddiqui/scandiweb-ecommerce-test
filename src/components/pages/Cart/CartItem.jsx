@@ -34,12 +34,17 @@ class CartItem extends Component {
 	}
 
 	render() {
-		const { products, selectedCurrency } = this.props;
-		const { cartItem, incrementItem, decrementItem } = this.props;
-
-		const quantity = cartItem[2].quantity;
+		const {
+			cartItem,
+			incrementItem,
+			decrementItem,
+			products,
+			selectedCurrency,
+		} = this.props;
 
 		const { imageCount } = this.state;
+
+		const quantity = cartItem[2].quantity;
 
 		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 

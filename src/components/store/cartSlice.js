@@ -89,9 +89,7 @@ export const cartSlice = createSlice({
 			if (existingItem) {
 				//REMOVE IF 0
 				if (existingItem[2].quantity === 1) {
-					console.log('REMOVE IT NOW');
-
-					let itemIndex = cartItems.findIndex(
+					cartItems.findIndex(
 						(item) =>
 							item[0] === id &&
 							JSON.stringify(item[1]) === JSON.stringify(items)
@@ -114,7 +112,21 @@ export const cartSlice = createSlice({
 			// console.log('update', current(state.cartItems));
 		},
 		cartTotalHandler: (state, action) => {
-			//?
+			console.log('what?');
+
+			let total = 0;
+
+			total += action.payload;
+
+			console.log(total);
+
+			// console.log(action.payload);
+
+			// console.log('before:', current(state.cartTotal));
+
+			// state.cartTotal += action.payload;
+
+			// console.log('After:', current(state.cartTotal));
 		},
 	},
 });
@@ -124,6 +136,7 @@ export const {
 	setMiniCartIsOpen,
 	incrementItem,
 	decrementItem,
+	cartTotalHandler,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

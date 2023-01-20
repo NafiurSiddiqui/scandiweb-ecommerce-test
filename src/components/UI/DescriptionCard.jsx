@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AttributeItem from '../pages/PDP/AttributeItem';
-import { addItemToCart } from '../store/cartSlice';
+import { addItemToCart, cartTotalHandler } from '../store/cartSlice';
 import Button from './Button';
 
 /**
@@ -11,10 +11,15 @@ import Button from './Button';
 class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
+
+		const { productID } = this.props;
+		const { prices } = this.props.products;
+
 		this.state = {
-			selectedTitle: this.props.productID,
+			selectedTitle: productID,
 			selectedValues: [],
 			items: [],
+			cartCalculation: prices[0]?.amount,
 		};
 		this.getSelectedValues = this.getSelectedValues.bind(this);
 		this.updateItems = this.updateItems.bind(this);
@@ -22,7 +27,7 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { attributes, miniCart } = this.props;
+		const { attributes, miniCart, quantity } = this.props;
 
 		if (miniCart && attributes) {
 			const attHeaders = attributes[1].map((item) => item.name);
@@ -35,6 +40,7 @@ class DescriptionCard extends Component {
 
 			this.setState({
 				items: Object.entries(selectedAttributes),
+				quantity: quantity,
 			});
 			return;
 		}
@@ -43,6 +49,19 @@ class DescriptionCard extends Component {
 			this.setState({
 				items: Object.entries(attributes),
 			});
+		}
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		const { quantity, cartTotalHandler } = this.props;
+		const { prices } = this.props.products;
+
+		if (prevProps.quantity !== quantity) {
+			this.setState({
+				cartCalculation: prices[0].amount * quantity,
+			});
+
+			cartTotalHandler(prices[0].amount * quantity);
 		}
 	}
 
@@ -110,18 +129,10 @@ class DescriptionCard extends Component {
 
 	render() {
 		const { brand, name, prices, stock } = this.props.products;
-		const { items } = this.state;
+		const { items, cartCalculation } = this.state;
 
-		const {
-			priceHeading,
-			className,
-			miniCart,
-			productID,
-			attributes,
-			quantity,
-		} = this.props;
-
-		let cartCalculation = prices[0]?.amount * quantity;
+		const { priceHeading, className, miniCart, productID, attributes } =
+			this.props;
 
 		return (
 			<article
@@ -187,4 +198,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { addItemToCart })(DescriptionCard);
+export default connect(mapStateToProps, { addItemToCart, cartTotalHandler })(
+	DescriptionCard
+);
