@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AttributeItem from '../pages/PDP/AttributeItem';
-import { addItemToCart, cartTotalHandler } from '../store/cartSlice';
+import {
+	addItemToCart,
+	cartPricingHandler,
+	cartTotalHandler,
+} from '../store/cartSlice';
+import getPricing from '../Utilities/cartHandler';
 import Button from './Button';
 
 /**
  * @className : PD = product description
  */
-
 class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
@@ -27,8 +31,9 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { attributes, miniCart, quantity } = this.props;
+		const { attributes, miniCart, quantity, cartPricingHandler } = this.props;
 		const { prices } = this.props.products;
+		// cartPricingHandler(this.state.cartCalculation);
 
 		if (miniCart && attributes) {
 			const attHeaders = attributes[1].map((item) => item.name);
@@ -43,6 +48,13 @@ class DescriptionCard extends Component {
 				items: Object.entries(selectedAttributes),
 				cartCalculation: prices[0].amount * quantity,
 			});
+
+			console.log('Mounts');
+
+			const priceCalc = prices[0].amount * quantity;
+			// console.log(priceCalc);
+			getPricing(priceCalc);
+
 			return;
 		}
 
@@ -199,6 +211,8 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { addItemToCart, cartTotalHandler })(
-	DescriptionCard
-);
+export default connect(mapStateToProps, {
+	addItemToCart,
+	cartTotalHandler,
+	cartPricingHandler,
+})(DescriptionCard);

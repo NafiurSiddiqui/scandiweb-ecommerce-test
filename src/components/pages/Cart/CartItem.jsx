@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { decrementItem, incrementItem } from '../../store/cartSlice';
-
 import DescriptionCard from '../../UI/DescriptionCard';
 import productHandler from '../../Utilities/ProductHandler';
 import CartQuantitiy from './CartQuantitiy';
