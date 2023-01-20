@@ -132,8 +132,6 @@ class DescriptionCard extends Component {
 		const { brand, name, prices, stock } = this.props.products;
 		const { items, cartCalculation } = this.state;
 
-		console.log('rendered');
-
 		const { priceHeading, className, miniCart, productID, attributes } =
 			this.props;
 

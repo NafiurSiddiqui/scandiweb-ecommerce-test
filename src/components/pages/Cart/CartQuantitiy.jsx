@@ -43,7 +43,7 @@ export default class CartQuantitiy extends Component {
 						</span>
 					</div>
 					<span className="cart-quantity-container__actions-amount">
-						{quantity || itemCount}
+						{quantity}
 					</span>
 					<div className="cart-quantity-container__actions-btn">
 						<span

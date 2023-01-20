@@ -114,11 +114,15 @@ export const cartSlice = createSlice({
 		cartTotalHandler: (state, action) => {
 			// console.log('what?');
 
-			let total = 0;
+			let total = [];
 
-			total += action.payload;
+			// total += action.payload;
 
-			// console.log(total);
+			total.push(...total, action.payload);
+
+			// state.cartTotal = total;
+
+			console.log(total);
 
 			// console.log(action.payload);
 
