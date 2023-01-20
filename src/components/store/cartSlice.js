@@ -4,6 +4,7 @@ const initialState = {
 	cartItems: [],
 	// totalAmount: 0,
 	cartTotal: 0,
+	cartPricing: [],
 	miniCartIsOpen: false,
 };
 
@@ -105,15 +106,13 @@ export const cartSlice = createSlice({
 				}
 				existingItem[2].quantity--;
 			}
-
-			// console.log('update', current(state.cartItems));
 		},
 		cartTotalHandler: (state, action) => {
-			// console.log('what?');
-
 			let total = [];
 
 			// total += action.payload;
+
+			console.log(action.payload);
 
 			total.push(...total, action.payload);
 
@@ -129,6 +128,10 @@ export const cartSlice = createSlice({
 
 			// console.log('After:', current(state.cartTotal));
 		},
+		cartPricingHandler: (state, action) => {
+			console.log('cartPricng handler runs');
+			state.cartPricing.push(action.payload);
+		},
 	},
 });
 
@@ -138,6 +141,7 @@ export const {
 	incrementItem,
 	decrementItem,
 	cartTotalHandler,
+	cartPricingHandler,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
