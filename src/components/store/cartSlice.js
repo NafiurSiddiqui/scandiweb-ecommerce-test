@@ -112,13 +112,13 @@ export const cartSlice = createSlice({
 			// console.log('update', current(state.cartItems));
 		},
 		cartTotalHandler: (state, action) => {
-			console.log('what?');
+			// console.log('what?');
 
 			let total = 0;
 
 			total += action.payload;
 
-			console.log(total);
+			// console.log(total);
 
 			// console.log(action.payload);
 

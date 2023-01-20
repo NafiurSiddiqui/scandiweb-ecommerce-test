@@ -28,6 +28,7 @@ class DescriptionCard extends Component {
 
 	componentDidMount() {
 		const { attributes, miniCart, quantity } = this.props;
+		const { prices } = this.props.products;
 
 		if (miniCart && attributes) {
 			const attHeaders = attributes[1].map((item) => item.name);
@@ -40,7 +41,7 @@ class DescriptionCard extends Component {
 
 			this.setState({
 				items: Object.entries(selectedAttributes),
-				quantity: quantity,
+				cartCalculation: prices[0].amount * quantity,
 			});
 			return;
 		}
@@ -130,6 +131,8 @@ class DescriptionCard extends Component {
 	render() {
 		const { brand, name, prices, stock } = this.props.products;
 		const { items, cartCalculation } = this.state;
+
+		console.log('rendered');
 
 		const { priceHeading, className, miniCart, productID, attributes } =
 			this.props;
