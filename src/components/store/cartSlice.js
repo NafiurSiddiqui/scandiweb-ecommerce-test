@@ -104,7 +104,7 @@ export const cartSlice = createSlice({
 		cartTotalHandler: (state, action) => {
 			const prices = getPricing().prices;
 
-			console.log(prices);
+			// console.log(prices);
 
 			// const total =
 
@@ -125,8 +125,8 @@ export const cartSlice = createSlice({
 			// console.log('After:', current(state.cartTotal));
 		},
 		cartPricingHandler: (state, action) => {
-			console.log('cartPricng handler runs');
-			state.cartPricing.push(action.payload);
+			// console.log('cartPricng handler runs');
+			// state.cartPricing.push(action.payload);
 		},
 	},
 });

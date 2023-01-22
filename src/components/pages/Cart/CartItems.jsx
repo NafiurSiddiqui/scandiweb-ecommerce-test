@@ -10,24 +10,40 @@ class CartItems extends Component {
 		this.state = {
 			itemPrices: [],
 		};
+		this.itemPriceHandler = this.itemPriceHandler.bind(this);
 	}
 
-	componentDidMount() {
-		// this.setState({
-		// 	itemPrices: this.state.itemPrices.push(getPricing()),
-		// });
-		cartTotalHandler();
+	itemPriceHandler(price) {
+		this.setState((prevState) => ({
+			itemPrices: [...prevState.itemPrices, price],
+		}));
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.cartItems !== this.props.cartItems) {
+			this.setState({ itemPrices: [] }, () => {
+				this.props.cartItems.forEach((cartItem) => {
+					this.itemPriceHandler(cartItem.itemPrice);
+				});
+			});
+		}
 	}
 
 	render() {
 		const { cartItems } = this.props;
 
-		// console.log(this.state.itemPrices);
+		console.log(this.state.itemPrices);
 
 		return (
 			<ul className="cart-items">
 				{cartItems.map((item, i) => {
-					return <CartItem key={i} cartItem={item} />;
+					return (
+						<CartItem
+							key={i}
+							cartItem={item}
+							itemPriceHandler={this.itemPriceHandler}
+						/>
+					);
 				})}
 			</ul>
 		);

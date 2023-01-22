@@ -9,15 +9,47 @@ import CartQuantitiy from './CartQuantitiy';
  * @cartItem = ['productID', [items]]
  */
 
+//* MOVE the pricing to the DES card if state price works
+
 class CartItem extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			imageCount: 0,
+			itemPrice: 0,
 		};
 		this.incrementCount = this.incrementCount.bind(this);
 		this.decrementCount = this.decrementCount.bind(this);
+	}
+
+	componentDidMount() {
+		const { cartItem, products, selectedCurrency } = this.props;
+
+		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
+
+		this.setState({
+			itemPrice: PDP[0].amount,
+		});
+
+		// itemTotalHandler(PDP[0].amount);
+		this.props.itemPriceHandler(PDP[0].amount);
+	}
+
+	componentDidUpdate(prevProps) {
+		const { cartItem, products, selectedCurrency } = this.props;
+
+		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
+
+		const quantity = cartItem[2].quantity;
+
+		if (prevProps.cartItem[2].quantity !== cartItem[2].quantity) {
+			this.setState({
+				itemPrice: PDP[0].amount * quantity,
+			});
+
+			this.props.itemPriceHandler(PDP[0].amount * quantity);
+		}
 	}
 
 	incrementCount() {
@@ -41,7 +73,9 @@ class CartItem extends Component {
 			selectedCurrency,
 		} = this.props;
 
-		const { imageCount } = this.state;
+		const { imageCount, itemPrice } = this.state;
+
+		// console.log(itemPrice);
 
 		const quantity = cartItem[2].quantity;
 
