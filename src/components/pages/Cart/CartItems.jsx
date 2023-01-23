@@ -32,14 +32,30 @@ class CartItems extends Component {
 		}));
 	}
 
-	componentDidUpdate(prevState) {
+	componentDidUpdate(prevProps, prevState) {
 		if (prevState.itemPrices !== this.state.itemPrices) {
 			this.props.cartTotalHandler(this.state.itemPrices);
 		}
 
-		if (prevState.cartItems.length !== this.props.cartItems.length) {
-			//
+		if (prevProps.cartItems.length !== this.props.cartItems.length) {
+			let newItemPrices = this.state.itemPrices.filter((price, index) => {
+				// return (
+				// 	prevProps.cartItems.findIndex(
+				// 		(item) => item.id === this.props.cartItems[index].id
+				// 	) !== -1
+				// );
+				console.log(prevProps.cartItems.findIndex((item, i) => item[i][0]));
+				// console.log(this.props.cartItems[0]);
+			});
+
+			// console.log(newItemPrices);
+
+			this.setState({
+				itemPrices: newItemPrices,
+			});
+			this.props.cartTotalHandler(newItemPrices);
 		}
+
 		if (this.props.cartItems.length === 0) {
 			console.log('No items, should be 0');
 			this.props.cartTotalHandler(0);
