@@ -3,7 +3,6 @@ import getPricing from '../Utilities/cartHandler';
 
 const initialState = {
 	cartItems: [],
-	// totalAmount: 0,
 	cartTotal: 0,
 	cartPricing: [],
 	miniCartIsOpen: false,

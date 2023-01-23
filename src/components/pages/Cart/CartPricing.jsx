@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Button from '../../UI/Button';
 
-export default class CartPricing extends Component {
+class CartPricing extends Component {
 	render() {
-		const { miniCart, className } = this.props;
+		const { miniCart, className, cartTotal, currencySymbol } = this.props;
+
 		return (
 			<section className={className}>
 				{miniCart ? (
@@ -20,7 +22,10 @@ export default class CartPricing extends Component {
 				) : null}
 				<div className={`${className} price-info`} role="contentinfo">
 					<span className={`${className} price-info__total`}>Total</span>
-					<span className={`${className} price-info__amount`}>$200</span>
+					<span className={`${className} price-info__amount`}>
+						{currencySymbol}
+						{cartTotal}
+					</span>
 				</div>
 
 				<div className="cart-btns">
@@ -33,3 +38,10 @@ export default class CartPricing extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	cartTotal: state.cart.cartTotal,
+	currencySymbol: state.currency.selectedCurrency.symbol,
+});
+
+export default connect(mapStateToProps)(CartPricing);

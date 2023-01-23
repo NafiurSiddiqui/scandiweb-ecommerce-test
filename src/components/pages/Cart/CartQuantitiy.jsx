@@ -25,7 +25,6 @@ export default class CartQuantitiy extends Component {
 
 	render() {
 		const { images, imageCount, quantity } = this.props;
-		const { itemCount } = this.state;
 
 		return (
 			<section className="cart-quantity-container">
