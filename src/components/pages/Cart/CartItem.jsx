@@ -37,7 +37,7 @@ class CartItem extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const { cartItem, products, selectedCurrency } = this.props;
+		const { cartItem, products, selectedCurrency, itemIndex } = this.props;
 
 		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
@@ -48,7 +48,7 @@ class CartItem extends Component {
 				itemPrice: PDP[0].amount * quantity,
 			});
 
-			this.props.itemPriceHandler(PDP[0].amount * quantity);
+			this.props.itemPriceHandler(PDP[0].amount * quantity, itemIndex, true);
 		}
 	}
 

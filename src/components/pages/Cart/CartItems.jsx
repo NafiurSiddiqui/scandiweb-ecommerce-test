@@ -13,13 +13,23 @@ class CartItems extends Component {
 		this.itemPriceHandler = this.itemPriceHandler.bind(this);
 	}
 
-	itemPriceHandler(price) {
+	itemPriceHandler(price, itemIndex, update = false) {
+		if (update) {
+			this.setState((prevState) => {
+				let updatedPrices = [...prevState.itemPrices];
+				updatedPrices[itemIndex] = price;
+				return {
+					itemPrices: updatedPrices,
+				};
+			});
+
+			return;
+		}
+
 		this.setState((prevState) => ({
 			itemPrices: [...prevState.itemPrices, price],
 		}));
 	}
-
-	componentDidUpdate(prevState, prevProps) {}
 
 	render() {
 		const { cartItems } = this.props;
@@ -34,6 +44,7 @@ class CartItems extends Component {
 							key={i}
 							cartItem={item}
 							itemPriceHandler={this.itemPriceHandler}
+							itemIndex={i}
 						/>
 					);
 				})}
