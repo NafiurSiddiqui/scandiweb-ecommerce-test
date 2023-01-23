@@ -102,9 +102,11 @@ export const cartSlice = createSlice({
 			}
 		},
 		cartTotalHandler: (state, action) => {
-			// let total = 0;
-			// const prices = action.payload
-			console.log(action.payload);
+			let prices = action.payload;
+
+			let total = prices.reduce((acc, cur) => acc + cur, 0);
+
+			state.cartTotal = Number(total.toFixed(2));
 		},
 	},
 });

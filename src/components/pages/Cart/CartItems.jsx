@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { cartTotalHandler } from '../../store/cartSlice';
 
 import CartItem from './CartItem';
 
@@ -33,6 +34,12 @@ class CartItems extends Component {
 		}));
 	}
 
+	componentDidMount() {
+		// this.props.cartTotalHandler(this.state.itemPrices);
+		// console.log(this.state.itemPrices);
+		// console.log('mounts');
+	}
+
 	updateHandler(value) {
 		this.setState({
 			update: value,
@@ -43,10 +50,16 @@ class CartItems extends Component {
 		if (prevState.update !== this.state.update) {
 			//run totalHandler
 		}
+
+		if (prevState.itemPrices !== this.state.itemPrices) {
+			this.props.cartTotalHandler(this.state.itemPrices);
+		}
 	}
 
 	render() {
 		const { cartItems } = this.props;
+
+		// console.log(this.state.itemPrices);
 
 		return (
 			<ul className="cart-items">
@@ -72,4 +85,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(CartItems);
+export default connect(mapStateToProps, { cartTotalHandler })(CartItems);
