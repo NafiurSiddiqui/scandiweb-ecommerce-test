@@ -33,7 +33,7 @@ class DescriptionCard extends Component {
 	componentDidMount() {
 		const { attributes, miniCart, quantity, cartPricingHandler } = this.props;
 		const { prices } = this.props.products;
-		cartPricingHandler(this.state.cartCalculation);
+		// cartPricingHandler(this.state.cartCalculation);
 
 		if (miniCart && attributes) {
 			const attHeaders = attributes[1].map((item) => item.name);
@@ -49,14 +49,6 @@ class DescriptionCard extends Component {
 				cartCalculation: prices[0].amount * quantity,
 			});
 
-			// console.log('Mounts');
-
-			// const priceCalc = prices[0].amount * quantity;
-			// console.log(priceCalc);
-			// getPricing(priceCalc);
-
-			// cartPricingHandler(priceCalc);
-
 			return;
 		}
 
@@ -68,15 +60,13 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { quantity, cartTotalHandler } = this.props;
+		const { quantity } = this.props;
 		const { prices } = this.props.products;
 
 		if (prevProps.quantity !== quantity) {
 			this.setState({
 				cartCalculation: prices[0].amount * quantity,
 			});
-
-			cartTotalHandler(prices[0].amount * quantity);
 		}
 	}
 

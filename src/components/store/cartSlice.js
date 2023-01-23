@@ -102,31 +102,9 @@ export const cartSlice = createSlice({
 			}
 		},
 		cartTotalHandler: (state, action) => {
-			const prices = getPricing().prices;
-
-			// console.log(prices);
-
-			// const total =
-
-			// console.log(action.payload);
-
-			// total.push(...total, action.payload);
-
-			// state.cartTotal = total;
-
-			// console.log(total);
-
-			// console.log(action.payload);
-
-			// console.log('before:', current(state.cartTotal));
-
-			// state.cartTotal += action.payload;
-
-			// console.log('After:', current(state.cartTotal));
-		},
-		cartPricingHandler: (state, action) => {
-			// console.log('cartPricng handler runs');
-			// state.cartPricing.push(action.payload);
+			// let total = 0;
+			// const prices = action.payload
+			console.log(action.payload);
 		},
 	},
 });
