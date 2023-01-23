@@ -10,10 +10,8 @@ class CartItems extends Component {
 
 		this.state = {
 			itemPrices: [],
-			update: false,
 		};
 		this.itemPriceHandler = this.itemPriceHandler.bind(this);
-		this.updateHandler = this.updateHandler.bind(this);
 	}
 
 	itemPriceHandler(price, itemIndex, update = false) {
@@ -34,23 +32,7 @@ class CartItems extends Component {
 		}));
 	}
 
-	componentDidMount() {
-		// this.props.cartTotalHandler(this.state.itemPrices);
-		// console.log(this.state.itemPrices);
-		// console.log('mounts');
-	}
-
-	updateHandler(value) {
-		this.setState({
-			update: value,
-		});
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		if (prevState.update !== this.state.update) {
-			//run totalHandler
-		}
-
+	componentDidUpdate(prevState) {
 		if (prevState.itemPrices !== this.state.itemPrices) {
 			this.props.cartTotalHandler(this.state.itemPrices);
 		}
@@ -58,8 +40,6 @@ class CartItems extends Component {
 
 	render() {
 		const { cartItems } = this.props;
-
-		// console.log(this.state.itemPrices);
 
 		return (
 			<ul className="cart-items">
@@ -69,7 +49,6 @@ class CartItems extends Component {
 							key={i}
 							cartItem={item}
 							itemPriceHandler={this.itemPriceHandler}
-							updateHandler={this.updateHandler}
 							itemIndex={i}
 						/>
 					);
