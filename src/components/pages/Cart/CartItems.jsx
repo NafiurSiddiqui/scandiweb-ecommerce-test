@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { cartTotalHandler } from '../../store/cartSlice';
 import getPricing from '../../Utilities/cartHandler';
 import CartItem from './CartItem';
+
 class CartItems extends Component {
 	constructor(props) {
 		super(props);
@@ -19,14 +20,21 @@ class CartItems extends Component {
 		}));
 	}
 
-	componentDidUpdate(prevProps) {
-		if (prevProps.cartItems !== this.props.cartItems) {
-			this.setState({ itemPrices: [] }, () => {
-				this.props.cartItems.forEach((cartItem) => {
-					this.itemPriceHandler(cartItem.itemPrice);
-				});
-			});
-		}
+	componentDidUpdate(prevState) {
+		// if (prevProps.cartItems !== this.props.cartItems) {
+		// 	this.setState({ itemPrices: [] }, () => {
+		// 		this.props.cartItems.forEach((cartItem) => {
+		// 			this.itemPriceHandler(cartItem.itemPrice);
+		// 			console.log(cartItem);
+		// 		});
+		// 	});
+		// }
+
+		console.log(prevState);
+
+		// if (prevState.itemPrices !== this.state.itemPrices) {
+		// 	console.log('Not the same!');
+		// }
 	}
 
 	render() {
