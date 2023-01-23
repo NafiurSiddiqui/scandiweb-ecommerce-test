@@ -32,7 +32,6 @@ class CartItem extends Component {
 			itemPrice: PDP[0].amount,
 		});
 
-		// itemTotalHandler(PDP[0].amount);
 		this.props.itemPriceHandler(PDP[0].amount);
 	}
 
@@ -73,9 +72,7 @@ class CartItem extends Component {
 			selectedCurrency,
 		} = this.props;
 
-		const { imageCount, itemPrice } = this.state;
-
-		// console.log(itemPrice);
+		const { imageCount } = this.state;
 
 		const quantity = cartItem[2].quantity;
 
