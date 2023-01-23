@@ -36,6 +36,14 @@ class CartItems extends Component {
 		if (prevState.itemPrices !== this.state.itemPrices) {
 			this.props.cartTotalHandler(this.state.itemPrices);
 		}
+
+		if (prevState.cartItems.length !== this.props.cartItems.length) {
+			//
+		}
+		if (this.props.cartItems.length === 0) {
+			console.log('No items, should be 0');
+			this.props.cartTotalHandler(0);
+		}
 	}
 
 	render() {

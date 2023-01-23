@@ -6,6 +6,8 @@ class CartPricing extends Component {
 	render() {
 		const { miniCart, className, cartTotal, currencySymbol } = this.props;
 
+		// console.log(cartTotal);
+
 		return (
 			<section className={className}>
 				{miniCart ? (
@@ -23,7 +25,7 @@ class CartPricing extends Component {
 				<div className={`${className} price-info`} role="contentinfo">
 					<span className={`${className} price-info__total`}>Total</span>
 					<span className={`${className} price-info__amount`}>
-						{currencySymbol}
+						{currencySymbol ? currencySymbol : '$'}
 						{cartTotal}
 					</span>
 				</div>
@@ -41,7 +43,7 @@ class CartPricing extends Component {
 
 const mapStateToProps = (state) => ({
 	cartTotal: state.cart.cartTotal,
-	currencySymbol: state.currency.selectedCurrency.symbol,
+	currencySymbol: state.currency.selectedCurrency?.symbol,
 });
 
 export default connect(mapStateToProps)(CartPricing);
