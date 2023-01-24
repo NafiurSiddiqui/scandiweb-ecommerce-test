@@ -138,6 +138,7 @@ class DescriptionCard extends Component {
 
 		const { priceHeading, className, miniCart, productID, attributes } =
 			this.props;
+		console.log(miniCart, cartCalculation);
 
 		return (
 			<article
