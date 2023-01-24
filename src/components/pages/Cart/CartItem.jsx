@@ -101,6 +101,7 @@ class CartItem extends Component {
 					miniCart={true}
 					attributes={cartItem}
 					quantity={quantity}
+					cartPage={cartPage}
 				/>
 
 				<div
