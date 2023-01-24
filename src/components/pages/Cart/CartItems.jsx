@@ -34,23 +34,15 @@ class CartItems extends Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.itemPrices !== this.state.itemPrices) {
-			// console.log('should update');
 			this.props.cartTotalHandler(this.state.itemPrices);
 		}
 
 		if (prevProps.cartItems.length !== this.props.cartItems.length) {
-			let newItemPrices = this.state.itemPrices.filter((price, index) => {
-				if (this.props.cartItems[index] === undefined) {
-					return -1;
-				} else {
-					return (
-						prevProps.cartItems.findIndex(
-							(item) => item[0] === this.props.cartItems[index]
-						) !== -1
-					);
-				}
-			});
-
+			let removedItemIndex = prevProps.cartItems.findIndex(
+				(item) => !this.props.cartItems.includes(item)
+			);
+			let newItemPrices = [...this.state.itemPrices];
+			newItemPrices.splice(removedItemIndex, 1);
 			this.setState({
 				itemPrices: newItemPrices,
 			});

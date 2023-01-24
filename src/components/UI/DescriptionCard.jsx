@@ -69,8 +69,6 @@ class DescriptionCard extends Component {
 		}
 
 		if (prevProps.cartItems.length !== cartItems.length) {
-			console.log(prices[0].amount);
-
 			this.setState({
 				itemCalculation: prices[0].amount,
 			});
