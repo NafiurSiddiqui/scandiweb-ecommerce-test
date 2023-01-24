@@ -53,8 +53,15 @@ class AttributionBtn extends Component {
 	}
 
 	render() {
-		const { item, className, btnIndex, itemIndex, itemIsChecked, miniCart } =
-			this.props;
+		const {
+			item,
+			className,
+			btnIndex,
+			itemIndex,
+			itemIsChecked,
+			miniCart,
+			cartPage,
+		} = this.props;
 
 		const { colorSwatch } = this.state;
 		const largeBtnGuard = item.length > 2;
@@ -88,9 +95,16 @@ class AttributionBtn extends Component {
 				style={{
 					...itemBackground,
 					...defaultColorChecked,
-					fontSize: miniCart ? '0.75rem' : '',
-					minWidth: miniCart ? (largeBtnGuard ? '1.1rem' : '1.5rem') : '2.5rem',
-					padding: miniCart ? '0.2rem' : '0.4rem',
+					fontSize: miniCart && !cartPage ? '0.75rem' : '',
+					minWidth:
+						miniCart && !cartPage
+							? largeBtnGuard
+								? '1.1rem'
+								: '1.5rem'
+							: colorSwatch
+							? '1.5rem'
+							: '2.5rem',
+					padding: miniCart && !cartPage ? '0.2rem' : '0.4rem',
 				}}
 			>
 				<label htmlFor="item">{colorSwatch ? '' : item}</label>
