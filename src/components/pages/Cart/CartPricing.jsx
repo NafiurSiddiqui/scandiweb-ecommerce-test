@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Button from '../../UI/Button';
 
 class CartPricing extends Component {
 	render() {
-		const { miniCart, className, cartTotal, currencySymbol } = this.props;
+		const { miniCartIsOpen, className, cartTotal, currencySymbol, miniCart } =
+			this.props;
 
-		console.log(cartTotal);
+		console.log(miniCartIsOpen);
 
 		return (
 			<section className={className}>
-				{miniCart ? (
+				{miniCartIsOpen ? (
 					<span
 						className={`cartPage-tax-info`}
-						role={miniCart ? 'contentinfo' : ''}
+						role={miniCartIsOpen ? 'contentinfo' : ''}
 					></span>
 				) : null}
-				{miniCart ? (
+				{miniCartIsOpen ? (
 					<span
 						className={`cartPage-quantity-info`}
-						role={miniCart ? 'contentinfo' : ''}
+						role={miniCartIsOpen ? 'contentinfo' : ''}
 					></span>
 				) : null}
 				<div className={`${className} price-info`} role="contentinfo">
@@ -31,8 +33,10 @@ class CartPricing extends Component {
 				</div>
 
 				<div className="cart-btns">
-					{miniCart ? (
-						<Button className="cart-btns__btn view-bag">VIEW BAG </Button>
+					{miniCartIsOpen ? (
+						<Button className="cart-btns__btn view-bag">
+							<Link to="Cart">VIEW BAG</Link>
+						</Button>
 					) : null}
 					<Button className={`cart-btns__btn ${className} `}>CHECKOUT</Button>
 				</div>
@@ -44,6 +48,7 @@ class CartPricing extends Component {
 const mapStateToProps = (state) => ({
 	cartTotal: state.cart.cartTotal,
 	currencySymbol: state.currency.selectedCurrency?.symbol,
+	miniCartIsOpen: state.cart.miniCartIsOpen,
 });
 
 export default connect(mapStateToProps)(CartPricing);

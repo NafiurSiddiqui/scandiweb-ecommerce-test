@@ -14,7 +14,7 @@ class HeaderCart extends Component {
 		this.props.setMiniCartIsOpen();
 	}
 	render() {
-		const { cartItems, miniCartState } = this.props;
+		const { cartItems } = this.props;
 
 		const badgeGuard = cartItems.includes(undefined);
 

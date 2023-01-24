@@ -1,6 +1,7 @@
 import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route, Router, Routes } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Skeleton from './components/Layout/skeleton';
 import Cart from './components/pages/Cart/Cart';
@@ -54,7 +55,6 @@ class App extends Component {
 					if (loading || !data) {
 						return 'Loading ... ';
 					}
-					const products = data.category.products;
 
 					return (
 						<>
@@ -66,8 +66,16 @@ class App extends Component {
 								<section onLoad={this.DOMloadHandler}>
 									<Header />
 									<main className="products-display">
-										{productID ? <ProductDescription /> : <CategoryList />}
 										{miniCartIsOpen ? <MiniCart /> : null}
+
+										<Routes>
+											<Route path="*" element={<CategoryList />} />
+											<Route
+												path="/ProductDescription"
+												element={<ProductDescription />}
+											/>
+											<Route path="/Cart" element={<Cart />} />
+										</Routes>
 									</main>
 								</section>
 							)}
