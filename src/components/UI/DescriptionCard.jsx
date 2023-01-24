@@ -191,7 +191,7 @@ class DescriptionCard extends Component {
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
 					<span
 						className="pd__price-price"
-						style={{ fontSize: miniCart ? '1rem' : '' }}
+						style={{ fontSize: miniCart && !cartPage ? '1rem' : '1.2rem' }}
 					>
 						<span className="pd__price-price__symbol">
 							{prices[0]?.currency?.symbol}

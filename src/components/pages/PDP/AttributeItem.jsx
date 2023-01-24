@@ -89,7 +89,10 @@ class AttributeItem extends Component {
 					className={`${className}__attribution`}
 					onClick={(e) => this.itemHeaderHandler(e, attHeader)}
 				>
-					<h4 className={`${className}__attribution-header`}>
+					<h4
+						className={`${className}__attribution-header`}
+						style={{ fontSize: cartPage ? '0.853rem' : '0.7rem' }}
+					>
 						{attHeader.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
@@ -108,6 +111,7 @@ class AttributeItem extends Component {
 									updateItems={updateItems}
 									itemIsChecked={item.isChecked}
 									miniCart={miniCart}
+									cartPage={cartPage}
 								/>
 							);
 						})}
