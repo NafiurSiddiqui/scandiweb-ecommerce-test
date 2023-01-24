@@ -34,9 +34,9 @@ class CartPricing extends Component {
 
 				<div className="cart-btns">
 					{miniCartIsOpen ? (
-						<Button className="cart-btns__btn view-bag">
-							<Link to="Cart">VIEW BAG</Link>
-						</Button>
+						<Link to="Cart" className="cart-btns__btn view-bag">
+							VIEW BAG
+						</Link>
 					) : null}
 					<Button className={`cart-btns__btn ${className} `}>CHECKOUT</Button>
 				</div>
