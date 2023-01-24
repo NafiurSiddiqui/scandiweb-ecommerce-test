@@ -141,14 +141,22 @@ class DescriptionCard extends Component {
 		const { brand, name, prices, stock } = this.props.products;
 		const { items, itemCalculation } = this.state;
 
-		const { priceHeading, className, miniCart, productID, attributes } =
-			this.props;
+		const {
+			priceHeading,
+			className,
+			miniCart,
+			productID,
+			attributes,
+			cartPage,
+		} = this.props;
 		// console.log(miniCart, itemCalculation);
 
 		return (
 			<article
 				className={className}
-				style={{ lineHeight: miniCart ? '1.1rem' : '1.5rem' }}
+				style={{
+					lineHeight: miniCart && !cartPage ? '1.1rem' : '1.5rem',
+				}}
 			>
 				<div className={`${className}__headers`}>
 					<h2>{brand}</h2>
@@ -168,6 +176,7 @@ class DescriptionCard extends Component {
 								updateItems={this.updateItems}
 								productID={productID}
 								miniCart={miniCart}
+								cartPage={cartPage}
 							/>
 						);
 					})
