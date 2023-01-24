@@ -11,9 +11,9 @@ export default class CartContainer extends Component {
 			<article className={className}>
 				<CartItems cartPage={cartPage} />
 				{miniCart ? (
-					<MiniCartPricing className={'cart-page'} />
+					<MiniCartPricing className={'mini-cart__pricing'} />
 				) : (
-					<CartPricing className={'cart-page'} />
+					<CartPricing className={'cart-page__pricing'} />
 				)}
 			</article>
 		);

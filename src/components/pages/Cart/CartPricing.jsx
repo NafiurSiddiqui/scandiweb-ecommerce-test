@@ -8,7 +8,7 @@ class CartPricing extends Component {
 		const { className, cartTotal, currencySymbol } = this.props;
 
 		return (
-			<section className={className}>
+			<section className={`${className} price-wrapper`}>
 				<span className={`cartPage-tax-info`} role={'contentinfo'}>
 					TAX
 				</span>

@@ -10,7 +10,7 @@ class MiniCartPricing extends Component {
 			this.props;
 
 		return (
-			<section className={className}>
+			<section className={`${className} price-wrapper`}>
 				<div className={`${className} price-info`} role="contentinfo">
 					<span className={`${className} price-info__total`}>Total</span>
 					<span className={`${className} price-info__amount`}>

@@ -123,8 +123,8 @@
 
 	&-page {
 		&.price-info {
-			@include flex(space-between, center, row);
-			margin: 2rem 0;
+			// @include flex(space-between, center, row);
+			// margin: 2rem 0;
 
 			&__total,
 			&__amount {
@@ -141,5 +141,21 @@
 
 	&__qt-wrapper {
 		width: 15rem;
+	}
+}
+
+.price {
+	&-wrapper {
+		// padding: 1rem 0;
+	}
+
+	&-info {
+		@include flex(space-between, center, row);
+		margin: 2rem 0;
+
+		&__total,
+		&__amount {
+			font-weight: 600;
+		}
 	}
 }
