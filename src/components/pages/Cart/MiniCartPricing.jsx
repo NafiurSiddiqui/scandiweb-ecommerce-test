@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { setMiniCartIsOpen } from '../../store/cartSlice';
 import Button from '../../UI/Button';
 
-class CartPricing extends Component {
+class MiniCartPricing extends Component {
 	render() {
 		const { className, cartTotal, currencySymbol, setMiniCartIsOpen } =
 			this.props;
@@ -41,4 +41,4 @@ const mapStateToProps = (state) => ({
 	miniCartIsOpen: state.cart.miniCartIsOpen,
 });
 
-export default connect(mapStateToProps, { setMiniCartIsOpen })(CartPricing);
+export default connect(mapStateToProps, { setMiniCartIsOpen })(MiniCartPricing);

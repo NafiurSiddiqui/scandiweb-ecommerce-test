@@ -55,7 +55,7 @@ class CartItems extends Component {
 	}
 
 	render() {
-		const { cartItems } = this.props;
+		const { cartItems, className } = this.props;
 
 		return (
 			<ul className="cart-items">

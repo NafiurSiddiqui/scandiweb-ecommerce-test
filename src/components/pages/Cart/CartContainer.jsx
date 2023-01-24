@@ -9,7 +9,7 @@ export default class CartContainer extends Component {
 
 		return (
 			<article className={className}>
-				<CartItems />
+				<CartItems className={miniCart ? 'cart-items-mini' : 'cart-items'} />
 				{miniCart ? (
 					<MiniCartPricing className={'cart-page'} />
 				) : (
