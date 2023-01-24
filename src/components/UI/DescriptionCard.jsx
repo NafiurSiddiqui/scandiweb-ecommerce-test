@@ -149,7 +149,6 @@ class DescriptionCard extends Component {
 			attributes,
 			cartPage,
 		} = this.props;
-		// console.log(miniCart, itemCalculation);
 
 		return (
 			<article
@@ -159,8 +158,12 @@ class DescriptionCard extends Component {
 				}}
 			>
 				<div className={`${className}__headers`}>
-					<h2>{brand}</h2>
-					<h3>{name}</h3>
+					<h2 style={cartPage ? { fontSize: '1.5rem', fontWeight: 600 } : {}}>
+						{brand}
+					</h2>
+					<h3 style={cartPage ? { fontSize: '1.2rem', fontWeight: 400 } : {}}>
+						{name}
+					</h3>
 				</div>
 				{items ? (
 					items.map((item, itemIndex) => {
