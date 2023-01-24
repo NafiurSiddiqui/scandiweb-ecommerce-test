@@ -42,18 +42,16 @@ class CartPricing extends Component {
 
 		return (
 			<section className={className}>
-				{!miniCartIsOpen ? (
-					<span
-						className={`cartPage-tax-info`}
-						role={miniCartIsOpen ? 'contentinfo' : ''}
-					></span>
-				) : null}
-				{miniCartIsOpen ? (
-					<span
-						className={`cartPage-quantity-info`}
-						role={miniCartIsOpen ? 'contentinfo' : ''}
-					></span>
-				) : null}
+				<span
+					className={`cartPage-tax-info`}
+					role={miniCartIsOpen ? 'contentinfo' : ''}
+				></span>
+
+				<span
+					className={`cartPage-quantity-info`}
+					role={miniCartIsOpen ? 'contentinfo' : ''}
+				></span>
+
 				<div className={`${className} price-info`} role="contentinfo">
 					<span className={`${className} price-info__total`}>Total</span>
 					<span className={`${className} price-info__amount`}>
@@ -72,7 +70,9 @@ class CartPricing extends Component {
 							VIEW BAG
 						</Link>
 					) : null}
-					<Button className={`cart-btns__btn ${className} `}>CHECKOUT</Button>
+					<Button className={`cart-btns__btn ${className} `}>
+						{miniCartIsOpen && !cartPageIsActive ? 'CHECKOUT' : 'ORDER'}
+					</Button>
 				</div>
 			</section>
 		);

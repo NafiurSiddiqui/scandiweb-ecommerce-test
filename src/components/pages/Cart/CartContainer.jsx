@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CartItems from './CartItems';
 import CartPricing from './CartPricing';
+import MiniCartPricing from './MiniCartPricing';
 
 export default class CartContainer extends Component {
 	render() {
@@ -9,7 +10,11 @@ export default class CartContainer extends Component {
 		return (
 			<article className={className}>
 				<CartItems />
-				<CartPricing className={'cart-page'} />
+				{miniCart ? (
+					<MiniCartPricing className={'cart-page'} />
+				) : (
+					<CartPricing className={'cart-page'} />
+				)}
 			</article>
 		);
 	}

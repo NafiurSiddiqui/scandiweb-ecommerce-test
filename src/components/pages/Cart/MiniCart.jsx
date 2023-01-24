@@ -18,7 +18,7 @@ class MiniCart extends Component {
 								{cartItems.length ? cartItems.length : 0} items
 							</span>
 						</div>
-						<CartContainer className="mini-cart__items" />
+						<CartContainer miniCart={true} className="mini-cart__items" />
 					</section>
 				</Overlay>
 			</OutsideClickGuard>
