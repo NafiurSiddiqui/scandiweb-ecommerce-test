@@ -1,6 +1,10 @@
 .cart {
 	&-page {
 		padding: 2rem 6vw;
+
+		&__qt-wrapper {
+			width: 15rem;
+		}
 	}
 
 	&-btns {
@@ -120,35 +124,9 @@
 			}
 		}
 	}
-
-	&-page {
-		&.price-info {
-			// @include flex(space-between, center, row);
-			// margin: 2rem 0;
-
-			&__total,
-			&__amount {
-				font-weight: 600;
-			}
-		}
-	}
-}
-
-//cartPage
-
-.cart-page {
-	line-height: 0;
-
-	&__qt-wrapper {
-		width: 15rem;
-	}
 }
 
 .price {
-	&-wrapper {
-		// padding: 1rem 0;
-	}
-
 	&-info {
 		@include flex(space-between, center, row);
 		margin: 2rem 0;

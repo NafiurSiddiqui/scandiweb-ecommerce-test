@@ -9,14 +9,17 @@ class CartPricing extends Component {
 
 		return (
 			<section className={`${className} price-wrapper`}>
-				<span className={`cartPage-tax-info`} role={'contentinfo'}>
-					TAX
-				</span>
-				<br />
+				<div className={`cartPage-tax-info`} role={'contentinfo'}>
+					TAX 21%:
+					<span className="cartPage-tax-info-amount">
+						{currencySymbol ? currencySymbol : '$'} 42
+					</span>
+				</div>
 
-				<span className={`cartPage-quantity-info`} role={'contentinfo'}>
+				<div className={`cartPage-quantity-info`} role={'contentinfo'}>
 					Quantity:
-				</span>
+					<span className="cartPage-quantity-info-amount"> 3</span>
+				</div>
 
 				<div className={`${className} price-info`} role="contentinfo">
 					<span className={`${className} price-info__total`}>Total</span>
