@@ -1,4 +1,8 @@
 .cart {
+	&-page {
+		padding: 2rem 6vw;
+	}
+
 	&-btns {
 		@include flex(space-between, center, row);
 
@@ -75,9 +79,11 @@
 					@include flex(center, center, null);
 					@include border($darkTxtColr);
 					cursor: pointer;
+					transition: background-color 0.1s ease-in, color 0.1s ease-in;
 
 					&:hover {
-						background-color: rgb(234, 234, 234);
+						background-color: rgba(0, 0, 0, 0.7294117647);
+						color: white;
 					}
 
 					&-symbol {
@@ -125,5 +131,15 @@
 				font-weight: 600;
 			}
 		}
+	}
+}
+
+//cartPage
+
+.cart-page {
+	line-height: 0;
+
+	&__qt-wrapper {
+		width: 15rem;
 	}
 }

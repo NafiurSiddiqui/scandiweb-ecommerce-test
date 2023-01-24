@@ -5,11 +5,11 @@ import MiniCartPricing from './MiniCartPricing';
 
 export default class CartContainer extends Component {
 	render() {
-		const { className, miniCart } = this.props;
+		const { className, miniCart, cartPage } = this.props;
 
 		return (
 			<article className={className}>
-				<CartItems className={miniCart ? 'cart-items-mini' : 'cart-items'} />
+				<CartItems cartPage={cartPage} />
 				{miniCart ? (
 					<MiniCartPricing className={'cart-page'} />
 				) : (

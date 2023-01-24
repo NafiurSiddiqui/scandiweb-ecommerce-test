@@ -61,7 +61,8 @@
 			position: relative;
 
 			width: 90%;
-			height: 11rem;
+			// height: 12rem;
+			min-height: 12rem;
 		}
 
 		&-image-item {
@@ -76,6 +77,17 @@
 				width: 90%;
 				height: 12rem;
 			}
+
+			&__cartPage__image {
+				width: 13rem !important;
+				height: auto !important;
+			}
 		}
 	}
 }
+
+// .cart-page {
+// 	&__qt-container-image-item {
+// 		width: 100%;
+// 	}
+// }

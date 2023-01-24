@@ -70,11 +70,10 @@ class CartItem extends Component {
 			decrementItem,
 			products,
 			selectedCurrency,
+			cartPage,
 		} = this.props;
 
-		const { imageCount, itemPrice } = this.state;
-
-		// console.log(itemPrice);
+		const { imageCount } = this.state;
 
 		const quantity = cartItem[2].quantity;
 
@@ -104,7 +103,11 @@ class CartItem extends Component {
 					quantity={quantity}
 				/>
 
-				<div className="cart-quantity-wrapper">
+				<div
+					className={
+						cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
+					}
+				>
 					<CartQuantitiy
 						images={PDP[0].images}
 						imageCount={imageCount}
@@ -112,6 +115,7 @@ class CartItem extends Component {
 						incrementItem={incrementItem}
 						decrementItem={decrementItem}
 						attributes={cartItem}
+						cartPage={cartPage}
 					/>
 
 					<div

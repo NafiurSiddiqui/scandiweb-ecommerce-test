@@ -24,7 +24,7 @@ export default class CartQuantitiy extends Component {
 	}
 
 	render() {
-		const { images, imageCount, quantity } = this.props;
+		const { images, imageCount, quantity, cartPage } = this.props;
 
 		return (
 			<section className="cart-quantity-container">
@@ -61,9 +61,10 @@ export default class CartQuantitiy extends Component {
 							cartItem={true}
 							src={item}
 							key={item}
-							className={'quantity-container-image-item'}
+							className={`quantity-container-image-item`}
 							imageCount={imageCount}
 							index={i}
+							cartPage={cartPage}
 						/>
 					))}
 				</ul>

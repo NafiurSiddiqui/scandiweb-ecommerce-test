@@ -55,7 +55,7 @@ class CartItems extends Component {
 	}
 
 	render() {
-		const { cartItems, className } = this.props;
+		const { cartItems, cartPage } = this.props;
 
 		return (
 			<ul className="cart-items">
@@ -66,6 +66,7 @@ class CartItems extends Component {
 							cartItem={item}
 							itemPriceHandler={this.itemPriceHandler}
 							itemIndex={i}
+							cartPage={cartPage}
 						/>
 					);
 				})}

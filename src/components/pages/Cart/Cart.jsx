@@ -8,7 +8,12 @@ import CartContainer from './CartContainer';
 
 class Cart extends Component {
 	render() {
-		return <CartContainer />;
+		return (
+			<section>
+				<h1>Cart</h1>
+				<CartContainer className="cart-page" cartPage={true} />
+			</section>
+		);
 	}
 }
 

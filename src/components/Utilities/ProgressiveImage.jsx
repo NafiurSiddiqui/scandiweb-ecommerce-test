@@ -25,7 +25,8 @@ class ProgressiveImage extends Component {
 	}
 
 	render() {
-		const { cartItem, src, className, index, imageCount } = this.props;
+		const { cartItem, src, className, index, imageCount, cartPage } =
+			this.props;
 
 		//if index is equal to the state count
 		const miniCartStyle =
@@ -50,7 +51,11 @@ class ProgressiveImage extends Component {
 					src={src}
 					alt="product"
 					className={`${className}${
-						cartItem ? '__image' : ''
+						cartItem
+							? cartItem && cartPage
+								? '__cartPage__image'
+								: '__image'
+							: ''
 					} image-gallery__image`}
 					onLoad={this.imageStateHandler}
 					onClick={this.imgSrcHandler}
