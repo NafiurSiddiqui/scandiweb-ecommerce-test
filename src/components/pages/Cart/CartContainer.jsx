@@ -4,7 +4,7 @@ import CartPricing from './CartPricing';
 
 export default class CartContainer extends Component {
 	render() {
-		const { className } = this.props;
+		const { className, miniCart } = this.props;
 
 		return (
 			<article className={className}>
