@@ -6,7 +6,7 @@ class CartPricing extends Component {
 	render() {
 		const { miniCart, className, cartTotal, currencySymbol } = this.props;
 
-		// console.log(cartTotal);
+		console.log(cartTotal);
 
 		return (
 			<section className={className}>

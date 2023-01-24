@@ -72,7 +72,9 @@ class CartItem extends Component {
 			selectedCurrency,
 		} = this.props;
 
-		const { imageCount } = this.state;
+		const { imageCount, itemPrice } = this.state;
+
+		// console.log(itemPrice);
 
 		const quantity = cartItem[2].quantity;
 

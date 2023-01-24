@@ -103,6 +103,8 @@ export const cartSlice = createSlice({
 		cartTotalHandler: (state, action) => {
 			let prices = action.payload;
 
+			// console.log(prices);
+
 			if (prices !== 0) {
 				let total = prices.reduce((acc, cur) => acc + cur, 0);
 

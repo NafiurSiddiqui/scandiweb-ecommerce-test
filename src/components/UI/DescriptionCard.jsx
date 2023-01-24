@@ -6,7 +6,7 @@ import {
 	cartPricingHandler,
 	cartTotalHandler,
 } from '../store/cartSlice';
-import getPricing from '../Utilities/cartHandler';
+
 import Button from './Button';
 
 /**
@@ -23,7 +23,7 @@ class DescriptionCard extends Component {
 			selectedTitle: productID,
 			selectedValues: [],
 			items: [],
-			cartCalculation: prices[0]?.amount,
+			itemCalculation: prices[0]?.amount,
 		};
 		this.getSelectedValues = this.getSelectedValues.bind(this);
 		this.updateItems = this.updateItems.bind(this);
@@ -31,9 +31,8 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { attributes, miniCart, quantity, cartPricingHandler } = this.props;
+		const { attributes, miniCart, quantity } = this.props;
 		const { prices } = this.props.products;
-		// cartPricingHandler(this.state.cartCalculation);
 
 		if (miniCart && attributes) {
 			const attHeaders = attributes[1].map((item) => item.name);
@@ -46,7 +45,7 @@ class DescriptionCard extends Component {
 
 			this.setState({
 				items: Object.entries(selectedAttributes),
-				cartCalculation: prices[0].amount * quantity,
+				itemCalculation: prices[0].amount * quantity,
 			});
 
 			return;
@@ -60,12 +59,20 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { quantity } = this.props;
+		const { quantity, cartItems } = this.props;
 		const { prices } = this.props.products;
 
 		if (prevProps.quantity !== quantity) {
 			this.setState({
-				cartCalculation: prices[0].amount * quantity,
+				itemCalculation: prices[0].amount * quantity,
+			});
+		}
+
+		if (prevProps.cartItems.length !== cartItems.length) {
+			console.log(prices[0].amount);
+
+			this.setState({
+				itemCalculation: prices[0].amount,
 			});
 		}
 	}
@@ -134,11 +141,11 @@ class DescriptionCard extends Component {
 
 	render() {
 		const { brand, name, prices, stock } = this.props.products;
-		const { items, cartCalculation } = this.state;
+		const { items, itemCalculation } = this.state;
 
 		const { priceHeading, className, miniCart, productID, attributes } =
 			this.props;
-		console.log(miniCart, cartCalculation);
+		// console.log(miniCart, itemCalculation);
 
 		return (
 			<article
@@ -179,7 +186,7 @@ class DescriptionCard extends Component {
 						<span className="pd__price-price__symbol">
 							{prices[0]?.currency?.symbol}
 						</span>
-						{miniCart ? cartCalculation : prices[0]?.amount}
+						{miniCart ? itemCalculation : prices[0]?.amount}
 					</span>
 				</div>
 

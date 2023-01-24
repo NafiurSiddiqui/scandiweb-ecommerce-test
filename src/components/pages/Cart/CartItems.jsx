@@ -33,25 +33,23 @@ class CartItems extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		// if (prevState.itemPrices !== this.state.itemPrices) {
-		// 	this.props.cartTotalHandler(this.state.itemPrices);
-		// }
+		if (prevState.itemPrices !== this.state.itemPrices) {
+			// console.log('should update');
+			this.props.cartTotalHandler(this.state.itemPrices);
+		}
 
 		if (prevProps.cartItems.length !== this.props.cartItems.length) {
 			let newItemPrices = this.state.itemPrices.filter((price, index) => {
 				if (this.props.cartItems[index] === undefined) {
 					return -1;
 				} else {
-					console.log(this.props.cartItems[index][0]);
+					return (
+						prevProps.cartItems.findIndex(
+							(item) => item[0] === this.props.cartItems[index]
+						) !== -1
+					);
 				}
-				return (
-					prevProps.cartItems.findIndex(
-						(item) => item[0] === this.props.cartItems[index]
-					) !== -1
-				);
 			});
-
-			console.log(newItemPrices);
 
 			this.setState({
 				itemPrices: newItemPrices,
@@ -60,15 +58,12 @@ class CartItems extends Component {
 		}
 
 		if (this.props.cartItems.length === 0) {
-			console.log('No items, should be 0');
 			this.props.cartTotalHandler(0);
 		}
 	}
 
 	render() {
 		const { cartItems } = this.props;
-
-		console.log(this.state.itemPrices);
 
 		return (
 			<ul className="cart-items">
