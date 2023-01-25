@@ -16,8 +16,6 @@ class HeaderCart extends Component {
 	render() {
 		const { cartItems, cartQuantity } = this.props;
 
-		console.log(cartQuantity);
-
 		const badgeGuard = cartItems.includes(undefined);
 
 		return (

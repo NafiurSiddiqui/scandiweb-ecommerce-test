@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setMiniCartIsOpen } from '../../store/cartSlice';
+import { cartQuantityHandler, setMiniCartIsOpen } from '../../store/cartSlice';
 import Button from '../../UI/Button';
 
 class CartPricing extends Component {
+	componentDidUpdate(prevProps) {
+		if (prevProps.cartTotal !== this.props.cartTotal) {
+			this.props.cartQuantityHandler();
+			return;
+		}
+	}
+
 	render() {
-		const { className, cartTotal, currencySymbol, cartTotalTax } = this.props;
+		const { className, cartTotal, currencySymbol, cartTotalTax, cartQuantity } =
+			this.props;
 
 		return (
 			<section className={`${className} price-wrapper`}>
@@ -18,7 +26,7 @@ class CartPricing extends Component {
 
 				<div className={`cart-page-quantity-info`} role={'contentinfo'}>
 					Quantity:
-					<span className="cart-page-quantity-info-amount"> 3</span>
+					<span className="cart-page-quantity-info-amount">{cartQuantity}</span>
 				</div>
 
 				<div className={`${className} price-info`} role="contentinfo">
@@ -43,6 +51,10 @@ const mapStateToProps = (state) => ({
 	cartTotal: state.cart.cartTotal,
 	currencySymbol: state.currency.selectedCurrency?.symbol,
 	cartTotalTax: state.cart.cartTotalTax,
+	cartQuantity: state.cart.cartQuantity,
 });
 
-export default connect(mapStateToProps, { setMiniCartIsOpen })(CartPricing);
+export default connect(mapStateToProps, {
+	setMiniCartIsOpen,
+	cartQuantityHandler,
+})(CartPricing);
