@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { cartTotalHandler } from '../../store/cartSlice';
+import { cartTaxHandler, cartTotalHandler } from '../../store/cartSlice';
 
 import CartItem from './CartItem';
 
@@ -35,6 +35,7 @@ class CartItems extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.itemPrices !== this.state.itemPrices) {
 			this.props.cartTotalHandler(this.state.itemPrices);
+			this.props.cartTaxHandler();
 		}
 
 		if (prevProps.cartItems.length !== this.props.cartItems.length) {
@@ -47,10 +48,12 @@ class CartItems extends Component {
 				itemPrices: newItemPrices,
 			});
 			this.props.cartTotalHandler(newItemPrices);
+			this.props.cartTaxHandler();
 		}
 
 		if (this.props.cartItems.length === 0) {
 			this.props.cartTotalHandler(0);
+			this.props.cartTaxHandler();
 		}
 	}
 
@@ -81,4 +84,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { cartTotalHandler })(CartItems);
+export default connect(mapStateToProps, { cartTotalHandler, cartTaxHandler })(
+	CartItems
+);
