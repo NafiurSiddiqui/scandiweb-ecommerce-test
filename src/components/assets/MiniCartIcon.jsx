@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addItemToCart, setMiniCartIsOpen } from '../store/cartSlice';
+import {
+	addItemToCart,
+	cartQuantityHandler,
+	setMiniCartIsOpen,
+} from '../store/cartSlice';
 import productHandler from '../Utilities/ProductHandler';
 
 class MiniCartIcon extends Component {
@@ -32,6 +36,7 @@ class MiniCartIcon extends Component {
 			if (!inStock) return;
 			//userItems[3] = defined data structure
 			addItemToCart(userItems[3]);
+			this.props.cartQuantityHandler();
 		}
 	}
 
@@ -72,6 +77,10 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { addItemToCart, setMiniCartIsOpen };
+const mapDispatchToProps = {
+	addItemToCart,
+	setMiniCartIsOpen,
+	cartQuantityHandler,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MiniCartIcon);

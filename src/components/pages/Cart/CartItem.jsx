@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { decrementItem, incrementItem } from '../../store/cartSlice';
+import {
+	cartQuantityHandler,
+	decrementItem,
+	incrementItem,
+} from '../../store/cartSlice';
 import DescriptionCard from '../../UI/DescriptionCard';
 import productHandler from '../../Utilities/ProductHandler';
 import CartQuantitiy from './CartQuantitiy';
@@ -48,6 +52,7 @@ class CartItem extends Component {
 			});
 
 			this.props.itemPriceHandler(PDP[0].amount * quantity, itemIndex, true);
+			this.props.cartQuantityHandler();
 		}
 	}
 
@@ -154,6 +159,10 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { incrementItem, decrementItem };
+const mapDispatchToProps = {
+	incrementItem,
+	decrementItem,
+	cartQuantityHandler,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);

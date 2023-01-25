@@ -4,6 +4,7 @@ import AttributeItem from '../pages/PDP/AttributeItem';
 import {
 	addItemToCart,
 	cartPricingHandler,
+	cartQuantityHandler,
 	cartTotalHandler,
 } from '../store/cartSlice';
 
@@ -134,6 +135,7 @@ class DescriptionCard extends Component {
 			alert('Please select at lease one option');
 		} else {
 			addItemToCart(userItems);
+			// this.props.cartQuantityHandler();
 		}
 	}
 
@@ -221,8 +223,11 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, {
+const mapDispatchToProps = {
 	addItemToCart,
 	cartTotalHandler,
 	cartPricingHandler,
-})(DescriptionCard);
+	cartQuantityHandler,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DescriptionCard);

@@ -1,7 +1,7 @@
 import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Navigate, Route, Router, Routes } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Skeleton from './components/Layout/skeleton';
 import Cart from './components/pages/Cart/Cart';
@@ -52,6 +52,7 @@ class App extends Component {
 			>
 				{({ error, loading, data, client }) => {
 					if (error) return `something went wrong !!! ${error} `;
+
 					if (loading || !data) {
 						return 'Loading ... ';
 					}
@@ -75,6 +76,7 @@ class App extends Component {
 												element={<ProductDescription />}
 											/>
 											<Route path="/Cart" element={<Cart />} />
+											<Route path="*" element={<Navigate to={'/'} />} />
 										</Routes>
 									</main>
 								</section>

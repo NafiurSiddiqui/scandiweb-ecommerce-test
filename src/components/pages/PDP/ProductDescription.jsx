@@ -8,6 +8,7 @@ import ProgressiveImage from '../../Utilities/ProgressiveImage';
 import { setSelectedProduct } from '../../store/productsSlice';
 import { addItemToCart } from '../../store/cartSlice';
 import productHandler from '../../Utilities/ProductHandler';
+import { Navigate } from 'react-router-dom';
 
 /**
  * @className - 'PDP' = product description
@@ -65,91 +66,95 @@ class ProductDescription extends Component {
 
 	render() {
 		const { productID, selectedCurrency } = this.props;
+		if (!productID) {
+			console.log(productID);
+			return <Navigate to={'/'} />;
+		} else {
+			return (
+				<Query query={GET_ALL_CATEGORIES}>
+					{({ error, loading, data }) => {
+						if (error) return `something went wrong !!! ${error} `;
+						if (loading || !data) return 'Loading ... ';
 
-		return (
-			<Query query={GET_ALL_CATEGORIES}>
-				{({ error, loading, data }) => {
-					if (error) return `something went wrong !!! ${error} `;
-					if (loading || !data) return 'Loading ... ';
+						const { products } = data.category;
 
-					const { products } = data.category;
+						//items extracted from product handler
+						const [PDP, galleryOverflow, attributes] = productHandler(
+							products,
+							productID,
+							selectedCurrency
+						);
 
-					//items extracted from product handler
-					const [PDP, galleryOverflow, attributes] = productHandler(
-						products,
-						productID,
-						selectedCurrency
-					);
+						return (
+							<>
+								<section className="pdp">
+									<div className="pdp-image">
+										<ul
+											className="pdp-image-gallery"
+											style={
+												galleryOverflow
+													? { overflowY: 'scroll' }
+													: { overflowY: 'none' }
+											}
+										>
+											{PDP[0].images.map((item, index) => (
+												<ProgressiveImage
+													src={item}
+													key={item}
+													onClick={this.selectedImgSrcHandler}
+													className={'pdp-image'}
+												/>
+											))}
+										</ul>
 
-					return (
-						<>
-							<section className="pdp">
-								<div className="pdp-image">
-									<ul
-										className="pdp-image-gallery"
-										style={
-											galleryOverflow
-												? { overflowY: 'scroll' }
-												: { overflowY: 'none' }
-										}
-									>
-										{PDP[0].images.map((item, index) => (
-											<ProgressiveImage
-												src={item}
-												key={item}
-												onClick={this.selectedImgSrcHandler}
-												className={'pdp-image'}
-											/>
-										))}
-									</ul>
+										<img
+											className="pdp-image-hero"
+											alt="product"
+											src={
+												this.state.selectedImgSrc
+													? this.state.selectedImgSrc
+													: PDP[0].images[0]
+											}
+										/>
+									</div>
+									<article className="pdp_pd">
+										<DescriptionCard
+											products={PDP[0]}
+											priceHeading={true}
+											getItemValues={this.getItemValues}
+											attributes={attributes}
+											className="pd"
+										/>
 
-									<img
-										className="pdp-image-hero"
-										alt="product"
-										src={
-											this.state.selectedImgSrc
-												? this.state.selectedImgSrc
-												: PDP[0].images[0]
-										}
-									/>
-								</div>
-								<article className="pdp_pd">
-									<DescriptionCard
-										products={PDP[0]}
-										priceHeading={true}
-										getItemValues={this.getItemValues}
-										attributes={attributes}
-										className="pd"
-									/>
-
-									<p
-										className="pd__description"
-										onClick={this.textOverFlowHandler}
-										style={
-											this.state.txtOverFlow
-												? {
-														display: '-webkit-box',
-														WebkitLineClamp: '0',
-														WebkitBoxOrient: 'vertical',
-														overflowY: 'scroll',
-												  }
-												: {
-														display: '-webkit-box',
-														WebkitLineClamp: '6',
-														WebkitBoxOrient: 'vertical',
-														overflow: 'hidden',
-												  }
-										}
-									>
-										{this.HTMLparser(products)}
-									</p>
-								</article>
-							</section>
-						</>
-					);
-				}}
-			</Query>
-		);
+										<p
+											className="pd__description"
+											onClick={this.textOverFlowHandler}
+											style={
+												this.state.txtOverFlow
+													? {
+															display: '-webkit-box',
+															WebkitLineClamp: '0',
+															WebkitBoxOrient: 'vertical',
+															overflowY: 'scroll',
+													  }
+													: {
+															display: '-webkit-box',
+															WebkitLineClamp: '6',
+															WebkitBoxOrient: 'vertical',
+															overflow: 'hidden',
+													  }
+											}
+										>
+											{this.HTMLparser(products) || 'something went wrong'}
+										</p>
+									</article>
+								</section>
+							</>
+						);
+					}}
+				</Query>
+			);
+		}
 	}
 }
 

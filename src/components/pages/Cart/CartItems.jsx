@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { cartTaxHandler, cartTotalHandler } from '../../store/cartSlice';
+import {
+	cartQuantityHandler,
+	cartTaxHandler,
+	cartTotalHandler,
+} from '../../store/cartSlice';
 
 import CartItem from './CartItem';
 
@@ -84,6 +88,10 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { cartTotalHandler, cartTaxHandler })(
-	CartItems
-);
+const mapDispatchToProps = {
+	cartTotalHandler,
+	cartTaxHandler,
+	cartQuantityHandler,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartItems);

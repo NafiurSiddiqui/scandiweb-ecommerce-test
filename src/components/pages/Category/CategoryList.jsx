@@ -3,7 +3,7 @@ import { Component, Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-const CategoryAll = lazy(() => import('./All'));
+const CategoryAll = lazy(() => import('./CategoryAll'));
 const CategoryClothes = lazy(() => import('./Clothes'));
 const CategoryTech = lazy(() => import('./Tech'));
 
