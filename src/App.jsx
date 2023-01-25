@@ -42,7 +42,7 @@ class App extends Component {
 	}
 
 	render() {
-		let { productID, miniCartIsOpen } = this.props;
+		let { miniCartIsOpen } = this.props;
 		let { DOMisLoaded } = this.state;
 
 		return (
@@ -50,7 +50,7 @@ class App extends Component {
 				query={GET_ALL_CATEGORIES}
 				onCompleted={(data) => this.getProductsHandler(data.category.products)}
 			>
-				{({ error, loading, data, client }) => {
+				{({ error, loading, data }) => {
 					if (error) return `something went wrong !!! ${error} `;
 
 					if (loading || !data) {

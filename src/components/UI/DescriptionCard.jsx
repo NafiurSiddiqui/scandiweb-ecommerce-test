@@ -135,7 +135,7 @@ class DescriptionCard extends Component {
 			alert('Please select at lease one option');
 		} else {
 			addItemToCart(userItems);
-			// this.props.cartQuantityHandler();
+			this.props.cartQuantityHandler();
 		}
 	}
 

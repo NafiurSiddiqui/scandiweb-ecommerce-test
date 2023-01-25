@@ -116,12 +116,14 @@ export const cartSlice = createSlice({
 			state.cartTotalTax = ((state.cartTotal / 100) * 21).toFixed(2);
 		},
 		cartQuantityHandler: (state) => {
-			console.log(JSON.stringify(state.cartItems));
+			const items = state.cartItems.map((item) => item[2].quantity);
 
-			let quantity = 0;
-
-			// const itemQuantity = state.cartItems.map((item) => item[2].quantity);
-			// console.log(itemQuantity);
+			if (state.cartItems.length === 1) {
+				state.cartQuantity = items;
+			} else {
+				let newItems = items.reduce((acc, cur) => acc + cur, 0);
+				state.cartQuantity = newItems;
+			}
 		},
 	},
 });
