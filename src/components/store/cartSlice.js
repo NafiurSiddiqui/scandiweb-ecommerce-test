@@ -6,6 +6,7 @@ const initialState = {
 	cartPricing: [],
 	miniCartIsOpen: false,
 	cartTotalTax: 0,
+	cartQuantity: 0,
 };
 
 export const cartSlice = createSlice({
