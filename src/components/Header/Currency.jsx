@@ -8,8 +8,6 @@ import OutsideClickGuard from '../Utilities/OutsideClickGuard';
  */
 
 class Currency extends Component {
-	//Get the value
-	//render the value
 	constructor() {
 		super();
 
