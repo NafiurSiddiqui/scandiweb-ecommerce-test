@@ -5,14 +5,14 @@ import Button from '../../UI/Button';
 
 class CartPricing extends Component {
 	render() {
-		const { className, cartTotal, currencySymbol } = this.props;
+		const { className, cartTotal, currencySymbol, cartTotalTax } = this.props;
 
 		return (
 			<section className={`${className} price-wrapper`}>
 				<div className={`cart-page-tax-info`} role={'contentinfo'}>
 					TAX 21%:
 					<span className="cart-page-tax-info-amount">
-						{currencySymbol ? currencySymbol : '$'} 42
+						{currencySymbol ? currencySymbol : '$'} {cartTotalTax}
 					</span>
 				</div>
 
@@ -42,6 +42,7 @@ class CartPricing extends Component {
 const mapStateToProps = (state) => ({
 	cartTotal: state.cart.cartTotal,
 	currencySymbol: state.currency.selectedCurrency?.symbol,
+	cartTotalTax: state.cart.cartTotalTax,
 });
 
 export default connect(mapStateToProps, { setMiniCartIsOpen })(CartPricing);
