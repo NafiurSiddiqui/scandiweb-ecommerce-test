@@ -11,6 +11,10 @@ class Currency extends Component {
 	constructor() {
 		super();
 
+		this.state = {
+			currencyActive: null,
+		};
+
 		this.currencyHandler = this.currencyHandler.bind(this);
 		this.selectedCurrencyHandler = this.selectedCurrencyHandler.bind(this);
 	}
@@ -21,10 +25,14 @@ class Currency extends Component {
 	}
 
 	//get & gloablly set the value
-	selectedCurrencyHandler(e) {
+	selectedCurrencyHandler(e, index) {
 		this.props.setSelectedCurrency({
 			currency: e.target.lastChild.nodeValue,
 			symbol: e.target.firstChild.innerText,
+		});
+
+		this.setState({
+			currencyActive: index,
 		});
 	}
 
@@ -62,12 +70,16 @@ class Currency extends Component {
 
 				<ul className={`header-currency__currency-items ${currencyState}`}>
 					{prices !== undefined
-						? prices[0].map((item, i) => {
+						? prices[0].map((item, index) => {
 								return (
 									<li
-										className={`header-currency__currency-items__item `}
+										className={`header-currency__currency-items__item ${
+											this.state.currencyActive === index
+												? 'currencyActive'
+												: ''
+										} `}
 										key={item.currency}
-										onClick={this.selectedCurrencyHandler}
+										onClick={(e) => this.selectedCurrencyHandler(e, index)}
 									>
 										<span className="header-currency__currency-items__item-symbol">
 											{item.symbol}
