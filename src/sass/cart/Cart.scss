@@ -5,6 +5,22 @@
 		&__qt-wrapper {
 			width: 15rem;
 		}
+
+		&-tax-info {
+			margin: 1rem 0 0.4rem 0;
+
+			&-amount {
+				font-weight: bold;
+			}
+		}
+
+		&-quantity-info-amount {
+			font-weight: bold;
+		}
+
+		&__pricing.price-info {
+			margin: 0.4rem 0 0.8rem 0;
+		}
 	}
 
 	&-btns {
@@ -12,6 +28,10 @@
 
 		&__btn {
 			width: 48% !important;
+
+			&.cart-page-order-btn {
+				width: 18rem !important;
+			}
 
 			&.view-bag {
 				background-color: white;

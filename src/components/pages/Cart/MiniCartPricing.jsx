@@ -6,8 +6,13 @@ import Button from '../../UI/Button';
 
 class MiniCartPricing extends Component {
 	render() {
-		const { className, cartTotal, currencySymbol, setMiniCartIsOpen } =
-			this.props;
+		const {
+			className,
+			cartTotal,
+			currencySymbol,
+			setMiniCartIsOpen,
+			cartPage,
+		} = this.props;
 
 		return (
 			<section className={`${className} price-wrapper`}>
@@ -28,7 +33,9 @@ class MiniCartPricing extends Component {
 						VIEW BAG
 					</Link>
 
-					<Button className={`cart-btns__btn ${className} `}>CHECKOUT</Button>
+					<Button className={`cart-btns__btn mini-cart-pricing-btn `}>
+						CHECKOUT
+					</Button>
 				</div>
 			</section>
 		);

@@ -9,16 +9,16 @@ class CartPricing extends Component {
 
 		return (
 			<section className={`${className} price-wrapper`}>
-				<div className={`cartPage-tax-info`} role={'contentinfo'}>
+				<div className={`cart-page-tax-info`} role={'contentinfo'}>
 					TAX 21%:
-					<span className="cartPage-tax-info-amount">
+					<span className="cart-page-tax-info-amount">
 						{currencySymbol ? currencySymbol : '$'} 42
 					</span>
 				</div>
 
-				<div className={`cartPage-quantity-info`} role={'contentinfo'}>
+				<div className={`cart-page-quantity-info`} role={'contentinfo'}>
 					Quantity:
-					<span className="cartPage-quantity-info-amount"> 3</span>
+					<span className="cart-page-quantity-info-amount"> 3</span>
 				</div>
 
 				<div className={`${className} price-info`} role="contentinfo">
@@ -30,7 +30,9 @@ class CartPricing extends Component {
 				</div>
 
 				<div className="cart-btns">
-					<Button className={`cart-btns__btn ${className} `}>ORDER</Button>
+					<Button className={`cart-btns__btn cart-page-order-btn`}>
+						ORDER
+					</Button>
 				</div>
 			</section>
 		);
