@@ -2,6 +2,7 @@ import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { GET_ALL_CATEGORIES } from './CategoryList';
 import CategoryCard from './CategoryCard';
+import DisplayHeader from '../../Layout/DisplayHeader';
 
 export default class CategoryTech extends Component {
 	render() {
@@ -23,9 +24,7 @@ export default class CategoryTech extends Component {
 
 					return (
 						<>
-							<div>
-								<h1 className={'category-title'}>Tech</h1>
-							</div>
+							<DisplayHeader>Tech</DisplayHeader>
 
 							<ul className={'category-items'}>
 								{tech.map((p) => {

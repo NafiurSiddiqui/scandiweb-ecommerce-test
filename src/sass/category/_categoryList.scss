@@ -1,9 +1,6 @@
 .category {
 	padding: 0 4rem;
 
-	&-title {
-		margin-bottom: 3rem;
-	}
 	&-items {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

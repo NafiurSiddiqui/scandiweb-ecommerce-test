@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DisplayHeader from '../../Layout/DisplayHeader';
 
 import CartContainer from './CartContainer';
 
@@ -10,7 +11,7 @@ class Cart extends Component {
 	render() {
 		return (
 			<section>
-				<h1>Cart</h1>
+				<DisplayHeader>Cart</DisplayHeader>
 				<CartContainer className="cart-page" cartPage={true} />
 			</section>
 		);

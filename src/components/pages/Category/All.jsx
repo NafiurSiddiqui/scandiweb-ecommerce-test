@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import DisplayHeader from '../../Layout/DisplayHeader';
 import { setProducts } from '../../store/productsSlice';
 import { userCurrency } from '../../Utilities/currency';
 import CategoryCard from './CategoryCard';
@@ -23,9 +24,7 @@ class CategoryAll extends Component {
 
 		return (
 			<>
-				<div>
-					<h1 className={'category-title'}>All</h1>
-				</div>
+				<DisplayHeader>All</DisplayHeader>
 
 				<ul className={'category-items'}>
 					{products?.map((p, i) => {
