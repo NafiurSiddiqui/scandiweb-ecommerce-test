@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Overlay from '../../UI/Overlay';
+import DisplayMessage from '../../Utilities/DisplayMessage';
 import OutsideClickGuard from '../../Utilities/OutsideClickGuard';
 import CartContainer from './CartContainer';
 
 class MiniCart extends Component {
 	render() {
-		const { cartItems } = this.props;
+		const { cartItems, cartQuantity } = this.props;
 
 		return (
 			<OutsideClickGuard className={`mini-cart guard`}>
@@ -15,10 +16,15 @@ class MiniCart extends Component {
 						<div className="mini-cart__headers">
 							<h2 className="mini-cart__header">My Bag,</h2>
 							<span className="mini-cart__item-count">
-								{cartItems.length ? cartItems.length : 0} items
+								{cartQuantity} items
 							</span>
 						</div>
-						<CartContainer miniCart={true} className="mini-cart__items" />
+
+						{cartItems.length === 0 ? (
+							<DisplayMessage>Such an empty cart. 🙄 </DisplayMessage>
+						) : (
+							<CartContainer miniCart={true} className="mini-cart__items" />
+						)}
 					</section>
 				</Overlay>
 			</OutsideClickGuard>
@@ -29,6 +35,7 @@ class MiniCart extends Component {
 const mapStateToProps = (state) => {
 	return {
 		cartItems: state.cart.cartItems,
+		cartQuantity: state.cart.cartQuantity,
 	};
 };
 
