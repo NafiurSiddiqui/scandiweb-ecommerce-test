@@ -45,7 +45,7 @@ class OutsideClickGuard extends Component {
 				if (event.target.nodeName === 'svg') {
 					return;
 				} else if (!event.target.closest('.mini-cart-container')) {
-					setMiniCartIsOpen();
+					setMiniCartIsOpen(false);
 				}
 			}
 		}

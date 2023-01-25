@@ -34,6 +34,8 @@ class Currency extends Component {
 		this.setState({
 			currencyActive: index,
 		});
+
+		this.currencyHandler();
 	}
 
 	render() {
