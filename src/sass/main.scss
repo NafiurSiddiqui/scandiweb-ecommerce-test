@@ -73,8 +73,14 @@ h4 {
 	z-index: 4;
 }
 
+//REUSABLE components
+
 .display-header {
 	margin: 1.5rem 0;
+}
+
+.content-wrapper {
+	padding: 0 4rem;
 }
 
 // DYNAMIC CLASSES
