@@ -1,11 +1,11 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import getPricing from '../Utilities/cartHandler';
 
 const initialState = {
 	cartItems: [],
 	cartTotal: 0,
 	cartPricing: [],
 	miniCartIsOpen: false,
+	cartTotalTax: 0,
 };
 
 export const cartSlice = createSlice({
@@ -103,8 +103,6 @@ export const cartSlice = createSlice({
 		cartTotalHandler: (state, action) => {
 			let prices = action.payload;
 
-			// console.log(prices);
-
 			if (prices !== 0) {
 				let total = prices.reduce((acc, cur) => acc + cur, 0);
 
@@ -112,6 +110,10 @@ export const cartSlice = createSlice({
 			} else {
 				state.cartTotal = 0;
 			}
+		},
+		cartTaxHandler: (state) => {
+			// state.cartTotalTax = state.cartTotal * 21;
+			console.log((state.cartTotal / 100) * 21);
 		},
 	},
 });
