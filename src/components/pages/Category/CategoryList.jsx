@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import { Component, Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import ContentWrapper from '../../Layout/ContentWrapper';
 
 const CategoryAll = lazy(() => import('./CategoryAll'));
 const CategoryClothes = lazy(() => import('./Clothes'));
@@ -43,7 +44,7 @@ export const GET_ALL_CATEGORIES = gql`
 class CategoryList extends Component {
 	render() {
 		return (
-			<section className={'category'}>
+			<ContentWrapper>
 				<Suspense fallback={<span>Loading...</span>}>
 					<Routes>
 						<Route path="/" element={<CategoryAll />} />
@@ -52,7 +53,7 @@ class CategoryList extends Component {
 						<Route path="*" element={<Navigate to={'/'} />} />
 					</Routes>
 				</Suspense>
-			</section>
+			</ContentWrapper>
 		);
 	}
 }
