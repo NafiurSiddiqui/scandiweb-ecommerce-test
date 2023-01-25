@@ -12,6 +12,7 @@ import CategoryList, {
 import ProductDescription from './components/pages/PDP/ProductDescription';
 
 import { getProductID, setProducts } from './components/store/productsSlice';
+import DisplayMessage from './components/Utilities/DisplayMessage';
 
 class App extends Component {
 	constructor(props) {
@@ -51,7 +52,12 @@ class App extends Component {
 				onCompleted={(data) => this.getProductsHandler(data.category.products)}
 			>
 				{({ error, loading, data }) => {
-					if (error) return `something went wrong !!! ${error} `;
+					if (error)
+						return (
+							<DisplayMessage error={true}>
+								Something went wrong. error{' '}
+							</DisplayMessage>
+						);
 
 					if (loading || !data) {
 						return 'Loading ... ';

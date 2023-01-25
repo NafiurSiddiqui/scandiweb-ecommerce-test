@@ -6,10 +6,6 @@ import DisplayMessage from '../../Utilities/DisplayMessage';
 
 import CartContainer from './CartContainer';
 
-/**
- * @Task -1. Cart item total quantity badge on the cart icon should display the total cart item quantity not the cart item count.
- */
-
 class Cart extends Component {
 	render() {
 		const { cartItems } = this.props;
@@ -19,8 +15,9 @@ class Cart extends Component {
 				<DisplayHeader>Cart</DisplayHeader>
 				{cartItems.length === 0 ? (
 					<DisplayMessage>Such an empty cart. 🙄 </DisplayMessage>
-				) : null}
-				<CartContainer className="cart-page" cartPage={true} />
+				) : (
+					<CartContainer className="cart-page" cartPage={true} />
+				)}
 			</ContentWrapper>
 		);
 	}

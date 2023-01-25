@@ -6,7 +6,10 @@ export default class DisplayMessage extends Component {
 		return (
 			<p
 				className="displayMessage"
-				style={{ borderTop: `4px solid ${error ? '#ff9191' : '#ffd891'} ` }}
+				style={{
+					borderTop: `4px solid ${error ? '#ff9191' : '#ffd891'} `,
+					margin: error ? '4rem' : '3rem 0',
+				}}
 			>
 				{children}
 			</p>
