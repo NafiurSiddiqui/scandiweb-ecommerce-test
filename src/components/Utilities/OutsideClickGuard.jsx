@@ -12,9 +12,6 @@ class OutsideClickGuard extends Component {
 	}
 
 	componentDidMount() {
-		// console.log(miniCartIsOpen);
-		// console.log(this.wrapperRef);
-
 		document.addEventListener('mousedown', this.handleClickOutside);
 	}
 
