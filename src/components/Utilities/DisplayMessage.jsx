@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @error = boolean value
+ */
+
 export default class DisplayMessage extends Component {
 	render() {
 		const { children, error } = this.props;

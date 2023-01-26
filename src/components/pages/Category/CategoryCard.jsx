@@ -19,8 +19,6 @@ import { Link } from 'react-router-dom';
  */
 
 class CategoryCard extends Component {
-	//if currency is selected, showSelectedCurrency || default
-
 	constructor(props) {
 		super(props);
 

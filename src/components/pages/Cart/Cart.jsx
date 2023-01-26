@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import DisplayHeader from '../../Layout/DisplayHeader';
 import DisplayMessage from '../../Utilities/DisplayMessage';
-
 import CartContainer from './CartContainer';
 
 class Cart extends Component {

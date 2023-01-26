@@ -13,8 +13,6 @@ import CartQuantitiy from './CartQuantitiy';
  * @cartItem = ['productID', [items]]
  */
 
-//* MOVE the pricing to the DES card if state price works
-
 class CartItem extends Component {
 	constructor(props) {
 		super(props);
