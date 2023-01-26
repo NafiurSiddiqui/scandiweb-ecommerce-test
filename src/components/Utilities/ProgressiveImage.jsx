@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ProgressiveImage extends Component {
+/**
+ * @cartItem = boolean
+ * @src = img url [string]
+ * @imageCount = integer (state from cartItem)
+ * @cartPage = boolean (from Cart)
+ */
+
+export default class ProgressiveImage extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -33,6 +40,7 @@ class ProgressiveImage extends Component {
 			cartItem && index === imageCount
 				? { opacity: '1', zIndex: '2' }
 				: { opacity: '0', zIndex: '0' };
+
 		return (
 			<li
 				className={
@@ -64,10 +72,3 @@ class ProgressiveImage extends Component {
 		);
 	}
 }
-
-const mapStateToProps = (state) => {
-	return {
-		//delete if you are not using any state
-	};
-};
-export default connect(mapStateToProps)(ProgressiveImage);
