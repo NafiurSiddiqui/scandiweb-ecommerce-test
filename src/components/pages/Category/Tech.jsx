@@ -3,24 +3,24 @@ import React, { Component } from 'react';
 import { GET_ALL_CATEGORIES } from './CategoryList';
 import CategoryCard from './CategoryCard';
 import DisplayHeader from '../../Layout/DisplayHeader';
+import DisplayMessage from '../../Utilities/DisplayMessage';
+import Skeleton from '../../Layout/skeleton';
 
 export default class CategoryTech extends Component {
 	render() {
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
-				{({ error, loading, data, client }) => {
-					if (error) return `something went wrong !!! ${error} `;
-					if (loading || !data) return 'Loading ... ';
+				{({ error, loading, data }) => {
+					if (error)
+						return (
+							<DisplayMessage error={true}>
+								Something went wrong.
+							</DisplayMessage>
+						);
+					if (loading || !data) return <Skeleton />;
 					const products = data.category.products;
 
 					const tech = products.filter((item) => item.category === 'tech');
-
-					//! RETURN AMOUNT BASED ON THE CURRENCY > LABEL 👇 DO NOT delete the prices
-
-					// const prices = clothes
-					// 	.map((item) => item[1])
-					// 	.flatMap((item) => item)
-					// 	.filter((item) => item.currency.label === 'USD');
 
 					return (
 						<>
