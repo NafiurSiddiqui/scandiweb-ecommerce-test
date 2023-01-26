@@ -10,31 +10,14 @@ import CategoryList, {
 	GET_ALL_CATEGORIES,
 } from './components/pages/Category/CategoryList';
 import ProductDescription from './components/pages/PDP/ProductDescription';
-
 import { getProductID, setProducts } from './components/store/productsSlice';
 import DisplayMessage from './components/Utilities/DisplayMessage';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			DOMisLoaded: false,
-		};
+
 		this.getProductsHandler = this.getProductsHandler.bind(this);
-
-		this.DOMloadHandler = this.DOMloadHandler.bind(this);
-	}
-
-	componentDidMount() {
-		window.addEventListener('load', this.DOMloadHandler);
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener('load', this.DOMloadHandler);
-	}
-
-	DOMloadHandler() {
-		this.setState({ DOMisLoaded: true });
 	}
 
 	//Get products
@@ -44,7 +27,6 @@ class App extends Component {
 
 	render() {
 		let { miniCartIsOpen } = this.props;
-		let { DOMisLoaded } = this.state;
 
 		return (
 			<Query
@@ -60,33 +42,27 @@ class App extends Component {
 						);
 
 					if (loading || !data) {
-						return 'Loading ... ';
+						return <Skeleton style={data ? 'display:none' : 'display:block'} />;
 					}
 
 					return (
 						<>
-							{!DOMisLoaded ? (
-								<Skeleton
-									style={DOMisLoaded ? 'display:none' : 'display:block'}
-								/>
-							) : (
-								<section onLoad={this.DOMloadHandler}>
-									<Header />
-									<main className="products-display">
-										{miniCartIsOpen ? <MiniCart /> : null}
+							<section>
+								<Header />
+								<main className="products-display">
+									{miniCartIsOpen ? <MiniCart /> : null}
 
-										<Routes>
-											<Route path="*" element={<CategoryList />} />
-											<Route
-												path="/ProductDescription"
-												element={<ProductDescription />}
-											/>
-											<Route path="/Cart" element={<Cart />} />
-											<Route path="*" element={<Navigate to={'/'} />} />
-										</Routes>
-									</main>
-								</section>
-							)}
+									<Routes>
+										<Route path="*" element={<CategoryList />} />
+										<Route
+											path="/ProductDescription"
+											element={<ProductDescription />}
+										/>
+										<Route path="/Cart" element={<Cart />} />
+										<Route path="*" element={<Navigate to={'/'} />} />
+									</Routes>
+								</main>
+							</section>
 						</>
 					);
 				}}

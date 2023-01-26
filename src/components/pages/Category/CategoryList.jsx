@@ -3,6 +3,7 @@ import { Component, Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ContentWrapper from '../../Layout/ContentWrapper';
+import Skeleton from '../../Layout/skeleton';
 
 const CategoryAll = lazy(() => import('./CategoryAll'));
 const CategoryClothes = lazy(() => import('./Clothes'));
@@ -45,7 +46,7 @@ class CategoryList extends Component {
 	render() {
 		return (
 			<ContentWrapper>
-				<Suspense fallback={<span>Loading...</span>}>
+				<Suspense fallback={<Skeleton style={{ display: 'block' }} />}>
 					<Routes>
 						<Route path="/" element={<CategoryAll />} />
 						<Route path="clothes" element={<CategoryClothes />} />
