@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Skeleton extends Component {
 	render() {
 		return (
-			<section role={'presentation'}>
+			<section role={'presentation'} className={'skeleton'}>
 				<header className={'header skeleton-header'} role={'presentation'}>
 					<nav className={'header-navigation skeleton-header-navigation'}>
 						<ul

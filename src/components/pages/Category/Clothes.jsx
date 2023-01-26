@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { GET_ALL_CATEGORIES } from './CategoryList';
 import CategoryCard from './CategoryCard';
 import DisplayHeader from '../../Layout/DisplayHeader';
+import Skeleton from '../../Layout/skeleton';
 
 export default class CategoryClothes extends Component {
 	render() {
@@ -10,25 +11,14 @@ export default class CategoryClothes extends Component {
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data, client }) => {
 					if (error) return `something went wrong !!! ${error} `;
-					if (loading || !data) return 'Loading ... ';
+					if (loading || !data)
+						return <Skeleton style={{ display: 'block' }} />;
+
 					const products = data.category.products;
 
 					const clothes = products.filter(
 						(item) => item.category === 'clothes'
 					);
-
-					// const clothes = products
-					// 	.filter(({ category }) => category === 'clothes')
-					// 	.map(({ name, prices, gallery }) => {
-					// 		return [name, prices, gallery[0]];
-					// 	});
-
-					//! RETURN AMOUNT BASED ON THE CURRENCY > LABEL 👇 DO NOT delete the prices
-
-					// const prices = clothes
-					// 	.map((item) => item[1])
-					// 	.flatMap((item) => item)
-					// 	.filter((item) => item.currency.label === 'USD');
 
 					return (
 						<>

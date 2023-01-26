@@ -42,7 +42,7 @@ class App extends Component {
 						);
 
 					if (loading || !data) {
-						return <Skeleton style={data ? 'display:none' : 'display:block'} />;
+						return <Skeleton />;
 					}
 
 					return (

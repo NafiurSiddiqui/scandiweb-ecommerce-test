@@ -9,6 +9,8 @@ import { setSelectedProduct } from '../../store/productsSlice';
 import { addItemToCart } from '../../store/cartSlice';
 import productHandler from '../../Utilities/ProductHandler';
 import { Navigate } from 'react-router-dom';
+import DisplayMessage from '../../Utilities/DisplayMessage';
+import Skeleton from '../../Layout/skeleton';
 
 /**
  * @className - 'PDP' = product description
@@ -73,8 +75,13 @@ class ProductDescription extends Component {
 			return (
 				<Query query={GET_ALL_CATEGORIES}>
 					{({ error, loading, data }) => {
-						if (error) return `something went wrong !!! ${error} `;
-						if (loading || !data) return 'Loading ... ';
+						if (error)
+							return (
+								<DisplayMessage error={true}>
+									Something went wrong.
+								</DisplayMessage>
+							);
+						if (loading || !data) return <Skeleton />;
 
 						const { products } = data.category;
 
