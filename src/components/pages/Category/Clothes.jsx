@@ -4,15 +4,20 @@ import { GET_ALL_CATEGORIES } from './CategoryList';
 import CategoryCard from './CategoryCard';
 import DisplayHeader from '../../Layout/DisplayHeader';
 import Skeleton from '../../Layout/skeleton';
+import DisplayMessage from '../../Utilities/DisplayMessage';
 
 export default class CategoryClothes extends Component {
 	render() {
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data, client }) => {
-					if (error) return `something went wrong !!! ${error} `;
-					if (loading || !data)
-						return <Skeleton style={{ display: 'block' }} />;
+					if (error)
+						return (
+							<DisplayMessage error={true}>
+								Something went wrong.
+							</DisplayMessage>
+						);
+					if (loading || !data) return <Skeleton />;
 
 					const products = data.category.products;
 
