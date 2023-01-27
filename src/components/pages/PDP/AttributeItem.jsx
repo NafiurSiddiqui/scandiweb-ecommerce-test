@@ -22,8 +22,6 @@ class AttributeItem extends Component {
 		//Get the attributes
 		const { attributesItem } = this.props;
 
-		// console.log(attributesItem);
-
 		//set the attributes to state
 		this.setState({
 			btnItems: attributesItem,
@@ -79,8 +77,9 @@ class AttributeItem extends Component {
 		const { itemIndex, attHeader, cartPage, className, updateItems, miniCart } =
 			this.props;
 
-		const { btnItems } = this.state;
+		const { btnItems, itemValues } = this.state;
 		// console.log(btnItems);
+		// console.log(itemValues);
 
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>
@@ -97,6 +96,7 @@ class AttributeItem extends Component {
 					</h4>
 					<ul className={`pd__attribution__items`}>
 						{btnItems?.map((item, btnIndex) => {
+							console.log(item);
 							return (
 								<AttributionBtn
 									key={btnIndex}
