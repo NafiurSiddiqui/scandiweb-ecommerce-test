@@ -2,20 +2,12 @@ import React, { Component } from 'react';
 import MiniCartIcon from '../../assets/MiniCartIcon';
 import { connect } from 'react-redux';
 import { getProductID } from '../../store/productsSlice';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 /**
  * @STATE -
  * TotalCartItem
- * Same item should not be selected and shown on the badge
- * if, attirubtes selected then cartItem = selectedAttributes, else, first defaults.
- */
 
-/**
- * 1. Cart item total quantity badge on the cart icon should display the total cart item quantity not the cart item count.
- * 2. It should be possible to add a product to the cart from PLP. But it shouldn’t be possible to add a product to the cart without selected attributes. In order to solve this, you can either:  
--  Add a product to the cart from PLP only if it doesn’t have any attributes (like AirTag). 
--  Add a product to the cart with first selected attributes as defaults. 
  */
 
 class CategoryCard extends Component {
@@ -29,7 +21,14 @@ class CategoryCard extends Component {
 			height: '100%',
 			width: ' 100%',
 		};
+		// this.navigateToPDP = this.navigateToPDP.bind(this);
 	}
+
+	// navigateToPDP(e) {
+	// 	// e.preventDefault();
+	// 	console.log('click?');
+	// 	return <Navigate to={'ProductDescription'} />;
+	// }
 
 	render() {
 		const {
@@ -46,7 +45,7 @@ class CategoryCard extends Component {
 		return (
 			<li className={'category-item'} key={index}>
 				<div className={'category-item__image-wrapper'}>
-					<Link to={'ProductDescription'}>
+					<Link to={'/ProductDescription'}>
 						<div
 							className={'category-item__image-wrapper__image'}
 							style={{

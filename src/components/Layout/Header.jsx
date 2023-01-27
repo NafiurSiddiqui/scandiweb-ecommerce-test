@@ -30,12 +30,12 @@ class Header extends Component {
 							</NavLink>
 						</li>
 						<li className={`header-navigation__items--item`}>
-							<NavLink to={'/clothes'} onClick={this.resetProductID}>
+							<NavLink to={'clothes'} onClick={this.resetProductID}>
 								Clothes
 							</NavLink>
 						</li>
 						<li className={`header-navigation__items--item`}>
-							<NavLink to={'/tech'} onClick={this.resetProductID}>
+							<NavLink to={'tech'} onClick={this.resetProductID}>
 								Tech
 							</NavLink>
 						</li>

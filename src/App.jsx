@@ -9,6 +9,8 @@ import MiniCart from './components/pages/Cart/MiniCart';
 import CategoryList, {
 	GET_ALL_CATEGORIES,
 } from './components/pages/Category/CategoryList';
+import CategoryClothes from './components/pages/Category/Clothes';
+import CategoryTech from './components/pages/Category/Tech';
 import ProductDescription from './components/pages/PDP/ProductDescription';
 import { getProductID, setProducts } from './components/store/productsSlice';
 import DisplayMessage from './components/Utilities/DisplayMessage';
@@ -36,7 +38,7 @@ class App extends Component {
 				{({ error, loading, data }) => {
 					if (error)
 						return (
-							<DisplayMessage error={true}>
+							<DisplayMessage error={true} errMsg={error}>
 								Something went wrong.
 							</DisplayMessage>
 						);
@@ -54,12 +56,14 @@ class App extends Component {
 
 									<Routes>
 										<Route path="*" element={<CategoryList />} />
+
 										<Route
 											path="/ProductDescription"
 											element={<ProductDescription />}
 										/>
+										<Route path="/tech" element={<CategoryTech />} />
+										<Route path="/clothes" element={<CategoryClothes />} />
 										<Route path="/Cart" element={<Cart />} />
-										<Route path="*" element={<Navigate to={'/'} />} />
 									</Routes>
 								</main>
 							</section>

@@ -18,6 +18,7 @@ export const productsSlice = createSlice({
 			// console.log(current(state.selectedProduct));
 		},
 		getProductID: (state, action) => {
+			// console.log(action.payload);
 			state.productID = action.payload;
 		},
 		getProductValues: (state, action) => {
