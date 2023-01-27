@@ -5,6 +5,7 @@ import CategoryCard from './CategoryCard';
 import DisplayHeader from '../../Layout/DisplayHeader';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
+import ContentWrapper from '../../Layout/ContentWrapper';
 
 export default class CategoryTech extends Component {
 	render() {
@@ -23,7 +24,7 @@ export default class CategoryTech extends Component {
 					const tech = products.filter((item) => item.category === 'tech');
 
 					return (
-						<>
+						<ContentWrapper>
 							<DisplayHeader>Tech</DisplayHeader>
 
 							<ul className={'category-items'}>
@@ -47,7 +48,7 @@ export default class CategoryTech extends Component {
 									);
 								})}
 							</ul>
-						</>
+						</ContentWrapper>
 					);
 				}}
 			</Query>
