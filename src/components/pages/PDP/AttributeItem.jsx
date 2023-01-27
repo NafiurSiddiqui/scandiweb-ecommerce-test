@@ -4,87 +4,20 @@ import { setSelectedProduct } from '../../store/productsSlice';
 import AttributionBtn from './AttributionBtn';
 
 class AttributeItem extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			id: '',
-			itemValues: [],
-			btnItems: [],
-		};
-		this.itemValuesHandler = this.itemValuesHandler.bind(this);
-		this.itemHeaderHandler = this.itemHeaderHandler.bind(this);
-		this.removeValuesHandler = this.removeValuesHandler.bind(this);
-		this.itemCheckHandler = this.itemCheckHandler.bind(this);
-	}
-
-	componentDidMount() {
-		//Get the attributes
-		const { attributesItem } = this.props;
-
-		//set the attributes to state
-		this.setState({
-			btnItems: attributesItem,
-		});
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		const { getSelectedValues } = this.props;
-		const { id, itemValues } = this.state;
-
-		if (prevState.itemValues.length !== this.state.itemValues.length) {
-			getSelectedValues(id, itemValues);
-		}
-	}
-
-	itemValuesHandler = (itemValue) => {
-		this.setState((prev) => ({
-			itemValues: [...prev.itemValues, itemValue],
-		}));
-	};
-
-	removeValuesHandler = (itemValue) => {
-		this.setState({
-			itemValues: this.state.itemValues.filter((value) => value !== itemValue),
-		});
-	};
-
-	itemHeaderHandler = (e, header) => {
-		//dodge if item not checked
-		if (!e.target.checked) return;
-		//refrain from duplication
-		if (this.state.id === header) return;
-
-		this.setState({
-			id: header,
-		});
-	};
-
-	// ! DO not delete this handler ↙️
-
-	itemCheckHandler(value) {
-		this.setState((prevState) => ({
-			btnItems: prevState.btnItems.map((item) =>
-				item.value === value
-					? { ...item, isChecked: true }
-					: { ...item, isChecked: false }
-			),
-		}));
-	}
-
 	render() {
-		const { itemIndex, attHeader, cartPage, className, updateItems, miniCart } =
-			this.props;
-
-		const { btnItems } = this.state;
+		const {
+			itemIndex,
+			attHeader,
+			cartPage,
+			className,
+			updateItems,
+			miniCart,
+			attributesItem,
+		} = this.props;
 
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>
-				<li
-					key={attHeader}
-					className={`${className}__attribution`}
-					onClick={(e) => this.itemHeaderHandler(e, attHeader)}
-				>
+				<li key={attHeader} className={`${className}__attribution`}>
 					<h4
 						className={`${className}__attribution-header`}
 						style={{ fontSize: cartPage ? '0.853rem' : '0.7rem' }}
@@ -92,8 +25,7 @@ class AttributeItem extends Component {
 						{attHeader.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
-						{btnItems?.map((item, btnIndex) => {
-							console.log(item);
+						{attributesItem?.map((item, btnIndex) => {
 							return (
 								<AttributionBtn
 									key={btnIndex}
@@ -102,9 +34,6 @@ class AttributeItem extends Component {
 									className={className}
 									btnIndex={btnIndex}
 									itemIndex={itemIndex}
-									itemValuesHandler={this.itemValuesHandler}
-									removeValuesHandler={this.removeValuesHandler}
-									itemCheckHandler={this.itemCheckHandler}
 									updateItems={updateItems}
 									itemIsChecked={item.isChecked}
 									miniCart={miniCart}

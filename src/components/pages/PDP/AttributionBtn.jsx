@@ -6,6 +6,7 @@ class AttributionBtn extends Component {
 		this.state = {
 			colorSwatch: false, //!KEEP
 			btnDisable: false, //!KEEP
+			isChecked: false,
 		};
 
 		this.btnCheckHandler = this.btnCheckHandler.bind(this);
@@ -14,10 +15,10 @@ class AttributionBtn extends Component {
 	componentDidMount() {
 		const { attHeader, className } = this.props;
 
-		className === 'cart-items__pd'
-			? this.setState({ btnDisable: true })
-			: this.setState({ btnDisable: false });
-		// ? 👆 what is this for?
+		// className === 'cart-items__pd'
+		// 	? this.setState({ btnDisable: true })
+		// 	: this.setState({ btnDisable: false });
+		// // ? 👆 what is this for?
 
 		if (attHeader === 'Color') {
 			this.setState({
@@ -42,14 +43,17 @@ class AttributionBtn extends Component {
 		const attCheck = e.target.dataset.checked;
 		const attValue = e.target.dataset.value;
 
+		//guard clause for card > cartIcon
 		if (miniCart === true) {
 			return;
 		}
 
-		itemCheckHandler(attValue);
+		//handles isChecked in the parent
+		// itemCheckHandler(attValue);
 
-		attCheck ? itemValuesHandler(attValue) : removeValuesHandler(attValue);
+		// attCheck ? itemValuesHandler(attValue) : removeValuesHandler(attValue);
 
+		//update items inside GrandParent (DesCard)
 		updateItems(itemIndex, btnIndex);
 	}
 

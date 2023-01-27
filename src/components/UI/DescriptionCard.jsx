@@ -26,7 +26,7 @@ class DescriptionCard extends Component {
 			items: [],
 			itemCalculation: prices[0]?.amount,
 		};
-		this.getSelectedValues = this.getSelectedValues.bind(this);
+
 		this.updateItems = this.updateItems.bind(this);
 		this.cartItemHandler = this.cartItemHandler.bind(this);
 	}
@@ -76,35 +76,17 @@ class DescriptionCard extends Component {
 		}
 	}
 
-	getSelectedValues(id, itemValues) {
-		this.setState((prevState) => {
-			//find the index of the item with matching ID
-			const index = prevState.selectedValues.findIndex(
-				(item) => item.id === id
-			);
-
-			//if the id is found, update the itemValues
-
-			if (index !== -1) {
-				prevState.selectedValues[index].itemValues = itemValues;
-			} else {
-				prevState.selectedValues.push({ id, itemValues });
-			}
-
-			return { itemValues: prevState.itemValues };
-		});
-	}
-
 	updateItems(itemIndex, btnIndex) {
+		console.log(itemIndex, btnIndex);
 		this.setState((prevState) => {
 			const updatedItems = prevState.items.map((item, index) => {
 				if (index === itemIndex) {
 					const updatedCheck = item[1].map((btn, isCheckIndex) => {
 						if (isCheckIndex === btnIndex) {
-							return { ...btn, isChecked: !btn.isChecked };
+							return { ...btn, isChecked: true };
+						} else {
+							return { ...btn, isChecked: false };
 						}
-
-						return btn;
 					});
 
 					return [item[0], updatedCheck];
