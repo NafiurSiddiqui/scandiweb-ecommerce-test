@@ -6,7 +6,6 @@ class AttributionBtn extends Component {
 		this.state = {
 			colorSwatch: false, //!KEEP
 			btnDisable: false, //!KEEP
-			isChecked: false,
 		};
 
 		this.btnCheckHandler = this.btnCheckHandler.bind(this);

@@ -32,11 +32,8 @@ class AttributeItem extends Component {
 		const { getSelectedValues } = this.props;
 		const { id, itemValues } = this.state;
 
-		// console.log(btnItems);
-
 		if (prevState.itemValues.length !== this.state.itemValues.length) {
 			getSelectedValues(id, itemValues);
-			// console.log('it does');
 		}
 	}
 
@@ -68,7 +65,9 @@ class AttributeItem extends Component {
 	itemCheckHandler(value) {
 		this.setState((prevState) => ({
 			btnItems: prevState.btnItems.map((item) =>
-				item.value === value ? { ...item, isChecked: !item.isChecked } : item
+				item.value === value
+					? { ...item, isChecked: true }
+					: { ...item, isChecked: false }
 			),
 		}));
 	}
@@ -77,9 +76,7 @@ class AttributeItem extends Component {
 		const { itemIndex, attHeader, cartPage, className, updateItems, miniCart } =
 			this.props;
 
-		const { btnItems, itemValues } = this.state;
-		// console.log(btnItems);
-		// console.log(itemValues);
+		const { btnItems } = this.state;
 
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>
