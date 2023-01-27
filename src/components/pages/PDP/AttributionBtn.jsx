@@ -6,6 +6,7 @@ class AttributionBtn extends Component {
 		this.state = {
 			colorSwatch: false, //!KEEP
 			btnDisable: false, //!KEEP
+			isChecked: false,
 		};
 
 		this.btnCheckHandler = this.btnCheckHandler.bind(this);
@@ -17,6 +18,7 @@ class AttributionBtn extends Component {
 		className === 'cart-items__pd'
 			? this.setState({ btnDisable: true })
 			: this.setState({ btnDisable: false });
+		// ? 👆 what is this for?
 
 		if (attHeader === 'Color') {
 			this.setState({
@@ -38,8 +40,8 @@ class AttributionBtn extends Component {
 			miniCart,
 		} = this.props;
 
-		const attCheck = e.target.checked;
-		const attValue = e.target.value;
+		const attCheck = e.target.dataset.checked;
+		const attValue = e.target.dataset.value;
 
 		if (miniCart === true) {
 			return;
@@ -92,6 +94,9 @@ class AttributionBtn extends Component {
 			<li
 				className={`${className}__attribution__item`}
 				key={item}
+				onClick={(e) => this.btnCheckHandler(e, itemIndex, btnIndex)}
+				data-checked={itemIsChecked}
+				data-value={item}
 				style={{
 					...itemBackground,
 					...defaultColorChecked,
@@ -105,19 +110,10 @@ class AttributionBtn extends Component {
 							? '1.5rem'
 							: '2.5rem',
 					padding: miniCart && !cartPage ? '0.2rem' : '0.4rem',
+					cursor: miniCart ? 'not-allowed' : 'pointer',
 				}}
 			>
-				<label htmlFor="item">{colorSwatch ? '' : item}</label>
-				<input
-					type="checkbox"
-					name={item}
-					id={item}
-					value={item}
-					style={{ cursor: miniCart ? 'not-allowed' : 'pointer' }}
-					className={'attribution__item-checkbox'}
-					checked={itemIsChecked}
-					onChange={(e) => this.btnCheckHandler(e, itemIndex, btnIndex)}
-				/>
+				{colorSwatch ? '' : item}
 			</li>
 		);
 	}
