@@ -5,6 +5,7 @@ import CategoryCard from './CategoryCard';
 import DisplayHeader from '../../Layout/DisplayHeader';
 import Skeleton from '../../Layout/skeleton';
 import DisplayMessage from '../../Utilities/DisplayMessage';
+import ContentWrapper from '../../Layout/ContentWrapper';
 
 export default class CategoryClothes extends Component {
 	render() {
@@ -26,7 +27,7 @@ export default class CategoryClothes extends Component {
 					);
 
 					return (
-						<>
+						<ContentWrapper>
 							<DisplayHeader>Clothes</DisplayHeader>
 
 							<ul className={'category-items'}>
@@ -50,7 +51,7 @@ export default class CategoryClothes extends Component {
 									);
 								})}
 							</ul>
-						</>
+						</ContentWrapper>
 					);
 				}}
 			</Query>
