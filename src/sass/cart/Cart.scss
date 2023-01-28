@@ -23,6 +23,7 @@
 
 	&-btns {
 		@include flex(space-between, center, row);
+		margin-top: 1rem;
 
 		&__btn {
 			width: 48% !important;
