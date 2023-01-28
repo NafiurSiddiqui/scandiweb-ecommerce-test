@@ -1,3 +1,11 @@
+/**
+ *
+ * @param {obj} products
+ * @param {string} productID
+ * @param {string} selectedCurrency
+ * @returns
+ */
+
 function productHandler(products, productID, selectedCurrency) {
 	// getting the right data
 	let filteredProduct = products?.filter((item) => item.id === productID);
