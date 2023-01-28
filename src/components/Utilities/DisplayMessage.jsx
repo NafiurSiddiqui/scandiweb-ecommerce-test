@@ -15,7 +15,8 @@ export default class DisplayMessage extends Component {
 					margin: error ? '4rem' : '3rem 0',
 				}}
 			>
-				{error ? ` ${children} ${errMsg}` : children}
+				{/* {error ? ` ${children} ${errMsg}` : children} */}
+				{error ? `Something gone wrong. 🧰 ${error}` : 'Such an empty cart. 🙂'}
 			</p>
 		);
 	}
