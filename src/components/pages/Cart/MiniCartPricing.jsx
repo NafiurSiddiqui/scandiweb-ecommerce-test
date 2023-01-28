@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { setMiniCartIsOpen } from '../../store/cartSlice';
-import Button from '../../UI/Button';
 
 class MiniCartPricing extends Component {
 	render() {
@@ -18,20 +15,6 @@ class MiniCartPricing extends Component {
 						{cartTotal}
 					</span>
 				</div>
-
-				<div className="cart-btns">
-					<Link
-						to="Cart"
-						className="cart-btns__btn view-bag"
-						onClick={() => setMiniCartIsOpen(false)}
-					>
-						VIEW BAG
-					</Link>
-
-					<Button className={`cart-btns__btn mini-cart-pricing-btn `}>
-						CHECKOUT
-					</Button>
-				</div>
 			</section>
 		);
 	}
@@ -43,4 +26,4 @@ const mapStateToProps = (state) => ({
 	miniCartIsOpen: state.cart.miniCartIsOpen,
 });
 
-export default connect(mapStateToProps, { setMiniCartIsOpen })(MiniCartPricing);
+export default connect(mapStateToProps)(MiniCartPricing);

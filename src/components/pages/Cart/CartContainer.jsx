@@ -11,10 +11,12 @@ export default class CartContainer extends Component {
 			<article className={className}>
 				<CartItems cartPage={cartPage} />
 				{miniCart ? (
-					<MiniCartPricing
-						className={'mini-cart__pricing'}
-						cartPage={cartPage}
-					/>
+					<>
+						<MiniCartPricing
+							className={'mini-cart__pricing'}
+							cartPage={cartPage}
+						/>
+					</>
 				) : (
 					<CartPricing className={'cart-page__pricing'} />
 				)}

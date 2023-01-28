@@ -4,6 +4,9 @@ import Overlay from '../../UI/Overlay';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import OutsideClickGuard from '../../Utilities/OutsideClickGuard';
 import CartContainer from './CartContainer';
+import { Link } from 'react-router-dom';
+import { setMiniCartIsOpen } from '../../store/cartSlice';
+import Button from '../../UI/Button';
 
 class MiniCart extends Component {
 	render() {
@@ -23,7 +26,22 @@ class MiniCart extends Component {
 						{cartItems.length === 0 ? (
 							<DisplayMessage />
 						) : (
-							<CartContainer miniCart={true} className="mini-cart__items" />
+							<>
+								<CartContainer miniCart={true} className="mini-cart__items" />
+								<div className="cart-btns">
+									<Link
+										to="Cart"
+										className="cart-btns__btn view-bag"
+										onClick={() => setMiniCartIsOpen(false)}
+									>
+										VIEW BAG
+									</Link>
+
+									<Button className={`cart-btns__btn mini-cart-pricing-btn `}>
+										CHECKOUT
+									</Button>
+								</div>
+							</>
 						)}
 					</section>
 				</Overlay>
@@ -39,4 +57,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(MiniCart);
+export default connect(mapStateToProps, { setMiniCartIsOpen })(MiniCart);
