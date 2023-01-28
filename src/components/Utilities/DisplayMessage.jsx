@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 
 export default class DisplayMessage extends Component {
 	render() {
-		const { children, error, errMsg } = this.props;
+		const { error } = this.props;
 		return (
 			<p
 				className="displayMessage"
@@ -15,7 +15,6 @@ export default class DisplayMessage extends Component {
 					margin: error ? '4rem' : '3rem 0',
 				}}
 			>
-				{/* {error ? ` ${children} ${errMsg}` : children} */}
 				{error ? `Something gone wrong. 🧰 ${error}` : 'Such an empty cart. 🙂'}
 			</p>
 		);
