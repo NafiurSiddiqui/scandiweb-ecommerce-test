@@ -28,7 +28,7 @@ class HeaderCart extends Component {
 					}`}
 				>
 					<span className="header-cart__badge-quantity">
-						{badgeGuard ? null : cartQuantity}
+						{badgeGuard ? null : cartItems.length}
 					</span>
 				</div>
 			</div>
