@@ -69,9 +69,7 @@ class ProductDescription extends Component {
 	render() {
 		const { productID, selectedCurrency } = this.props;
 		if (!productID) {
-			// console.log(productID);
-			// return <Navigate to={'*'} />;
-			return <p>No id</p>;
+			return <Navigate to={'/'} />;
 		} else {
 			return (
 				<Query query={GET_ALL_CATEGORIES}>
