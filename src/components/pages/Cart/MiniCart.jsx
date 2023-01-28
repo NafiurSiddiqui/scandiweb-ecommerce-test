@@ -21,7 +21,6 @@ class MiniCart extends Component {
 						</div>
 
 						{cartItems.length === 0 ? (
-							// <DisplayMessage>Such an empty cart. 🙂 </DisplayMessage>
 							<DisplayMessage />
 						) : (
 							<CartContainer miniCart={true} className="mini-cart__items" />
