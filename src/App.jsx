@@ -22,6 +22,15 @@ class App extends Component {
 		this.getProductsHandler = this.getProductsHandler.bind(this);
 	}
 
+	componentDidUpdate(prevProps) {
+		console.log(prevProps.miniCartIsOpen);
+		console.log(this.props.miniCartIsOpen);
+
+		if (prevProps.miniCartIsOpen !== this.props.miniCartIsOpen) {
+			this.props.isMiniCartOpen(this.props.miniCartIsOpen);
+		}
+	}
+
 	//Get products
 	getProductsHandler(el) {
 		this.props.setProducts(el);

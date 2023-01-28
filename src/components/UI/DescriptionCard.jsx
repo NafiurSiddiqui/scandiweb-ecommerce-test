@@ -13,6 +13,7 @@ import Button from './Button';
 /**
  * @className : PD = product description
  */
+
 class DescriptionCard extends Component {
 	constructor(props) {
 		super(props);
@@ -100,8 +101,6 @@ class DescriptionCard extends Component {
 	cartItemHandler() {
 		const { items, selectedTitle } = this.state;
 		const { addItemToCart } = this.props;
-
-		// console.log(items);
 
 		let userItems = [selectedTitle, items, { quantity: 0 }];
 

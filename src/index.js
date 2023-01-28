@@ -6,24 +6,28 @@ import App from './App';
 import './sass/main.scss';
 import store from './components/store/store';
 import { Provider } from 'react-redux';
-import ErrorBoundary from './components/Error/ErrorBoundary';
 
 const client = new ApolloClient({
 	uri: 'http://localhost:4000/',
 	cache: new InMemoryCache(),
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootEl = document.getElementById('root');
+
+const root = ReactDOM.createRoot(rootEl);
+
+const isMiniCartOpen = (miniCartState) => {
+	rootEl.style.overflow = miniCartState ? 'Hidden' : 'scroll';
+};
+
 root.render(
 	// <React.StrictMode>
-	// {/* <ErrorBoundary> */}
 	<Provider store={store}>
 		<ApolloProvider client={client}>
 			<BrowserRouter>
-				<App />
+				<App isMiniCartOpen={isMiniCartOpen} />
 			</BrowserRouter>
 		</ApolloProvider>
 	</Provider>
-	// {/* </ErrorBoundary> */}
 	// </React.StrictMode>
 );
