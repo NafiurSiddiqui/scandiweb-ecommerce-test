@@ -159,7 +159,6 @@ class DescriptionCard extends Component {
 								attributes={attributes}
 								key={itemIndex}
 								className={className}
-								getSelectedValues={this.getSelectedValues}
 								updateItems={this.updateItems}
 								productID={productID}
 								miniCart={miniCart}
