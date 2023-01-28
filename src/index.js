@@ -13,11 +13,15 @@ const client = new ApolloClient({
 });
 
 const rootEl = document.getElementById('root');
-
+const htmlEl = document.documentElement;
 const root = ReactDOM.createRoot(rootEl);
 
 const isMiniCartOpen = (miniCartState) => {
-	rootEl.style.overflow = miniCartState ? 'Hidden' : 'scroll';
+	//prevents scroll
+	htmlEl.setAttribute(
+		'style',
+		`overflow: ${miniCartState ? 'hidden' : 'scroll'}`
+	);
 };
 
 root.render(
