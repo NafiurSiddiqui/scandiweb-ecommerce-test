@@ -36,12 +36,7 @@ class App extends Component {
 				onCompleted={(data) => this.getProductsHandler(data.category.products)}
 			>
 				{({ error, loading, data }) => {
-					if (error)
-						return (
-							<DisplayMessage error={true} errMsg={error}>
-								Something went wrong.
-							</DisplayMessage>
-						);
+					if (error) return <DisplayMessage error={error} />;
 
 					if (loading || !data) {
 						return <Skeleton />;
