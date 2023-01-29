@@ -18,6 +18,10 @@ All of these challenges are tackled down without any third-party libs.
 - parsing HTML string to pure DOM content
 - parsing any HTML entity to pure DOM text content.
 
+## Advance proejct consideration
+
+I have not taken care of the optimization since it was not mentioned in the project description provided. If i had to take care of the optmization I would use a combination of `PureComponent` and `shouldComponentUpdate` depending on the use case. If i was to use `shouldComponentUpdate`, I would manually compare the `nextProps` with `this.props` or `nextState` with `this.state` and so on. If something else would require to optimize more, I would go to such extent to take care of the optimization.
+
 ## Available Scripts
 
 In the project directory, you can run:
