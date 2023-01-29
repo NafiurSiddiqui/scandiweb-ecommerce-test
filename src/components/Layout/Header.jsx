@@ -56,12 +56,6 @@ class Header extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		// productIDState: state.category,
-	};
-};
-
 const mapDispatchToProps = { getProductID };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

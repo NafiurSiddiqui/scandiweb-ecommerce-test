@@ -14,7 +14,7 @@ class HeaderCart extends Component {
 		this.props.setMiniCartIsOpen();
 	}
 	render() {
-		const { cartItems, cartQuantity } = this.props;
+		const { cartItems } = this.props;
 
 		const badgeGuard = cartItems.includes(undefined);
 
@@ -40,7 +40,6 @@ const mapStateToProps = (state) => {
 	return {
 		cartItems: state.cart.cartItems,
 		miniCartState: state.cart.miniCartIsOpen,
-		cartQuantity: state.cart.cartQuantity,
 	};
 };
 
