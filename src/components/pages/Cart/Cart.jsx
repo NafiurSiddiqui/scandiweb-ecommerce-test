@@ -13,7 +13,7 @@ class Cart extends Component {
 			<ContentWrapper>
 				<DisplayHeader>Cart</DisplayHeader>
 				{cartItems.length === 0 ? (
-					<DisplayMessage> Such an empty cart. 🙂 </DisplayMessage>
+					<DisplayMessage />
 				) : (
 					<CartContainer className="cart-page" cartPage={true} />
 				)}
