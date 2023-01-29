@@ -76,7 +76,7 @@ class AttributionBtn extends Component {
 			<li
 				className={`${className}__attribution__item`}
 				key={item}
-				onClick={(e) => this.btnCheckHandler(e, itemIndex, btnIndex)}
+				onClick={() => this.btnCheckHandler(itemIndex, btnIndex)}
 				data-checked={itemIsChecked}
 				data-value={item}
 				style={{

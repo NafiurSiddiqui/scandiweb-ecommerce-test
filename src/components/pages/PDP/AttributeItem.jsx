@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setSelectedProduct } from '../../store/productsSlice';
 import AttributionBtn from './AttributionBtn';
 
 class AttributeItem extends Component {
@@ -55,6 +54,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { setSelectedProduct };
-
-export default connect(mapStateToProps, mapDispatchToProps)(AttributeItem);
+export default connect(mapStateToProps)(AttributeItem);
