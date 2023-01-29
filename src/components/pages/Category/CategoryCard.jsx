@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MiniCartIcon from '../../assets/MiniCartIcon';
 import { connect } from 'react-redux';
 import { getProductID } from '../../store/productsSlice';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /**
  * @STATE -
@@ -21,14 +21,7 @@ class CategoryCard extends Component {
 			height: '100%',
 			width: ' 100%',
 		};
-		// this.navigateToPDP = this.navigateToPDP.bind(this);
 	}
-
-	// navigateToPDP(e) {
-	// 	// e.preventDefault();
-	// 	console.log('click?');
-	// 	return <Navigate to={'ProductDescription'} />;
-	// }
 
 	render() {
 		const {
