@@ -11,6 +11,4 @@ export const cartBadgeSlice = createSlice({
 	reducers: {},
 });
 
-// export const {  } = cartBadgeSlice.actions;
-
 export default cartBadgeSlice.reducer;
