@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 class MiniCartPricing extends Component {
 	render() {
-		const { className, cartTotal, currencySymbol, setMiniCartIsOpen } =
-			this.props;
+		const { className, cartTotal, currencySymbol } = this.props;
 
 		return (
 			<section className={`${className} price-wrapper`}>
