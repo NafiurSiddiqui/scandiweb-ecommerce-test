@@ -35,3 +35,7 @@ root.render(
 	</Provider>
 	// </React.StrictMode>
 );
+
+/**
+ * @strictmode - Note that turning strict mode on implements some weired behaviour and mess up the cartCalculation. This is due to the twice re-render nature of new React.
+ */
