@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * @Additional - This is just in case we needed a custom error component.
+ */
+
 export default class ErrorBoundary extends React.Component {
 	constructor(props) {
 		super(props);

@@ -23,9 +23,6 @@ class App extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		console.log(prevProps.miniCartIsOpen);
-		console.log(this.props.miniCartIsOpen);
-
 		if (prevProps.miniCartIsOpen !== this.props.miniCartIsOpen) {
 			this.props.isMiniCartOpen(this.props.miniCartIsOpen);
 		}
