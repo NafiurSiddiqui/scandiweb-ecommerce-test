@@ -18,8 +18,6 @@ export const cartSlice = createSlice({
 			const items = action.payload[1];
 			let newItemValues = [];
 
-			console.log(items);
-
 			items.forEach((item) => {
 				if (Array.isArray(item[1])) {
 					let subItemValues = [];
@@ -70,30 +68,7 @@ export const cartSlice = createSlice({
 				existingItem[2].quantity++;
 			}
 		},
-		// decrementItem: (state, action) => {
-		// 	const { cartItems } = state;
-		// 	const id = action.payload[0];
-		// 	const items = action.payload[1];
 
-		// 	let existingItem = cartItems.find(
-		// 		(cartItem) =>
-		// 			cartItem[0] === id &&
-		// 			JSON.stringify(cartItem[1]) === JSON.stringify(items)
-		// 	);
-
-		// 	if (existingItem) {
-		// 		//REMOVE IF 0
-		// 		if (existingItem[2].quantity === 1) {
-		// 			let removedCartItem = cartItems.filter((item) => item[0] !== id);
-
-		// 			return {
-		// 				...state,
-		// 				cartItems: removedCartItem,
-		// 			};
-		// 		}
-		// 		existingItem[2].quantity--;
-		// 	}
-		// },
 		decrementItem: (state, action) => {
 			const { cartItems } = state;
 			const id = action.payload[0];
