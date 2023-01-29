@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import DescriptionCard from '../../UI/DescriptionCard';
-
 import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
-import { setSelectedProduct } from '../../store/productsSlice';
-import { addItemToCart } from '../../store/cartSlice';
 import productHandler from '../../Utilities/ProductHandler';
 import { Navigate } from 'react-router-dom';
 import DisplayMessage from '../../Utilities/DisplayMessage';
@@ -14,8 +11,7 @@ import Skeleton from '../../Layout/skeleton';
 
 /**
  * @className - 'PDP' = product description
- * @Tasks -
- * multiple attributes of the same item, can be selected and should be rendered accordingly.
+ *
  */
 
 class ProductDescription extends Component {
@@ -68,6 +64,7 @@ class ProductDescription extends Component {
 
 	render() {
 		const { productID, selectedCurrency } = this.props;
+
 		if (!productID) {
 			return <Navigate to={'/'} />;
 		} else {
@@ -167,6 +164,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { setSelectedProduct, addItemToCart };
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);
+export default connect(mapStateToProps)(ProductDescription);
