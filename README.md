@@ -1,6 +1,6 @@
 # Scandiweb Junior React Dev Test Project
 
-This is a assignment project for junior dev role in Scandiweb
+This is a assignment project for a junior dev role in Scandiweb.
 
 ## My takes
 
@@ -8,15 +8,26 @@ Below is the explanations of how I approached to solve various problems I faced 
 
 ## COMPONENT strucutre
 
-- If this was a large scale project, I would dynamically fetch the category and render the category title as header instead of hard coding data here.
+- Maintained core React reusability concept as much as possible.
+- This is not it and things can always be updated to a much better version.
+
+## Tech used
+
+- JSX
+- React-router
+- Sass
+- Redux-toolkit
+- GraphQL
 
 ## Things that are challenging for this project
 
 All of these challenges are tackled down without any third-party libs.
 
-- Finding and rendering conent from deeply nested array
+- Finding and rendering content from deeply nested data structure.
 - parsing HTML string to pure DOM content
 - parsing any HTML entity to pure DOM text content.
+- Maintaining dynamicity of the application.
+- Implementing heavy algorithms required to achieve certain conditions and functionality.
 
 ## Advance proejct consideration
 
