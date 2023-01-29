@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DisplayHeader from '../../Layout/DisplayHeader';
-import { setProducts } from '../../store/productsSlice';
 import { userCurrency } from '../../Utilities/currency';
 import CategoryCard from './CategoryCard';
 
@@ -12,10 +11,6 @@ import CategoryCard from './CategoryCard';
  */
 
 class CategoryAll extends Component {
-	constructor(props) {
-		super();
-	}
-
 	render() {
 		const { selectedCurrency } = this.props;
 		const { products } = this.props.products;
@@ -62,6 +57,4 @@ export const mapStateToProps = (state) => {
 	};
 };
 
-export const mapDispatchToProps = { setProducts };
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryAll);
+export default connect(mapStateToProps)(CategoryAll);
