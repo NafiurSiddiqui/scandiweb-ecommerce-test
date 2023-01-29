@@ -10,7 +10,7 @@ import Button from '../../UI/Button';
 
 class MiniCart extends Component {
 	render() {
-		const { cartItems, cartQuantity } = this.props;
+		const { cartItems, cartQuantity, setMiniCartIsOpen } = this.props;
 
 		return (
 			<OutsideClickGuard className={`mini-cart guard`}>

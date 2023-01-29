@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+/**
+ * @cartTotal - integer
+ * @currencySymbol - string
+ */
+
 class MiniCartPricing extends Component {
 	render() {
 		const { className, cartTotal, currencySymbol } = this.props;
@@ -22,7 +27,6 @@ class MiniCartPricing extends Component {
 const mapStateToProps = (state) => ({
 	cartTotal: state.cart.cartTotal,
 	currencySymbol: state.currency.selectedCurrency?.symbol,
-	miniCartIsOpen: state.cart.miniCartIsOpen,
 });
 
 export default connect(mapStateToProps)(MiniCartPricing);
