@@ -78,7 +78,6 @@ class DescriptionCard extends Component {
 	}
 
 	updateItems(itemIndex, btnIndex) {
-		console.log(itemIndex, btnIndex);
 		this.setState((prevState) => {
 			const updatedItems = prevState.items.map((item, index) => {
 				if (index === itemIndex) {

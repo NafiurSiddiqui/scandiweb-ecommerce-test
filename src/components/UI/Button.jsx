@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @miniCart [Boolean]
+ */
+
 export default class Button extends Component {
 	render() {
 		const { className, children, disable, onClick, miniCart } = this.props;
