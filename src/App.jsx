@@ -1,7 +1,7 @@
 import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Skeleton from './components/Layout/skeleton';
 import Cart from './components/pages/Cart/Cart';
@@ -74,7 +74,6 @@ class App extends Component {
 			</Query>
 		);
 	}
-	P;
 }
 
 const mapStateToProps = (state) => {
