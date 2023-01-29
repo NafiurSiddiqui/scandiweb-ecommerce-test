@@ -24,7 +24,7 @@ class AttributionBtn extends Component {
 		}
 	}
 
-	btnCheckHandler(e, itemIndex, btnIndex) {
+	btnCheckHandler(itemIndex, btnIndex) {
 		const { updateItems, miniCart } = this.props;
 
 		//guard clause for card > cartIcon

@@ -22,7 +22,6 @@ class ProductDescription extends Component {
 			selectedImgSrc: '',
 			txtOverFlow: false,
 		};
-
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
 	}
