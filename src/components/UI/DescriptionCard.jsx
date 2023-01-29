@@ -113,7 +113,7 @@ class DescriptionCard extends Component {
 		);
 		//alert if items are unchecked
 		if (itemsNotChecked) {
-			alert('Please select at lease one option');
+			alert('Please select at least one option');
 		} else {
 			addItemToCart(userItems);
 			this.props.cartQuantityHandler();
