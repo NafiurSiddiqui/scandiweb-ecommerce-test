@@ -3,6 +3,11 @@ import CartItems from './CartItems';
 import CartPricing from './CartPricing';
 import MiniCartPricing from './MiniCartPricing';
 
+/**
+ * @cartPage - BOOLEAN
+ * @miniCart - BOOLEAN
+ */
+
 export default class CartContainer extends Component {
 	render() {
 		const { className, miniCart, cartPage } = this.props;
