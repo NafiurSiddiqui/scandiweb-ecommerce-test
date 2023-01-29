@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { cartQuantityHandler, setMiniCartIsOpen } from '../../store/cartSlice';
+import { cartQuantityHandler } from '../../store/cartSlice';
 import Button from '../../UI/Button';
 
 class CartPricing extends Component {
@@ -55,6 +55,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-	setMiniCartIsOpen,
 	cartQuantityHandler,
 })(CartPricing);
