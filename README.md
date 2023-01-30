@@ -1,6 +1,6 @@
 # Scandiweb Junior React Dev Test Project
 
-This is a assignment project for a junior dev role in Scandiweb.
+This is an assignment project for a junior dev role in Scandiweb.
 
 ## My takes
 
