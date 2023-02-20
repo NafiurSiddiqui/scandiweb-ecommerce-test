@@ -54,6 +54,10 @@ class CartItem extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		this.props.cartQuantityHandler();
+	}
+
 	incrementCount() {
 		this.setState({
 			imageCount: this.state.imageCount + 1,
