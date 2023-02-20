@@ -15,11 +15,6 @@
 			object-fit: contain;
 			height: 5rem;
 			cursor: pointer;
-			box-shadow: 0px 1px 3px 0px #d8d8d8;
-
-			&:hover {
-				box-shadow: 0px 1px 3px 1px #d2d2d2;
-			}
 		}
 	}
 
@@ -46,11 +41,6 @@
 		object-fit: contain;
 		height: 5rem;
 		cursor: pointer;
-		box-shadow: 0px 1px 3px 0px #d8d8d8;
-
-		&:hover {
-			box-shadow: 0px 1px 3px 1px #d2d2d2;
-		}
 	}
 }
 

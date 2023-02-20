@@ -1,5 +1,4 @@
 .pdp {
-	// padding: 0 3rem;
 	display: flex;
 	height: 80vh;
 	width: 100%;
@@ -15,10 +14,13 @@
 
 	&-image {
 		@include flex(center, null, null);
-		// width: 77%;
 
 		&-gallery {
 			max-width: 14%;
+
+			&-item {
+				height: 5.5rem;
+			}
 		}
 
 		&-hero {
