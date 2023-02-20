@@ -101,6 +101,7 @@ $itemHover: #e2e2e2;
 	}
 
 	&-cart {
+		position: relative;
 		&__cart {
 			@include transition(0.17);
 			border-radius: 50%;
@@ -121,8 +122,8 @@ $itemHover: #e2e2e2;
 			height: 1.5rem;
 			background-color: rgb(49, 49, 49);
 			border-radius: 50%;
-			left: 1.2rem;
 			position: absolute;
+			right: -0.3rem;
 			top: -3px;
 			&-quantity {
 				top: 2px;
