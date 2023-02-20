@@ -15,6 +15,7 @@ const client = new ApolloClient({
 const rootEl = document.getElementById('root');
 const htmlEl = document.documentElement;
 const root = ReactDOM.createRoot(rootEl);
+const rootModal = document.querySelector('.root_modal');
 
 const isMiniCartOpen = (miniCartState) => {
 	//prevents scroll
@@ -29,7 +30,7 @@ root.render(
 	<Provider store={store}>
 		<ApolloProvider client={client}>
 			<BrowserRouter>
-				<App isMiniCartOpen={isMiniCartOpen} />
+				<App isMiniCartOpen={isMiniCartOpen} rootModal={rootModal} />
 			</BrowserRouter>
 		</ApolloProvider>
 	</Provider>

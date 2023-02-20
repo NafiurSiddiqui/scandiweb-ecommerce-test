@@ -15,7 +15,7 @@ class MiniCart extends Component {
 		return (
 			<OutsideClickGuard className={`mini-cart guard`}>
 				<Overlay className=" mini-cart-overlay">
-					<section className="mini-cart-container">
+					<section className="mini-cart-container" tabindex="1">
 						<div className="mini-cart__headers">
 							<h2 className="mini-cart__header">My Bag,</h2>
 							<span className="mini-cart__item-count">

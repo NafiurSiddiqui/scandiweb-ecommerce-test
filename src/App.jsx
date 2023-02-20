@@ -1,5 +1,6 @@
 import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
+import { createPortal } from 'react-dom';
 import { connect } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Layout/Header';
@@ -34,7 +35,7 @@ class App extends Component {
 	}
 
 	render() {
-		let { miniCartIsOpen } = this.props;
+		let { miniCartIsOpen, rootModal } = this.props;
 
 		return (
 			<Query
@@ -52,9 +53,11 @@ class App extends Component {
 						<>
 							<section>
 								<Header />
-								<main className="products-display">
-									{miniCartIsOpen ? <MiniCart /> : null}
-
+								{miniCartIsOpen ? createPortal(<MiniCart />, rootModal) : null}
+								<main
+									className="products-display"
+									tabIndex={miniCartIsOpen ? '-1' : '0'}
+								>
 									<Routes>
 										<Route path="*" element={<CategoryList />} />
 
