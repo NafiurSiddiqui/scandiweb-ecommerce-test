@@ -17,7 +17,6 @@ class HeaderCart extends Component {
 		const { cartItems, cartQuantity } = this.props;
 
 		const badgeGuard = cartItems.includes(undefined);
-		console.log(cartQuantity);
 
 		return (
 			<div className={`header-cart`} onClick={this.openMiniCart}>

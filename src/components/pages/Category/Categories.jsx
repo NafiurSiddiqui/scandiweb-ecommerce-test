@@ -4,38 +4,43 @@ import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from './CategoryList';
 import CategoryCard from './CategoryCard';
 import DisplayHeader from '../../Layout/DisplayHeader';
-import Skeleton from '../../Layout/skeleton';
 import DisplayMessage from '../../Utilities/DisplayMessage';
+import Skeleton from '../../Layout/skeleton';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/currency';
+import { withRouter } from 'react-router-dom';
 
-class CategoryClothes extends Component {
+class Categories extends Component {
 	render() {
 		const { selectedCurrency, products } = this.props;
 
-		const matchedUserPrice = userCurrency(products, selectedCurrency);
+		console.log(this.props.location);
 
+		const matchedUserPrice = userCurrency(products, selectedCurrency);
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data }) => {
-					if (error) return <DisplayMessage error={error} />;
+					if (error) return;
+					<DisplayMessage error={error} />;
 
 					if (loading || !data) return <Skeleton />;
 
 					const products = data.category.products;
 
-					console.log(products);
-
+					const tech = products.filter((item) => {
+						console.log('It runs');
+						return item.category === 'tech';
+					});
 					const clothes = products.filter(
 						(item) => item.category === 'clothes'
 					);
 
 					return (
 						<ContentWrapper>
-							<DisplayHeader>Clothes</DisplayHeader>
+							<DisplayHeader>Tech</DisplayHeader>
 
 							<ul className={'category-items'}>
-								{clothes.map((p, i) => {
+								{tech.map((p, i) => {
 									let product = {
 										id: p.id,
 										image: p.gallery[0],
@@ -48,10 +53,10 @@ class CategoryClothes extends Component {
 											key={product.id}
 											image={product.image}
 											heading={product.name}
-											inStock={product.stock}
-											productID={p.id}
 											price={product.prices}
 											currencySymbol={selectedCurrency?.symbol}
+											inStock={product.stock}
+											productID={p.id}
 										/>
 									);
 								})}
@@ -72,4 +77,4 @@ export const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(CategoryClothes);
+export default withRouter(connect(mapStateToProps)(Categories));
