@@ -12,8 +12,7 @@ import CategoryCard from './CategoryCard';
 
 class CategoryAll extends Component {
 	render() {
-		const { selectedCurrency } = this.props;
-		const { products } = this.props.products;
+		const { selectedCurrency, products } = this.props;
 
 		const matchedUserPrice = userCurrency(products, selectedCurrency);
 
@@ -52,7 +51,7 @@ class CategoryAll extends Component {
 export const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category,
-		products: state.products,
+		products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
 	};
 };

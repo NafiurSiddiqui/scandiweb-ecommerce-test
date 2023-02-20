@@ -1,14 +1,20 @@
 import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from './CategoryList';
 import CategoryCard from './CategoryCard';
 import DisplayHeader from '../../Layout/DisplayHeader';
 import Skeleton from '../../Layout/skeleton';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import ContentWrapper from '../../Layout/ContentWrapper';
+import { userCurrency } from '../../Utilities/currency';
 
-export default class CategoryClothes extends Component {
+class CategoryClothes extends Component {
 	render() {
+		const { selectedCurrency, products } = this.props;
+
+		const matchedUserPrice = userCurrency(products, selectedCurrency);
+
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data }) => {
@@ -27,12 +33,12 @@ export default class CategoryClothes extends Component {
 							<DisplayHeader>Clothes</DisplayHeader>
 
 							<ul className={'category-items'}>
-								{clothes.map((p) => {
+								{clothes.map((p, i) => {
 									let product = {
 										id: p.id,
 										image: p.gallery[0],
 										name: p.name,
-										prices: p.prices.map((item) => item.amount).slice(0, 1),
+										prices: matchedUserPrice[i]?.amount,
 										stock: p.inStock,
 									};
 									return (
@@ -40,9 +46,10 @@ export default class CategoryClothes extends Component {
 											key={product.id}
 											image={product.image}
 											heading={product.name}
-											price={product.prices}
 											inStock={product.stock}
 											productID={p.id}
+											price={product.prices}
+											currencySymbol={selectedCurrency?.symbol}
 										/>
 									);
 								})}
@@ -54,3 +61,13 @@ export default class CategoryClothes extends Component {
 		);
 	}
 }
+
+export const mapStateToProps = (state) => {
+	return {
+		productIDState: state.category,
+		products: state.products.products,
+		selectedCurrency: state.currency.selectedCurrency,
+	};
+};
+
+export default connect(mapStateToProps)(CategoryClothes);
