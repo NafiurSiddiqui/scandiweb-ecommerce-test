@@ -5,16 +5,14 @@ $itemHover: #e2e2e2;
 	justify-content: space-between;
 	align-items: center;
 	height: 10vh;
-	// padding: 0 2rem;
+
 	&-navigation {
 		width: 20%;
 		position: relative;
 		z-index: 2;
 
 		&__items {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			@include flex(space-between, center, row);
 			width: 12rem;
 
 			&--item {
@@ -44,9 +42,6 @@ $itemHover: #e2e2e2;
 	}
 
 	&-actions {
-		// display: flex;
-		// justify-content: end;
-		// align-items: center;
 		@include flex(flex-end, center, row);
 		width: 20%;
 
@@ -56,12 +51,9 @@ $itemHover: #e2e2e2;
 	}
 
 	&-currency {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		@include flex(space-between, center, row);
 		height: 20vh;
 		&.guard {
-			// width: 7rem;
 			width: 3rem;
 		}
 		&__symbols {
@@ -89,10 +81,7 @@ $itemHover: #e2e2e2;
 			position: relative;
 			top: 6.4rem;
 			right: 3.5rem;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			flex-direction: column;
+			@include flex(space-between, center, column);
 			padding: 0.2rem 0;
 			width: 13rem;
 			text-align: center;
@@ -112,9 +101,6 @@ $itemHover: #e2e2e2;
 	}
 
 	&-cart {
-		// width: 100%;
-		// position: relative;
-		// left: -2rem;
 		&__cart {
 			@include transition(0.17);
 			border-radius: 50%;
