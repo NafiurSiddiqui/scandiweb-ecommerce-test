@@ -93,6 +93,7 @@ class AttributionBtn extends Component {
 							: '2.5rem',
 					padding: miniCart && !cartPage ? '0.2rem' : '0.4rem',
 					cursor: miniCart ? 'not-allowed' : 'pointer',
+					minHeight: colorSwatch ? '1.4rem' : '',
 				}}
 			>
 				{colorSwatch ? '' : item}
