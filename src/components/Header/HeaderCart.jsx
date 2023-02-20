@@ -18,19 +18,17 @@ class HeaderCart extends Component {
 
 		const badgeGuard = cartItems.includes(undefined);
 
-		console.log(cartQuantity);
-
 		return (
 			<div className={`header-cart`} onClick={this.openMiniCart}>
 				<MiniCartIcon color={'#43464E'} className={'header-cart__cart'} />
 
 				<div
 					className={`header-cart__badge ${
-						cartItems.length > 0 && !badgeGuard ? 'visible' : ''
+						cartQuantity > 0 && !badgeGuard ? 'visible' : ''
 					}`}
 				>
 					<span className="header-cart__badge-quantity">
-						{badgeGuard ? null : cartItems.length}
+						{badgeGuard ? null : cartQuantity}
 					</span>
 				</div>
 			</div>
