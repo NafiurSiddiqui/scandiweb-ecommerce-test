@@ -15,6 +15,9 @@ class Header extends Component {
 	resetProductID() {
 		this.props.getProductID('');
 	}
+
+	//! HERE for each category, render the navs
+
 	render() {
 		return (
 			<header className={'header'}>
@@ -24,20 +27,15 @@ class Header extends Component {
 							<NavLink
 								to={'/'}
 								className={(navData) => (navData.isActive ? 'active' : '')}
-								onClick={this.resetProductID}
 							>
 								All
 							</NavLink>
 						</li>
 						<li className={`header-navigation__items--item`}>
-							<NavLink to={'clothes'} onClick={this.resetProductID}>
-								Clothes
-							</NavLink>
+							<NavLink to={'clothes'}>Clothes</NavLink>
 						</li>
 						<li className={`header-navigation__items--item`}>
-							<NavLink to={'tech'} onClick={this.resetProductID}>
-								Tech
-							</NavLink>
+							<NavLink to={'tech'}>Tech</NavLink>
 						</li>
 					</ul>
 				</nav>

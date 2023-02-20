@@ -9,6 +9,8 @@ import DisplayMessage from '../../Utilities/DisplayMessage';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/currency';
 
+//Get the clicked links, set to the state, fetch, render accordingly.
+
 class CategoryClothes extends Component {
 	render() {
 		const { selectedCurrency, products } = this.props;
