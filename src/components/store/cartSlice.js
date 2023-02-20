@@ -114,8 +114,6 @@ export const cartSlice = createSlice({
 		},
 		cartQuantityHandler: (state) => {
 			const items = state.cartItems.map((item) => item[2].quantity);
-			console.log(items);
-
 			let newItems = items.reduce((acc, cur) => acc + cur, 0);
 			state.cartQuantity = newItems;
 		},
