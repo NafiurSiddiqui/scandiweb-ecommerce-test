@@ -1,13 +1,13 @@
 .category-item {
 	cursor: pointer;
 	height: 29rem;
-	// @include border(rgb(195, 195, 195));
 	border-radius: 0.2em;
-	// @include transition(0.2);
-	max-width: 30rem;
-	// &:hover {
-	// 	box-shadow: 0px 2px 3px rgb(155, 154, 154);
-	// }
+
+	// max-width: 30rem;
+
+	&-wrapper {
+		height: 100%;
+	}
 
 	&__image-wrapper {
 		height: 80%;

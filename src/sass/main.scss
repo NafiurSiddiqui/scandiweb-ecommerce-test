@@ -38,6 +38,13 @@ a {
 div#root {
 	height: 100vh;
 	padding: 0px 4rem;
+
+	@media screen and (min-width: 1600px) {
+		padding: 0px 8rem;
+	}
+	@media screen and (min-width: 1900px) {
+		padding: 0px 14rem;
+	}
 }
 
 .skeleton {
@@ -84,7 +91,7 @@ h4 {
 }
 
 .content-wrapper {
-	padding: 0 4rem;
+	// padding: 0 4rem;
 }
 
 // DYNAMIC CLASSES
