@@ -47,9 +47,11 @@ class Header extends Component {
 				</div>
 
 				<section className={'header-actions'}>
-					<Currency />
+					<div className="header-actions-wrapper">
+						<Currency />
 
-					<HeaderCart />
+						<HeaderCart />
+					</div>
 				</section>
 			</header>
 		);

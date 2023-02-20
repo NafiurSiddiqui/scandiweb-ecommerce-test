@@ -44,10 +44,15 @@ $itemHover: #e2e2e2;
 	}
 
 	&-actions {
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
+		// display: flex;
+		// justify-content: end;
+		// align-items: center;
+		@include flex(flex-end, center, row);
 		width: 20%;
+
+		&-wrapper {
+			@include flex(center, center, row);
+		}
 	}
 
 	&-currency {
@@ -56,7 +61,8 @@ $itemHover: #e2e2e2;
 		align-items: center;
 		height: 20vh;
 		&.guard {
-			width: 7rem;
+			// width: 7rem;
+			width: 3rem;
 		}
 		&__symbols {
 			@include transition(0.16);
@@ -106,9 +112,9 @@ $itemHover: #e2e2e2;
 	}
 
 	&-cart {
-		width: 100%;
-		position: relative;
-		left: -2rem;
+		// width: 100%;
+		// position: relative;
+		// left: -2rem;
 		&__cart {
 			@include transition(0.17);
 			border-radius: 50%;
