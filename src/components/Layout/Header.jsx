@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
+import { getPage } from '../store/pageSlice';
 import { getProductID } from '../store/productsSlice';
 import DisplayMessage from '../Utilities/DisplayMessage';
 import { GET_CATEGORIES } from '../Utilities/query';
@@ -29,6 +30,8 @@ class Header extends Component {
 	}
 
 	render() {
+		const { getPage } = this.props;
+
 		return (
 			<Query query={GET_CATEGORIES}>
 				{({ error, loading, data }) => {
@@ -52,7 +55,7 @@ class Header extends Component {
 											>
 												<NavLink
 													to={`/${name}`}
-													onClick={(e) => e.target}
+													onClick={(e) => getPage(e.target.pathname)}
 													className={(isActive) =>
 														this.setNavActiveRules(isActive, index, name)
 													}
@@ -89,6 +92,6 @@ class Header extends Component {
 	}
 }
 
-const mapDispatchToProps = { getProductID };
+const mapDispatchToProps = { getProductID, getPage };
 
 export default connect(null, mapDispatchToProps)(Header);

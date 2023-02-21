@@ -2,16 +2,13 @@ import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from './CategoryList';
-import CategoryCard from './CategoryCard';
+
 import DisplayHeader from '../../Layout/DisplayHeader';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/currency';
-import {
-	GET_PRODUCTS_BY_CATEGORY,
-	SET_PRODUCTS_BT_CATEGORY,
-} from '../../Utilities/query';
+import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
 
 class Categories extends Component {
 	constructor(props) {
