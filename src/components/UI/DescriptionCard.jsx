@@ -7,6 +7,7 @@ import {
 	cartQuantityHandler,
 	cartTotalHandler,
 } from '../store/cartSlice';
+import { roundToTwoDecimalPlaces } from '../Utilities/numberRounder';
 
 import Button from './Button';
 
@@ -177,7 +178,9 @@ class DescriptionCard extends Component {
 						<span className="pd__price-price__symbol">
 							{prices[0]?.currency?.symbol}
 						</span>
-						{miniCart ? itemCalculation : prices[0]?.amount}
+						{miniCart
+							? roundToTwoDecimalPlaces(itemCalculation)
+							: prices[0]?.amount}
 					</span>
 				</div>
 

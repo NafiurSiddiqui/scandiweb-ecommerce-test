@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { roundToTwoDecimalPlaces } from '../Utilities/numberRounder';
 
 const initialState = {
 	cartItems: [],
@@ -104,9 +105,9 @@ export const cartSlice = createSlice({
 			if (prices !== 0) {
 				let total = prices.reduce((acc, cur) => acc + cur, 0);
 
-				state.cartTotal = Number(total.toFixed(2));
+				state.cartTotal = roundToTwoDecimalPlaces(total);
 			} else {
-				state.cartTotal = 0;
+				state.cartTotal = 0.0;
 			}
 		},
 		cartTaxHandler: (state) => {
