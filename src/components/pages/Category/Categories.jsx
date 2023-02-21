@@ -9,6 +9,7 @@ import Skeleton from '../../Layout/skeleton';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/currency';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
+import CategoryCard from './CategoryCard';
 
 class Categories extends Component {
 	constructor(props) {
@@ -46,9 +47,10 @@ class Categories extends Component {
 					if (error) return <DisplayMessage error={error} />;
 
 					if (loading || !data) return <Skeleton />;
-					console.log(data);
 
-					// const products = data.category.products;
+					// console.log(data);
+					const products = data.category.products;
+					console.log(products);
 
 					// const tech = products.filter((item) => {
 					// 	console.log('It runs');
@@ -60,10 +62,12 @@ class Categories extends Component {
 
 					return (
 						<ContentWrapper>
-							<DisplayHeader>Tech</DisplayHeader>
+							<DisplayHeader>
+								{queryTerm ? queryTerm : activePath}
+							</DisplayHeader>
 
-							{/* <ul className={'category-items'}>
-								{tech.map((p, i) => {
+							<ul className={'category-items'}>
+								{products.map((p, i) => {
 									let product = {
 										id: p.id,
 										image: p.gallery[0],
@@ -83,7 +87,7 @@ class Categories extends Component {
 										/>
 									);
 								})}
-							</ul> */}
+							</ul>
 						</ContentWrapper>
 					);
 				}}
