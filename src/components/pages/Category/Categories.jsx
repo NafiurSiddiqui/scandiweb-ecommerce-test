@@ -17,14 +17,24 @@ class Categories extends Component {
 
 		this.state = {
 			activePath: '',
-			catResults: null,
 		};
+		this.formatQueryTerm = this.formatQueryTerm.bind(this);
 	}
 
 	componentDidMount() {
 		this.setState({
 			activePath: 'all',
 		});
+	}
+
+	formatQueryTerm(queryTerm) {
+		const { activePath } = this.state;
+
+		const formattedHeading =
+			queryTerm.charAt(0).toUpperCase() + queryTerm.slice(1) ||
+			activePath.charAt(0).toUpperCase() + activePath.slice(1);
+
+		return formattedHeading;
 	}
 
 	//! 1. check the active path
@@ -34,7 +44,6 @@ class Categories extends Component {
 
 	render() {
 		const { selectedCurrency, products, currentPath } = this.props;
-		const { activePath } = this.state;
 		const matchedUserPrice = userCurrency(products, selectedCurrency);
 		const queryTerm = currentPath.replace('/', '');
 
@@ -52,9 +61,7 @@ class Categories extends Component {
 
 					return (
 						<ContentWrapper>
-							<DisplayHeader>
-								{queryTerm ? queryTerm : activePath}
-							</DisplayHeader>
+							<DisplayHeader>{this.formatQueryTerm(queryTerm)}</DisplayHeader>
 
 							<ul className={'category-items'}>
 								{products.map((p, i) => {
