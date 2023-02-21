@@ -8,16 +8,27 @@ import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/currency';
-import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
+import {
+	GET_PRODUCTS_BY_CATEGORY,
+	SET_PRODUCTS_BT_CATEGORY,
+} from '../../Utilities/query';
 
 class Categories extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			activePath: window.location.pathname.replace('/', ''),
+			activePath: '',
+			catResults: null,
 		};
 	}
+
+	componentDidMount() {
+		this.setState({
+			activePath: 'all',
+		});
+	}
+
 	//! 1. check the active path
 	//! 2. query the category
 	//!3. render accordingly
@@ -27,13 +38,16 @@ class Categories extends Component {
 		const { selectedCurrency, products } = this.props;
 		const { activePath } = this.state;
 		const matchedUserPrice = userCurrency(products, selectedCurrency);
+		const test = 'clothes';
+
+		console.log(activePath);
 		return (
-			<Query query={GET_PRODUCTS_BY_CATEGORY} variables={{ activePath }}>
+			<Query query={GET_PRODUCTS_BY_CATEGORY} variables={{ category: test }}>
 				{({ error, loading, data }) => {
-					console.log(data);
 					if (error) return <DisplayMessage error={error} />;
 
 					if (loading || !data) return <Skeleton />;
+					console.log(data);
 
 					// const products = data.category.products;
 
