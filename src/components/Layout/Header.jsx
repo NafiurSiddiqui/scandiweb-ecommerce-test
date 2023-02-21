@@ -36,13 +36,13 @@ class Header extends Component {
 						<header className={'header'}>
 							<nav className={'header-navigation'}>
 								<ul className={`header-navigation__items`}>
-									{categories.map((name) => {
+									{categories.map((name, i) => {
 										return (
 											<li
 												className={`header-navigation__items--item`}
 												key={name}
 											>
-												<NavLink to={`/${name}`} end>
+												<NavLink to={`/${name}`} onClick={(e) => e.target} end>
 													{name}
 												</NavLink>
 											</li>
