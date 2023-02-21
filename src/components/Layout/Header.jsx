@@ -6,7 +6,6 @@ import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
 import { getProductID } from '../store/productsSlice';
-import { CustomNavLink } from '../Utilities/customNavLink';
 import DisplayMessage from '../Utilities/DisplayMessage';
 import { GET_CATEGORIES } from '../Utilities/query';
 import Skeleton from './skeleton';
