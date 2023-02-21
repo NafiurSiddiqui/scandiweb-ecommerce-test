@@ -8,6 +8,7 @@ import Skeleton from '../../Layout/skeleton';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/currency';
+import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
 
 //Get the clicked links, set to the state, fetch, render accordingly.
 
@@ -16,10 +17,12 @@ class CategoryClothes extends Component {
 		const { selectedCurrency, products } = this.props;
 
 		const matchedUserPrice = userCurrency(products, selectedCurrency);
+		const tech = 'clothes';
 
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data }) => {
+					console.log(tech);
 					if (error) return <DisplayMessage error={error} />;
 
 					if (loading || !data) return <Skeleton />;
