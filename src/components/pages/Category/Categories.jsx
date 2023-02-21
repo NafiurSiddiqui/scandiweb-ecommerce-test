@@ -8,38 +8,48 @@ import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/currency';
-import { withRouter } from 'react-router-dom';
+import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
 
 class Categories extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			activePath: window.location.pathname.replace('/', ''),
+		};
+	}
+	//! 1. check the active path
+	//! 2. query the category
+	//!3. render accordingly
+	//* window.location.pathname.replace('/', '') === '' //meaning 'All'
+
 	render() {
 		const { selectedCurrency, products } = this.props;
-
-		console.log(this.props.location);
-
+		const { activePath } = this.state;
 		const matchedUserPrice = userCurrency(products, selectedCurrency);
 		return (
-			<Query query={GET_ALL_CATEGORIES}>
+			<Query query={GET_PRODUCTS_BY_CATEGORY} variables={{ activePath }}>
 				{({ error, loading, data }) => {
-					if (error) return;
-					<DisplayMessage error={error} />;
+					console.log(data);
+					if (error) return <DisplayMessage error={error} />;
 
 					if (loading || !data) return <Skeleton />;
 
-					const products = data.category.products;
+					// const products = data.category.products;
 
-					const tech = products.filter((item) => {
-						console.log('It runs');
-						return item.category === 'tech';
-					});
-					const clothes = products.filter(
-						(item) => item.category === 'clothes'
-					);
+					// const tech = products.filter((item) => {
+					// 	console.log('It runs');
+					// 	return item.category === 'tech';
+					// });
+					// const clothes = products.filter(
+					// 	(item) => item.category === 'clothes'
+					// );
 
 					return (
 						<ContentWrapper>
 							<DisplayHeader>Tech</DisplayHeader>
 
-							<ul className={'category-items'}>
+							{/* <ul className={'category-items'}>
 								{tech.map((p, i) => {
 									let product = {
 										id: p.id,
@@ -60,7 +70,7 @@ class Categories extends Component {
 										/>
 									);
 								})}
-							</ul>
+							</ul> */}
 						</ContentWrapper>
 					);
 				}}
@@ -77,4 +87,4 @@ export const mapStateToProps = (state) => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps)(Categories));
+export default connect(mapStateToProps)(Categories);

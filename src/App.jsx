@@ -7,6 +7,7 @@ import Header from './components/Layout/Header';
 import Skeleton from './components/Layout/skeleton';
 import Cart from './components/pages/Cart/Cart';
 import MiniCart from './components/pages/Cart/MiniCart';
+import Categories from './components/pages/Category/Categories';
 import CategoryList, {
 	GET_ALL_CATEGORIES,
 } from './components/pages/Category/CategoryList';
@@ -58,7 +59,7 @@ class App extends Component {
 									className="products-display"
 									tabIndex={miniCartIsOpen ? '-1' : '0'}
 								>
-									<Routes>
+									{/* <Routes>
 										<Route path="*" element={<CategoryList />} />
 
 										<Route
@@ -68,7 +69,9 @@ class App extends Component {
 										<Route path="/tech" element={<CategoryTech />} />
 										<Route path="/clothes" element={<CategoryClothes />} />
 										<Route path="/Cart" element={<Cart />} />
-									</Routes>
+									</Routes> */}
+
+									<Categories />
 								</main>
 							</section>
 						</>

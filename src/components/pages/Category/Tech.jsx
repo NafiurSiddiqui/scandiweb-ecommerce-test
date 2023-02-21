@@ -11,6 +11,7 @@ import { userCurrency } from '../../Utilities/currency';
 
 class CategoryTech extends Component {
 	render() {
+		console.log(window.location.pathname.replace('/', ''));
 		const { selectedCurrency, products } = this.props;
 
 		const matchedUserPrice = userCurrency(products, selectedCurrency);

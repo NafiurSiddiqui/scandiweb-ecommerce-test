@@ -22,7 +22,6 @@ class CategoryClothes extends Component {
 		return (
 			<Query query={GET_ALL_CATEGORIES}>
 				{({ error, loading, data }) => {
-					console.log(tech);
 					if (error) return <DisplayMessage error={error} />;
 
 					if (loading || !data) return <Skeleton />;
