@@ -95,7 +95,6 @@ export const mapStateToProps = (state) => {
 		productIDState: state.category,
 		products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
-		currentPath: state.pathS,
 	};
 };
 
