@@ -1,10 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const pageSlice = createSlice({
+export const pageSlice = createSlice({
 	name: 'pageSlice',
-	pageActive: '',
+	initialState: {
+		pageActive: '',
+	},
 	reducers: {
-		getPage: (state, action) => (state.pageActive = action.payload),
+		getPage: (state, action) => {
+			state.pageActive = action.payload;
+		},
 	},
 });
 

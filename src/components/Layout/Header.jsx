@@ -1,3 +1,4 @@
+import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -5,6 +6,9 @@ import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
 import { getProductID } from '../store/productsSlice';
+import DisplayMessage from '../Utilities/DisplayMessage';
+import { GET_CATEGORIES } from '../Utilities/query';
+import Skeleton from './skeleton';
 
 class Header extends Component {
 	constructor() {
@@ -16,42 +20,56 @@ class Header extends Component {
 		this.props.getProductID('');
 	}
 
-	//! HERE for each category, render the navs
-
 	render() {
 		return (
-			<header className={'header'}>
-				<nav className={'header-navigation'}>
-					<ul className={`header-navigation__items`}>
-						<li className={`header-navigation__items--item`}>
-							<NavLink
-								to={'/'}
-								className={(navData) => (navData.isActive ? 'active' : '')}
-							>
-								All
-							</NavLink>
-						</li>
-						<li className={`header-navigation__items--item`}>
-							<NavLink to={'clothes'}>Clothes</NavLink>
-						</li>
-						<li className={`header-navigation__items--item`}>
-							<NavLink to={'tech'}>Tech</NavLink>
-						</li>
-					</ul>
-				</nav>
+			<Query query={GET_CATEGORIES}>
+				{({ error, loading, data }) => {
+					if (error) return <DisplayMessage error={error} />;
 
-				<div className={`header-logo`}>
-					<img src={logo} alt="Brand logo" className={'header-logo__logo'} />
-				</div>
+					if (loading || !data) return <Skeleton />;
 
-				<section className={'header-actions'}>
-					<div className="header-actions-wrapper">
-						<Currency />
+					const categories = data.categories.map((item) =>
+						item.name.toUpperCase()
+					);
 
-						<HeaderCart />
-					</div>
-				</section>
-			</header>
+					return (
+						<header className={'header'}>
+							<nav className={'header-navigation'}>
+								<ul className={`header-navigation__items`}>
+									{categories.map((name) => {
+										return (
+											<li
+												className={`header-navigation__items--item`}
+												key={name}
+											>
+												<NavLink to={`/${name}`} end>
+													{name}
+												</NavLink>
+											</li>
+										);
+									})}
+								</ul>
+							</nav>
+
+							<div className={`header-logo`}>
+								<img
+									src={logo}
+									alt="Brand logo"
+									className={'header-logo__logo'}
+								/>
+							</div>
+
+							<section className={'header-actions'}>
+								<div className="header-actions-wrapper">
+									<Currency />
+
+									<HeaderCart />
+								</div>
+							</section>
+						</header>
+					);
+				}}
+			</Query>
 		);
 	}
 }

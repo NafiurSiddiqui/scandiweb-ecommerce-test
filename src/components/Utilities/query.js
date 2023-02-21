@@ -34,23 +34,10 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
 	}
 `;
 
-// const category = 'clothes';
-
-// const GET_PRODUCTS_BY_CATEGORY = gql`
-// 	query GetProductsByCategory($category: String!) {
-// 		category(input: { title: $category }) {
-// 			name
-// 			products {
-// 				id
-// 				name
-// 				prices {
-// 					amount
-// 					currency {
-// 						label
-// 						symbol
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// `;
+export const GET_CATEGORIES = gql`
+	query {
+		categories {
+			name
+		}
+	}
+`;
