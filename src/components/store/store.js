@@ -4,7 +4,7 @@ import currencySliceReducer from './currencySlice';
 import productsSliceReducer from './productsSlice';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import pageSliceReducer from './pageSlice';
+import pathSliceReducers from './pathSlice';
 
 const persistConfig = {
 	key: 'cartState',
@@ -18,7 +18,7 @@ const store = configureStore({
 		currency: currencySliceReducer,
 		products: productsSliceReducer,
 		cart: persistedReducer,
-		pageActive: pageSliceReducer,
+		pageActive: pathSliceReducers,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

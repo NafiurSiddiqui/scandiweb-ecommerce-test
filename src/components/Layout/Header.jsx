@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
-import { getPage } from '../store/pageSlice';
+import { getPage } from '../store/pathSlice';
 import { getProductID } from '../store/productsSlice';
 import DisplayMessage from '../Utilities/DisplayMessage';
 import { GET_CATEGORIES } from '../Utilities/query';
