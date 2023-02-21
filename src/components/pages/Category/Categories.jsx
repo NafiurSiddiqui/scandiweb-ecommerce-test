@@ -48,17 +48,7 @@ class Categories extends Component {
 
 					if (loading || !data) return <Skeleton />;
 
-					// console.log(data);
 					const products = data.category.products;
-					console.log(products);
-
-					// const tech = products.filter((item) => {
-					// 	console.log('It runs');
-					// 	return item.category === 'tech';
-					// });
-					// const clothes = products.filter(
-					// 	(item) => item.category === 'clothes'
-					// );
 
 					return (
 						<ContentWrapper>
