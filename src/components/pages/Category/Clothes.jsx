@@ -29,8 +29,6 @@ class CategoryClothes extends Component {
 
 					const products = data.category.products;
 
-					console.log(products);
-
 					const clothes = products.filter(
 						(item) => item.category === 'clothes'
 					);

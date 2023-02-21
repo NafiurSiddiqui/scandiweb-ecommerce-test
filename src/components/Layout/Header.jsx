@@ -6,6 +6,7 @@ import logo from '../assets/a-logo.png';
 import Currency from '../Header/Currency';
 import HeaderCart from '../Header/HeaderCart';
 import { getProductID } from '../store/productsSlice';
+import { CustomNavLink } from '../Utilities/customNavLink';
 import DisplayMessage from '../Utilities/DisplayMessage';
 import { GET_CATEGORIES } from '../Utilities/query';
 import Skeleton from './skeleton';
@@ -14,10 +15,18 @@ class Header extends Component {
 	constructor() {
 		super();
 
-		this.resetProductID = this.resetProductID.bind(this);
+		this.setNavActiveRules = this.setNavActiveRules.bind(this);
 	}
-	resetProductID() {
-		this.props.getProductID('');
+
+	setNavActiveRules(isActive, index, name) {
+		const navRules =
+			isActive && window.location.pathname === '/' && index === 0
+				? 'active'
+				: isActive && index !== 0 && window.location.pathname === `/${name}`
+				? 'active'
+				: null;
+
+		return navRules;
 	}
 
 	render() {
@@ -36,13 +45,20 @@ class Header extends Component {
 						<header className={'header'}>
 							<nav className={'header-navigation'}>
 								<ul className={`header-navigation__items`}>
-									{categories.map((name, i) => {
+									{categories.map((name, index) => {
 										return (
 											<li
 												className={`header-navigation__items--item`}
 												key={name}
 											>
-												<NavLink to={`/${name}`} onClick={(e) => e.target} end>
+												<NavLink
+													to={`/${name}`}
+													onClick={(e) => e.target}
+													className={(isActive) =>
+														this.setNavActiveRules(isActive, index, name)
+													}
+													end
+												>
 													{name}
 												</NavLink>
 											</li>
