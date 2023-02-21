@@ -37,11 +37,6 @@ class Categories extends Component {
 		return formattedHeading;
 	}
 
-	//! 1. check the active path
-	//! 2. query the category
-	//!3. render accordingly
-	//* window.location.pathname.replace('/', '') === '' //meaning 'All'
-
 	render() {
 		const { selectedCurrency, products, currentPath } = this.props;
 		const matchedUserPrice = userCurrency(products, selectedCurrency);
