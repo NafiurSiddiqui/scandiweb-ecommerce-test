@@ -7,7 +7,7 @@ export const pathSlice = createSlice({
 	},
 	reducers: {
 		getPage: (state, action) => {
-			state.currentPath = action.payload;
+			state.currentPath = action.payload.toLowerCase();
 		},
 	},
 });

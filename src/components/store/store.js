@@ -18,7 +18,7 @@ const store = configureStore({
 		currency: currencySliceReducer,
 		products: productsSliceReducer,
 		cart: persistedReducer,
-		pageActive: pathSliceReducers,
+		path: pathSliceReducers,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

@@ -32,14 +32,16 @@ class Categories extends Component {
 	//* window.location.pathname.replace('/', '') === '' //meaning 'All'
 
 	render() {
-		const { selectedCurrency, products } = this.props;
+		const { selectedCurrency, products, currentPath } = this.props;
 		const { activePath } = this.state;
 		const matchedUserPrice = userCurrency(products, selectedCurrency);
-		const test = 'clothes';
+		const queryTerm = currentPath.replace('/', '');
 
-		console.log(activePath);
 		return (
-			<Query query={GET_PRODUCTS_BY_CATEGORY} variables={{ category: test }}>
+			<Query
+				query={GET_PRODUCTS_BY_CATEGORY}
+				variables={{ category: queryTerm }}
+			>
 				{({ error, loading, data }) => {
 					if (error) return <DisplayMessage error={error} />;
 
@@ -95,6 +97,7 @@ export const mapStateToProps = (state) => {
 		productIDState: state.category,
 		products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
+		currentPath: state.path.currentPath,
 	};
 };
 
