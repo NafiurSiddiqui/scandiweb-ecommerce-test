@@ -1,8 +1,6 @@
 import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GET_ALL_CATEGORIES } from './CategoryList';
-
 import DisplayHeader from '../../Layout/DisplayHeader';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setCurrencyIsOpen, setSelectedCurrency } from '../store/currencySlice';
-import customQuery from './CustomQurey';
+import CurrencyQuery from './CustomQurey';
 import OutsideClickGuard from './OutsideClickGuard';
 import { GET_CURRENCIES } from './query';
 
@@ -92,11 +92,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { setCurrencyIsOpen, setSelectedCurrency };
 
-//HOC implementation
-CurrencyList = connect(mapStateToProps, mapDispatchToProps)(CurrencyList);
-
-export const CurrencyListWithData = customQuery(
+export const CurrencyListWithData = CurrencyQuery(
 	CurrencyList,
 	GET_CURRENCIES,
 	mapDispatchToProps
 );
+
+//HOC implementation
+CurrencyList = connect(mapStateToProps, mapDispatchToProps)(CurrencyList);

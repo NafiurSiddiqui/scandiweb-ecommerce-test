@@ -2,8 +2,10 @@ import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import DisplayMessage from './DisplayMessage';
 import Skeleton from '../Layout/skeleton';
+import { connect, useSelector } from 'react-redux';
+import { GET_PRODUCTS_BY_CATEGORY } from './query';
 
-export default function customQuery(WrappedComponent, query, ...props) {
+export default function CurrencyQuery(WrappedComponent, query, ...props) {
 	return class extends Component {
 		render() {
 			return (
@@ -11,6 +13,7 @@ export default function customQuery(WrappedComponent, query, ...props) {
 					{({ error, loading, data }) => {
 						if (error) return <DisplayMessage error={error} />;
 						if (loading || !data) return <Skeleton />;
+
 						return <WrappedComponent data={data} {...props} />;
 					}}
 				</Query>
