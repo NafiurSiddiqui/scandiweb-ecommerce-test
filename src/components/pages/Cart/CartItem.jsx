@@ -27,7 +27,7 @@ class CartItem extends Component {
 
 	componentDidMount() {
 		const { cartItem, products, selectedCurrency } = this.props;
-
+		console.log(cartItem);
 		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
 		this.setState({
@@ -84,12 +84,12 @@ class CartItem extends Component {
 
 		const quantity = cartItem[2].quantity;
 
-		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
+		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
-		let imageLength = PDP[0]?.images.length;
+		// let imageLength = PDP[0]?.images.length;
 
 		let btnGuardRight = {
-			visibility: imageCount === imageLength - 1 ? 'hidden' : 'visible',
+			// visibility: imageCount === imageLength - 1 ? 'hidden' : 'visible',
 		};
 
 		let btnGuardLeft = {
@@ -97,34 +97,34 @@ class CartItem extends Component {
 		};
 
 		const btnsGuard = {
-			visibility: imageLength === 1 ? 'hidden' : 'visible',
+			// visibility: imageLength === 1 ? 'hidden' : 'visible',
 		};
 
 		return (
 			<li className="cart-items__item">
-				<DescriptionCard
+				{/* <DescriptionCard
 					className="cart-items__pd"
-					products={PDP[0]}
+					// products={PDP[0]}
 					miniCart={true}
 					attributes={cartItem}
 					quantity={quantity}
 					cartPage={cartPage}
-				/>
+				/> */}
 
 				<div
 					className={
 						cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
 					}
 				>
-					<CartQuantitiy
-						images={PDP[0].images}
+					{/* <CartQuantitiy
+						// images={PDP[0].images}
 						imageCount={imageCount}
 						quantity={quantity}
 						incrementItem={incrementItem}
 						decrementItem={decrementItem}
 						attributes={cartItem}
 						cartPage={cartPage}
-					/>
+					/> */}
 
 					<div
 						className="cart-quantity__image-gallery-btns"

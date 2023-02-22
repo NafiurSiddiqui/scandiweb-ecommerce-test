@@ -21,7 +21,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.getProductsHandler = this.getProductsHandler.bind(this);
+		// this.getProductsHandler = this.getProductsHandler.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -31,9 +31,9 @@ class App extends Component {
 	}
 
 	//Get products
-	getProductsHandler(el) {
-		this.props.setProducts(el);
-	}
+	// getProductsHandler(el) {
+	// 	this.props.setProducts(el);
+	// }
 
 	render() {
 		let { miniCartIsOpen, rootModal } = this.props;
@@ -41,7 +41,8 @@ class App extends Component {
 		return (
 			<Query
 				query={GET_ALL_CATEGORIES}
-				onCompleted={(data) => this.getProductsHandler(data.category.products)}
+				// onCompleted={(data) => this.getProductsHandler(data.category.products)}
+				variables={{ category: 'all' }}
 			>
 				{({ error, loading, data }) => {
 					if (error) return <DisplayMessage error={error} />;
@@ -59,19 +60,20 @@ class App extends Component {
 									className="products-display"
 									tabIndex={miniCartIsOpen ? '-1' : '0'}
 								>
-									{/* <Routes>
-										<Route path="*" element={<CategoryList />} />
+									<Routes>
+										{/* <Route path="*" element={<CategoryList />} /> */}
+										<Route path="*" element={<Categories />} />
 
 										<Route
 											path="/ProductDescription"
 											element={<ProductDescription />}
 										/>
-										<Route path="/tech" element={<CategoryTech />} />
-										<Route path="/clothes" element={<CategoryClothes />} />
+										{/* <Route path="/tech" element={<CategoryTech />} />
+										<Route path="/clothes" element={<CategoryClothes />} /> */}
 										<Route path="/Cart" element={<Cart />} />
-									</Routes> */}
+									</Routes>
 
-									<Categories />
+									{/* <Categories /> */}
 								</main>
 							</section>
 						</>

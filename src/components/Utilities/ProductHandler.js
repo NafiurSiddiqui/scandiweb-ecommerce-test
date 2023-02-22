@@ -7,9 +7,8 @@
  */
 
 function productHandler(products, productID, selectedCurrency) {
-	// getting the right data
-	let filteredProduct = products?.filter((item) => item.id === productID);
-
+	// filtering out the product
+	let filteredProduct = products?.filter((item) => item?.id === productID);
 	// return PDP as an OBJECT
 	let PDP = filteredProduct?.map((item) => {
 		return {
@@ -20,7 +19,6 @@ function productHandler(products, productID, selectedCurrency) {
 			attributesItem: item.attributes.map((item) =>
 				item.items.map((item) => item.id)
 			),
-
 			prices: item?.prices?.filter((item) => {
 				if (selectedCurrency !== null) {
 					return item.currency.label === selectedCurrency?.currency;
@@ -34,34 +32,26 @@ function productHandler(products, productID, selectedCurrency) {
 			stock: item.inStock,
 		};
 	});
-
 	//gallery overFlow guard
-
 	let galleryOverflow = PDP[0]?.images?.length > 6;
-
 	//converted attributes
 	const attID = PDP[0]?.attributesID;
 	const attItems = PDP[0]?.attributesItem;
-
 	//default values set
 	const mappedAttItems = attItems?.map((itemT) =>
 		itemT.map((item, index) => {
 			return { value: item, isChecked: index === 0 };
 		})
 	);
-
 	const attributes = attID?.reduce((acc, key, index) => {
 		acc[key] = mappedAttItems[index];
 		return acc;
 	}, {});
-
 	if (!attributes) {
 		return;
 	} else {
 		const items = Object.entries(attributes);
-
 		const userItems = [productID, items, { quantity: 0 }];
-
 		// return userItems;
 		return [PDP, galleryOverflow, attributes, userItems];
 	}
