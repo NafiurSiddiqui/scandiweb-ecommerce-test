@@ -37,11 +37,8 @@ class CurrencyList extends Component {
 	}
 
 	render() {
-		// const { currencyState, data } = this.props;
 		let { currencyIsOpen, selectedCurrency, data } = this.props;
 		const currencyState = currencyIsOpen ? 'visible' : '';
-		console.log(selectedCurrency);
-		console.log(data);
 
 		const currencies = data.currencies;
 		return (
@@ -95,8 +92,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { setCurrencyIsOpen, setSelectedCurrency };
 
-connect(mapStateToProps, mapDispatchToProps)(CurrencyList);
+CurrencyList = connect(mapStateToProps, mapDispatchToProps)(CurrencyList);
 
-export const CurrencyListWithData = customQuery(CurrencyList, GET_CURRENCIES);
-
-//! Currency does not open. see console for errors.
+export const CurrencyListWithData = customQuery(
+	CurrencyList,
+	GET_CURRENCIES,
+	mapDispatchToProps
+);

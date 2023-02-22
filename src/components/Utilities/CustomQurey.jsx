@@ -11,7 +11,7 @@ export default function customQuery(WrappedComponent, query, ...props) {
 					{({ error, loading, data }) => {
 						if (error) return <DisplayMessage error={error} />;
 						if (loading || !data) return <Skeleton />;
-						return <WrappedComponent data={data} />;
+						return <WrappedComponent data={data} {...props} />;
 					}}
 				</Query>
 			);
