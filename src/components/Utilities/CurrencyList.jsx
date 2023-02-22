@@ -92,6 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { setCurrencyIsOpen, setSelectedCurrency };
 
+//HOC implementation
 CurrencyList = connect(mapStateToProps, mapDispatchToProps)(CurrencyList);
 
 export const CurrencyListWithData = customQuery(
