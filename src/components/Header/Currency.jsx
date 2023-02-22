@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Query } from '@apollo/client/react/components';
 import { connect } from 'react-redux';
 import { setCurrencyIsOpen, setSelectedCurrency } from '../store/currencySlice';
 import OutsideClickGuard from '../Utilities/OutsideClickGuard';
-
+import { GET_CURRENCIES } from '../Utilities/query';
+import DisplayMessage from '../Utilities/DisplayMessage';
+import Skeleton from '../Layout/skeleton';
 /**
  * @selectedCurrency -[0]: to extract the symbol only.
  */
@@ -41,16 +44,8 @@ class Currency extends Component {
 	render() {
 		let { currencyIsOpen, products, selectedCurrency } = this.props;
 		const currencyState = currencyIsOpen ? 'visible' : '';
-		const allProducts = products?.products;
 
-		const prices = allProducts?.map((item, i) =>
-			item.prices.map((item) => {
-				return {
-					currency: item.currency.label,
-					symbol: item.currency.symbol,
-				};
-			})
-		);
+		//! Send currency request from here.
 
 		return (
 			<OutsideClickGuard className={`header-currency guard`}>
@@ -69,29 +64,42 @@ class Currency extends Component {
 						</span>
 					</div>
 				</div>
+				<Query query={GET_CURRENCIES}>
+					{({ error, loading, data }) => {
+						if (error) return <DisplayMessage error={error} />;
 
-				<ul className={`header-currency__currency-items ${currencyState}`}>
-					{prices !== undefined
-						? prices[0].map((item, index) => {
-								return (
-									<li
-										className={`header-currency__currency-items__item ${
-											this.state.currencyActive === index
-												? 'currencyActive'
-												: ''
-										} `}
-										key={item.currency}
-										onClick={(e) => this.selectedCurrencyHandler(e, index)}
-									>
-										<span className="header-currency__currency-items__item-symbol">
-											{item.symbol}
-										</span>
-										{item.currency}
-									</li>
-								);
-						  })
-						: null}
-				</ul>
+						if (loading || !data) return <Skeleton />;
+
+						// const products = data.category.products;
+
+						const currencies = data.currencies;
+
+						return (
+							<ul
+								className={`header-currency__currency-items ${currencyState}`}
+							>
+								{currencies.map((item, index) => {
+									return (
+										<li
+											className={`header-currency__currency-items__item ${
+												this.state.currencyActive === index
+													? 'currencyActive'
+													: ''
+											} `}
+											key={item.label}
+											onClick={(e) => this.selectedCurrencyHandler(e, index)}
+										>
+											<span className="header-currency__currency-items__item-symbol">
+												{item.symbol}
+											</span>
+											{item.label}
+										</li>
+									);
+								})}
+							</ul>
+						);
+					}}
+				</Query>
 			</OutsideClickGuard>
 		);
 	}
@@ -101,7 +109,6 @@ const mapStateToProps = (state) => {
 	return {
 		selectedCurrency: state.currency.selectedCurrency,
 		currencyIsOpen: state.currency.currencyIsOpen,
-		products: state.products,
 	};
 };
 

@@ -19,10 +19,11 @@ class Header extends Component {
 	}
 
 	setNavActiveRules(isActive, index, name) {
+		const path = window.location.pathname;
 		const navRules =
-			isActive && window.location.pathname === '/ALL' && index === 0
+			isActive && (path === '/ALL' || path === '/') && index === 0
 				? 'active'
-				: isActive && index !== 0 && window.location.pathname === `/${name}`
+				: isActive && index !== 0 && path === `/${name}`
 				? 'active'
 				: null;
 
