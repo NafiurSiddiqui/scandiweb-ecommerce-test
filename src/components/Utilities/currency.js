@@ -1,5 +1,6 @@
 export function userCurrency(products, selectedCurrency, singleItem = false) {
 	let currencies;
+	let userMatchedCurrency;
 	//extracting only price items
 	if (!singleItem) {
 		console.log('Product itemS');
@@ -13,17 +14,15 @@ export function userCurrency(products, selectedCurrency, singleItem = false) {
 			})
 		);
 
-		const matchedUserPrice = currencies?.map((item) =>
-			item.find((el) => {
-				if (selectedCurrency !== null) {
-					return el.currency === selectedCurrency.currency;
-				} else {
-					return el.currency === 'USD';
-				}
-			})
+		userMatchedCurrency = currencies?.map((item) =>
+			item.find((el) =>
+				selectedCurrency !== null
+					? el.currency === selectedCurrency.currency
+					: el.currency === 'USD'
+			)
 		);
 
-		return matchedUserPrice;
+		return userMatchedCurrency;
 	} else {
 		console.log('This is pure product item');
 		currencies = products.prices.map((item) => {
@@ -35,49 +34,19 @@ export function userCurrency(products, selectedCurrency, singleItem = false) {
 		});
 
 		console.log(
-			currencies.find((el) => el.currency === selectedCurrency.currency)
+			currencies?.find((el) =>
+				selectedCurrency !== null
+					? el.currency === selectedCurrency.currency
+					: el.currency === 'USD'
+			)
 		);
 
-		// const matchedUserPrice = currencies?.map(
-		// 	(item) => {
-		// 		return {
-		// 			currency: selectedCurrency
-		// 				? selectedCurrency.currency
-		// 				: item.currency,
+		userMatchedCurrency = currencies?.find((el) =>
+			selectedCurrency !== null
+				? el.currency === selectedCurrency.currency
+				: el.currency === 'USD'
+		);
 
-		// 		};
-		// 	}
-
-		// 	// item.find((el) => {
-		// 	// 	if (selectedCurrency !== null) {
-		// 	// 		return el.currency === selectedCurrency.currency;
-		// 	// 	} else {
-		// 	// 		return el.currency === 'USD';
-		// 	// 	}
-		// 	// })
-		// );
-
-		// console.log(matchedUserPrice);
-
-		console.log(selectedCurrency);
+		return userMatchedCurrency;
 	}
-
-	// console.log(currencies);
-
-	// //ensure user's currency selection
-	// const matchedUserPrice = currencies?.map((item) =>
-	// 	item.find((el) => {
-	// 		if (selectedCurrency !== null) {
-	// 			return el.currency === selectedCurrency.currency;
-	// 		} else {
-	// 			return el.currency === 'USD';
-	// 		}
-	// 	})
-	// );
-
-	// console.log(matchedUserPrice);
-
-	// // const matchedUserPrice = 'DELETE THIS';
-
-	// return matchedUserPrice;
 }
