@@ -5,7 +5,7 @@ import {
 	cartQuantityHandler,
 	setMiniCartIsOpen,
 } from '../store/cartSlice';
-import productHandler from '../Utilities/ProductHandler';
+import ProductHandler from '../Utilities/ProductHandler';
 
 class MiniCartIcon extends Component {
 	constructor(props) {
@@ -20,14 +20,19 @@ class MiniCartIcon extends Component {
 	}
 
 	addToCartHandler(e) {
-		const { itemID, addItemToCart, products, selectedCurrency, inStock } =
+		const { productID, addItemToCart, products, selectedCurrency, inStock } =
 			this.props;
+
 		//if cartIcon is from header
 		const classGuard = e.target.classList[0] === 'header-cart__cart';
 
-		if (!products || !itemID) return;
+		if (!products || !productID) return;
 
-		const [...userItems] = productHandler(products, itemID, selectedCurrency);
+		const [...userItems] = ProductHandler(
+			products,
+			productID,
+			selectedCurrency
+		);
 
 		if (classGuard) {
 			//following miniIcon wont work in header
@@ -71,7 +76,7 @@ class MiniCartIcon extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		products: state.products.products,
+		// products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
 		cartItems: state.cart.cartItems,
 	};

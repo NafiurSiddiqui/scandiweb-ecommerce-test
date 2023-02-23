@@ -8,7 +8,7 @@ import {
 import DescriptionCard from '../../UI/DescriptionCard';
 import productHandler from '../../Utilities/ProductHandler';
 import CartQuantitiy from './CartQuantitiy';
-import { ProductQuery } from '../../Utilities/CustomQurey';
+
 import { Query } from '@apollo/client/react/components';
 import { GET_PRODUCTS_BY_ID } from '../../Utilities/query';
 import DisplayMessage from '../../Utilities/DisplayMessage';

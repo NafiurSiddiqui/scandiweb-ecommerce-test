@@ -54,6 +54,8 @@ class Categories extends Component {
 
 					const matchedUserPrice = userCurrency(products, selectedCurrency);
 
+					// console.log(products);
+
 					return (
 						<ContentWrapper>
 							<DisplayHeader>{this.formatQueryTerm(queryTerm)}</DisplayHeader>
