@@ -37,7 +37,7 @@ class Categories extends Component {
 
 	render() {
 		const { selectedCurrency, products, currentPath } = this.props;
-		const matchedUserPrice = userCurrency(products, selectedCurrency);
+		// const matchedUserPrice = userCurrency(products, selectedCurrency);
 		const queryTerm = currentPath.replace('/', '');
 
 		return (
@@ -51,6 +51,8 @@ class Categories extends Component {
 					if (loading || !data) return <Skeleton />;
 
 					const products = data.category.products;
+
+					const matchedUserPrice = userCurrency(products, selectedCurrency);
 
 					return (
 						<ContentWrapper>

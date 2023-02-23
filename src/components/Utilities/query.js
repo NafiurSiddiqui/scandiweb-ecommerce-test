@@ -50,3 +50,35 @@ export const GET_CURRENCIES = gql`
 		}
 	}
 `;
+
+export const GET_PRODUCTS_BY_ID = gql`
+	query ($productId: ID!) {
+		product(id: $productId) {
+			name
+			inStock
+			gallery
+			description
+			category
+			attributes {
+				id
+				name
+				type
+				items {
+					displayValue
+					value
+					id
+					__typename
+				}
+			}
+			prices {
+				currency {
+					label
+					symbol
+				}
+				amount
+				__typename
+			}
+			brand
+		}
+	}
+`;

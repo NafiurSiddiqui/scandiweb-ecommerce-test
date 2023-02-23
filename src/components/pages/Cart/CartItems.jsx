@@ -14,6 +14,7 @@ class CartItems extends Component {
 		this.itemPriceHandler = this.itemPriceHandler.bind(this);
 	}
 
+	//!👇 Prolly i dont need this since i am calculating the price from the store.
 	itemPriceHandler(price, itemIndex, update = false) {
 		if (update) {
 			this.setState((prevState) => {

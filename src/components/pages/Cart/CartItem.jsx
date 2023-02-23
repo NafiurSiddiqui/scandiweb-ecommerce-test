@@ -8,10 +8,17 @@ import {
 import DescriptionCard from '../../UI/DescriptionCard';
 import productHandler from '../../Utilities/ProductHandler';
 import CartQuantitiy from './CartQuantitiy';
+import { ProductQuery } from '../../Utilities/CustomQurey';
+import { Query } from '@apollo/client/react/components';
+import { GET_PRODUCTS_BY_ID } from '../../Utilities/query';
+import DisplayMessage from '../../Utilities/DisplayMessage';
+import Skeleton from '../../Layout/skeleton';
 
 /**
  * @cartItem = ['productID', [items]]
  */
+
+//! prolly QUERY and caputre the whole product info in the state.
 
 class CartItem extends Component {
 	constructor(props) {
@@ -19,7 +26,7 @@ class CartItem extends Component {
 
 		this.state = {
 			imageCount: 0,
-			itemPrice: 0,
+			itemPrice: 0, //CAPTURE THE PRICE OF THE PRODUCT HERE [QUERY]
 		};
 		this.incrementCount = this.incrementCount.bind(this);
 		this.decrementCount = this.decrementCount.bind(this);
@@ -28,13 +35,13 @@ class CartItem extends Component {
 	componentDidMount() {
 		const { cartItem, products, selectedCurrency } = this.props;
 		console.log(cartItem);
-		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
+		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
-		this.setState({
-			itemPrice: PDP[0].amount,
-		});
+		// this.setState({
+		// 	itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
+		// });
 
-		this.props.itemPriceHandler(PDP[0].amount);
+		// this.props.itemPriceHandler(PDP[0].amount);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -46,10 +53,10 @@ class CartItem extends Component {
 
 		if (prevProps.cartItem[2].quantity !== cartItem[2].quantity) {
 			this.setState({
-				itemPrice: PDP[0].amount * quantity,
+				// itemPrice: PDP[0].amount * quantity, //amoutn shoudl come from state now
 			});
 
-			this.props.itemPriceHandler(PDP[0].amount * quantity, itemIndex, true);
+			// this.props.itemPriceHandler(PDP[0].amount * quantity, itemIndex, true); //may not need this, amount = state.itemPrice now
 			this.props.cartQuantityHandler();
 		}
 	}
@@ -101,8 +108,27 @@ class CartItem extends Component {
 		};
 
 		return (
-			<li className="cart-items__item">
-				{/* <DescriptionCard
+			// <Query
+			// 	query={GET_PRODUCTS_BY_ID}
+			// 	variables={{ id: 'huarache-x-stussy-le' }}
+			// >
+
+			// </Query>
+
+			<Query
+				query={GET_PRODUCTS_BY_ID}
+				variables={{ productId: 'huarache-x-stussy-le' }}
+			>
+				{({ error, loading, data }) => {
+					if (error) return <DisplayMessage error={error} />;
+
+					if (loading || !data) return <Skeleton />;
+
+					// const products = data.category.products;
+
+					return (
+						<li className="cart-items__item">
+							{/* <DescriptionCard
 					className="cart-items__pd"
 					// products={PDP[0]}
 					miniCart={true}
@@ -111,12 +137,12 @@ class CartItem extends Component {
 					cartPage={cartPage}
 				/> */}
 
-				<div
-					className={
-						cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
-					}
-				>
-					{/* <CartQuantitiy
+							<div
+								className={
+									cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
+								}
+							>
+								{/* <CartQuantitiy
 						// images={PDP[0].images}
 						imageCount={imageCount}
 						quantity={quantity}
@@ -126,29 +152,32 @@ class CartItem extends Component {
 						cartPage={cartPage}
 					/> */}
 
-					<div
-						className="cart-quantity__image-gallery-btns"
-						style={{ ...btnsGuard }}
-					>
-						<span
-							className="cart-quantity__image-gallery-btn"
-							role={'button'}
-							onClick={this.decrementCount}
-							style={{ ...btnGuardLeft }}
-						>
-							ᐸ
-						</span>
-						<span
-							className="cart-quantity__image-gallery-btn"
-							ole={'button'}
-							onClick={this.incrementCount}
-							style={{ ...btnGuardRight }}
-						>
-							ᐳ
-						</span>
-					</div>
-				</div>
-			</li>
+								<div
+									className="cart-quantity__image-gallery-btns"
+									style={{ ...btnsGuard }}
+								>
+									<span
+										className="cart-quantity__image-gallery-btn"
+										role={'button'}
+										onClick={this.decrementCount}
+										style={{ ...btnGuardLeft }}
+									>
+										ᐸ
+									</span>
+									<span
+										className="cart-quantity__image-gallery-btn"
+										ole={'button'}
+										onClick={this.incrementCount}
+										style={{ ...btnGuardRight }}
+									>
+										ᐳ
+									</span>
+								</div>
+							</div>
+						</li>
+					);
+				}}
+			</Query>
 		);
 	}
 }
