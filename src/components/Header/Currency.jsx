@@ -39,15 +39,10 @@ class Currency extends Component {
 	}
 
 	render() {
-		let {
-			currencyIsOpen,
-			selectedCurrency,
-			setCurrencyIsOpen,
-			setSelectedCurrency,
-		} = this.props;
+		let { currencyIsOpen, selectedCurrency } = this.props;
 
 		const currencyState = currencyIsOpen ? 'visible' : '';
-
+		console.log(selectedCurrency);
 		return (
 			<Query query={GET_CURRENCIES}>
 				{({ error, loading, data }) => {
@@ -60,9 +55,7 @@ class Currency extends Component {
 							<div className={`header-currency`} onClick={this.currencyHandler}>
 								<div className={`header-currency__symbols`}>
 									<span className="header-currency__symbols__currency-symbol">
-										{selectedCurrency !== (null || undefined)
-											? selectedCurrency?.symbol
-											: '$'}
+										{selectedCurrency !== null ? selectedCurrency?.symbol : '$'}
 									</span>
 
 									<span

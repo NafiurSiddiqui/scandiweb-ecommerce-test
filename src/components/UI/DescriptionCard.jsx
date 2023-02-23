@@ -20,13 +20,13 @@ class DescriptionCard extends Component {
 		super(props);
 
 		const { productID } = this.props;
-		const { prices } = this.props.products;
-
+		// const { prices } = this.props.products;
+		console.log(this.props.product);
 		this.state = {
 			selectedTitle: productID,
 			selectedValues: [],
 			items: [],
-			itemCalculation: prices[0]?.amount,
+			// itemCalculation: prices[0]?.amount,
 		};
 
 		this.updateItems = this.updateItems.bind(this);
@@ -35,7 +35,7 @@ class DescriptionCard extends Component {
 
 	componentDidMount() {
 		const { attributes, miniCart, quantity } = this.props;
-		const { prices } = this.props.products;
+		// const { prices } = this.props.products;
 
 		if (miniCart && attributes) {
 			const attHeaders = attributes[1].map((item) => item.name);
@@ -48,7 +48,7 @@ class DescriptionCard extends Component {
 
 			this.setState({
 				items: Object.entries(selectedAttributes),
-				itemCalculation: prices[0].amount * quantity,
+				// itemCalculation: prices[0].amount * quantity,
 			});
 
 			return;
@@ -63,17 +63,17 @@ class DescriptionCard extends Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		const { quantity, cartItems } = this.props;
-		const { prices } = this.props.products;
+		// const { prices } = this.props.products;
 
 		if (prevProps.quantity !== quantity) {
 			this.setState({
-				itemCalculation: prices[0].amount * quantity,
+				// itemCalculation: prices[0].amount * quantity,
 			});
 		}
 
 		if (prevProps.cartItems.length !== cartItems.length) {
 			this.setState({
-				itemCalculation: prices[0].amount,
+				// itemCalculation: prices[0].amount,
 			});
 		}
 	}
@@ -121,7 +121,7 @@ class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, prices, stock } = this.props.products;
+		const { brand, name, prices, stock } = this.props.product;
 		const { items, itemCalculation } = this.state;
 
 		const {

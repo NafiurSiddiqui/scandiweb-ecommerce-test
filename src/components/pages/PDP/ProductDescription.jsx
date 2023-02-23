@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
-import productHandler from '../../Utilities/ProductHandler';
+import productHandler, { attHandler } from '../../Utilities/ProductHandler';
 import { Navigate } from 'react-router-dom';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import { GET_PRODUCTS_BY_ID } from '../../Utilities/query';
+import { userCurrency } from '../../Utilities/currency';
 
 /**
  * @className - 'PDP' = product description
@@ -58,7 +59,7 @@ class ProductDescription extends Component {
 
 	render() {
 		const { productID, selectedCurrency } = this.props;
-		console.log(productID);
+
 		if (!productID) {
 			return <Navigate to={'/'} />;
 		} else {
@@ -68,23 +69,25 @@ class ProductDescription extends Component {
 						if (error) return <DisplayMessage error={error} />;
 						if (loading || !data) return <Skeleton />;
 
-						const products = data.product;
+						const product = data.product;
 
-						// console.log(products);
+						// console.log(product);
 
 						//items extracted from product handler
 						// const [PDP, galleryOverflow, attributes] = productHandler(
-						// 	products,
+						// 	product,
 						// 	productID,
 						// 	selectedCurrency
 						// );
 
-						console.log(products.gallery.length);
+						const attr = product.attributes;
 
 						//gallery overFlow guard
-						let galleryOverflow = products.gallery.length;
-
-						// console.log(products.gallery);
+						let galleryOverflow = product.gallery.length;
+						//Mapped out Data structure for attributes
+						const attributesMapped = attHandler(attr);
+						//selected currency tracker
+						let price = userCurrency(product, selectedCurrency, true);
 
 						return (
 							<section className="pdp">
@@ -97,7 +100,7 @@ class ProductDescription extends Component {
 												: { overflowY: 'none' }
 										}
 									>
-										{products.gallery.map((item, index) => (
+										{product.gallery.map((item, index) => (
 											<ProgressiveImage
 												src={item}
 												key={item}
@@ -113,18 +116,19 @@ class ProductDescription extends Component {
 										src={
 											this.state.selectedImgSrc
 												? this.state.selectedImgSrc
-												: products.gallery[0]
+												: product.gallery[0]
 										}
 									/>
 								</div>
 								<article className="pdp_pd">
-									{/* <DescriptionCard
-											products={PDP[0]}
-											priceHeading={true}
-											getItemValues={this.getItemValues}
-											attributes={attributes}
-											className="pd"
-										/> */}
+									<DescriptionCard
+										product={product}
+										priceHeading={true}
+										getItemValues={this.getItemValues}
+										attributes={attributesMapped}
+										className="pd"
+										price={price}
+									/>
 
 									<p
 										className="pd__description"
@@ -145,7 +149,7 @@ class ProductDescription extends Component {
 												  }
 										}
 									>
-										{this.HTMLparser(products) || 'something went wrong'}
+										{this.HTMLparser(product) || 'something went wrong'}
 									</p>
 								</article>
 							</section>

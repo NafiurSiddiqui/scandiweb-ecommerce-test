@@ -50,6 +50,7 @@ function productHandler(products, productID, selectedCurrency) {
 		acc[key] = mappedAttItems[index];
 		return acc;
 	}, {});
+
 	if (!attributes) {
 		return;
 	} else {
@@ -61,3 +62,24 @@ function productHandler(products, productID, selectedCurrency) {
 }
 
 export default productHandler;
+
+export const attHandler = (att) => {
+	//converted attributes
+	const attID = att?.map((item) => item.id);
+
+	const attItems = att?.map((item) => item.items.map((item) => item.id));
+
+	//default values set
+	const mappedAttItems = attItems?.map((itemT) =>
+		itemT.map((item, index) => {
+			return { value: item, isChecked: index === 0 };
+		})
+	);
+
+	const attributes = attID?.reduce((acc, key, index) => {
+		acc[key] = mappedAttItems[index];
+		return acc;
+	}, {});
+
+	return attributes;
+};

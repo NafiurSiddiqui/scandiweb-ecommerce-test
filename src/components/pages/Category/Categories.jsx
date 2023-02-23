@@ -53,7 +53,11 @@ class Categories extends Component {
 
 					const products = data.category.products;
 
-					const matchedUserPrice = userCurrency(products, selectedCurrency);
+					const matchedUserPrice = userCurrency(
+						products,
+						selectedCurrency,
+						false
+					);
 
 					// console.log(products);
 
