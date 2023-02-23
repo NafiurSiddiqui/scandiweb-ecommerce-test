@@ -78,7 +78,7 @@ class Categories extends Component {
 						return acc;
 					}, {});
 
-					console.log(attributes);
+					// console.log(attributes);
 					return (
 						<ContentWrapper>
 							<DisplayHeader>{this.formatQueryTerm(queryTerm)}</DisplayHeader>
@@ -103,6 +103,7 @@ class Categories extends Component {
 											currencySymbol={selectedCurrency?.symbol}
 											inStock={product.stock}
 											productID={p.id}
+											attributes={attributes}
 										/>
 									);
 								})}
