@@ -17,7 +17,7 @@ const persistedCurrency = persistReducer(persistConfig, currencySliceReducer);
 
 const store = configureStore({
 	reducer: {
-		currency: currencySliceReducer,
+		currency: persistedCurrency,
 		products: productsSliceReducer,
 		cart: persistedCart,
 		path: pathSliceReducers,
