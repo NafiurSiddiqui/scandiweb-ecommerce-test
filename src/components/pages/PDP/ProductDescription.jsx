@@ -8,6 +8,7 @@ import productHandler from '../../Utilities/ProductHandler';
 import { Navigate } from 'react-router-dom';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
+import { GET_PRODUCTS_BY_ID } from '../../Utilities/query';
 
 /**
  * @className - 'PDP' = product description
@@ -28,24 +29,18 @@ class ProductDescription extends Component {
 
 	//PARSE HTML
 	HTMLparser(products) {
-		const { productID } = this.props;
-
-		if (!productID) {
-			return;
-		}
-
-		let selectedProduct = products.filter((item) => item.id === productID);
-
-		const parser = new DOMParser();
-
-		const testDOC = parser.parseFromString(
-			selectedProduct[0].description,
-			'text/html'
-		);
-
-		let parsedText = testDOC.documentElement.textContent;
-
-		return parsedText;
+		// const { productID } = this.props;
+		// if (!productID) {
+		// 	return;
+		// }
+		// let selectedProduct = products.filter((item) => item.id === productID);
+		// const parser = new DOMParser();
+		// const testDOC = parser.parseFromString(
+		// 	selectedProduct[0].description,
+		// 	'text/html'
+		// );
+		// let parsedText = testDOC.documentElement.textContent;
+		// return parsedText;
 	}
 
 	//IMAGE GALLERY
@@ -63,90 +58,98 @@ class ProductDescription extends Component {
 
 	render() {
 		const { productID, selectedCurrency } = this.props;
-
+		console.log(productID);
 		if (!productID) {
 			return <Navigate to={'/'} />;
 		} else {
 			return (
-				<Query query={GET_ALL_CATEGORIES}>
+				<Query query={GET_PRODUCTS_BY_ID} variables={{ productId: productID }}>
 					{({ error, loading, data }) => {
 						if (error) return <DisplayMessage error={error} />;
 						if (loading || !data) return <Skeleton />;
 
-						const { products } = data.category;
+						const products = data.product;
+
+						// console.log(products);
 
 						//items extracted from product handler
-						const [PDP, galleryOverflow, attributes] = productHandler(
-							products,
-							productID,
-							selectedCurrency
-						);
+						// const [PDP, galleryOverflow, attributes] = productHandler(
+						// 	products,
+						// 	productID,
+						// 	selectedCurrency
+						// );
+
+						console.log(products.gallery.length);
+
+						//gallery overFlow guard
+						let galleryOverflow = products.gallery.length;
+
+						// console.log(products.gallery);
 
 						return (
-							<>
-								<section className="pdp">
-									<div className="pdp-image">
-										<ul
-											className="pdp-image-gallery"
-											style={
-												galleryOverflow
-													? { overflowY: 'scroll' }
-													: { overflowY: 'none' }
-											}
-										>
-											{PDP[0].images.map((item, index) => (
-												<ProgressiveImage
-													src={item}
-													key={item}
-													onClick={this.selectedImgSrcHandler}
-													className={'pdp-image'}
-												/>
-											))}
-										</ul>
+							<section className="pdp">
+								<div className="pdp-image">
+									<ul
+										className="pdp-image-gallery"
+										style={
+											galleryOverflow
+												? { overflowY: 'scroll' }
+												: { overflowY: 'none' }
+										}
+									>
+										{products.gallery.map((item, index) => (
+											<ProgressiveImage
+												src={item}
+												key={item}
+												onClick={this.selectedImgSrcHandler}
+												className={'pdp-image'}
+											/>
+										))}
+									</ul>
 
-										<img
-											className="pdp-image-hero"
-											alt="product"
-											src={
-												this.state.selectedImgSrc
-													? this.state.selectedImgSrc
-													: PDP[0].images[0]
-											}
-										/>
-									</div>
-									<article className="pdp_pd">
-										<DescriptionCard
+									<img
+										className="pdp-image-hero"
+										alt="product"
+										src={
+											this.state.selectedImgSrc
+												? this.state.selectedImgSrc
+												: products.gallery[0]
+										}
+									/>
+								</div>
+								<article className="pdp_pd">
+									{/* <DescriptionCard
 											products={PDP[0]}
 											priceHeading={true}
 											getItemValues={this.getItemValues}
 											attributes={attributes}
 											className="pd"
-										/>
+										/> */}
 
-										<p
-											className="pd__description"
-											onClick={this.textOverFlowHandler}
-											style={
-												this.state.txtOverFlow
-													? {
-															display: '-webkit-box',
-															WebkitLineClamp: '0',
-															WebkitBoxOrient: 'vertical',
-															overflowY: 'scroll',
-													  }
-													: {
-															display: '-webkit-box',
-															WebkitLineClamp: '6',
-															WebkitBoxOrient: 'vertical',
-															overflow: 'hidden',
-													  }
-											}
-										>
-											{this.HTMLparser(products) || 'something went wrong'}
-										</p>
-									</article>
-								</section>
-							</>
+									<p
+										className="pd__description"
+										onClick={this.textOverFlowHandler}
+										style={
+											this.state.txtOverFlow
+												? {
+														display: '-webkit-box',
+														WebkitLineClamp: '0',
+														WebkitBoxOrient: 'vertical',
+														overflowY: 'scroll',
+												  }
+												: {
+														display: '-webkit-box',
+														WebkitLineClamp: '6',
+														WebkitBoxOrient: 'vertical',
+														overflow: 'hidden',
+												  }
+										}
+									>
+										{this.HTMLparser(products) || 'something went wrong'}
+									</p>
+								</article>
+							</section>
+							// <></>
 						);
 					}}
 				</Query>
@@ -158,7 +161,7 @@ class ProductDescription extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productID: state.products.productID,
-		products: state.products,
+		// products: state.products,
 		selectedCurrency: state.currency.selectedCurrency,
 	};
 };

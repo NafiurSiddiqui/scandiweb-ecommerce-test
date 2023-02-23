@@ -108,78 +108,73 @@ class CartItem extends Component {
 		};
 
 		return (
+			<></>
+
 			// <Query
 			// 	query={GET_PRODUCTS_BY_ID}
-			// 	variables={{ id: 'huarache-x-stussy-le' }}
+			// 	variables={{ productId: 'huarache-x-stussy-le' }}
 			// >
+			// 	{({ error, loading, data }) => {
+			// 		if (error) return <DisplayMessage error={error} />;
 
+			// 		if (loading || !data) return <Skeleton />;
+
+			// 		// const products = data.category.products;
+
+			// 		console.log(data);
+
+			// 		return (
+			// 			<li className="cart-items__item">
+			// 				{/* <DescriptionCard
+			// 		className="cart-items__pd"
+			// 		// products={PDP[0]}
+			// 		miniCart={true}
+			// 		attributes={cartItem}
+			// 		quantity={quantity}
+			// 		cartPage={cartPage}
+			// 	/> */}
+
+			// 				<div
+			// 					className={
+			// 						cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
+			// 					}
+			// 				>
+			// 					{/* <CartQuantitiy
+			// 			// images={PDP[0].images}
+			// 			imageCount={imageCount}
+			// 			quantity={quantity}
+			// 			incrementItem={incrementItem}
+			// 			decrementItem={decrementItem}
+			// 			attributes={cartItem}
+			// 			cartPage={cartPage}
+			// 		/> */}
+
+			// 					<div
+			// 						className="cart-quantity__image-gallery-btns"
+			// 						style={{ ...btnsGuard }}
+			// 					>
+			// 						<span
+			// 							className="cart-quantity__image-gallery-btn"
+			// 							role={'button'}
+			// 							onClick={this.decrementCount}
+			// 							style={{ ...btnGuardLeft }}
+			// 						>
+			// 							ᐸ
+			// 						</span>
+			// 						<span
+			// 							className="cart-quantity__image-gallery-btn"
+			// 							ole={'button'}
+			// 							onClick={this.incrementCount}
+			// 							style={{ ...btnGuardRight }}
+			// 						>
+			// 							ᐳ
+			// 						</span>
+			// 					</div>
+			// 				</div>
+			// 			</li>
+			// 		);
+			// 	}}
 			// </Query>
-
-			<Query
-				query={GET_PRODUCTS_BY_ID}
-				variables={{ productId: 'huarache-x-stussy-le' }}
-			>
-				{({ error, loading, data }) => {
-					if (error) return <DisplayMessage error={error} />;
-
-					if (loading || !data) return <Skeleton />;
-
-					// const products = data.category.products;
-
-					console.log(data);
-
-					return (
-						<li className="cart-items__item">
-							{/* <DescriptionCard
-					className="cart-items__pd"
-					// products={PDP[0]}
-					miniCart={true}
-					attributes={cartItem}
-					quantity={quantity}
-					cartPage={cartPage}
-				/> */}
-
-							<div
-								className={
-									cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
-								}
-							>
-								{/* <CartQuantitiy
-						// images={PDP[0].images}
-						imageCount={imageCount}
-						quantity={quantity}
-						incrementItem={incrementItem}
-						decrementItem={decrementItem}
-						attributes={cartItem}
-						cartPage={cartPage}
-					/> */}
-
-								<div
-									className="cart-quantity__image-gallery-btns"
-									style={{ ...btnsGuard }}
-								>
-									<span
-										className="cart-quantity__image-gallery-btn"
-										role={'button'}
-										onClick={this.decrementCount}
-										style={{ ...btnGuardLeft }}
-									>
-										ᐸ
-									</span>
-									<span
-										className="cart-quantity__image-gallery-btn"
-										ole={'button'}
-										onClick={this.incrementCount}
-										style={{ ...btnGuardRight }}
-									>
-										ᐳ
-									</span>
-								</div>
-							</div>
-						</li>
-					);
-				}}
-			</Query>
 		);
 	}
 }

@@ -20,19 +20,23 @@ class MiniCartIcon extends Component {
 	}
 
 	addToCartHandler(e) {
-		const { productID, addItemToCart, products, selectedCurrency, inStock } =
+		const { productID, addItemToCart, selectedCurrency, inStock, attributes } =
 			this.props;
 
 		//if cartIcon is from header
 		const classGuard = e.target.classList[0] === 'header-cart__cart';
 
-		if (!products || !productID) return;
+		// if (!products || !productID) return;
 
-		const [...userItems] = ProductHandler(
-			products,
-			productID,
-			selectedCurrency
-		);
+		// const [...userItems] = ProductHandler(
+		// 	products,
+		// 	productID,
+		// 	selectedCurrency
+		// );
+		const items = Object.entries(attributes);
+		const userItems = [productID, items, { quantity: 0 }];
+
+		console.log(userItems);
 
 		if (classGuard) {
 			//following miniIcon wont work in header
@@ -40,7 +44,7 @@ class MiniCartIcon extends Component {
 		} else {
 			if (!inStock) return;
 			//userItems[3] = defined data structure
-			addItemToCart(userItems[3]);
+			addItemToCart(userItems);
 			this.props.cartQuantityHandler();
 		}
 	}
@@ -76,7 +80,6 @@ class MiniCartIcon extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		// products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
 		cartItems: state.cart.cartItems,
 	};
