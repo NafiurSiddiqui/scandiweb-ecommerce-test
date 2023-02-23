@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Skeleton from '../Layout/skeleton';
 import { setCurrencyIsOpen, setSelectedCurrency } from '../store/currencySlice';
-import { CurrencyListWithData } from '../Utilities/CurrencyList';
 import DisplayMessage from '../Utilities/DisplayMessage';
 import OutsideClickGuard from '../Utilities/OutsideClickGuard';
 import { GET_CURRENCIES } from '../Utilities/query';
@@ -48,16 +47,8 @@ class Currency extends Component {
 		} = this.props;
 
 		const currencyState = currencyIsOpen ? 'visible' : '';
-		// console.log(this.props[0].setCurrencyIsOpen);
 
 		return (
-			// <CurrencyListWithData
-			// 	currencyIsOpen={currencyIsOpen}
-			// 	selectedCurrency={selectedCurrency}
-			// 	setCurrencyIsOpen={setCurrencyIsOpen}
-			// 	setSelectedCurrency={setSelectedCurrency}
-			// />
-
 			<Query query={GET_CURRENCIES}>
 				{({ error, loading, data }) => {
 					if (error) return <DisplayMessage error={error} />;
