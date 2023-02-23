@@ -126,6 +126,8 @@ class CartItem extends Component {
 
 					// const products = data.category.products;
 
+					console.log(data);
+
 					return (
 						<li className="cart-items__item">
 							{/* <DescriptionCard
