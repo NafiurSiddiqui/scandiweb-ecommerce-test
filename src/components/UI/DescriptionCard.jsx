@@ -20,13 +20,13 @@ class DescriptionCard extends Component {
 		super(props);
 
 		const { productID } = this.props;
-		// const { prices } = this.props.products;
-		console.log(this.props.product);
+		const { price } = this.props;
+		console.log(price);
 		this.state = {
 			selectedTitle: productID,
 			selectedValues: [],
 			items: [],
-			// itemCalculation: prices[0]?.amount,
+			itemCalculation: price?.amount,
 		};
 
 		this.updateItems = this.updateItems.bind(this);
@@ -48,7 +48,7 @@ class DescriptionCard extends Component {
 
 			this.setState({
 				items: Object.entries(selectedAttributes),
-				// itemCalculation: prices[0].amount * quantity,
+				itemCalculation: this.state.itemCalculation * quantity,
 			});
 
 			return;
@@ -62,18 +62,18 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { quantity, cartItems } = this.props;
+		const { quantity, cartItems, price } = this.props;
 		// const { prices } = this.props.products;
 
 		if (prevProps.quantity !== quantity) {
 			this.setState({
-				// itemCalculation: prices[0].amount * quantity,
+				itemCalculation: this.state.itemCalculation * quantity,
 			});
 		}
 
 		if (prevProps.cartItems.length !== cartItems.length) {
 			this.setState({
-				// itemCalculation: prices[0].amount,
+				itemCalculation: price.amount, //? Why do we need this here?
 			});
 		}
 	}
@@ -121,7 +121,7 @@ class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, prices, stock } = this.props.product;
+		const { brand, name, stock } = this.props.product;
 		const { items, itemCalculation } = this.state;
 
 		const {
@@ -132,9 +132,10 @@ class DescriptionCard extends Component {
 			attributes,
 			cartPage,
 			price,
+			product,
 		} = this.props;
 
-		console.log(price);
+		const inStock = product.inStock;
 		return (
 			<article
 				className={className}
@@ -187,7 +188,7 @@ class DescriptionCard extends Component {
 
 				<Button
 					className="pdp__cart-btn"
-					disable={stock}
+					disable={inStock}
 					onClick={this.cartItemHandler}
 					miniCart={miniCart}
 				>
