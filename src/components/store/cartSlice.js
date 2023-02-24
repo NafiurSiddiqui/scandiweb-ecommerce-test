@@ -25,7 +25,9 @@ export const cartSlice = createSlice({
 			let newItemValues = [];
 			// console.log(items);
 
-			console.log(action.payload);
+			// console.log(action.payload);
+
+			//Adding user check to the attributes
 			items.forEach((item) => {
 				if (Array.isArray(item[1])) {
 					let subItemValues = [];
@@ -46,6 +48,7 @@ export const cartSlice = createSlice({
 					cartItem[0] === id &&
 					JSON.stringify(cartItem[1]) === JSON.stringify(newItemValues)
 			);
+			//if item exists
 			if (existingItem) {
 				existingItem[2].quantity++;
 			} else {
@@ -53,6 +56,10 @@ export const cartSlice = createSlice({
 					0: id,
 					1: newItemValues,
 					2: { quantity: 1 },
+					3: brand,
+					4: gallery,
+					5: prices,
+					6: inStock,
 				};
 				state.cartItems.push(newCartItem);
 			}

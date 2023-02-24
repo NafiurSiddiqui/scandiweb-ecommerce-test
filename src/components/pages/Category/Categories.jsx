@@ -59,7 +59,7 @@ class Categories extends Component {
 						false
 					);
 
-					console.log(products);
+					// console.log(products);
 
 					// const attributes = products.map((item) => item.attributes[0]);
 

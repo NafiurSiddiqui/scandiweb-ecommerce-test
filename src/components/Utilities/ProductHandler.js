@@ -14,7 +14,7 @@ function productHandler(products, productID, selectedCurrency) {
 		return {
 			brand: item.brand,
 			name: item.name,
-			images: item.gallery,
+			gallery: item.gallery,
 			attributesID: item.attributes.map((item) => item.id),
 			attributesItem: item.attributes.map((item) =>
 				item.items.map((item) => item.id)
@@ -89,7 +89,7 @@ export function cartItemHandler(products, productID, selectedCurrency) {
 		return {
 			brand: item.brand,
 			name: item.name,
-			images: item.gallery,
+			gallery: item.gallery,
 			attributesID: item.attributes.map((item) => item.id),
 			attributesItem: item.attributes.map((item) =>
 				item.items.map((item) => item.id)
@@ -104,13 +104,13 @@ export function cartItemHandler(products, productID, selectedCurrency) {
 			get amount() {
 				return this.prices[0].amount;
 			},
-			stock: item.inStock,
+			inStock: item.inStock,
 		};
 	});
 
 	// console.log(PDP);
 	//gallery overFlow guard
-	let galleryOverflow = PDP[0]?.images?.length > 6;
+	let galleryOverflow = PDP[0]?.gallery?.length > 6;
 	//converted attributes
 	const attID = PDP[0]?.attributesID;
 	const attItems = PDP[0]?.attributesItem;
@@ -135,9 +135,9 @@ export function cartItemHandler(products, productID, selectedCurrency) {
 			items,
 			{ quantity: 0 },
 			PDP[0].brand,
-			PDP[0].images,
+			PDP[0].gallery,
 			PDP[0].prices,
-			PDP[0].stock,
+			PDP[0].inStock,
 		];
 
 		return [galleryOverflow, userItems];
