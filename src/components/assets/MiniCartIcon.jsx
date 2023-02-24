@@ -44,8 +44,6 @@ class MiniCartIcon extends Component {
 			selectedCurrency
 		);
 
-		console.log(userItems[3]);
-
 		// const userItems = [productID, attributes, { quantity: 0 }];
 		// console.log(attributes);
 		if (classGuard) {

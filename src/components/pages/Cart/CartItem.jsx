@@ -34,7 +34,7 @@ class CartItem extends Component {
 
 	componentDidMount() {
 		const { cartItem, products, selectedCurrency } = this.props;
-		console.log(cartItem);
+		// console.log(cartItem);
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
 		// this.setState({
@@ -109,7 +109,6 @@ class CartItem extends Component {
 
 		return (
 			<></>
-
 			// <Query
 			// 	query={GET_PRODUCTS_BY_ID}
 			// 	variables={{ productId: 'huarache-x-stussy-le' }}
