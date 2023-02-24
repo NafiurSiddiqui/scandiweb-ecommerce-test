@@ -7,7 +7,7 @@ import DisplayHeader from '../../Layout/DisplayHeader';
 import Skeleton from '../../Layout/skeleton';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import ContentWrapper from '../../Layout/ContentWrapper';
-import { userCurrency } from '../../Utilities/currency';
+import { userCurrency } from '../../Utilities/userCurrency';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
 
 //Get the clicked links, set to the state, fetch, render accordingly.

@@ -5,7 +5,7 @@ import DisplayHeader from '../../Layout/DisplayHeader';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import ContentWrapper from '../../Layout/ContentWrapper';
-import { userCurrency } from '../../Utilities/currency';
+import { userCurrency } from '../../Utilities/userCurrency';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
 import CategoryCard from './CategoryCard';
 import productHandler from '../../Utilities/ProductHandler';

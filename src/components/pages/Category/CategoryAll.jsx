@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DisplayHeader from '../../Layout/DisplayHeader';
-import { userCurrency } from '../../Utilities/currency';
+import { userCurrency } from '../../Utilities/userCurrency';
 import CategoryCard from './CategoryCard';
 
 /**

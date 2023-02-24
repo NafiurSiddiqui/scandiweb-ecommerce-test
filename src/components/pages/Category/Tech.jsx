@@ -7,7 +7,7 @@ import DisplayHeader from '../../Layout/DisplayHeader';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import ContentWrapper from '../../Layout/ContentWrapper';
-import { userCurrency } from '../../Utilities/currency';
+import { userCurrency } from '../../Utilities/userCurrency';
 
 class CategoryTech extends Component {
 	render() {

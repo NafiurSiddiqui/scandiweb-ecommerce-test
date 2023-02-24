@@ -21,7 +21,7 @@ class DescriptionCard extends Component {
 
 		const { productID } = this.props;
 		const { price } = this.props;
-		console.log(price);
+
 		this.state = {
 			selectedTitle: productID,
 			selectedValues: [],
@@ -121,7 +121,7 @@ class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, stock } = this.props.product;
+		const { brand, name, inStock } = this.props.product;
 		const { items, itemCalculation } = this.state;
 
 		const {
@@ -132,10 +132,8 @@ class DescriptionCard extends Component {
 			attributes,
 			cartPage,
 			price,
-			product,
 		} = this.props;
 
-		const inStock = product.inStock;
 		return (
 			<article
 				className={className}

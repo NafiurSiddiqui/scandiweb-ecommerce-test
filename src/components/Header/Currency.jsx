@@ -42,7 +42,7 @@ class Currency extends Component {
 		let { currencyIsOpen, selectedCurrency } = this.props;
 
 		const currencyState = currencyIsOpen ? 'visible' : '';
-		console.log(selectedCurrency);
+
 		return (
 			<Query query={GET_CURRENCIES}>
 				{({ error, loading, data }) => {

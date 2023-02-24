@@ -3,7 +3,7 @@ import MiniCartIcon from '../../assets/MiniCartIcon';
 import { connect } from 'react-redux';
 import { getProductID } from '../../store/productsSlice';
 import { Link } from 'react-router-dom';
-import { userCurrency } from '../../Utilities/currency';
+import { userCurrency } from '../../Utilities/userCurrency';
 
 /**
  * @STATE -

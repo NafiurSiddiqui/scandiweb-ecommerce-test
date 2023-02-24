@@ -9,7 +9,7 @@ import { Navigate } from 'react-router-dom';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import { GET_PRODUCTS_BY_ID } from '../../Utilities/query';
-import { userCurrency } from '../../Utilities/currency';
+import { userCurrency } from '../../Utilities/userCurrency';
 
 /**
  * @className - 'PDP' = product description
