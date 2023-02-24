@@ -131,8 +131,10 @@ class DescriptionCard extends Component {
 			productID,
 			attributes,
 			cartPage,
+			price,
 		} = this.props;
 
+		console.log(price);
 		return (
 			<article
 				className={className}
@@ -176,11 +178,10 @@ class DescriptionCard extends Component {
 						style={{ fontSize: miniCart && !cartPage ? '1rem' : '1.2rem' }}
 					>
 						<span className="pd__price-price__symbol">
-							{prices[0]?.currency?.symbol}
+							{/* {prices[0]?.currency?.symbol} */}
+							{price.symbol}
 						</span>
-						{miniCart
-							? roundToTwoDecimalPlaces(itemCalculation)
-							: prices[0]?.amount}
+						{miniCart ? roundToTwoDecimalPlaces(itemCalculation) : price.amount}
 					</span>
 				</div>
 

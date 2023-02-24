@@ -3,7 +3,6 @@ export function userCurrency(products, selectedCurrency, singleItem = false) {
 	let userMatchedCurrency;
 	//extracting only price items
 	if (!singleItem) {
-		console.log('Product itemS');
 		currencies = products?.map((item) =>
 			item.prices.map((item) => {
 				return {
@@ -24,7 +23,6 @@ export function userCurrency(products, selectedCurrency, singleItem = false) {
 
 		return userMatchedCurrency;
 	} else {
-		console.log('This is pure product item');
 		currencies = products.prices.map((item) => {
 			return {
 				currency: item.currency.label,
@@ -32,14 +30,6 @@ export function userCurrency(products, selectedCurrency, singleItem = false) {
 				amount: item.amount,
 			};
 		});
-
-		console.log(
-			currencies?.find((el) =>
-				selectedCurrency !== null
-					? el.currency === selectedCurrency.currency
-					: el.currency === 'USD'
-			)
-		);
 
 		userMatchedCurrency = currencies?.find((el) =>
 			selectedCurrency !== null
