@@ -6,7 +6,9 @@ import {
 	incrementItem,
 } from '../../store/cartSlice';
 import DescriptionCard from '../../UI/DescriptionCard';
-import productHandler from '../../Utilities/ProductHandler';
+import productHandler, {
+	cartItemHandler,
+} from '../../Utilities/ProductHandler';
 import CartQuantitiy from './CartQuantitiy';
 
 import { Query } from '@apollo/client/react/components';
@@ -26,7 +28,14 @@ class CartItem extends Component {
 
 		this.state = {
 			imageCount: 0,
-			itemPrice: 0, //CAPTURE THE PRICE OF THE PRODUCT HERE [QUERY]
+			// itemPrice: 0, //CAPTURE THE PRICE OF THE PRODUCT HERE [QUERY]
+			brand: '',
+			name: '',
+			attributes: [],
+			images: [],
+			prices: null,
+			quantity: {},
+			inStock: null,
 		};
 		this.incrementCount = this.incrementCount.bind(this);
 		this.decrementCount = this.decrementCount.bind(this);
@@ -34,12 +43,22 @@ class CartItem extends Component {
 
 	componentDidMount() {
 		const { cartItem, products, selectedCurrency } = this.props;
-		// console.log(cartItem);
+		// console.log();
+		console.log(products);
+		const productID = cartItem[0];
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
-		// this.setState({
-		// 	itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
-		// });
+		// const items = cartItemHandler(products, productID, selectedCurrency);
+
+		this.setState({
+			// itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
+			// brand: items[3],
+			// name: items[0],
+			// attributes: items[1],
+			// images: items[4],
+			// prices: items[5],
+			// inStock: items[-1],
+		});
 
 		// this.props.itemPriceHandler(PDP[0].amount);
 	}
@@ -47,7 +66,7 @@ class CartItem extends Component {
 	componentDidUpdate(prevProps) {
 		const { cartItem, products, selectedCurrency, itemIndex } = this.props;
 
-		const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
+		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
 		const quantity = cartItem[2].quantity;
 
@@ -85,6 +104,7 @@ class CartItem extends Component {
 			products,
 			selectedCurrency,
 			cartPage,
+			productID,
 		} = this.props;
 
 		const { imageCount } = this.state;
@@ -108,72 +128,72 @@ class CartItem extends Component {
 		};
 
 		return (
-			<></>
-			// <Query
-			// 	query={GET_PRODUCTS_BY_ID}
-			// 	variables={{ productId: 'huarache-x-stussy-le' }}
-			// >
-			// 	{({ error, loading, data }) => {
-			// 		if (error) return <DisplayMessage error={error} />;
+			// <></>
+			<Query
+				query={GET_PRODUCTS_BY_ID}
+				variables={{ productId: 'huarache-x-stussy-le' }}
+			>
+				{({ error, loading, data }) => {
+					if (error) return <DisplayMessage error={error} />;
 
-			// 		if (loading || !data) return <Skeleton />;
+					if (loading || !data) return <Skeleton />;
 
-			// 		// const products = data.category.products;
+					// const products = data.category.products;
 
-			// 		console.log(data);
+					// console.log(data);
 
-			// 		return (
-			// 			<li className="cart-items__item">
-			// 				{/* <DescriptionCard
-			// 		className="cart-items__pd"
-			// 		// products={PDP[0]}
-			// 		miniCart={true}
-			// 		attributes={cartItem}
-			// 		quantity={quantity}
-			// 		cartPage={cartPage}
-			// 	/> */}
+					return (
+						<li className="cart-items__item">
+							{/* <DescriptionCard
+					className="cart-items__pd"
+					// products={PDP[0]}
+					miniCart={true}
+					attributes={cartItem}
+					quantity={quantity}
+					cartPage={cartPage}
+				/> */}
 
-			// 				<div
-			// 					className={
-			// 						cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
-			// 					}
-			// 				>
-			// 					{/* <CartQuantitiy
-			// 			// images={PDP[0].images}
-			// 			imageCount={imageCount}
-			// 			quantity={quantity}
-			// 			incrementItem={incrementItem}
-			// 			decrementItem={decrementItem}
-			// 			attributes={cartItem}
-			// 			cartPage={cartPage}
-			// 		/> */}
+							<div
+								className={
+									cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
+								}
+							>
+								{/* <CartQuantitiy
+						// images={PDP[0].images}
+						imageCount={imageCount}
+						quantity={quantity}
+						incrementItem={incrementItem}
+						decrementItem={decrementItem}
+						attributes={cartItem}
+						cartPage={cartPage}
+					/> */}
 
-			// 					<div
-			// 						className="cart-quantity__image-gallery-btns"
-			// 						style={{ ...btnsGuard }}
-			// 					>
-			// 						<span
-			// 							className="cart-quantity__image-gallery-btn"
-			// 							role={'button'}
-			// 							onClick={this.decrementCount}
-			// 							style={{ ...btnGuardLeft }}
-			// 						>
-			// 							ᐸ
-			// 						</span>
-			// 						<span
-			// 							className="cart-quantity__image-gallery-btn"
-			// 							ole={'button'}
-			// 							onClick={this.incrementCount}
-			// 							style={{ ...btnGuardRight }}
-			// 						>
-			// 							ᐳ
-			// 						</span>
-			// 					</div>
-			// 				</div>
-			// 			</li>
-			// 		);
-			// 	}}
-			// </Query>
+								<div
+									className="cart-quantity__image-gallery-btns"
+									style={{ ...btnsGuard }}
+								>
+									<span
+										className="cart-quantity__image-gallery-btn"
+										role={'button'}
+										onClick={this.decrementCount}
+										style={{ ...btnGuardLeft }}
+									>
+										ᐸ
+									</span>
+									<span
+										className="cart-quantity__image-gallery-btn"
+										ole={'button'}
+										onClick={this.incrementCount}
+										style={{ ...btnGuardRight }}
+									>
+										ᐳ
+									</span>
+								</div>
+							</div>
+						</li>
+					);
+				}}
+			</Query>
 		);
 	}
 }

@@ -17,6 +17,11 @@ export const cartSlice = createSlice({
 		addItemToCart: (state, action) => {
 			const id = action.payload[0];
 			const items = action.payload[1];
+			const brand = action.payload[3];
+			const gallery = action.payload[4];
+			const prices = action.payload[5];
+			const inStock = action.payload[6];
+
 			let newItemValues = [];
 			// console.log(items);
 

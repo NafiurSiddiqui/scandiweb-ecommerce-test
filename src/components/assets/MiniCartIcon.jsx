@@ -5,7 +5,7 @@ import {
 	cartQuantityHandler,
 	setMiniCartIsOpen,
 } from '../store/cartSlice';
-import productHandler from '../Utilities/ProductHandler';
+import productHandler, { cartItemHandler } from '../Utilities/ProductHandler';
 import ProductHandler from '../Utilities/ProductHandler';
 
 class MiniCartIcon extends Component {
@@ -38,22 +38,24 @@ class MiniCartIcon extends Component {
 		// if (!attributes || !productID) return;
 		if (!products || !productID) return;
 
-		const [...userItems] = productHandler(
-			products,
-			productID,
-			selectedCurrency
-		);
+		// const [...userItems] = productHandler(
+		// 	products,
+		// 	productID,
+		// 	selectedCurrency
+		// );
+
+		const userItems = cartItemHandler(products, productID, selectedCurrency);
 
 		// const userItems = [productID, attributes, { quantity: 0 }];
-		// console.log(attributes);
+		console.log(userItems);
 		if (classGuard) {
 			//cartIcon won't follow this function.
 			return;
 		} else {
 			if (!inStock) return;
-			//userItems[3] = defined Data structure for cart.
+			//userItems[1] = defined Data structure for cart.
 
-			addItemToCart(userItems[3]);
+			addItemToCart(userItems[1]);
 			this.props.cartQuantityHandler();
 		}
 	}
