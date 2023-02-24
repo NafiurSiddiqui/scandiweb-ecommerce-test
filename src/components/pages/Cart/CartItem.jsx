@@ -32,7 +32,7 @@ class CartItem extends Component {
 			brand: '',
 			name: '',
 			attributes: [],
-			images: [],
+			gallery: [],
 			prices: null,
 			quantity: {},
 			inStock: null,
@@ -43,21 +43,15 @@ class CartItem extends Component {
 
 	componentDidMount() {
 		const { cartItem, products, selectedCurrency } = this.props;
-		// console.log();
-		console.log(products);
-		const productID = cartItem[0];
-		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
-
-		// const items = cartItemHandler(products, productID, selectedCurrency);
 
 		this.setState({
 			// itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
-			// brand: items[3],
-			// name: items[0],
-			// attributes: items[1],
-			// images: items[4],
-			// prices: items[5],
-			// inStock: items[-1],
+			name: cartItem[0],
+			attributes: cartItem[1],
+			brand: cartItem[3],
+			gallery: cartItem[4],
+			prices: cartItem[5],
+			inStock: cartItem[6],
 		});
 
 		// this.props.itemPriceHandler(PDP[0].amount);
@@ -107,16 +101,17 @@ class CartItem extends Component {
 			productID,
 		} = this.props;
 
-		const { imageCount } = this.state;
+		const { imageCount, attributes, brand, name, gallery, prices, inStock } =
+			this.state;
 
 		const quantity = cartItem[2].quantity;
 
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
-		// let imageLength = PDP[0]?.images.length;
+		let imageLength = gallery.length;
 
 		let btnGuardRight = {
-			// visibility: imageCount === imageLength - 1 ? 'hidden' : 'visible',
+			visibility: imageCount === imageLength - 1 ? 'hidden' : 'visible',
 		};
 
 		let btnGuardLeft = {
@@ -124,7 +119,7 @@ class CartItem extends Component {
 		};
 
 		const btnsGuard = {
-			// visibility: imageLength === 1 ? 'hidden' : 'visible',
+			visibility: imageLength === 1 ? 'hidden' : 'visible',
 		};
 
 		return (
