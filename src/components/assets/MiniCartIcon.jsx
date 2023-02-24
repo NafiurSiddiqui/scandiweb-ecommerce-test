@@ -28,22 +28,14 @@ class MiniCartIcon extends Component {
 
 		if (!attributes || !productID) return;
 
-		// const [...userItems] = ProductHandler(
-		// 	products,
-		// 	productID,
-		// 	selectedCurrency
-		// );
-
 		const userItems = [productID, attributes, { quantity: 0 }];
 
-		console.log(userItems);
-
 		if (classGuard) {
-			//following miniIcon wont work in header
+			//cartIcon won't follow this function.
 			return;
 		} else {
 			if (!inStock) return;
-			//userItems[3] = defined data structure
+
 			addItemToCart(userItems);
 			this.props.cartQuantityHandler();
 		}
