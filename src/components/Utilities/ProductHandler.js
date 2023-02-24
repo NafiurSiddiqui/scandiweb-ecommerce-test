@@ -1,6 +1,3 @@
-import { useQuery } from '@apollo/client';
-import { GET_PRODUCTS_BY_ID } from './query';
-
 /**
  *
  * @param {obj} products
@@ -56,7 +53,7 @@ function productHandler(products, productID, selectedCurrency) {
 	} else {
 		const items = Object.entries(attributes);
 		const userItems = [productID, items, { quantity: 0 }];
-		// return userItems;
+
 		return [PDP, galleryOverflow, attributes, userItems];
 	}
 }

@@ -35,6 +35,7 @@ class CategoryCard extends Component {
 			price,
 			attributes,
 			currencySymbol,
+			products,
 		} = this.props;
 		userCurrency();
 
@@ -65,7 +66,8 @@ class CategoryCard extends Component {
 							className={`category-item__image-wrapper__cart`}
 							productID={productID}
 							inStock={inStock}
-							attributes={attributes}
+							// attributes={attributes}
+							products={products}
 						/>
 					</div>
 

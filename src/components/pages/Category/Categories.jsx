@@ -8,7 +8,7 @@ import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/userCurrency';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
 import CategoryCard from './CategoryCard';
-import productHandler from '../../Utilities/ProductHandler';
+import productHandler, { attHandler } from '../../Utilities/ProductHandler';
 
 class Categories extends Component {
 	constructor(props) {
@@ -61,26 +61,33 @@ class Categories extends Component {
 
 					// console.log(products);
 
-					const attributesId = products.map((p) =>
-						p.attributes.map((item) => item.id)
-					);
+					// const attributes = products.map((item) => item.attributes[0]);
 
-					const attributeItem = products.map((p) => {
-						return p.attributes.map((item) =>
-							item.items.map((item) => item.id)
-						);
-					});
+					// const attributesId = products.map((p) =>
+					// 	p.attributes.map((item) => item.id)
+					// );
 
-					const attItemsMapped = attributeItem?.map((itemT) =>
-						itemT.map((item, index) => {
-							return { value: item, isChecked: index === 0 };
-						})
-					);
-					// console.log(attItemsMapped);
-					const attributes = attributesId?.reduce((acc, key, index) => {
-						acc[key] = attItemsMapped[index];
-						return acc;
-					}, {});
+					// const attributeItem = products.map((p) => {
+					// 	return p.attributes.map((item) =>
+					// 		item.items.map((item) => item.id)
+					// 	);
+					// });
+
+					// console.log(attributesId);
+					// console.log(attributeItem);
+
+					// const attItemsMapped = attributeItem?.map((itemT) =>
+					// 	itemT.map((item, index) => {
+					// 		return { value: item, isChecked: index === 0 };
+					// 	})
+					// );
+					// // console.log(attItemsMapped);
+					// const attributes = attributesId?.reduce((acc, key, index) => {
+					// 	acc[key] = attItemsMapped[index];
+					// 	return acc;
+					// }, {});
+
+					// attHandler(attributes);
 
 					// console.log(attributes);
 					return (
@@ -95,7 +102,7 @@ class Categories extends Component {
 										name: p.name,
 										prices: matchedUserPrice[i]?.amount,
 										stock: p.inStock,
-										attributes: attributes[i],
+										// attributes: attributes[i],
 									};
 
 									return (
@@ -107,7 +114,8 @@ class Categories extends Component {
 											currencySymbol={selectedCurrency?.symbol}
 											inStock={product.stock}
 											productID={p.id}
-											attributes={attributes}
+											// attributes={attributes}
+											products={products}
 										/>
 									);
 								})}

@@ -5,6 +5,7 @@ import {
 	cartQuantityHandler,
 	setMiniCartIsOpen,
 } from '../store/cartSlice';
+import productHandler from '../Utilities/ProductHandler';
 import ProductHandler from '../Utilities/ProductHandler';
 
 class MiniCartIcon extends Component {
@@ -20,23 +21,41 @@ class MiniCartIcon extends Component {
 	}
 
 	addToCartHandler(e) {
-		const { productID, addItemToCart, selectedCurrency, inStock, attributes } =
-			this.props;
+		const {
+			products,
+			productID,
+			addItemToCart,
+			selectedCurrency,
+			inStock,
+			attributes,
+		} = this.props;
+
+		// console.log(productID);
 
 		//if cartIcon is from header
 		const classGuard = e.target.classList[0] === 'header-cart__cart';
 
-		if (!attributes || !productID) return;
+		// if (!attributes || !productID) return;
+		if (!products || !productID) return;
 
-		const userItems = [productID, attributes, { quantity: 0 }];
+		const [...userItems] = productHandler(
+			products,
+			productID,
+			selectedCurrency
+		);
 
+		console.log(userItems[3]);
+
+		// const userItems = [productID, attributes, { quantity: 0 }];
+		// console.log(attributes);
 		if (classGuard) {
 			//cartIcon won't follow this function.
 			return;
 		} else {
 			if (!inStock) return;
+			//userItems[3] = defined Data structure for cart.
 
-			addItemToCart(userItems);
+			addItemToCart(userItems[3]);
 			this.props.cartQuantityHandler();
 		}
 	}

@@ -18,7 +18,9 @@ export const cartSlice = createSlice({
 			const id = action.payload[0];
 			const items = action.payload[1];
 			let newItemValues = [];
+			// console.log(items);
 
+			console.log(action.payload);
 			items.forEach((item) => {
 				if (Array.isArray(item[1])) {
 					let subItemValues = [];
