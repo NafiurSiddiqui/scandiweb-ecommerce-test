@@ -98,13 +98,13 @@ export const cartSlice = createSlice({
 
 		decrementItem: (state, action) => {
 			const { cartItems } = state;
-			const id = action.payload[0];
-			const items = action.payload[1];
+			const id = action.payload['name'];
+			const attributes = action.payload['attributes'];
 
 			let existingItem = cartItems.find(
 				(cartItem) =>
-					cartItem[0] === id &&
-					JSON.stringify(cartItem[1]) === JSON.stringify(items)
+					cartItem['name'] === id &&
+					JSON.stringify(cartItem['attributes']) === JSON.stringify(attributes)
 			);
 
 			if (existingItem) {
@@ -112,8 +112,8 @@ export const cartSlice = createSlice({
 				if (existingItem.quantity.quantity === 1) {
 					let removedCartItem = cartItems.filter(
 						(item) =>
-							item[0] !== id ||
-							JSON.stringify(item[1]) !== JSON.stringify(items)
+							item['name'] !== id ||
+							JSON.stringify(item['attributes']) !== JSON.stringify(attributes)
 					);
 
 					return {
