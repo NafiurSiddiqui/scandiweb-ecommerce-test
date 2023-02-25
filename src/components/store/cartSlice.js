@@ -106,7 +106,7 @@ export const cartSlice = createSlice({
 
 			if (existingItem) {
 				//REMOVE IF 0
-				if (existingItem[2].quantity === 1) {
+				if (existingItem.quantity.quantity === 1) {
 					let removedCartItem = cartItems.filter(
 						(item) =>
 							item[0] !== id ||
@@ -118,7 +118,7 @@ export const cartSlice = createSlice({
 						cartItems: removedCartItem,
 					};
 				}
-				existingItem[2].quantity--;
+				existingItem.quantity.quantity--;
 			}
 		},
 
