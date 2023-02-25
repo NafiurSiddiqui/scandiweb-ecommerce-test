@@ -81,32 +81,69 @@ export const attHandler = (att) => {
 	return attributes;
 };
 
-export function cartItemHandler(products, productID, selectedCurrency) {
-	// filtering out the product
-	let filteredProduct = products?.filter((item) => item?.id === productID);
-	// return PDP as an OBJECT
-	let PDP = filteredProduct?.map((item) => {
-		return {
-			brand: item.brand,
-			name: item.name,
-			gallery: item.gallery,
-			attributesID: item.attributes.map((item) => item.id),
-			attributesItem: item.attributes.map((item) =>
-				item.items.map((item) => item.id)
-			),
-			prices: item?.prices?.filter((item) => {
-				if (selectedCurrency !== null) {
-					return item.currency.label === selectedCurrency?.currency;
-				} else {
-					return item.currency.label === 'USD';
-				}
-			}),
-			get amount() {
-				return this.prices[0].amount;
-			},
-			inStock: item.inStock,
-		};
-	});
+export function cartItemHandler(
+	products,
+	productID,
+	selectedCurrency,
+	single = false
+) {
+	let PDP;
+
+	if (!single) {
+		// filtering out the product
+		let filteredProduct = products?.filter((item) => item?.id === productID);
+		// return PDP as an OBJECT
+		PDP = filteredProduct?.map((item) => {
+			return {
+				brand: item.brand,
+				name: item.name,
+				gallery: item.gallery,
+				attributesID: item.attributes.map((item) => item.id),
+				attributesItem: item.attributes.map((item) =>
+					item.items.map((item) => item.id)
+				),
+				prices: item?.prices?.filter((item) => {
+					if (selectedCurrency !== null) {
+						return item.currency.label === selectedCurrency?.currency;
+					} else {
+						return item.currency.label === 'USD';
+					}
+				}),
+				get amount() {
+					return this.prices[0].amount;
+				},
+				inStock: item.inStock,
+			};
+		});
+		// return PDP;
+	} else {
+		PDP = products?.map((item) => {
+			return {
+				brand: item.brand,
+				name: item.name,
+				gallery: item.gallery,
+				attributesID: item.attributes.map((item) => item.id),
+				attributesItem: item.attributes.map((item) =>
+					item.items.map((item) => item.id)
+				),
+				prices: item?.prices?.filter((item) => {
+					if (selectedCurrency !== null) {
+						return item.currency.label === selectedCurrency?.currency;
+					} else {
+						return item.currency.label === 'USD';
+					}
+				}),
+				get amount() {
+					return this.prices[0].amount;
+				},
+				inStock: item.inStock,
+			};
+		});
+
+		// return PDP;
+	}
+
+	// console.log(PDP);
 
 	// console.log(PDP);
 	//gallery overFlow guard

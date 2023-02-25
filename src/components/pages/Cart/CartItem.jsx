@@ -36,6 +36,7 @@ class CartItem extends Component {
 			prices: null,
 			quantity: {},
 			inStock: null,
+			cartItem: {},
 		};
 		this.incrementCount = this.incrementCount.bind(this);
 		this.decrementCount = this.decrementCount.bind(this);
@@ -44,6 +45,16 @@ class CartItem extends Component {
 	componentDidMount() {
 		const { cartItem, products, selectedCurrency } = this.props;
 
+		// const itemObj = {
+		// 	name: cartItem[0],
+		// 	attributes: cartItem[1],
+		// 	brand: cartItem[3],
+		// 	gallery: cartItem[4],
+		// 	prices: cartItem[5],
+		// 	inStock: cartItem[6],
+		// };
+
+		// console.log(cartItem);
 		this.setState({
 			// itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
 			name: cartItem[0],
@@ -52,6 +63,7 @@ class CartItem extends Component {
 			gallery: cartItem[4],
 			prices: cartItem[5],
 			inStock: cartItem[6],
+			// cartItem: itemObj,
 		});
 
 		// this.props.itemPriceHandler(PDP[0].amount);
@@ -101,8 +113,16 @@ class CartItem extends Component {
 			productID,
 		} = this.props;
 
-		const { imageCount, attributes, brand, name, gallery, prices, inStock } =
-			this.state;
+		const {
+			imageCount,
+			attributes,
+			brand,
+			name,
+			gallery,
+			prices,
+			inStock,
+			// cartItem,
+		} = this.state;
 
 		const quantity = cartItem[2].quantity;
 
@@ -122,38 +142,47 @@ class CartItem extends Component {
 			visibility: imageLength === 1 ? 'hidden' : 'visible',
 		};
 
+		const itemPrice = cartItem[5][0];
+
+		const itemPriceObj = {
+			label: itemPrice.currency.label,
+			symbol: itemPrice.currency.symbol,
+			amount: itemPrice.amount,
+		};
+
 		return (
 			// <></>
-			<Query
-				query={GET_PRODUCTS_BY_ID}
-				variables={{ productId: 'huarache-x-stussy-le' }}
-			>
-				{({ error, loading, data }) => {
-					if (error) return <DisplayMessage error={error} />;
+			// <Query
+			// 	query={GET_PRODUCTS_BY_ID}
+			// 	variables={{ productId: 'huarache-x-stussy-le' }}
+			// >
+			// 	{({ error, loading, data }) => {
+			// 		if (error) return <DisplayMessage error={error} />;
 
-					if (loading || !data) return <Skeleton />;
+			// 		if (loading || !data) return <Skeleton />;
 
-					// const products = data.category.products;
+			// 		// const products = data.category.products;
 
-					// console.log(data);
+			// 		// console.log(data);
 
-					return (
-						<li className="cart-items__item">
-							{/* <DescriptionCard
+			// 		return (
+			<li className="cart-items__item">
+				<DescriptionCard
 					className="cart-items__pd"
-					// products={PDP[0]}
+					product={cartItem}
 					miniCart={true}
-					attributes={cartItem}
+					attributes={attributes}
 					quantity={quantity}
 					cartPage={cartPage}
-				/> */}
+					price={itemPriceObj}
+				/>
 
-							<div
-								className={
-									cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
-								}
-							>
-								{/* <CartQuantitiy
+				<div
+					className={
+						cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
+					}
+				>
+					{/* <CartQuantitiy
 						// images={PDP[0].images}
 						imageCount={imageCount}
 						quantity={quantity}
@@ -163,33 +192,33 @@ class CartItem extends Component {
 						cartPage={cartPage}
 					/> */}
 
-								<div
-									className="cart-quantity__image-gallery-btns"
-									style={{ ...btnsGuard }}
-								>
-									<span
-										className="cart-quantity__image-gallery-btn"
-										role={'button'}
-										onClick={this.decrementCount}
-										style={{ ...btnGuardLeft }}
-									>
-										ᐸ
-									</span>
-									<span
-										className="cart-quantity__image-gallery-btn"
-										ole={'button'}
-										onClick={this.incrementCount}
-										style={{ ...btnGuardRight }}
-									>
-										ᐳ
-									</span>
-								</div>
-							</div>
-						</li>
-					);
-				}}
-			</Query>
+					<div
+						className="cart-quantity__image-gallery-btns"
+						style={{ ...btnsGuard }}
+					>
+						<span
+							className="cart-quantity__image-gallery-btn"
+							role={'button'}
+							onClick={this.decrementCount}
+							style={{ ...btnGuardLeft }}
+						>
+							ᐸ
+						</span>
+						<span
+							className="cart-quantity__image-gallery-btn"
+							ole={'button'}
+							onClick={this.incrementCount}
+							style={{ ...btnGuardRight }}
+						>
+							ᐳ
+						</span>
+					</div>
+				</div>
+			</li>
 		);
+		// }}
+		// </Query>
+		// );
 	}
 }
 

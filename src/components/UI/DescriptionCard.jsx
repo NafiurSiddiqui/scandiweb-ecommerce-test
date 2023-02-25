@@ -38,27 +38,24 @@ class DescriptionCard extends Component {
 		// const { prices } = this.props.products;
 
 		if (miniCart && attributes) {
-			const attHeaders = attributes[1].map((item) => item.name);
-			const attItems = attributes[1].map((item) => item.values);
-
-			const selectedAttributes = attHeaders.reduce((acc, key, index) => {
-				acc[key] = attItems[index];
-				return acc;
-			}, {});
-
-			this.setState({
-				items: Object.entries(selectedAttributes),
-				itemCalculation: this.state.itemCalculation * quantity,
-			});
-
-			return;
+			// const attHeaders = attributes[1].map((item) => item.name);
+			// const attItems = attributes[1].map((item) => item.values);
+			// const selectedAttributes = attHeaders.reduce((acc, key, index) => {
+			// 	acc[key] = attItems[index];
+			// 	return acc;
+			// }, {});
+			// this.setState({
+			// 	items: Object.entries(selectedAttributes),
+			// 	itemCalculation: this.state.itemCalculation * quantity,
+			// });
+			// return;
 		}
 
-		if (attributes) {
-			this.setState({
-				items: Object.entries(attributes),
-			});
-		}
+		// if (attributes) {
+		// 	this.setState({
+		// 		items: Object.entries(attributes),
+		// 	});
+		// }
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -134,6 +131,8 @@ class DescriptionCard extends Component {
 			price,
 		} = this.props;
 
+		console.log(productID);
+
 		return (
 			<article
 				className={className}
@@ -149,13 +148,14 @@ class DescriptionCard extends Component {
 						{name}
 					</h3>
 				</div>
-				{items ? (
-					items.map((item, itemIndex) => {
+				{attributes ? (
+					attributes.map((item, itemIndex) => {
+						console.log(item['values']);
 						return (
 							<AttributeItem
 								itemIndex={itemIndex}
-								attHeader={item[0]}
-								attributesItem={item[1]}
+								attHeader={item['name']}
+								attributesItem={item['values']}
 								attributes={attributes}
 								key={itemIndex}
 								className={className}
