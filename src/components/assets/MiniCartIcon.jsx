@@ -47,7 +47,7 @@ class MiniCartIcon extends Component {
 		const userItems = cartItemHandler(products, productID, selectedCurrency);
 
 		// const userItems = [productID, attributes, { quantity: 0 }];
-		console.log(userItems);
+
 		if (classGuard) {
 			//cartIcon won't follow this function.
 			return;

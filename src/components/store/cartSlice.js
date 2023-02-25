@@ -63,7 +63,7 @@ export const cartSlice = createSlice({
 				// };
 				let newCartItem = {
 					name: id,
-					items: newItemValues,
+					attributes: newItemValues,
 					quantity: { quantity: 1 },
 					brand: brand,
 					gallery,

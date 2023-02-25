@@ -61,7 +61,10 @@ class CartItem extends Component {
 			name: cartItem.name,
 			attributes: cartItem.attributes,
 			gallery: cartItem.gallery,
-			price: cartItem.price,
+			price: {
+				currency: cartItem.price[0].currency,
+				amount: cartItem.price[0].amount,
+			},
 			inStock: cartItem.inStock,
 			quantity: cartItem.quantity,
 			// cartItem: itemObj,
@@ -126,7 +129,7 @@ class CartItem extends Component {
 			quantity,
 			// cartItem,
 		} = this.state;
-
+		// console.log(price);
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
 		let imageLength = gallery.length;
@@ -143,13 +146,13 @@ class CartItem extends Component {
 			visibility: imageLength === 1 ? 'hidden' : 'visible',
 		};
 
-		const itemPrice = cartItem.price[0];
+		// const itemPrice = cartItem.price[0];
 
-		const itemPriceObj = {
-			label: itemPrice.currency.label,
-			symbol: itemPrice.currency.symbol,
-			amount: itemPrice.amount,
-		};
+		// const itemPriceObj = {
+		// 	label: itemPrice.currency.label,
+		// 	symbol: itemPrice.currency.symbol,
+		// 	amount: itemPrice.amount,
+		// };
 
 		// console.log(cartItem);
 
@@ -177,7 +180,7 @@ class CartItem extends Component {
 					attributes={attributes}
 					quantity={quantity}
 					cartPage={cartPage}
-					price={itemPriceObj}
+					price={price}
 				/>
 
 				<div

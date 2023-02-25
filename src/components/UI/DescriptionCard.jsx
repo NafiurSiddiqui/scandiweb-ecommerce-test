@@ -20,13 +20,13 @@ class DescriptionCard extends Component {
 		super(props);
 
 		const { productID } = this.props;
-		const { price } = this.props;
+		// const { price } = this.props;
 
 		this.state = {
 			selectedTitle: productID,
 			selectedValues: [],
 			items: [],
-			itemCalculation: price?.amount,
+			itemPrice: null,
 		};
 
 		this.updateItems = this.updateItems.bind(this);
@@ -34,9 +34,9 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { attributes, miniCart, quantity } = this.props;
-		// const { prices } = this.props.products;
-
+		const { attributes, miniCart, price } = this.props;
+		const { quantity } = this.props.product;
+		// console.log(this.props.product.quantity);
 		if (miniCart && attributes) {
 			// const attHeaders = attributes[1].map((item) => item.name);
 			// const attItems = attributes[1].map((item) => item.values);
@@ -46,7 +46,7 @@ class DescriptionCard extends Component {
 			// }, {});
 			// this.setState({
 			// 	items: Object.entries(selectedAttributes),
-			// 	itemCalculation: this.state.itemCalculation * quantity,
+			// itemPrice: this.state.itemPrice * quantity,
 			// });
 			// return;
 		}
@@ -56,21 +56,26 @@ class DescriptionCard extends Component {
 		// 		items: Object.entries(attributes),
 		// 	});
 		// }
+
+		this.setState({
+			itemPrice: price?.amount,
+			items: attributes,
+		});
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { quantity, cartItems, price } = this.props;
-		// const { prices } = this.props.products;
+		const { cartItems } = this.props;
+		const { price, quantity } = this.props.product;
 
 		if (prevProps.quantity !== quantity) {
 			this.setState({
-				itemCalculation: this.state.itemCalculation * quantity,
+				itemPrice: this.state.itemPrice * quantity,
 			});
 		}
 
 		if (prevProps.cartItems.length !== cartItems.length) {
 			this.setState({
-				itemCalculation: price.amount, //? Why do we need this here?
+				itemPrice: price.amount, //? Why do we need this here?
 			});
 		}
 	}
@@ -79,7 +84,14 @@ class DescriptionCard extends Component {
 		this.setState((prevState) => {
 			const updatedItems = prevState.items.map((item, index) => {
 				if (index === itemIndex) {
-					const updatedCheck = item[1].map((btn, isCheckIndex) => {
+					// const updatedCheck = item[1].map((btn, isCheckIndex) => {
+					// 	if (isCheckIndex === btnIndex) {
+					// 		return { ...btn, isChecked: true };
+					// 	} else {
+					// 		return { ...btn, isChecked: false };
+					// 	}
+					// });
+					const updatedCheck = item['values'].map((btn, isCheckIndex) => {
 						if (isCheckIndex === btnIndex) {
 							return { ...btn, isChecked: true };
 						} else {
@@ -87,7 +99,8 @@ class DescriptionCard extends Component {
 						}
 					});
 
-					return [item[0], updatedCheck];
+					// return [item[0], updatedCheck];
+					return [item['name'], updatedCheck];
 				}
 				return item;
 			});
@@ -99,6 +112,7 @@ class DescriptionCard extends Component {
 		const { items, selectedTitle } = this.state;
 		const { addItemToCart } = this.props;
 
+		//! MUST DEFINE NEW DS
 		let userItems = [selectedTitle, items, { quantity: 0 }];
 
 		const mappedItems = items.map((item) =>
@@ -118,21 +132,20 @@ class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, inStock } = this.props.product;
-		const { items, itemCalculation } = this.state;
-		console.log(brand);
+		const { brand, name, inStock, attributes } = this.props.product;
+		const { items, itemPrice } = this.state;
+
 		const {
 			priceHeading,
 			className,
 			miniCart,
 			productID,
-			attributes,
+			// attributes,
 			cartPage,
 			price,
 		} = this.props;
 
-		// console.log(productID);
-
+		// console.log(price.amount);
 		return (
 			<article
 				className={className}
@@ -148,19 +161,19 @@ class DescriptionCard extends Component {
 						{name}
 					</h3>
 				</div>
-				{attributes ? (
-					attributes.map((item, itemIndex) => {
-						// console.log(item['values']);
+				{items ? (
+					items.map((item, itemIndex) => {
+						console.log(item);
 						return (
 							<AttributeItem
 								itemIndex={itemIndex}
 								attHeader={item['name']}
 								attributesItem={item['values']}
-								attributes={attributes}
+								// attributes={attributes}
 								key={itemIndex}
 								className={className}
 								updateItems={this.updateItems}
-								productID={productID}
+								// productID={productID}
 								miniCart={miniCart}
 								cartPage={cartPage}
 							/>
@@ -178,9 +191,11 @@ class DescriptionCard extends Component {
 					>
 						<span className="pd__price-price__symbol">
 							{/* {prices[0]?.currency?.symbol} */}
-							{price.symbol}
+							{price?.currency?.symbol}
 						</span>
-						{miniCart ? roundToTwoDecimalPlaces(itemCalculation) : price.amount}
+						{miniCart && itemPrice
+							? roundToTwoDecimalPlaces(itemPrice)
+							: price?.amount}
 					</span>
 				</div>
 
