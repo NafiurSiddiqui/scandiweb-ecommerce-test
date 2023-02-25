@@ -79,14 +79,17 @@ export const cartSlice = createSlice({
 		},
 		incrementItem: (state, action) => {
 			const { cartItems } = state;
-			const id = action.payload[0];
-			const items = action.payload[1];
+			const id = action.payload['name'];
+			const attributes = action.payload['attributes'];
 
+			console.log(action.payload);
 			let existingItem = cartItems.find(
 				(cartItem) =>
-					cartItem[0] === id &&
-					JSON.stringify(cartItem[1]) === JSON.stringify(items)
+					cartItem['name'] === id &&
+					JSON.stringify(cartItem['attributes']) === JSON.stringify(attributes)
 			);
+
+			// console.log(JSON.stringify(existingItem));
 
 			if (existingItem) {
 				existingItem.quantity.quantity++;

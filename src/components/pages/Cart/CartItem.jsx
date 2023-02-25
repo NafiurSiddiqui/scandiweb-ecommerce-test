@@ -52,7 +52,6 @@ class CartItem extends Component {
 		// 	inStock: cartItem[6],
 		// };
 
-		// console.log(cartItem);
 		this.setState({
 			// itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
 			brand: cartItem?.brand,
@@ -84,8 +83,8 @@ class CartItem extends Component {
 		// console.log('Prev: ', prevPropQt);
 		// console.log('now: ', quantity);
 		if (prevPropQt !== quantity) {
-			console.log('updates');
-			console.log(quantity);
+			// console.log('updates');
+			// console.log(quantity);
 			this.setState({
 				// itemPrice: PDP[0].amount * quantity, //amoutn shoudl come from state now
 				quantity: quantity,

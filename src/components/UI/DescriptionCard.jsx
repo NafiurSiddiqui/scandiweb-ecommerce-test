@@ -138,7 +138,7 @@ class DescriptionCard extends Component {
 	render() {
 		const { brand, name, inStock, attributes } = this.props.product;
 		const { items, itemPrice } = this.state;
-		console.log(itemPrice);
+
 		const {
 			priceHeading,
 			className,
