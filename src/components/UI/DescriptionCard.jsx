@@ -70,17 +70,17 @@ class DescriptionCard extends Component {
 
 		// console.log('Previous Props: ', prevProps.quantity.quantity);
 		// console.log(this.props.quantity.quantity);
-		if (prevProps.quantity.quantity !== quantity.quantity) {
+		if (prevProps.quantity !== this.props.quantity) {
 			// console.log('Updates');
 			this.setState({
 				itemPrice: this.state.itemPrice * quantity,
 			});
 		}
-		// if (prevProps.cartItems.length !== cartItems.length) {
-		// 	this.setState({
-		// 		itemPrice: price.amount, //? Why do we need this here?
-		// 	});
-		// }
+		if (prevProps.cartItems.length !== cartItems.length) {
+			this.setState({
+				itemPrice: price.amount, //? Why do we need this here?
+			});
+		}
 	}
 
 	updateItems(itemIndex, btnIndex) {
@@ -165,7 +165,6 @@ class DescriptionCard extends Component {
 				</div>
 				{items ? (
 					items.map((item, itemIndex) => {
-						console.log(item);
 						return (
 							<AttributeItem
 								itemIndex={itemIndex}

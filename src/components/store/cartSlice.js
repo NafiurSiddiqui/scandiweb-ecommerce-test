@@ -89,7 +89,7 @@ export const cartSlice = createSlice({
 			);
 
 			if (existingItem) {
-				existingItem[2].quantity++;
+				existingItem.quantity.quantity++;
 			}
 		},
 

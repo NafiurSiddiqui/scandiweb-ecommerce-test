@@ -20,8 +20,6 @@ import Skeleton from '../../Layout/skeleton';
  * @cartItem = ['productID', [items]]
  */
 
-//! prolly QUERY and caputre the whole product info in the state.
-
 class CartItem extends Component {
 	constructor(props) {
 		super(props);
@@ -34,7 +32,7 @@ class CartItem extends Component {
 			attributes: [],
 			gallery: [],
 			price: null,
-			quantity: {},
+			quantity: null,
 			inStock: null,
 			// cartItem: {},
 		};
@@ -44,7 +42,7 @@ class CartItem extends Component {
 
 	componentDidMount() {
 		const { cartItem, products, selectedCurrency } = this.props;
-		console.log('Mounts');
+
 		// const itemObj = {
 		// 	name: cartItem[0],
 		// 	attributes: cartItem[1],
@@ -66,7 +64,7 @@ class CartItem extends Component {
 				amount: cartItem?.price[0].amount,
 			},
 			inStock: cartItem?.inStock,
-			quantity: cartItem?.quantity,
+			quantity: cartItem?.quantity.quantity,
 			// cartItem: itemObj,
 		});
 
@@ -86,8 +84,11 @@ class CartItem extends Component {
 		// console.log('Prev: ', prevPropQt);
 		// console.log('now: ', quantity);
 		if (prevPropQt !== quantity) {
+			console.log('updates');
+			console.log(quantity);
 			this.setState({
 				// itemPrice: PDP[0].amount * quantity, //amoutn shoudl come from state now
+				quantity: quantity,
 			});
 
 			// this.props.itemPriceHandler(PDP[0].amount * quantity, itemIndex, true); //may not need this, amount = state.itemPrice now
@@ -134,8 +135,6 @@ class CartItem extends Component {
 			// cartItem,
 		} = this.state;
 
-		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
-		console.log(gallery);
 		let imageLength = gallery.length;
 
 		let btnGuardRight = {
@@ -149,7 +148,7 @@ class CartItem extends Component {
 		const btnsGuard = {
 			visibility: imageLength === 1 ? 'hidden' : 'visible',
 		};
-
+		console.log(quantity);
 		// const itemPrice = cartItem.price[0];
 
 		// const itemPriceObj = {
@@ -157,8 +156,6 @@ class CartItem extends Component {
 		// 	symbol: itemPrice.currency.symbol,
 		// 	amount: itemPrice.amount,
 		// };
-
-		// console.log(cartItem);
 
 		return (
 			// <></>
@@ -195,7 +192,7 @@ class CartItem extends Component {
 					<CartQuantitiy
 						images={gallery}
 						imageCount={imageCount}
-						quantity={quantity.quantity}
+						quantity={quantity}
 						incrementItem={incrementItem}
 						decrementItem={decrementItem}
 						attributes={cartItem}
