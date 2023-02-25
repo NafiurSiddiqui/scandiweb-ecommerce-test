@@ -33,10 +33,10 @@ class CartItem extends Component {
 			name: '',
 			attributes: [],
 			gallery: [],
-			prices: null,
+			price: null,
 			quantity: {},
 			inStock: null,
-			cartItem: {},
+			// cartItem: {},
 		};
 		this.incrementCount = this.incrementCount.bind(this);
 		this.decrementCount = this.decrementCount.bind(this);
@@ -57,12 +57,13 @@ class CartItem extends Component {
 		// console.log(cartItem);
 		this.setState({
 			// itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
-			name: cartItem[0],
-			attributes: cartItem[1],
-			brand: cartItem[3],
-			gallery: cartItem[4],
-			prices: cartItem[5],
-			inStock: cartItem[6],
+			brand: cartItem.brand,
+			name: cartItem.name,
+			attributes: cartItem.attributes,
+			gallery: cartItem.gallery,
+			price: cartItem.price,
+			inStock: cartItem.inStock,
+			quantity: cartItem.quantity,
 			// cartItem: itemObj,
 		});
 
@@ -74,9 +75,10 @@ class CartItem extends Component {
 
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
-		const quantity = cartItem[2].quantity;
+		// const quantity = cartItem[2].quantity;
+		const quantity = cartItem.quantity;
 
-		if (prevProps.cartItem[2].quantity !== cartItem[2].quantity) {
+		if (prevProps.cartItem.quantity !== cartItem.quantity) {
 			this.setState({
 				// itemPrice: PDP[0].amount * quantity, //amoutn shoudl come from state now
 			});
@@ -119,12 +121,11 @@ class CartItem extends Component {
 			brand,
 			name,
 			gallery,
-			prices,
+			price,
 			inStock,
+			quantity,
 			// cartItem,
 		} = this.state;
-
-		const quantity = cartItem[2].quantity;
 
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
@@ -142,13 +143,15 @@ class CartItem extends Component {
 			visibility: imageLength === 1 ? 'hidden' : 'visible',
 		};
 
-		const itemPrice = cartItem[5][0];
+		const itemPrice = cartItem.price[0];
 
 		const itemPriceObj = {
 			label: itemPrice.currency.label,
 			symbol: itemPrice.currency.symbol,
 			amount: itemPrice.amount,
 		};
+
+		// console.log(cartItem);
 
 		return (
 			// <></>

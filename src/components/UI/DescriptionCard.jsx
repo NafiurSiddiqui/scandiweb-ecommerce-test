@@ -120,7 +120,7 @@ class DescriptionCard extends Component {
 	render() {
 		const { brand, name, inStock } = this.props.product;
 		const { items, itemCalculation } = this.state;
-
+		console.log(brand);
 		const {
 			priceHeading,
 			className,
@@ -131,7 +131,7 @@ class DescriptionCard extends Component {
 			price,
 		} = this.props;
 
-		console.log(productID);
+		// console.log(productID);
 
 		return (
 			<article
@@ -150,7 +150,7 @@ class DescriptionCard extends Component {
 				</div>
 				{attributes ? (
 					attributes.map((item, itemIndex) => {
-						console.log(item['values']);
+						// console.log(item['values']);
 						return (
 							<AttributeItem
 								itemIndex={itemIndex}
