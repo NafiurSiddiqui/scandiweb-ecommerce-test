@@ -148,14 +148,6 @@ class CartItem extends Component {
 		const btnsGuard = {
 			visibility: imageLength === 1 ? 'hidden' : 'visible',
 		};
-		console.log(quantity);
-		// const itemPrice = cartItem.price[0];
-
-		// const itemPriceObj = {
-		// 	label: itemPrice.currency.label,
-		// 	symbol: itemPrice.currency.symbol,
-		// 	amount: itemPrice.amount,
-		// };
 
 		return (
 			// <></>

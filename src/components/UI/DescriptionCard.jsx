@@ -59,21 +59,22 @@ class DescriptionCard extends Component {
 		// }
 
 		this.setState({
-			itemPrice: price?.amount,
+			itemPrice: this.props.product?.price[0]?.amount,
 			items: attributes,
 		});
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		const { cartItems } = this.props;
-		const { price, quantity } = this.props.product;
+		const { price, quantity } = this.props?.product;
+		// console.log(quantity);
 
 		// console.log('Previous Props: ', prevProps.quantity.quantity);
 		// console.log(this.props.quantity.quantity);
+
 		if (prevProps.quantity !== this.props.quantity) {
-			// console.log('Updates');
 			this.setState({
-				itemPrice: this.state.itemPrice * quantity,
+				itemPrice: price[0].amount * quantity.quantity,
 			});
 		}
 		if (prevProps.cartItems.length !== cartItems.length) {
@@ -137,7 +138,7 @@ class DescriptionCard extends Component {
 	render() {
 		const { brand, name, inStock, attributes } = this.props.product;
 		const { items, itemPrice } = this.state;
-
+		console.log(itemPrice);
 		const {
 			priceHeading,
 			className,
