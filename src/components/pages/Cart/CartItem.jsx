@@ -57,16 +57,16 @@ class CartItem extends Component {
 		// console.log(cartItem);
 		this.setState({
 			// itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
-			brand: cartItem.brand,
-			name: cartItem.name,
-			attributes: cartItem.attributes,
-			gallery: cartItem.gallery,
+			brand: cartItem?.brand,
+			name: cartItem?.name,
+			attributes: cartItem?.attributes,
+			gallery: cartItem?.gallery,
 			price: {
-				currency: cartItem.price[0].currency,
-				amount: cartItem.price[0].amount,
+				currency: cartItem?.price[0].currency,
+				amount: cartItem?.price[0].amount,
 			},
-			inStock: cartItem.inStock,
-			quantity: cartItem.quantity,
+			inStock: cartItem?.inStock,
+			quantity: cartItem?.quantity,
 			// cartItem: itemObj,
 		});
 
@@ -133,9 +133,9 @@ class CartItem extends Component {
 			quantity,
 			// cartItem,
 		} = this.state;
-		console.log(attributes);
-		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
+		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
+		console.log(gallery);
 		let imageLength = gallery.length;
 
 		let btnGuardRight = {
@@ -192,15 +192,15 @@ class CartItem extends Component {
 						cartPage ? 'cart-page__qt-wrapper' : 'cart-quantity-wrapper'
 					}
 				>
-					{/* <CartQuantitiy
-						// images={PDP[0].images}
+					<CartQuantitiy
+						images={gallery}
 						imageCount={imageCount}
-						quantity={quantity}
+						quantity={quantity.quantity}
 						incrementItem={incrementItem}
 						decrementItem={decrementItem}
 						attributes={cartItem}
 						cartPage={cartPage}
-					/> */}
+					/>
 
 					<div
 						className="cart-quantity__image-gallery-btns"

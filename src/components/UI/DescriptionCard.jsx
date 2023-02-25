@@ -148,7 +148,6 @@ class DescriptionCard extends Component {
 			price,
 		} = this.props;
 
-		console.log(items);
 		return (
 			<article
 				className={className}
