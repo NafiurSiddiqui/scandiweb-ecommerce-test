@@ -16,16 +16,17 @@ import Button from './Button';
  */
 
 class DescriptionCard extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 
-		const { productID } = this.props;
+		// const { productID, attributes, price } = this.props;
 		// const { price } = this.props;
 
 		this.state = {
-			selectedTitle: productID,
+			// selectedTitle: productID,
 			selectedValues: [],
 			items: [],
+			// itemPrice: price?.amount,
 			itemPrice: null,
 		};
 
@@ -34,22 +35,22 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { attributes, miniCart, price } = this.props;
-		const { quantity } = this.props.product;
-		// console.log(this.props.product.quantity);
-		if (miniCart && attributes) {
-			// const attHeaders = attributes[1].map((item) => item.name);
-			// const attItems = attributes[1].map((item) => item.values);
-			// const selectedAttributes = attHeaders.reduce((acc, key, index) => {
-			// 	acc[key] = attItems[index];
-			// 	return acc;
-			// }, {});
-			// this.setState({
-			// 	items: Object.entries(selectedAttributes),
-			// itemPrice: this.state.itemPrice * quantity,
-			// });
-			// return;
-		}
+		const { miniCart, price } = this.props;
+		const { quantity, attributes } = this.props.product;
+
+		// if (miniCart && attributes) {
+		// 	// const attHeaders = attributes[1].map((item) => item.name);
+		// 	// const attItems = attributes[1].map((item) => item.values);
+		// 	// const selectedAttributes = attHeaders.reduce((acc, key, index) => {
+		// 	// 	acc[key] = attItems[index];
+		// 	// 	return acc;
+		// 	// }, {});
+		// 	// this.setState({
+		// 	// 	items: Object.entries(selectedAttributes),
+		// 	// itemPrice: this.state.itemPrice * quantity,
+		// 	// });
+		// 	// return;
+		// }
 
 		// if (attributes) {
 		// 	this.setState({
@@ -67,17 +68,19 @@ class DescriptionCard extends Component {
 		const { cartItems } = this.props;
 		const { price, quantity } = this.props.product;
 
-		if (prevProps.quantity !== quantity) {
+		// console.log('Previous Props: ', prevProps.quantity.quantity);
+		// console.log(this.props.quantity.quantity);
+		if (prevProps.quantity.quantity !== quantity.quantity) {
+			// console.log('Updates');
 			this.setState({
 				itemPrice: this.state.itemPrice * quantity,
 			});
 		}
-
-		if (prevProps.cartItems.length !== cartItems.length) {
-			this.setState({
-				itemPrice: price.amount, //? Why do we need this here?
-			});
-		}
+		// if (prevProps.cartItems.length !== cartItems.length) {
+		// 	this.setState({
+		// 		itemPrice: price.amount, //? Why do we need this here?
+		// 	});
+		// }
 	}
 
 	updateItems(itemIndex, btnIndex) {
@@ -145,7 +148,7 @@ class DescriptionCard extends Component {
 			price,
 		} = this.props;
 
-		// console.log(price.amount);
+		console.log(items);
 		return (
 			<article
 				className={className}

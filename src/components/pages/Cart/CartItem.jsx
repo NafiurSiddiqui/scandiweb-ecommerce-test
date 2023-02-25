@@ -44,7 +44,7 @@ class CartItem extends Component {
 
 	componentDidMount() {
 		const { cartItem, products, selectedCurrency } = this.props;
-
+		console.log('Mounts');
 		// const itemObj = {
 		// 	name: cartItem[0],
 		// 	attributes: cartItem[1],
@@ -79,9 +79,13 @@ class CartItem extends Component {
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
 		// const quantity = cartItem[2].quantity;
-		const quantity = cartItem.quantity;
+		const { quantity } = cartItem.quantity;
 
-		if (prevProps.cartItem.quantity !== cartItem.quantity) {
+		const prevPropQt = prevProps.cartItem.quantity.quantity;
+
+		// console.log('Prev: ', prevPropQt);
+		// console.log('now: ', quantity);
+		if (prevPropQt !== quantity) {
 			this.setState({
 				// itemPrice: PDP[0].amount * quantity, //amoutn shoudl come from state now
 			});
@@ -129,7 +133,7 @@ class CartItem extends Component {
 			quantity,
 			// cartItem,
 		} = this.state;
-		// console.log(price);
+		console.log(attributes);
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
 		let imageLength = gallery.length;
