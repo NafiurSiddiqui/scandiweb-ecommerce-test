@@ -35,40 +35,29 @@ class DescriptionCard extends Component {
 	componentDidMount() {
 		const { miniCart, prices, selectedCurrency } = this.props;
 		const { quantity, attributes } = this.props.product;
-		// console.log(this.props.product);
-		// console.log(prices);
-		// console.log(selectedCurrency);
-		let itemPrice = userCurrency(prices, selectedCurrency, true);
-		// console.log(itemPrice);
+
+		let selectedUserCurrency = userCurrency(prices, selectedCurrency, true);
+		// console.log(selectedUserCurrency);
 		// this.setState({
-		// 	// itemPrice: this.props.product?.price[0]?.amount,
+		// 	// selectedUserCurrency: this.props.product?.price[0]?.amount,
 		// 	items: attributes,
-		// 	itemCurrency: itemPrice,
+		// 	itemCurrency: selectedUserCurrency,
 		// });
 
 		this.setState({
 			items: attributes,
-			// itemCurrency: {
-			// 	currency: itemPrice.currency,
-			// 	symbol: itemPrice.symbol,
-			// 	amount: itemPrice.amount * quantity.quantity,
-			// },
-			itemCurrency: itemPrice,
-			itemPrice: itemPrice.amount,
+			itemCurrency: selectedUserCurrency,
+			itemPrice: selectedUserCurrency.amount,
 		});
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { cartItems, selectedCurrency } = this.props;
-		const { prices, quantity } = this.props?.product;
-		const { itemCurrency } = this.state;
+		const { selectedCurrency } = this.props;
+		const { prices } = this.props?.product;
 
-		// console.log('Previous Props: ', prevProps);
-		// console.log(this.props);
+		let selectedUserCurrency = userCurrency(prices, selectedCurrency, true);
 
 		if (prevProps.quantity !== this.props.quantity) {
-			console.log('QT changed');
-
 			this.setState((prevState) => ({
 				itemCurrency: {
 					...prevState.itemCurrency,
@@ -76,22 +65,19 @@ class DescriptionCard extends Component {
 				},
 			}));
 		}
-		// if (prevProps.cartItems.length !== cartItems.length) {
-		// 	this.setState({
-		// 		// itemPrice: prices.amount, //? Why do we need this here?
-		// 	});
-		// }
 
 		if (prevProps.selectedCurrency.currency !== selectedCurrency.currency) {
-			console.log('currency changed, what should we do?');
+			this.setState({
+				itemCurrency: selectedUserCurrency,
+				itemPrice: selectedUserCurrency.amount,
+			});
 		}
 	}
 
 	updateItemPrice() {
 		const { quantity } = this.props?.product;
 		const { itemPrice } = this.state;
-		// console.log(quantity);
-		// console.log(itemCurrency.amount);
+
 		return itemPrice * quantity.quantity;
 	}
 
@@ -200,7 +186,7 @@ class DescriptionCard extends Component {
 						</span>
 						{miniCart && itemCurrency?.amount
 							? roundToTwoDecimalPlaces(itemCurrency.amount)
-							: prices?.amount}
+							: itemPrice}
 					</span>
 				</div>
 
