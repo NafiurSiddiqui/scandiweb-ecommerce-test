@@ -38,26 +38,6 @@ class DescriptionCard extends Component {
 		const { miniCart, price } = this.props;
 		const { quantity, attributes } = this.props.product;
 
-		// if (miniCart && attributes) {
-		// 	// const attHeaders = attributes[1].map((item) => item.name);
-		// 	// const attItems = attributes[1].map((item) => item.values);
-		// 	// const selectedAttributes = attHeaders.reduce((acc, key, index) => {
-		// 	// 	acc[key] = attItems[index];
-		// 	// 	return acc;
-		// 	// }, {});
-		// 	// this.setState({
-		// 	// 	items: Object.entries(selectedAttributes),
-		// 	// itemPrice: this.state.itemPrice * quantity,
-		// 	// });
-		// 	// return;
-		// }
-
-		// if (attributes) {
-		// 	this.setState({
-		// 		items: Object.entries(attributes),
-		// 	});
-		// }
-		// console.log(this.props.product);
 		this.setState({
 			itemPrice: this.props.product?.price[0]?.amount,
 			items: attributes,
@@ -67,7 +47,6 @@ class DescriptionCard extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		const { cartItems } = this.props;
 		const { price, quantity } = this.props?.product;
-		// console.log(quantity);
 
 		// console.log('Previous Props: ', prevProps.quantity.quantity);
 		// console.log(this.props.quantity.quantity);
@@ -138,15 +117,7 @@ class DescriptionCard extends Component {
 		const { brand, name, inStock, attributes } = this.props.product;
 		const { items, itemPrice } = this.state;
 
-		const {
-			priceHeading,
-			className,
-			miniCart,
-
-			// attributes,
-			cartPage,
-			price,
-		} = this.props;
+		const { priceHeading, className, miniCart, cartPage, price } = this.props;
 
 		return (
 			<article
