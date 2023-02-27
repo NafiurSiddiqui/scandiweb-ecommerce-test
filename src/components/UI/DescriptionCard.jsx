@@ -57,14 +57,17 @@ class DescriptionCard extends Component {
 		const { prices, quantity } = this.props?.product;
 		const { itemCurrency } = this.state;
 
-		console.log('Previous Props: ', prevProps);
-		console.log(this.props);
+		// console.log('Previous Props: ', prevProps);
+		// console.log(this.props);
 
 		if (prevProps.quantity !== this.props.quantity) {
-			this.setState({
-				// itemPrice: prices[0].amount * quantity.quantity,
-				itemCurrency: this.updateItemPrice(),
-			});
+			console.log('QT changed');
+			this.setState((prevState) => ({
+				itemCurrency: {
+					...prevState.itemCurrency,
+					amount: this.updateItemPrice(),
+				},
+			}));
 		}
 		// if (prevProps.cartItems.length !== cartItems.length) {
 		// 	this.setState({
@@ -80,7 +83,7 @@ class DescriptionCard extends Component {
 	updateItemPrice() {
 		const { quantity } = this.props?.product;
 		const { itemCurrency } = this.state;
-		console.log('Item price shoudl be updated');
+
 		return itemCurrency.amount * quantity.quantity;
 	}
 
@@ -138,7 +141,7 @@ class DescriptionCard extends Component {
 		const { brand, name, inStock, attributes } = this.props.product;
 		const { items, itemPrice, itemCurrency } = this.state;
 
-		// console.log(itemCurrency);
+		console.log(itemCurrency.amount);
 
 		const { priceHeading, className, miniCart, cartPage, prices } = this.props;
 
@@ -184,10 +187,12 @@ class DescriptionCard extends Component {
 						className="pd__price-price"
 						style={{ fontSize: miniCart && !cartPage ? '1rem' : '1.2rem' }}
 					>
-						{/* <span className="pd__price-price__symbol">{prices?.symbol}</span> */}
-						{/* {miniCart && itemPrice
-							? roundToTwoDecimalPlaces(itemPrice)
-							: prices?.amount} */}
+						<span className="pd__price-price__symbol">
+							{itemCurrency?.symbol}
+						</span>
+						{miniCart && itemCurrency?.amount
+							? roundToTwoDecimalPlaces(itemCurrency.amount)
+							: prices?.amount}
 					</span>
 				</div>
 
