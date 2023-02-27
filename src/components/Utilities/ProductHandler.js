@@ -6,6 +6,8 @@
  * @returns
  */
 
+import { userCurrency } from './userCurrency';
+
 // function productHandler(products, productID, selectedCurrency) {
 // 	// filtering out the product
 // 	let filteredProduct = products?.filter((item) => item?.id === productID);
@@ -114,13 +116,14 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 				attributesItem: item.attributes.map((item) =>
 					item.items.map((item) => item.id)
 				),
-				prices: item?.prices?.filter((item) => {
-					if (selectedCurrency !== null) {
-						return item.currency.label === selectedCurrency?.currency;
-					} else {
-						return item.currency.label === 'USD';
-					}
-				}),
+				// prices: item?.prices?.filter((item) => {
+				// 	if (selectedCurrency !== null) {
+				// 		return item.currency.label === selectedCurrency?.currency;
+				// 	} else {
+				// 		return item.currency.label === 'USD';
+				// 	}
+				// }),
+				price: userCurrency(products, selectedCurrency, false),
 				get amount() {
 					return this.prices[0].amount;
 				},
@@ -140,13 +143,14 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 				attributesItem: item.attributes.map((item) =>
 					item.items.map((item) => item.id)
 				),
-				prices: item?.prices?.filter((item) => {
-					if (selectedCurrency !== null) {
-						return item.currency.label === selectedCurrency?.currency;
-					} else {
-						return item.currency.label === 'USD';
-					}
-				}),
+				// prices: item?.prices?.filter((item) => {
+				// 	if (selectedCurrency !== null) {
+				// 		return item.currency.label === selectedCurrency?.currency;
+				// 	} else {
+				// 		return item.currency.label === 'USD';
+				// 	}
+				// }),
+				prices: userCurrency(products, selectedCurrency, true),
 				get amount() {
 					return this.prices[0].amount;
 				},

@@ -37,7 +37,8 @@ class DescriptionCard extends Component {
 	componentDidMount() {
 		const { miniCart, price } = this.props;
 		const { quantity, attributes } = this.props.product;
-
+		// console.log(this.props.product);
+		// console.log(price);
 		this.setState({
 			itemPrice: this.props.product?.price[0]?.amount,
 			items: attributes,
@@ -48,8 +49,8 @@ class DescriptionCard extends Component {
 		const { cartItems } = this.props;
 		const { price, quantity } = this.props?.product;
 
-		// console.log('Previous Props: ', prevProps.quantity.quantity);
-		// console.log(this.props.quantity.quantity);
+		console.log('Previous Props: ', prevProps);
+		console.log(this.props);
 
 		if (prevProps.quantity !== this.props.quantity) {
 			this.setState({
@@ -60,6 +61,10 @@ class DescriptionCard extends Component {
 			this.setState({
 				itemPrice: price.amount, //? Why do we need this here?
 			});
+		}
+
+		if (prevProps.product.price[0].currency.label !== price.currency) {
+			console.log('currency changed');
 		}
 	}
 

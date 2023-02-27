@@ -6,6 +6,7 @@ import { setCurrencyIsOpen, setSelectedCurrency } from '../store/currencySlice';
 import DisplayMessage from '../Utilities/DisplayMessage';
 import OutsideClickGuard from '../Utilities/OutsideClickGuard';
 import { GET_CURRENCIES } from '../Utilities/query';
+import { userCurrency } from '../Utilities/userCurrency';
 
 class Currency extends Component {
 	constructor() {
@@ -13,19 +14,32 @@ class Currency extends Component {
 
 		this.state = {
 			currencyActive: null,
+			selectedCurrency: {},
 		};
 
-		this.currencyHandler = this.currencyHandler.bind(this);
+		this.currencyStateHandler = this.currencyStateHandler.bind(this);
 		this.selectedCurrencyHandler = this.selectedCurrencyHandler.bind(this);
+		this.setStateCurrency = this.setStateCurrency.bind(this);
+	}
+
+	componentDidMount() {
+		console.log('CURRENCY mount');
+		this.setStateCurrency();
+	}
+
+	setStateCurrency(data) {
+		console.log('default currency set');
+		userCurrency(data, null, false);
 	}
 
 	//toggle currency dropdown menu on click outside
-	currencyHandler() {
+	currencyStateHandler() {
 		this.props.setCurrencyIsOpen(!this.props.currencyIsOpen);
 	}
 
 	//get & gloablly set the value
 	selectedCurrencyHandler(e, index) {
+		// console.log(first)
 		this.props.setSelectedCurrency({
 			currency: e.target.lastChild.nodeValue,
 			symbol: e.target.firstChild.innerText,
@@ -35,16 +49,21 @@ class Currency extends Component {
 			currencyActive: index,
 		});
 
-		this.currencyHandler();
+		this.currencyStateHandler();
 	}
 
 	render() {
 		let { currencyIsOpen, selectedCurrency } = this.props;
 
+		console.log(this.state.selectedCurrency);
+
 		const currencyState = currencyIsOpen ? 'visible' : '';
 
 		return (
-			<Query query={GET_CURRENCIES}>
+			<Query
+				query={GET_CURRENCIES}
+				onCompleted={(data) => this.setStateCurrency(data)}
+			>
 				{({ error, loading, data }) => {
 					if (error) return <DisplayMessage error={error} />;
 					if (loading || !data) return <Skeleton />;

@@ -122,16 +122,12 @@ class CartItem extends Component {
 		const {
 			imageCount,
 			attributes,
-			brand,
-			name,
+
 			gallery,
 			price,
-			inStock,
-			quantity,
-			// cartItem,
-		} = this.state;
 
-		console.log(price);
+			quantity,
+		} = this.state;
 
 		let imageLength = gallery.length;
 

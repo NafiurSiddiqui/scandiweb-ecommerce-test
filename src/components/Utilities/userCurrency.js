@@ -1,6 +1,7 @@
 export function userCurrency(products, selectedCurrency, singleItem = false) {
 	let currencies;
 	let userMatchedCurrency;
+
 	//extracting only price items
 	if (!singleItem) {
 		currencies = products?.map((item) =>
