@@ -80,7 +80,9 @@ class ProductDescription extends Component {
 							attributes: attHandler(product.attributes),
 							quantity: { quantity: 1 },
 							gallery: product.gallery,
-							price: userCurrency(product, selectedCurrency, true),
+							// price: userCurrency(product, selectedCurrency, true),
+							// price: userCurrency(product, selectedCurrency, true),
+							prices: product.prices,
 							inStock: product.inStock,
 						};
 						// const attr = product.attributes;
@@ -132,7 +134,7 @@ class ProductDescription extends Component {
 										getItemValues={this.getItemValues}
 										attributes={productObj.attributes}
 										className="pd"
-										price={productObj.price}
+										price={productObj.prices}
 									/>
 
 									<p

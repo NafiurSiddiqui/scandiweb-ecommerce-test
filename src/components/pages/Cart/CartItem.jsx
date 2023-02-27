@@ -59,9 +59,9 @@ class CartItem extends Component {
 			attributes: cartItem?.attributes,
 			gallery: cartItem?.gallery,
 			price: {
-				currency: cartItem?.price[0].currency.label,
-				symbol: cartItem?.price[0].currency.symbol,
-				amount: cartItem?.price[0].amount,
+				// currency: cartItem?.price[0].currency.label,
+				// symbol: cartItem?.price[0].currency.symbol,
+				// amount: cartItem?.price[0].amount,
 			},
 			inStock: cartItem?.inStock,
 			quantity: cartItem?.quantity.quantity,
@@ -152,7 +152,7 @@ class CartItem extends Component {
 					attributes={attributes}
 					quantity={quantity}
 					cartPage={cartPage}
-					price={price}
+					price={cartItem.prices}
 				/>
 
 				<div

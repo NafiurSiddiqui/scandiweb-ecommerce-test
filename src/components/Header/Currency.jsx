@@ -23,17 +23,18 @@ class Currency extends Component {
 	}
 
 	componentDidMount() {
-		console.log('CURRENCY mount');
+		// console.log('CURRENCY mount');
 		this.setStateCurrency();
 	}
 
 	setStateCurrency(data) {
-		console.log('default currency set');
-		userCurrency(data, null, false);
+		// console.log('default currency set');
+		// userCurrency(data, null, false);
 	}
 
 	//toggle currency dropdown menu on click outside
 	currencyStateHandler() {
+		console.log('hey');
 		this.props.setCurrencyIsOpen(!this.props.currencyIsOpen);
 	}
 
@@ -55,7 +56,7 @@ class Currency extends Component {
 	render() {
 		let { currencyIsOpen, selectedCurrency } = this.props;
 
-		console.log(this.state.selectedCurrency);
+		// console.log(this.state.selectedCurrency);
 
 		const currencyState = currencyIsOpen ? 'visible' : '';
 

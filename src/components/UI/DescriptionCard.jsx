@@ -8,6 +8,7 @@ import {
 	cartTotalHandler,
 } from '../store/cartSlice';
 import { roundToTwoDecimalPlaces } from '../Utilities/numberRounder';
+import { userCurrency } from '../Utilities/userCurrency';
 
 import Button from './Button';
 
@@ -28,6 +29,7 @@ class DescriptionCard extends Component {
 			items: [],
 			// itemPrice: price?.amount,
 			itemPrice: null,
+			productCurrency: {},
 		};
 
 		this.updateItems = this.updateItems.bind(this);
@@ -38,10 +40,11 @@ class DescriptionCard extends Component {
 		const { miniCart, price } = this.props;
 		const { quantity, attributes } = this.props.product;
 		// console.log(this.props.product);
-		// console.log(price);
+		console.log(price);
 		this.setState({
-			itemPrice: this.props.product?.price[0]?.amount,
+			// itemPrice: this.props.product?.price[0]?.amount,
 			items: attributes,
+			// productCurrency: userCurrency(price)
 		});
 	}
 
@@ -49,23 +52,23 @@ class DescriptionCard extends Component {
 		const { cartItems } = this.props;
 		const { price, quantity } = this.props?.product;
 
-		console.log('Previous Props: ', prevProps);
-		console.log(this.props);
+		// console.log('Previous Props: ', prevProps);
+		// console.log(this.props);
 
 		if (prevProps.quantity !== this.props.quantity) {
 			this.setState({
-				itemPrice: price[0].amount * quantity.quantity,
+				// itemPrice: price[0].amount * quantity.quantity,
 			});
 		}
 		if (prevProps.cartItems.length !== cartItems.length) {
 			this.setState({
-				itemPrice: price.amount, //? Why do we need this here?
+				// itemPrice: price.amount, //? Why do we need this here?
 			});
 		}
 
-		if (prevProps.product.price[0].currency.label !== price.currency) {
-			console.log('currency changed');
-		}
+		// if (prevProps.product.price[0].currency.label !== price.currency) {
+		// 	console.log('currency changed');
+		// }
 	}
 
 	updateItems(itemIndex, btnIndex) {
@@ -167,9 +170,9 @@ class DescriptionCard extends Component {
 						style={{ fontSize: miniCart && !cartPage ? '1rem' : '1.2rem' }}
 					>
 						<span className="pd__price-price__symbol">{price?.symbol}</span>
-						{miniCart && itemPrice
+						{/* {miniCart && itemPrice
 							? roundToTwoDecimalPlaces(itemPrice)
-							: price?.amount}
+							: price?.amount} */}
 					</span>
 				</div>
 

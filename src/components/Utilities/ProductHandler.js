@@ -102,8 +102,6 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 	let PDP;
 
 	if (!single) {
-		console.log('should NOT be from here');
-
 		// filtering out the product
 		let filteredProduct = products?.filter((item) => item?.id === productID);
 		// return PDP as an OBJECT
@@ -123,7 +121,8 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 				// 		return item.currency.label === 'USD';
 				// 	}
 				// }),
-				price: userCurrency(products, selectedCurrency, false),
+				// price: userCurrency(products, selectedCurrency, false),
+				prices: item.prices,
 				get amount() {
 					return this.prices[0].amount;
 				},
@@ -132,9 +131,8 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 		});
 		// return PDP;
 	} else {
-		console.log('should be from here');
-
 		PDP = products?.map((item) => {
+			console.log(item.prices);
 			return {
 				brand: item.brand,
 				name: item.name,
@@ -150,7 +148,8 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 				// 		return item.currency.label === 'USD';
 				// 	}
 				// }),
-				prices: userCurrency(products, selectedCurrency, true),
+				// prices: userCurrency(products, selectedCurrency, true),
+				prices: item.prices,
 				get amount() {
 					return this.prices[0].amount;
 				},

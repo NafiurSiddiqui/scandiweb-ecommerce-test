@@ -19,7 +19,7 @@ export const cartSlice = createSlice({
 			const items = action.payload[1];
 			const brand = action.payload[3];
 			const gallery = action.payload[4];
-			const price = action.payload[5];
+			const prices = action.payload[5];
 			const inStock = action.payload[6];
 
 			let newItemValues = [];
@@ -67,7 +67,7 @@ export const cartSlice = createSlice({
 					quantity: { quantity: 1 },
 					brand: brand,
 					gallery,
-					price,
+					prices,
 					inStock,
 				};
 				state.cartItems.push(newCartItem);
