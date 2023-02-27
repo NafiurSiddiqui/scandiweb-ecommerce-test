@@ -152,7 +152,7 @@ class CartItem extends Component {
 					attributes={attributes}
 					quantity={quantity}
 					cartPage={cartPage}
-					price={cartItem.prices}
+					prices={cartItem.prices}
 				/>
 
 				<div

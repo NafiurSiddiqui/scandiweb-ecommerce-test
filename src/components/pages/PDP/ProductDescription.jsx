@@ -134,7 +134,7 @@ class ProductDescription extends Component {
 										getItemValues={this.getItemValues}
 										attributes={productObj.attributes}
 										className="pd"
-										price={productObj.prices}
+										prices={productObj.prices}
 									/>
 
 									<p

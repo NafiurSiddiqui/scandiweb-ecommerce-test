@@ -24,7 +24,7 @@ class Currency extends Component {
 
 	componentDidMount() {
 		// console.log('CURRENCY mount');
-		this.setStateCurrency();
+		// this.setStateCurrency();
 	}
 
 	setStateCurrency(data) {
@@ -34,7 +34,6 @@ class Currency extends Component {
 
 	//toggle currency dropdown menu on click outside
 	currencyStateHandler() {
-		console.log('hey');
 		this.props.setCurrencyIsOpen(!this.props.currencyIsOpen);
 	}
 
@@ -72,7 +71,10 @@ class Currency extends Component {
 
 					return (
 						<OutsideClickGuard className={`header-currency guard`}>
-							<div className={`header-currency`} onClick={this.currencyHandler}>
+							<div
+								className={`header-currency`}
+								onClick={this.currencyStateHandler}
+							>
 								<div className={`header-currency__symbols`}>
 									<span className="header-currency__symbols__currency-symbol">
 										{selectedCurrency !== null ? selectedCurrency?.symbol : '$'}

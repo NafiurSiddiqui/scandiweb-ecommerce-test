@@ -20,55 +20,68 @@ class DescriptionCard extends Component {
 	constructor() {
 		super();
 
-		// const { productID, attributes, price } = this.props;
-		// const { price } = this.props;
+		// const { productID, attributes, prices } = this.props;
+		// const { prices } = this.props;
 
 		this.state = {
 			// selectedTitle: productID,
 			selectedValues: [],
 			items: [],
-			// itemPrice: price?.amount,
-			itemPrice: null,
-			productCurrency: {},
+			// itemPrice: prices?.amount,
+			// itemPrice: null,
+			itemCurrency: {},
 		};
 
 		this.updateItems = this.updateItems.bind(this);
 		this.cartItemHandler = this.cartItemHandler.bind(this);
+		this.updateItemPrice = this.updateItemPrice.bind(this);
 	}
 
 	componentDidMount() {
-		const { miniCart, price } = this.props;
+		const { miniCart, prices, selectedCurrency } = this.props;
 		const { quantity, attributes } = this.props.product;
 		// console.log(this.props.product);
-		console.log(price);
+		// console.log(prices);
+		// console.log(selectedCurrency);
+		let itemPrice = userCurrency(prices, selectedCurrency, true);
+		// console.log(itemPrice);
 		this.setState({
 			// itemPrice: this.props.product?.price[0]?.amount,
 			items: attributes,
-			// productCurrency: userCurrency(price)
+			itemCurrency: itemPrice,
 		});
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { cartItems } = this.props;
-		const { price, quantity } = this.props?.product;
+		const { cartItems, selectedCurrency } = this.props;
+		const { prices, quantity } = this.props?.product;
+		const { itemCurrency } = this.state;
 
-		// console.log('Previous Props: ', prevProps);
-		// console.log(this.props);
+		console.log('Previous Props: ', prevProps);
+		console.log(this.props);
 
 		if (prevProps.quantity !== this.props.quantity) {
 			this.setState({
-				// itemPrice: price[0].amount * quantity.quantity,
+				// itemPrice: prices[0].amount * quantity.quantity,
+				itemCurrency: this.updateItemPrice(),
 			});
 		}
-		if (prevProps.cartItems.length !== cartItems.length) {
-			this.setState({
-				// itemPrice: price.amount, //? Why do we need this here?
-			});
-		}
-
-		// if (prevProps.product.price[0].currency.label !== price.currency) {
-		// 	console.log('currency changed');
+		// if (prevProps.cartItems.length !== cartItems.length) {
+		// 	this.setState({
+		// 		// itemPrice: prices.amount, //? Why do we need this here?
+		// 	});
 		// }
+
+		if (prevProps.selectedCurrency.currency !== selectedCurrency.currency) {
+			console.log('currency changed, what should we do?');
+		}
+	}
+
+	updateItemPrice() {
+		const { quantity } = this.props?.product;
+		const { itemCurrency } = this.state;
+		console.log('Item price shoudl be updated');
+		return itemCurrency.amount * quantity.quantity;
 	}
 
 	updateItems(itemIndex, btnIndex) {
@@ -123,9 +136,11 @@ class DescriptionCard extends Component {
 
 	render() {
 		const { brand, name, inStock, attributes } = this.props.product;
-		const { items, itemPrice } = this.state;
+		const { items, itemPrice, itemCurrency } = this.state;
 
-		const { priceHeading, className, miniCart, cartPage, price } = this.props;
+		// console.log(itemCurrency);
+
+		const { priceHeading, className, miniCart, cartPage, prices } = this.props;
 
 		return (
 			<article
@@ -169,10 +184,10 @@ class DescriptionCard extends Component {
 						className="pd__price-price"
 						style={{ fontSize: miniCart && !cartPage ? '1rem' : '1.2rem' }}
 					>
-						<span className="pd__price-price__symbol">{price?.symbol}</span>
+						{/* <span className="pd__price-price__symbol">{prices?.symbol}</span> */}
 						{/* {miniCart && itemPrice
 							? roundToTwoDecimalPlaces(itemPrice)
-							: price?.amount} */}
+							: prices?.amount} */}
 					</span>
 				</div>
 
@@ -194,6 +209,7 @@ const mapStateToProps = (state) => {
 		productID: state.products.productID,
 		selectedProduct: state.products.selectedProduct,
 		cartItems: state.cart.cartItems,
+		selectedCurrency: state.currency.selectedCurrency,
 	};
 };
 
