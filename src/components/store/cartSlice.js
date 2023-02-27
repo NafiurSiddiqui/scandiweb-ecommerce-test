@@ -64,7 +64,6 @@ export const cartSlice = createSlice({
 				state.cartItems.push(newCartItem);
 			}
 		},
-
 		setMiniCartIsOpen: (state) => {
 			state.miniCartIsOpen = !state.miniCartIsOpen;
 		},
@@ -86,7 +85,6 @@ export const cartSlice = createSlice({
 				existingItem.quantity.quantity++;
 			}
 		},
-
 		decrementItem: (state, action) => {
 			const { cartItems } = state;
 			const id = action.payload['name'];
@@ -100,6 +98,10 @@ export const cartSlice = createSlice({
 
 			let existingItem = cartItems.find((cartItem) => cartItem['name'] === id);
 
+			let existingItem2 = cartItems.findIndex(
+				(cartItem) => cartItem['name'] !== id
+			);
+
 			if (existingItem) {
 				//REMOVE IF 0
 				if (existingItem.quantity.quantity === 1) {
@@ -108,17 +110,16 @@ export const cartSlice = createSlice({
 					// 		item['name'] !== id ||
 					// 		JSON.stringify(item['attributes']) !== JSON.stringify(attributes)
 					// );
-					let removedCartItem = cartItems.filter((item) => item['name'] !== id);
-
-					return {
-						...state,
-						cartItems: removedCartItem,
-					};
+					// let removedCartItem = cartItems.filter((item) => item['name'] !== id);
+					// return {
+					// 	...state,
+					// 	cartItems: removedCartItem,
+					// };
+					// cartItems.splice(existingItem2, 1);
 				}
 				existingItem.quantity.quantity--;
 			}
 		},
-
 		cartTotalHandler: (state, action) => {
 			let price = action.payload;
 
