@@ -59,37 +59,6 @@ class Categories extends Component {
 						false
 					);
 
-					// console.log(products);
-
-					// const attributes = products.map((item) => item.attributes[0]);
-
-					// const attributesId = products.map((p) =>
-					// 	p.attributes.map((item) => item.id)
-					// );
-
-					// const attributeItem = products.map((p) => {
-					// 	return p.attributes.map((item) =>
-					// 		item.items.map((item) => item.id)
-					// 	);
-					// });
-
-					// console.log(attributesId);
-					// console.log(attributeItem);
-
-					// const attItemsMapped = attributeItem?.map((itemT) =>
-					// 	itemT.map((item, index) => {
-					// 		return { value: item, isChecked: index === 0 };
-					// 	})
-					// );
-					// // console.log(attItemsMapped);
-					// const attributes = attributesId?.reduce((acc, key, index) => {
-					// 	acc[key] = attItemsMapped[index];
-					// 	return acc;
-					// }, {});
-
-					// attHandler(attributes);
-
-					// console.log(attributes);
 					return (
 						<ContentWrapper>
 							<DisplayHeader>{this.formatQueryTerm(queryTerm)}</DisplayHeader>
@@ -102,7 +71,6 @@ class Categories extends Component {
 										name: p.name,
 										prices: matchedUserPrice[i]?.amount,
 										stock: p.inStock,
-										// attributes: attributes[i],
 									};
 
 									return (

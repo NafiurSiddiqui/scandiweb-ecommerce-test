@@ -32,19 +32,12 @@ class ProductDescription extends Component {
 	}
 
 	//PARSE HTML
-	HTMLparser(products) {
-		// const { productID } = this.props;
-		// if (!productID) {
-		// 	return;
-		// }
-		// let selectedProduct = products.filter((item) => item.id === productID);
-		// const parser = new DOMParser();
-		// const testDOC = parser.parseFromString(
-		// 	selectedProduct[0].description,
-		// 	'text/html'
-		// );
-		// let parsedText = testDOC.documentElement.textContent;
-		// return parsedText;
+	HTMLparser(text) {
+		const parser = new DOMParser();
+		const testDOC = parser.parseFromString(text, 'text/html');
+
+		let parsedText = testDOC.documentElement.textContent;
+		return parsedText;
 	}
 
 	//IMAGE GALLERY
@@ -80,22 +73,14 @@ class ProductDescription extends Component {
 							attributes: attHandler(product.attributes),
 							quantity: { quantity: 1 },
 							gallery: product.gallery,
-							// price: userCurrency(product, selectedCurrency, true),
-							// price: userCurrency(product, selectedCurrency, true),
+							description: product.description,
 							prices: product.prices,
 							inStock: product.inStock,
 						};
-						// const attr = product.attributes;
 
 						//gallery overFlow guard
-						let galleryOverflow = product.gallery.length;
-						// //Mapped out Data structure for attributes
-						// const attributesMapped = attHandler(attr);
-						// // //selected currency tracker
-						// let price = userCurrency(product, selectedCurrency, true);
-
-						// console.log(productObj);
-
+						let galleryOverflow = product.gallery.length > 5;
+						console.log(galleryOverflow);
 						return (
 							<section className="pdp">
 								<div className="pdp-image">
@@ -156,11 +141,11 @@ class ProductDescription extends Component {
 												  }
 										}
 									>
-										{this.HTMLparser(product) || 'something went wrong'}
+										{this.HTMLparser(productObj.description) ||
+											'something went wrong'}
 									</p>
 								</article>
 							</section>
-							// <></>
 						);
 					}}
 				</Query>
