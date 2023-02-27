@@ -59,7 +59,8 @@ class CartItem extends Component {
 			attributes: cartItem?.attributes,
 			gallery: cartItem?.gallery,
 			price: {
-				currency: cartItem?.price[0].currency,
+				currency: cartItem?.price[0].currency.label,
+				symbol: cartItem?.price[0].currency.symbol,
 				amount: cartItem?.price[0].amount,
 			},
 			inStock: cartItem?.inStock,
@@ -129,6 +130,8 @@ class CartItem extends Component {
 			quantity,
 			// cartItem,
 		} = this.state;
+
+		console.log(price);
 
 		let imageLength = gallery.length;
 

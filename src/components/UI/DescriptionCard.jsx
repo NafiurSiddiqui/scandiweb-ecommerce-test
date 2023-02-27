@@ -190,11 +190,7 @@ class DescriptionCard extends Component {
 						className="pd__price-price"
 						style={{ fontSize: miniCart && !cartPage ? '1rem' : '1.2rem' }}
 					>
-						<span className="pd__price-price__symbol">
-							{/* {prices[0]?.currency?.symbol} */}
-							{price?.currency?.symbol}
-							{console.log(price)}
-						</span>
+						<span className="pd__price-price__symbol">{price?.symbol}</span>
 						{miniCart && itemPrice
 							? roundToTwoDecimalPlaces(itemPrice)
 							: price?.amount}
