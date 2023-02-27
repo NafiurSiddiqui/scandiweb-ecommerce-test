@@ -40,7 +40,7 @@ export const cartSlice = createSlice({
 				}
 			});
 
-			console.log(current(state.cartItems));
+			// console.log(current(state.cartItems));
 
 			let existingItem = state.cartItems.find(
 				(cartItem) =>
@@ -92,20 +92,23 @@ export const cartSlice = createSlice({
 			const id = action.payload['name'];
 			const attributes = action.payload['attributes'];
 
-			let existingItem = cartItems.find(
-				(cartItem) =>
-					cartItem['name'] === id &&
-					JSON.stringify(cartItem['attributes']) === JSON.stringify(attributes)
-			);
+			// let existingItem = cartItems.find(
+			// 	(cartItem) =>
+			// 		cartItem['name'] === id &&
+			// 		JSON.stringify(cartItem['attributes']) === JSON.stringify(attributes)
+			// );
+
+			let existingItem = cartItems.find((cartItem) => cartItem['name'] === id);
 
 			if (existingItem) {
 				//REMOVE IF 0
 				if (existingItem.quantity.quantity === 1) {
-					let removedCartItem = cartItems.filter(
-						(item) =>
-							item['name'] !== id ||
-							JSON.stringify(item['attributes']) !== JSON.stringify(attributes)
-					);
+					// let removedCartItem = cartItems.filter(
+					// 	(item) =>
+					// 		item['name'] !== id ||
+					// 		JSON.stringify(item['attributes']) !== JSON.stringify(attributes)
+					// );
+					let removedCartItem = cartItems.filter((item) => item['name'] !== id);
 
 					return {
 						...state,
