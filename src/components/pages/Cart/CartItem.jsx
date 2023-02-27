@@ -148,21 +148,6 @@ class CartItem extends Component {
 		};
 
 		return (
-			// <></>
-			// <Query
-			// 	query={GET_PRODUCTS_BY_ID}
-			// 	variables={{ productId: 'huarache-x-stussy-le' }}
-			// >
-			// 	{({ error, loading, data }) => {
-			// 		if (error) return <DisplayMessage error={error} />;
-
-			// 		if (loading || !data) return <Skeleton />;
-
-			// 		// const products = data.category.products;
-
-			// 		// console.log(data);
-
-			// 		return (
 			<li className="cart-items__item">
 				<DescriptionCard
 					className="cart-items__pd"
@@ -213,9 +198,6 @@ class CartItem extends Component {
 				</div>
 			</li>
 		);
-		// }}
-		// </Query>
-		// );
 	}
 }
 
