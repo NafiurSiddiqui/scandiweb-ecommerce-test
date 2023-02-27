@@ -142,7 +142,7 @@ class DescriptionCard extends Component {
 			priceHeading,
 			className,
 			miniCart,
-			productID,
+
 			// attributes,
 			cartPage,
 			price,
