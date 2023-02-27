@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
-import productHandler, { attHandler } from '../../Utilities/ProductHandler';
+import productHandler, {
+	attHandler,
+	cartItemHandler,
+} from '../../Utilities/ProductHandler';
 import { Navigate } from 'react-router-dom';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
@@ -71,23 +74,25 @@ class ProductDescription extends Component {
 
 						const product = data.product;
 
-						// console.log(product);
-
-						//items extracted from product handler
-						// const [PDP, galleryOverflow, attributes] = productHandler(
-						// 	product,
-						// 	productID,
-						// 	selectedCurrency
-						// );
-
-						const attr = product.attributes;
+						let productObj = {
+							brand: product.brand,
+							name: product.name,
+							attributes: attHandler(product.attributes),
+							quantity: { quantity: 1 },
+							gallery: product.gallery,
+							price: userCurrency(product, selectedCurrency, true),
+							inStock: product.inStock,
+						};
+						// const attr = product.attributes;
 
 						//gallery overFlow guard
 						let galleryOverflow = product.gallery.length;
-						//Mapped out Data structure for attributes
-						const attributesMapped = attHandler(attr);
-						//selected currency tracker
-						let price = userCurrency(product, selectedCurrency, true);
+						// //Mapped out Data structure for attributes
+						// const attributesMapped = attHandler(attr);
+						// // //selected currency tracker
+						// let price = userCurrency(product, selectedCurrency, true);
+
+						// console.log(productObj);
 
 						return (
 							<section className="pdp">
@@ -122,12 +127,12 @@ class ProductDescription extends Component {
 								</div>
 								<article className="pdp_pd">
 									<DescriptionCard
-										product={product}
+										product={productObj}
 										priceHeading={true}
 										getItemValues={this.getItemValues}
-										attributes={attributesMapped}
+										attributes={productObj.attributes}
 										className="pd"
-										price={price}
+										price={productObj.price}
 									/>
 
 									<p

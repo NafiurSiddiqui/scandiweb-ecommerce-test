@@ -57,7 +57,7 @@ class DescriptionCard extends Component {
 		// 		items: Object.entries(attributes),
 		// 	});
 		// }
-
+		// console.log(this.props.product);
 		this.setState({
 			itemPrice: this.props.product?.price[0]?.amount,
 			items: attributes,
@@ -103,7 +103,6 @@ class DescriptionCard extends Component {
 						}
 					});
 
-					// return [item[0], updatedCheck];
 					return [item['name'], updatedCheck];
 				}
 				return item;
@@ -194,6 +193,7 @@ class DescriptionCard extends Component {
 						<span className="pd__price-price__symbol">
 							{/* {prices[0]?.currency?.symbol} */}
 							{price?.currency?.symbol}
+							{console.log(price)}
 						</span>
 						{miniCart && itemPrice
 							? roundToTwoDecimalPlaces(itemPrice)

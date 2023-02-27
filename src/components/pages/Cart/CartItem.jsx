@@ -80,11 +80,7 @@ class CartItem extends Component {
 
 		const prevPropQt = prevProps.cartItem.quantity.quantity;
 
-		// console.log('Prev: ', prevPropQt);
-		// console.log('now: ', quantity);
 		if (prevPropQt !== quantity) {
-			// console.log('updates');
-			// console.log(quantity);
 			this.setState({
 				// itemPrice: PDP[0].amount * quantity, //amoutn shoudl come from state now
 				quantity: quantity,
