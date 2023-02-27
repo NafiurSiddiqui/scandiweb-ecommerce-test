@@ -33,16 +33,10 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { miniCart, prices, selectedCurrency } = this.props;
-		const { quantity, attributes } = this.props.product;
+		const { prices, selectedCurrency } = this.props;
+		const { attributes } = this.props.product;
 
 		let selectedUserCurrency = userCurrency(prices, selectedCurrency, true);
-		// console.log(selectedUserCurrency);
-		// this.setState({
-		// 	// selectedUserCurrency: this.props.product?.price[0]?.amount,
-		// 	items: attributes,
-		// 	itemCurrency: selectedUserCurrency,
-		// });
 
 		this.setState({
 			items: attributes,
@@ -132,12 +126,10 @@ class DescriptionCard extends Component {
 	}
 
 	render() {
-		const { brand, name, inStock, attributes } = this.props.product;
+		const { brand, name, inStock } = this.props.product;
 		const { items, itemPrice, itemCurrency } = this.state;
 
-		console.log(itemCurrency);
-
-		const { priceHeading, className, miniCart, cartPage, prices } = this.props;
+		const { priceHeading, className, miniCart, cartPage } = this.props;
 
 		return (
 			<article
