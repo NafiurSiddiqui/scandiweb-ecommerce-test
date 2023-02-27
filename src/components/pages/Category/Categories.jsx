@@ -59,6 +59,8 @@ class Categories extends Component {
 						false
 					);
 
+					console.log(products);
+
 					return (
 						<ContentWrapper>
 							<DisplayHeader>{this.formatQueryTerm(queryTerm)}</DisplayHeader>
@@ -69,6 +71,7 @@ class Categories extends Component {
 										id: p.id,
 										image: p.gallery[0],
 										name: p.name,
+										brand: p.brand,
 										prices: matchedUserPrice[i]?.amount,
 										stock: p.inStock,
 									};
@@ -77,7 +80,7 @@ class Categories extends Component {
 										<CategoryCard
 											key={product.id}
 											image={product.image}
-											heading={product.name}
+											heading={`${product.brand} ${product.name}`}
 											price={product.prices}
 											currencySymbol={selectedCurrency?.symbol}
 											inStock={product.stock}
