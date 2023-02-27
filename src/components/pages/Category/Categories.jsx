@@ -59,8 +59,6 @@ class Categories extends Component {
 						false
 					);
 
-					console.log(products);
-
 					return (
 						<ContentWrapper>
 							<DisplayHeader>{this.formatQueryTerm(queryTerm)}</DisplayHeader>

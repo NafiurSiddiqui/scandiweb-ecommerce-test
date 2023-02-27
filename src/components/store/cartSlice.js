@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { roundToTwoDecimalPlaces } from '../Utilities/numberRounder';
 
 const initialState = {
@@ -40,24 +40,18 @@ export const cartSlice = createSlice({
 				}
 			});
 
+			console.log(current(state.cartItems));
+
 			let existingItem = state.cartItems.find(
 				(cartItem) =>
-					cartItem[0] === id &&
-					JSON.stringify(cartItem[1]) === JSON.stringify(newItemValues)
+					cartItem['name'] === id &&
+					JSON.stringify(cartItem['attributes']) ===
+						JSON.stringify(newItemValues)
 			);
 			//if item exists
 			if (existingItem) {
-				existingItem[2].quantity++;
+				existingItem['quantity'].quantity++;
 			} else {
-				// let newCartItem = {
-				// 	0: id,
-				// 	1: newItemValues,
-				// 	2: { quantity: 1 },
-				// 	3: brand,
-				// 	4: gallery,
-				// 	5: price,
-				// 	6: inStock,
-				// };
 				let newCartItem = {
 					name: id,
 					attributes: newItemValues,
