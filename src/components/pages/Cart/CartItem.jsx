@@ -119,15 +119,7 @@ class CartItem extends Component {
 			productID,
 		} = this.props;
 
-		const {
-			imageCount,
-			attributes,
-
-			gallery,
-			price,
-
-			quantity,
-		} = this.state;
+		const { imageCount, attributes, gallery, price, quantity } = this.state;
 
 		let imageLength = gallery.length;
 

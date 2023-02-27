@@ -60,7 +60,7 @@ class DescriptionCard extends Component {
 			}));
 		}
 
-		if (prevProps.selectedCurrency.currency !== selectedCurrency.currency) {
+		if (prevProps.selectedCurrency?.currency !== selectedCurrency?.currency) {
 			this.setState({
 				itemCurrency: selectedUserCurrency,
 				itemPrice: selectedUserCurrency.amount,

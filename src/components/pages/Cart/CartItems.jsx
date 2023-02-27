@@ -60,13 +60,13 @@ class CartItems extends Component {
 
 	render() {
 		const { cartItems, cartPage } = this.props;
-		// console.log(cartItems);
+
 		return (
 			<ul className="cart-items">
 				{cartItems.map((item, i) => {
 					return (
 						<CartItem
-							key={i}
+							key={item.name}
 							cartItem={item}
 							itemPriceHandler={this.itemPriceHandler}
 							itemIndex={i}
