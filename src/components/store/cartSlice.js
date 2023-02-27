@@ -23,9 +23,6 @@ export const cartSlice = createSlice({
 			const inStock = action.payload[6];
 
 			let newItemValues = [];
-			// console.log(items);
-
-			// console.log(action.payload);
 
 			//Adding user check to the attributes
 			items.forEach((item) => {

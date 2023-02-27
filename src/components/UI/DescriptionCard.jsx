@@ -20,16 +20,11 @@ class DescriptionCard extends Component {
 	constructor() {
 		super();
 
-		// const { productID, attributes, prices } = this.props;
-		// const { prices } = this.props;
-
 		this.state = {
-			// selectedTitle: productID,
 			selectedValues: [],
 			items: [],
-			// itemPrice: prices?.amount,
-			// itemPrice: null,
 			itemCurrency: {},
+			itemPrice: 0,
 		};
 
 		this.updateItems = this.updateItems.bind(this);
@@ -45,10 +40,21 @@ class DescriptionCard extends Component {
 		// console.log(selectedCurrency);
 		let itemPrice = userCurrency(prices, selectedCurrency, true);
 		// console.log(itemPrice);
+		// this.setState({
+		// 	// itemPrice: this.props.product?.price[0]?.amount,
+		// 	items: attributes,
+		// 	itemCurrency: itemPrice,
+		// });
+
 		this.setState({
-			// itemPrice: this.props.product?.price[0]?.amount,
 			items: attributes,
+			// itemCurrency: {
+			// 	currency: itemPrice.currency,
+			// 	symbol: itemPrice.symbol,
+			// 	amount: itemPrice.amount * quantity.quantity,
+			// },
 			itemCurrency: itemPrice,
+			itemPrice: itemPrice.amount,
 		});
 	}
 
@@ -62,6 +68,7 @@ class DescriptionCard extends Component {
 
 		if (prevProps.quantity !== this.props.quantity) {
 			console.log('QT changed');
+
 			this.setState((prevState) => ({
 				itemCurrency: {
 					...prevState.itemCurrency,
@@ -82,9 +89,10 @@ class DescriptionCard extends Component {
 
 	updateItemPrice() {
 		const { quantity } = this.props?.product;
-		const { itemCurrency } = this.state;
-
-		return itemCurrency.amount * quantity.quantity;
+		const { itemPrice } = this.state;
+		// console.log(quantity);
+		// console.log(itemCurrency.amount);
+		return itemPrice * quantity.quantity;
 	}
 
 	updateItems(itemIndex, btnIndex) {
@@ -141,7 +149,7 @@ class DescriptionCard extends Component {
 		const { brand, name, inStock, attributes } = this.props.product;
 		const { items, itemPrice, itemCurrency } = this.state;
 
-		console.log(itemCurrency.amount);
+		console.log(itemCurrency);
 
 		const { priceHeading, className, miniCart, cartPage, prices } = this.props;
 
