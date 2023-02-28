@@ -13,20 +13,16 @@ class AttributeItem extends Component {
 	}
 
 	componentDidMount() {
-		const { attributesItem, attHeader, attributes } = this.props;
+		const { attributesItem, attHeader } = this.props;
 
-		console.log(attributes);
 		this.setState({
 			attributesItem: attributesItem,
-			// attributesItem: this.state.attributesItem.push(attributes),
 			attHeader: attHeader,
-			// attHeader: attributes?.name,
 		});
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.attributesItem !== this.props.attributesItem) {
-			// console.log(this.props.attributes[0][1]);
 			console.log(this.props.attributesItem);
 			this.setState({
 				attributesItem: this.props.attributesItem,
@@ -57,7 +53,6 @@ class AttributeItem extends Component {
 									<AttributesBtn
 										key={btnIndex}
 										item={item.value}
-										// attHeader={attHeader}
 										className={className}
 										btnIndex={btnIndex}
 										itemIndex={itemIndex}
