@@ -64,9 +64,10 @@ class CartItems extends Component {
 		return (
 			<ul className="cart-items">
 				{cartItems.map((item, i) => {
+					const itemId = `${item.name}_${i + 1}`;
 					return (
 						<CartItem
-							key={item.name}
+							key={itemId}
 							cartItem={item}
 							cumulativePriceHandler={this.cumulativePriceHandler}
 							itemIndex={i}
