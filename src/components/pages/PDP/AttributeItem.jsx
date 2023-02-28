@@ -1,19 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AttributionBtn from './AttributionBtn';
+import AttributesBtn from './AttributesBtn';
 
 class AttributeItem extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			attributesItem: [],
+			attHeader: '',
+		};
+	}
+
+	componentDidMount() {
+		const { attributesItem, attHeader } = this.props;
+
+		// console.log(attributesItem);
+		this.setState({
+			attributesItem: attributesItem,
+			attHeader: attHeader,
+		});
+	}
+
 	render() {
 		const {
 			itemIndex,
-			attHeader,
+			// attHeader,
 			cartPage,
 			className,
 			updateItems,
 			miniCart,
-			attributesItem,
+			// attributesItem,
 		} = this.props;
 
+		const { attributesItem, attHeader } = this.state;
+
+		// console.log(attHeader);
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>
 				<li key={attHeader} className={`${className}__attribution`}>
@@ -21,25 +43,29 @@ class AttributeItem extends Component {
 						className={`${className}__attribution-header`}
 						style={{ fontSize: cartPage ? '0.853rem' : '0.7rem' }}
 					>
-						{attHeader.toUpperCase()}:
+						{attHeader?.toUpperCase()}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
-						{attributesItem?.map((item, btnIndex) => {
-							return (
-								<AttributionBtn
-									key={btnIndex}
-									item={item.value}
-									attHeader={attHeader}
-									className={className}
-									btnIndex={btnIndex}
-									itemIndex={itemIndex}
-									updateItems={updateItems}
-									itemIsChecked={item.isChecked}
-									miniCart={miniCart}
-									cartPage={cartPage}
-								/>
-							);
-						})}
+						{attributesItem ? (
+							attributesItem?.map((item, btnIndex) => {
+								return (
+									<AttributesBtn
+										key={btnIndex}
+										item={item.value}
+										// attHeader={attHeader}
+										className={className}
+										btnIndex={btnIndex}
+										itemIndex={itemIndex}
+										updateItems={updateItems}
+										itemIsChecked={item.isChecked}
+										miniCart={miniCart}
+										cartPage={cartPage}
+									/>
+								);
+							})
+						) : (
+							<p>something went wrong</p>
+						)}
 					</ul>
 				</li>
 			</ul>

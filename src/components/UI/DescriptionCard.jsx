@@ -86,16 +86,9 @@ class DescriptionCard extends Component {
 
 	updateItems(itemIndex, btnIndex) {
 		this.setState((prevState) => {
-			const updatedItems = prevState.items.map((item, index) => {
+			const updatedItems = prevState.items?.map((item, index) => {
 				if (index === itemIndex) {
-					// const updatedCheck = item[1].map((btn, isCheckIndex) => {
-					// 	if (isCheckIndex === btnIndex) {
-					// 		return { ...btn, isChecked: true };
-					// 	} else {
-					// 		return { ...btn, isChecked: false };
-					// 	}
-					// });
-					const updatedCheck = item['values'].map((btn, isCheckIndex) => {
+					const updatedCheck = item?.values?.map((btn, isCheckIndex) => {
 						if (isCheckIndex === btnIndex) {
 							return { ...btn, isChecked: true };
 						} else {
@@ -140,6 +133,8 @@ class DescriptionCard extends Component {
 
 		const { priceHeading, className, miniCart, cartPage } = this.props;
 
+		console.log(items);
+
 		return (
 			<article
 				className={className}
@@ -156,7 +151,7 @@ class DescriptionCard extends Component {
 					</h3>
 				</div>
 				{items ? (
-					items.map((item, itemIndex) => {
+					items?.map((item, itemIndex) => {
 						return (
 							<AttributeItem
 								itemIndex={itemIndex}

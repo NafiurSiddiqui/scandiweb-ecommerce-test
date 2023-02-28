@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class AttributionBtn extends Component {
+class AttributesBtn extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -31,7 +31,7 @@ class AttributionBtn extends Component {
 		if (miniCart === true) {
 			return;
 		}
-
+		console.log('does');
 		//update item isChecked based on these indexes
 		updateItems(itemIndex, btnIndex);
 	}
@@ -102,4 +102,4 @@ class AttributionBtn extends Component {
 	}
 }
 
-export default AttributionBtn;
+export default AttributesBtn;
