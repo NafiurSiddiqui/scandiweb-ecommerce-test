@@ -68,10 +68,10 @@ class ProductDescription extends Component {
 						const product = data.product;
 
 						let productObj = {
-							brand: product.brand,
 							name: product.name,
 							attributes: attHandler(product.attributes),
 							quantity: { quantity: 1 },
+							brand: product.brand,
 							gallery: product.gallery,
 							description: product.description,
 							prices: product.prices,

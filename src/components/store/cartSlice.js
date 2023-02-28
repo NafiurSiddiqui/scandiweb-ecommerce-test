@@ -15,24 +15,44 @@ export const cartSlice = createSlice({
 	initialState,
 	reducers: {
 		addItemToCart: (state, action) => {
-			const id = action.payload[0];
-			const items = action.payload[1];
-			const brand = action.payload[3];
-			const gallery = action.payload[4];
-			const prices = action.payload[5];
-			const inStock = action.payload[6];
-
+			// const id = action.payload[0];
+			// const items = action.payload[1];
+			// const brand = action.payload[3];
+			// const gallery = action.payload[4];
+			// const prices = action.payload[5];
+			// const inStock = action.payload[6];
+			const id = action.payload.name;
+			const items = action.payload.attributes;
+			const brand = action.payload.brand;
+			const gallery = action.payload.gallery;
+			const prices = action.payload.prices;
+			const inStock = action.payload.inStock;
+			console.log(id);
 			let newItemValues = [];
 
 			//Adding user check to the attributes
+			// items.forEach((item) => {
+			// 	if (Array.isArray(item[1])) {
+			// 		let subItemValues = [];
+			// 		item[1].forEach((subitem) => {
+			// 			if (subitem.hasOwnProperty('value')) {
+			// 				subItemValues.push({
+			// 					value: subitem.value,
+			// 					isChecked: subitem.isChecked,
+			// 				});
+			// 			}
+			// 		});
+			// 		newItemValues.push({ name: item[0], values: subItemValues });
+			// 	}
+			// });
 			items.forEach((item) => {
-				if (Array.isArray(item[1])) {
+				if (Array.isArray(item.attributes)) {
 					let subItemValues = [];
-					item[1].forEach((subitem) => {
-						if (subitem.hasOwnProperty('value')) {
+					item[1].forEach((subItem) => {
+						if (subItem.hasOwnProperty('value')) {
 							subItemValues.push({
-								value: subitem.value,
-								isChecked: subitem.isChecked,
+								value: subItem.value,
+								isChecked: subItem.isChecked,
 							});
 						}
 					});

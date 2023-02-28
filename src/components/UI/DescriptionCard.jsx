@@ -106,13 +106,17 @@ class DescriptionCard extends Component {
 
 	cartItemHandler() {
 		const { items, selectedTitle } = this.state;
-		const { addItemToCart } = this.props;
+		const { addItemToCart, product } = this.props;
+
+		console.log(product);
 
 		//! MUST DEFINE NEW DS
-		let userItems = [selectedTitle, items, { quantity: 0 }];
+		// let userItems = [selectedTitle, items, { quantity: 0 }];
 
-		const mappedItems = items.map((item) =>
-			item[1].map((item) => item.isChecked)
+		// let userCartItem = [product];
+
+		const mappedItems = product.attributes.map((item) =>
+			item['values'].map((item) => item.isChecked)
 		);
 		//checks if any of the attributes has not been selected
 		const itemsNotChecked = mappedItems.some((items) =>
@@ -122,7 +126,8 @@ class DescriptionCard extends Component {
 		if (itemsNotChecked) {
 			alert('Please select at least one option');
 		} else {
-			addItemToCart(userItems);
+			// addItemToCart(userCartItem);
+			addItemToCart(product);
 			this.props.cartQuantityHandler();
 		}
 	}
@@ -132,8 +137,6 @@ class DescriptionCard extends Component {
 		const { items, itemPrice, itemCurrency } = this.state;
 
 		const { priceHeading, className, miniCart, cartPage } = this.props;
-
-		console.log(items);
 
 		return (
 			<article
