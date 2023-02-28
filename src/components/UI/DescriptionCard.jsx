@@ -111,9 +111,10 @@ class DescriptionCard extends Component {
 		//gets the new & updated attributes
 		product.attributes = items;
 		//to make an array for store
-		let userCartItem = [product];
+		// let userCartItem = [product];
 
-		addItemToCart(userCartItem);
+		// addItemToCart(userCartItem);
+		addItemToCart(product);
 		cartQuantityHandler();
 	}
 

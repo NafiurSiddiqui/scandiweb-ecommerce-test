@@ -80,7 +80,7 @@ class ProductDescription extends Component {
 
 						//gallery overFlow guard
 						let galleryOverflow = product.gallery.length > 5;
-						console.log(galleryOverflow);
+
 						return (
 							<section className="pdp">
 								<div className="pdp-image">

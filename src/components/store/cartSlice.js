@@ -29,13 +29,14 @@ export const cartSlice = createSlice({
 			const inStock = action.payload.inStock;
 
 			let newItemValues = [];
-
+			// console.log(action.payload);
+			// console.log(action.payload.name);
+			console.log(action.payload.attributes);
 			//Adding user selection to the attributes
 			items.forEach((item) => {
-				console.log(item);
-				if (Array.isArray(item[1])) {
+				if (Array.isArray(item.values)) {
 					let subItemValues = [];
-					item[1].forEach((subItem) => {
+					item.values.forEach((subItem) => {
 						if (subItem.hasOwnProperty('value')) {
 							subItemValues.push({
 								value: subItem.value,
@@ -43,25 +44,27 @@ export const cartSlice = createSlice({
 							});
 						}
 					});
-					newItemValues.push({ name: item[0], values: subItemValues });
+					newItemValues.push({ name: item.name, values: subItemValues });
 				}
 			});
 
-			// console.log(current(state.cartItems));
+			console.log(newItemValues);
 
 			let existingItem = state.cartItems.find(
 				(cartItem) =>
-					cartItem['name'] === id &&
-					JSON.stringify(cartItem['attributes']) ===
-						JSON.stringify(newItemValues)
+					cartItem.name === id &&
+					JSON.stringify(cartItem.attributes) === JSON.stringify(newItemValues)
 			);
 			//if item exists
 			if (existingItem) {
-				existingItem['quantity'].quantity++;
+				// existingItem['quantity'].quantity++;
+				// existingItem.attributes = items;
+				existingItem.quantity.quantity++;
 			} else {
 				let newCartItem = {
 					name: id,
 					attributes: newItemValues,
+					// attributes: items,
 					quantity: { quantity: 1 },
 					brand: brand,
 					gallery,

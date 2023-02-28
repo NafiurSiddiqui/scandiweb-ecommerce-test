@@ -112,11 +112,26 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 		acc[key] = mappedAttItems[index];
 		return acc;
 	}, {});
+	// const attributes = attID?.reduce((acc, key, index) => {
+	// 	acc[key] = mappedAttItems[index];
+	// 	return acc;
+	// }, []);
+
+	let items = [];
+
+	for (const att in attributes) {
+		const itemObj = {
+			name: att,
+			values: attributes[att],
+		};
+
+		items.push(itemObj);
+	}
 
 	if (!attributes) {
 		return;
 	} else {
-		const items = Object.entries(attributes);
+		// const items = Object.entries(attributes);
 		// const userItems = [productID, items, { quantity: 0 }];
 		// const userItems = [
 		// 	PDP[0].name,
@@ -130,6 +145,7 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 		const userItems = {
 			name: PDP[0].name,
 			attributes: items,
+			// attributes: attributes,
 			quantity: { quantity: 0 },
 			brand: PDP[0].brand,
 			gallery: PDP[0].gallery,
