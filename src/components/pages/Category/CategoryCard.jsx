@@ -35,7 +35,10 @@ class CategoryCard extends Component {
 		return (
 			<li className={'category-item'} key={index}>
 				<div className="category-item-wrapper">
-					<div className={'category-item__image-wrapper'}>
+					<div
+						className={'category-item__image-wrapper'}
+						onClick={() => getProductID(productID)}
+					>
 						<Link to={'/ProductDescription'}>
 							<div
 								className={'category-item__image-wrapper__image'}
@@ -43,13 +46,9 @@ class CategoryCard extends Component {
 									backgroundImage: `url(${image})`,
 									...this.style,
 								}}
-								onClick={() => getProductID(productID)}
 							></div>
 							{!inStock ? (
-								<span
-									className={'category-item__image-wrapper-outOfStock'}
-									onClick={() => getProductID(productID)}
-								>
+								<span className={'category-item__image-wrapper-outOfStock'}>
 									OUT OF STOCK
 								</span>
 							) : null}

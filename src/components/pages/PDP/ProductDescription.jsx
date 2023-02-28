@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import DescriptionCard from '../../UI/DescriptionCard';
 import { connect } from 'react-redux';
-import { GET_ALL_CATEGORIES } from '../Category/CategoryList';
 import { Query } from '@apollo/client/react/components';
 import ProgressiveImage from '../../Utilities/ProgressiveImage';
-import productHandler, {
-	attHandler,
-	cartItemHandler,
-} from '../../Utilities/ProductHandler';
+import { attHandler } from '../../Utilities/ProductHandler';
 import { Navigate } from 'react-router-dom';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import { GET_PRODUCTS_BY_ID } from '../../Utilities/query';
-import { userCurrency } from '../../Utilities/userCurrency';
 
 /**
  * @className - 'PDP' = product description
@@ -29,6 +24,10 @@ class ProductDescription extends Component {
 		};
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
+	}
+
+	componentDidMount() {
+		console.log('mounts on request');
 	}
 
 	//PARSE HTML
@@ -54,8 +53,8 @@ class ProductDescription extends Component {
 	}
 
 	render() {
-		const { productID, selectedCurrency } = this.props;
-		console.log(productID);
+		const { productID } = this.props;
+
 		if (!productID) {
 			return <Navigate to={'/'} />;
 		} else {
@@ -66,8 +65,6 @@ class ProductDescription extends Component {
 						if (loading || !data) return <Skeleton />;
 
 						const product = data.product;
-
-						console.log(data);
 
 						let productObj = {
 							name: product.name,
