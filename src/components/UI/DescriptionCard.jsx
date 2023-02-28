@@ -88,7 +88,7 @@ class DescriptionCard extends Component {
 		this.setState((prevState) => {
 			const updatedItems = prevState.items?.map((item, index) => {
 				if (index === itemIndex) {
-					const updatedCheck = item?.values?.map((btn, isCheckIndex) => {
+					const updatedCheck = item?.values.map((btn, isCheckIndex) => {
 						if (isCheckIndex === btnIndex) {
 							return { ...btn, isChecked: true };
 						} else {
@@ -96,7 +96,7 @@ class DescriptionCard extends Component {
 						}
 					});
 
-					return [item['name'], updatedCheck];
+					return { name: item.name, values: updatedCheck };
 				}
 				return item;
 			});
@@ -151,13 +151,12 @@ class DescriptionCard extends Component {
 					</h3>
 				</div>
 				{items ? (
-					items?.map((item, itemIndex) => {
+					items.map((item, itemIndex) => {
 						return (
 							<AttributeItem
 								itemIndex={itemIndex}
-								attHeader={item['name']}
-								attributesItem={item['values']}
-								// attributes={attributes}
+								attHeader={item?.name}
+								attributesItem={item?.values}
 								key={itemIndex}
 								className={className}
 								updateItems={this.updateItems}

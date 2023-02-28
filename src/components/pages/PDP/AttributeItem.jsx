@@ -13,29 +13,33 @@ class AttributeItem extends Component {
 	}
 
 	componentDidMount() {
-		const { attributesItem, attHeader } = this.props;
+		const { attributesItem, attHeader, attributes } = this.props;
 
-		// console.log(attributesItem);
+		console.log(attributes);
 		this.setState({
 			attributesItem: attributesItem,
+			// attributesItem: this.state.attributesItem.push(attributes),
 			attHeader: attHeader,
+			// attHeader: attributes?.name,
 		});
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.attributesItem !== this.props.attributesItem) {
+			// console.log(this.props.attributes[0][1]);
+			console.log(this.props.attributesItem);
+			this.setState({
+				attributesItem: this.props.attributesItem,
+			});
+		}
+	}
+
 	render() {
-		const {
-			itemIndex,
-			// attHeader,
-			cartPage,
-			className,
-			updateItems,
-			miniCart,
-			// attributesItem,
-		} = this.props;
+		const { itemIndex, cartPage, className, updateItems, miniCart } =
+			this.props;
 
 		const { attributesItem, attHeader } = this.state;
 
-		// console.log(attHeader);
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>
 				<li key={attHeader} className={`${className}__attribution`}>
@@ -48,6 +52,7 @@ class AttributeItem extends Component {
 					<ul className={`pd__attribution__items`}>
 						{attributesItem ? (
 							attributesItem?.map((item, btnIndex) => {
+								console.log(item);
 								return (
 									<AttributesBtn
 										key={btnIndex}

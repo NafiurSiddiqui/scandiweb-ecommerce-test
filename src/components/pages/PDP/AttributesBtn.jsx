@@ -31,7 +31,7 @@ class AttributesBtn extends Component {
 		if (miniCart === true) {
 			return;
 		}
-		console.log('does');
+
 		//update item isChecked based on these indexes
 		updateItems(itemIndex, btnIndex);
 	}
