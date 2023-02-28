@@ -160,7 +160,6 @@ class DescriptionCard extends Component {
 								key={itemIndex}
 								className={className}
 								updateItems={this.updateItems}
-								// productID={productID}
 								miniCart={miniCart}
 								cartPage={cartPage}
 							/>
