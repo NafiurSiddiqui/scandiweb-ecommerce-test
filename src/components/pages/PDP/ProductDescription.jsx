@@ -55,7 +55,7 @@ class ProductDescription extends Component {
 
 	render() {
 		const { productID, selectedCurrency } = this.props;
-
+		console.log(productID);
 		if (!productID) {
 			return <Navigate to={'/'} />;
 		} else {
@@ -66,6 +66,8 @@ class ProductDescription extends Component {
 						if (loading || !data) return <Skeleton />;
 
 						const product = data.product;
+
+						console.log(data);
 
 						let productObj = {
 							name: product.name,

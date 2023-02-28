@@ -51,6 +51,7 @@ class App extends Component {
 						return <Skeleton />;
 					}
 
+					console.log(data);
 					return (
 						<>
 							<section>
