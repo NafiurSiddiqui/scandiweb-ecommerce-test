@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
 	cartQuantityHandler,
+	cartTotalHandler,
 	decrementItem,
 	incrementItem,
 } from '../../store/cartSlice';
@@ -26,31 +27,24 @@ class CartItem extends Component {
 
 		this.state = {
 			imageCount: 0,
-			// itemPrice: 0, //CAPTURE THE PRICE OF THE PRODUCT HERE [QUERY]
+			itemPrice: 0, //CAPTURE THE PRICE OF THE PRODUCT HERE [QUERY]
 			brand: '',
 			name: '',
 			attributes: [],
 			gallery: [],
-			price: null,
+			// price: null,
 			quantity: null,
 			inStock: null,
 			// cartItem: {},
 		};
 		this.incrementCount = this.incrementCount.bind(this);
 		this.decrementCount = this.decrementCount.bind(this);
+		this.setItemPriceHandler = this.setItemPriceHandler.bind(this);
 	}
 
 	componentDidMount() {
-		const { cartItem, products, selectedCurrency } = this.props;
-
-		// const itemObj = {
-		// 	name: cartItem[0],
-		// 	attributes: cartItem[1],
-		// 	brand: cartItem[3],
-		// 	gallery: cartItem[4],
-		// 	prices: cartItem[5],
-		// 	inStock: cartItem[6],
-		// };
+		const { cartItem, products, selectedCurrency, cartTotalHandler } =
+			this.props;
 
 		this.setState({
 			// itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
@@ -58,17 +52,16 @@ class CartItem extends Component {
 			name: cartItem?.name,
 			attributes: cartItem?.attributes,
 			gallery: cartItem?.gallery,
-			price: {
-				// currency: cartItem?.price[0].currency.label,
-				// symbol: cartItem?.price[0].currency.symbol,
-				// amount: cartItem?.price[0].amount,
-			},
+			// price: {
+			// 	// currency: cartItem?.price[0].currency.label,
+			// 	// symbol: cartItem?.price[0].currency.symbol,
+			// 	// amount: cartItem?.price[0].amount,
+			// },
 			inStock: cartItem?.inStock,
 			quantity: cartItem?.quantity.quantity,
-			// cartItem: itemObj,
 		});
-
-		// this.props.itemPriceHandler(PDP[0].amount);
+		// console.log(cartItem);
+		// this.props.cumulativePriceHandler(cartItem.price.amount);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -87,7 +80,7 @@ class CartItem extends Component {
 				quantity: quantity,
 			});
 
-			// this.props.itemPriceHandler(PDP[0].amount * quantity, itemIndex, true); //may not need this, amount = state.itemPrice now
+			// this.props.cumulativePriceHandler(PDP[0].amount * quantity, itemIndex, true);
 			this.props.cartQuantityHandler();
 		}
 	}
@@ -108,6 +101,12 @@ class CartItem extends Component {
 		});
 	}
 
+	setItemPriceHandler(price) {
+		this.setState({
+			itemPrice: price,
+		});
+	}
+
 	render() {
 		const {
 			cartItem,
@@ -119,8 +118,9 @@ class CartItem extends Component {
 			productID,
 		} = this.props;
 
-		const { imageCount, attributes, gallery, price, quantity } = this.state;
+		const { imageCount, attributes, gallery, quantity, itemPrice } = this.state;
 
+		console.log(itemPrice);
 		let imageLength = gallery.length;
 
 		let btnGuardRight = {
@@ -145,6 +145,7 @@ class CartItem extends Component {
 					quantity={quantity}
 					cartPage={cartPage}
 					prices={cartItem.prices}
+					setItemPriceHandler={this.setItemPriceHandler}
 				/>
 
 				<div

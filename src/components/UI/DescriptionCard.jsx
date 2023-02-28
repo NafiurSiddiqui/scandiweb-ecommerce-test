@@ -33,7 +33,7 @@ class DescriptionCard extends Component {
 	}
 
 	componentDidMount() {
-		const { prices, selectedCurrency } = this.props;
+		const { prices, selectedCurrency, setItemPriceHandler } = this.props;
 		const { attributes } = this.props.product;
 
 		let selectedUserCurrency = userCurrency(prices, selectedCurrency, true);
@@ -43,10 +43,12 @@ class DescriptionCard extends Component {
 			itemCurrency: selectedUserCurrency,
 			itemPrice: selectedUserCurrency.amount,
 		});
+		//captures in the parent for accumulation
+		setItemPriceHandler(selectedUserCurrency.amount);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { selectedCurrency } = this.props;
+		const { selectedCurrency, setItemPriceHandler } = this.props;
 		const { prices } = this.props?.product;
 
 		let selectedUserCurrency = userCurrency(prices, selectedCurrency, true);
@@ -58,6 +60,7 @@ class DescriptionCard extends Component {
 					amount: this.updateItemPrice(),
 				},
 			}));
+			setItemPriceHandler(this.updateItemPrice());
 		}
 
 		if (prevProps.selectedCurrency?.currency !== selectedCurrency?.currency) {

@@ -5,12 +5,6 @@ import { getProductID } from '../../store/productsSlice';
 import { Link } from 'react-router-dom';
 import { userCurrency } from '../../Utilities/userCurrency';
 
-/**
- * @STATE -
- * TotalCartItem
-
- */
-
 class CategoryCard extends Component {
 	constructor(props) {
 		super(props);

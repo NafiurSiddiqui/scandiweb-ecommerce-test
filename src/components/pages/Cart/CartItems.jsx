@@ -11,11 +11,11 @@ class CartItems extends Component {
 		this.state = {
 			itemPrices: [],
 		};
-		this.itemPriceHandler = this.itemPriceHandler.bind(this);
+		this.cumulativePriceHandler = this.cumulativePriceHandler.bind(this);
 	}
 
-	//!👇 Prolly i dont need this since i am calculating the price from the store.
-	itemPriceHandler(price, itemIndex, update = false) {
+	//To gather each cartItems price here
+	cumulativePriceHandler(price, itemIndex, update = false) {
 		if (update) {
 			this.setState((prevState) => {
 				let updatedPrices = [...prevState.itemPrices];
@@ -60,7 +60,7 @@ class CartItems extends Component {
 
 	render() {
 		const { cartItems, cartPage } = this.props;
-
+		console.log(this.state.itemPrices);
 		return (
 			<ul className="cart-items">
 				{cartItems.map((item, i) => {
@@ -68,7 +68,7 @@ class CartItems extends Component {
 						<CartItem
 							key={item.name}
 							cartItem={item}
-							itemPriceHandler={this.itemPriceHandler}
+							cumulativePriceHandler={this.cumulativePriceHandler}
 							itemIndex={i}
 							cartPage={cartPage}
 						/>

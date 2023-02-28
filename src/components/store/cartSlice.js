@@ -112,10 +112,8 @@ export const cartSlice = createSlice({
 		},
 		cartTotalHandler: (state, action) => {
 			let price = action.payload;
-
 			if (price !== 0) {
 				let total = price.reduce((acc, cur) => acc + cur, 0);
-
 				state.cartTotal = roundToTwoDecimalPlaces(total);
 			} else {
 				state.cartTotal = 0.0;
