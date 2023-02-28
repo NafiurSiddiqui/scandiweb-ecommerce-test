@@ -106,30 +106,15 @@ class DescriptionCard extends Component {
 
 	cartItemHandler() {
 		const { items, selectedTitle } = this.state;
-		const { addItemToCart, product } = this.props;
+		const { addItemToCart, product, cartQuantityHandler } = this.props;
 
-		console.log(product);
+		//gets the new & updated attributes
+		product.attributes = items;
+		//to make an array for store
+		let userCartItem = [product];
 
-		//! MUST DEFINE NEW DS
-		// let userItems = [selectedTitle, items, { quantity: 0 }];
-
-		// let userCartItem = [product];
-
-		const mappedItems = product.attributes.map((item) =>
-			item['values'].map((item) => item.isChecked)
-		);
-		//checks if any of the attributes has not been selected
-		const itemsNotChecked = mappedItems.some((items) =>
-			items.every((item) => item === false)
-		);
-		//alert if items are unchecked
-		if (itemsNotChecked) {
-			alert('Please select at least one option');
-		} else {
-			// addItemToCart(userCartItem);
-			addItemToCart(product);
-			this.props.cartQuantityHandler();
-		}
+		addItemToCart(userCartItem);
+		cartQuantityHandler();
 	}
 
 	render() {

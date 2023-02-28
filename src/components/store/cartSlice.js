@@ -27,26 +27,13 @@ export const cartSlice = createSlice({
 			const gallery = action.payload.gallery;
 			const prices = action.payload.prices;
 			const inStock = action.payload.inStock;
-			console.log(id);
+
 			let newItemValues = [];
 
-			//Adding user check to the attributes
-			// items.forEach((item) => {
-			// 	if (Array.isArray(item[1])) {
-			// 		let subItemValues = [];
-			// 		item[1].forEach((subitem) => {
-			// 			if (subitem.hasOwnProperty('value')) {
-			// 				subItemValues.push({
-			// 					value: subitem.value,
-			// 					isChecked: subitem.isChecked,
-			// 				});
-			// 			}
-			// 		});
-			// 		newItemValues.push({ name: item[0], values: subItemValues });
-			// 	}
-			// });
+			//Adding user selection to the attributes
 			items.forEach((item) => {
-				if (Array.isArray(item.attributes)) {
+				console.log(item);
+				if (Array.isArray(item[1])) {
 					let subItemValues = [];
 					item[1].forEach((subItem) => {
 						if (subItem.hasOwnProperty('value')) {
