@@ -27,15 +27,14 @@ class CartItem extends Component {
 
 		this.state = {
 			imageCount: 0,
-			itemPrice: 0, //CAPTURE THE PRICE OF THE PRODUCT HERE [QUERY]
+			itemPrice: 0,
 			brand: '',
 			name: '',
 			attributes: [],
 			gallery: [],
-			// price: null,
+
 			quantity: null,
 			inStock: null,
-			// cartItem: {},
 		};
 		this.incrementCount = this.incrementCount.bind(this);
 		this.decrementCount = this.decrementCount.bind(this);
@@ -47,16 +46,11 @@ class CartItem extends Component {
 			this.props;
 
 		this.setState({
-			// itemPrice: PDP[0].amount, //SET THE ITEM PRICE HERE.
 			brand: cartItem?.brand,
 			name: cartItem?.name,
 			attributes: cartItem?.attributes,
 			gallery: cartItem?.gallery,
-			// price: {
-			// 	// currency: cartItem?.price[0].currency.label,
-			// 	// symbol: cartItem?.price[0].currency.symbol,
-			// 	// amount: cartItem?.price[0].amount,
-			// },
+
 			inStock: cartItem?.inStock,
 			quantity: cartItem?.quantity.quantity,
 		});
