@@ -72,7 +72,6 @@ export const cartSlice = createSlice({
 			const id = action.payload['name'];
 			const attributes = action.payload['attributes'];
 
-			console.log(action.payload);
 			let existingItem = cartItems.find(
 				(cartItem) =>
 					cartItem['name'] === id &&

@@ -77,12 +77,8 @@ class CartItem extends Component {
 		}
 
 		if (prevState.itemPrice !== this.state.itemPrice) {
-			// console.log('itemPrice set');
-			// console.log(this.state.itemPrice);
-			this.props.cumulativePriceHandler(this.state.itemPrice);
+			this.props.cumulativePriceHandler(this.state.itemPrice, itemIndex, true);
 		}
-
-		// console.log(prevState);
 	}
 
 	componentWillUnmount() {
