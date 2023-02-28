@@ -56,12 +56,13 @@ class AttributesBtn extends Component {
 						item === 'Green'
 							? '#0F6450'
 							: item === 'White'
-							? '#D3D2D5'
+							? '#ffffff'
 							: item === 'Black'
 							? '#2B2B2B'
 							: item,
 					minWidth: miniCart ? '1.1rem' : '2.5rem',
 					border: 'none',
+					boxShadow: '0px 0px 3px 0px rgb(142 142 142 / 50%)',
 			  }
 			: !colorSwatch && itemIsChecked
 			? { backgroundColor: '#1D1F22', color: 'white' }

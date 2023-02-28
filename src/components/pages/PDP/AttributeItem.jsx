@@ -48,11 +48,11 @@ class AttributeItem extends Component {
 					<ul className={`pd__attribution__items`}>
 						{attributesItem ? (
 							attributesItem?.map((item, btnIndex) => {
-								console.log(item);
 								return (
 									<AttributesBtn
 										key={btnIndex}
 										item={item.value}
+										attHeader={attHeader}
 										className={className}
 										btnIndex={btnIndex}
 										itemIndex={itemIndex}
