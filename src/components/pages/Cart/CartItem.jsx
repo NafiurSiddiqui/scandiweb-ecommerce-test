@@ -32,7 +32,6 @@ class CartItem extends Component {
 			name: '',
 			attributes: [],
 			gallery: [],
-
 			quantity: null,
 			inStock: null,
 		};
@@ -50,20 +49,19 @@ class CartItem extends Component {
 			name: cartItem?.name,
 			attributes: cartItem?.attributes,
 			gallery: cartItem?.gallery,
-
 			inStock: cartItem?.inStock,
 			quantity: cartItem?.quantity.quantity,
 		});
 		// console.log(cartItem);
-		// this.props.cumulativePriceHandler(cartItem.price.amount);
+		// this.props.cumulativePriceHandler();
+		// console.log(this.state.itemPrice);
 	}
 
-	componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps, prevState) {
 		const { cartItem, products, selectedCurrency, itemIndex } = this.props;
 
 		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
 
-		// const quantity = cartItem[2].quantity;
 		const { quantity } = cartItem.quantity;
 
 		const prevPropQt = prevProps.cartItem.quantity.quantity;
@@ -77,6 +75,14 @@ class CartItem extends Component {
 			// this.props.cumulativePriceHandler(PDP[0].amount * quantity, itemIndex, true);
 			this.props.cartQuantityHandler();
 		}
+
+		if (prevState.itemPrice !== this.state.itemPrice) {
+			// console.log('itemPrice set');
+			// console.log(this.state.itemPrice);
+			this.props.cumulativePriceHandler(this.state.itemPrice);
+		}
+
+		// console.log(prevState);
 	}
 
 	componentWillUnmount() {
@@ -114,7 +120,7 @@ class CartItem extends Component {
 
 		const { imageCount, attributes, gallery, quantity, itemPrice } = this.state;
 
-		console.log(itemPrice);
+		// console.log(itemPrice);
 		let imageLength = gallery.length;
 
 		let btnGuardRight = {
