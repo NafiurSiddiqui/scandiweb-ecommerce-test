@@ -21,32 +21,15 @@ class MiniCartIcon extends Component {
 	}
 
 	addToCartHandler(e) {
-		const {
-			products,
-			productID,
-			addItemToCart,
-			selectedCurrency,
-			inStock,
-			attributes,
-		} = this.props;
-
-		// console.log(productID);
+		const { products, productID, addItemToCart, selectedCurrency, inStock } =
+			this.props;
 
 		//if cartIcon is from header
 		const classGuard = e.target.classList[0] === 'header-cart__cart';
 
-		// if (!attributes || !productID) return;
 		if (!products || !productID) return;
 
-		// const [...userItems] = productHandler(
-		// 	products,
-		// 	productID,
-		// 	selectedCurrency
-		// );
-
 		const userItems = cartItemHandler(products, productID, selectedCurrency);
-
-		// const userItems = [productID, attributes, { quantity: 0 }];
 
 		if (classGuard) {
 			//cartIcon won't follow this function.

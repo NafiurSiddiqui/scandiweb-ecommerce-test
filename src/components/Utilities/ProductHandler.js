@@ -1,8 +1,6 @@
 /**
  *
  * @param {obj} products
- * @param {string} productID
- * @param {string} selectedCurrency
  * @returns
  */
 
@@ -24,8 +22,6 @@ export const attHandler = (att) => {
 		return acc;
 	}, {});
 
-	// const items = Object.entries(attributes);
-
 	let items = [];
 
 	for (const att in attributes) {
@@ -37,12 +33,18 @@ export const attHandler = (att) => {
 		items.push(itemObj);
 	}
 
-	// return attributes;
-
 	return items;
 };
 
-export function cartItemHandler(products, productID, selectedCurrency, single) {
+/**
+ *@cartItemHandler -
+ * @param {object} products
+ * @param {string} productID
+ * @param {boolean} single
+ * @returns
+ */
+
+export function cartItemHandler(products, productID, single) {
 	let PDP;
 
 	if (!single) {
@@ -68,7 +70,6 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 		});
 		// return PDP;
 	} else {
-		console.log('single product');
 		PDP = products?.map((item) => {
 			return {
 				brand: item.brand,
@@ -85,8 +86,6 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 				inStock: item.inStock,
 			};
 		});
-
-		// return PDP;
 	}
 
 	//gallery overFlow guard
@@ -104,10 +103,6 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 		acc[key] = mappedAttItems[index];
 		return acc;
 	}, {});
-	// const attributes = attID?.reduce((acc, key, index) => {
-	// 	acc[key] = mappedAttItems[index];
-	// 	return acc;
-	// }, []);
 
 	let items = [];
 
@@ -123,21 +118,9 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 	if (!attributes) {
 		return;
 	} else {
-		// const items = Object.entries(attributes);
-		// const userItems = [productID, items, { quantity: 0 }];
-		// const userItems = [
-		// 	PDP[0].name,
-		// 	items,
-		// 	{ quantity: 0 },
-		// 	PDP[0].brand,
-		// 	PDP[0].gallery,
-		// 	PDP[0].prices,
-		// 	PDP[0].inStock,
-		// ];
 		const userItems = {
 			name: PDP[0].name,
 			attributes: items,
-			// attributes: attributes,
 			quantity: { quantity: 0 },
 			brand: PDP[0].brand,
 			gallery: PDP[0].gallery,

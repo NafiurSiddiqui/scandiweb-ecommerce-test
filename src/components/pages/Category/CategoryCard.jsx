@@ -29,8 +29,7 @@ class CategoryCard extends Component {
 			currencySymbol,
 			products,
 		} = this.props;
-		// userCurrency();
-		// console.log(productID);
+
 		return (
 			<li className={'category-item'} key={index}>
 				<div className="category-item-wrapper">
