@@ -5,9 +5,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import Skeleton from '../../Layout/skeleton';
 
-const CategoryAll = lazy(() => import('./CategoryAll'));
-const CategoryClothes = lazy(() => import('./Clothes'));
-const CategoryTech = lazy(() => import('./Tech'));
+// const CategoryAll = lazy(() => import('./CategoryAll'));
+// const CategoryClothes = lazy(() => import('./Clothes'));
+// const CategoryTech = lazy(() => import('./Tech'));
 
 export const GET_ALL_CATEGORIES = gql`
 	query {
@@ -48,10 +48,10 @@ class CategoryList extends Component {
 			<ContentWrapper>
 				<Suspense fallback={<Skeleton style={{ display: 'block' }} />}>
 					<Routes>
-						<Route path="/" element={<CategoryAll />} />
+						{/* <Route path="/" element={<CategoryAll />} />
 						<Route path="clothes" element={<CategoryClothes />} />
 						<Route path="tech" element={<CategoryTech />} />
-						<Route path="*" element={<Navigate to={'/'} />} />
+						<Route path="*" element={<Navigate to={'/'} />} /> */}
 					</Routes>
 				</Suspense>
 			</ContentWrapper>

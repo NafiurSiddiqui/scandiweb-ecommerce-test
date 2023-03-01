@@ -36,7 +36,7 @@ class Categories extends Component {
 	}
 
 	render() {
-		const { selectedCurrency, products, currentPath } = this.props;
+		const { selectedCurrency, currentPath } = this.props;
 
 		const queryTerm = currentPath.replace('/', '');
 
@@ -51,7 +51,7 @@ class Categories extends Component {
 					if (loading || !data) return <Skeleton />;
 
 					const products = data.category.products;
-					// console.log(products);
+
 					const matchedUserPrice = userCurrency(
 						products,
 						selectedCurrency,
@@ -82,7 +82,6 @@ class Categories extends Component {
 											currencySymbol={selectedCurrency?.symbol}
 											inStock={product.stock}
 											productID={p.id}
-											// attributes={attributes}
 											products={products}
 										/>
 									);
@@ -99,7 +98,6 @@ class Categories extends Component {
 export const mapStateToProps = (state) => {
 	return {
 		productIDState: state.category,
-		products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
 		currentPath: state.path.currentPath,
 	};

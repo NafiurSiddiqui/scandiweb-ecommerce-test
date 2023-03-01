@@ -8,11 +8,7 @@ import Skeleton from './components/Layout/skeleton';
 import Cart from './components/pages/Cart/Cart';
 import MiniCart from './components/pages/Cart/MiniCart';
 import Categories from './components/pages/Category/Categories';
-import CategoryList, {
-	GET_ALL_CATEGORIES,
-} from './components/pages/Category/CategoryList';
-import CategoryClothes from './components/pages/Category/Clothes';
-import CategoryTech from './components/pages/Category/Tech';
+import { GET_ALL_CATEGORIES } from './components/pages/Category/CategoryList';
 import ProductDescription from './components/pages/PDP/ProductDescription';
 import { getProductID, setProducts } from './components/store/productsSlice';
 import DisplayMessage from './components/Utilities/DisplayMessage';
@@ -24,20 +20,11 @@ class App extends Component {
 		}
 	}
 
-	//Get products
-	// getProductsHandler(el) {
-	// 	this.props.setProducts(el);
-	// }
-
 	render() {
 		let { miniCartIsOpen, rootModal } = this.props;
 
 		return (
-			<Query
-				query={GET_ALL_CATEGORIES}
-				// onCompleted={(data) => this.getProductsHandler(data.category.products)}
-				variables={{ category: 'all' }}
-			>
+			<Query query={GET_ALL_CATEGORIES} variables={{ category: 'all' }}>
 				{({ error, loading, data }) => {
 					if (error) return <DisplayMessage error={error} />;
 
@@ -55,19 +42,13 @@ class App extends Component {
 									tabIndex={miniCartIsOpen ? '-1' : '0'}
 								>
 									<Routes>
-										{/* <Route path="*" element={<CategoryList />} /> */}
 										<Route path="*" element={<Categories />} />
-
 										<Route
 											path="/ProductDescription"
 											element={<ProductDescription />}
 										/>
-										{/* <Route path="/tech" element={<CategoryTech />} />
-										<Route path="/clothes" element={<CategoryClothes />} /> */}
 										<Route path="/Cart" element={<Cart />} />
 									</Routes>
-
-									{/* <Categories /> */}
 								</main>
 							</section>
 						</>

@@ -28,19 +28,6 @@ class ProductDescription extends Component {
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
 	}
 
-	componentDidMount() {
-		console.log('mounts');
-	}
-
-	//PARSE HTML
-	HTMLparser(text) {
-		const parser = new DOMParser();
-		const testDOC = parser.parseFromString(text, 'text/html');
-
-		let parsedText = testDOC.documentElement.textContent;
-		return parsedText;
-	}
-
 	//IMAGE GALLERY
 	selectedImgSrcHandler(src) {
 		this.setState({
@@ -62,7 +49,6 @@ class ProductDescription extends Component {
 		const { productID } = this.props;
 
 		if (!productID) {
-			console.log('no id');
 			return <Navigate to={'/'} />;
 		} else {
 			return (
@@ -76,7 +62,7 @@ class ProductDescription extends Component {
 						if (loading || !data) return <Skeleton />;
 
 						const product = data.product;
-						console.log(product);
+
 						let productObj = {
 							name: product.name,
 							attributes: attHandler(product.attributes),
@@ -151,8 +137,7 @@ class ProductDescription extends Component {
 												  }
 										}
 									>
-										{this.HTMLparser(productObj.description) ||
-											'something went wrong'}
+										{productObj.description}
 									</p>
 								</article>
 							</section>
@@ -167,7 +152,6 @@ class ProductDescription extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productID: state.products.productID,
-		// products: state.products,
 		selectedCurrency: state.currency.selectedCurrency,
 	};
 };
