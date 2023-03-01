@@ -2,24 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
 	cartQuantityHandler,
-	cartTotalHandler,
 	decrementItem,
 	incrementItem,
 } from '../../store/cartSlice';
 import DescriptionCard from '../../UI/DescriptionCard';
-import productHandler, {
-	cartItemHandler,
-} from '../../Utilities/ProductHandler';
+
 import CartQuantitiy from './CartQuantitiy';
-
-import { Query } from '@apollo/client/react/components';
-import { GET_PRODUCTS_BY_ID } from '../../Utilities/query';
-import DisplayMessage from '../../Utilities/DisplayMessage';
-import Skeleton from '../../Layout/skeleton';
-
-/**
- * @cartItem = ['productID', [items]]
- */
 
 class CartItem extends Component {
 	constructor(props) {
@@ -41,8 +29,7 @@ class CartItem extends Component {
 	}
 
 	componentDidMount() {
-		const { cartItem, products, selectedCurrency, cartTotalHandler } =
-			this.props;
+		const { cartItem } = this.props;
 
 		this.setState({
 			brand: cartItem?.brand,
@@ -52,15 +39,10 @@ class CartItem extends Component {
 			inStock: cartItem?.inStock,
 			quantity: cartItem?.quantity.quantity,
 		});
-		// console.log(cartItem);
-		// this.props.cumulativePriceHandler();
-		// console.log(this.state.itemPrice);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { cartItem, products, selectedCurrency, itemIndex } = this.props;
-
-		// const [PDP] = productHandler(products, cartItem[0], selectedCurrency);
+		const { cartItem, itemIndex } = this.props;
 
 		const { quantity } = cartItem.quantity;
 
@@ -104,17 +86,9 @@ class CartItem extends Component {
 	}
 
 	render() {
-		const {
-			cartItem,
-			incrementItem,
-			decrementItem,
-			products,
-			selectedCurrency,
-			cartPage,
-			productID,
-		} = this.props;
+		const { cartItem, incrementItem, decrementItem, cartPage } = this.props;
 
-		const { imageCount, attributes, gallery, quantity, itemPrice } = this.state;
+		const { imageCount, attributes, gallery, quantity } = this.state;
 
 		// console.log(itemPrice);
 		let imageLength = gallery.length;

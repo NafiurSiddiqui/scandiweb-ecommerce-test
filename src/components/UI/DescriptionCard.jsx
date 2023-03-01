@@ -105,15 +105,12 @@ class DescriptionCard extends Component {
 	}
 
 	cartItemHandler() {
-		const { items, selectedTitle } = this.state;
+		const { items } = this.state;
 		const { addItemToCart, product, cartQuantityHandler } = this.props;
 
 		//gets the new & updated attributes
 		product.attributes = items;
-		//to make an array for store
-		// let userCartItem = [product];
 
-		// addItemToCart(userCartItem);
 		addItemToCart(product);
 		cartQuantityHandler();
 	}

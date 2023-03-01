@@ -14,9 +14,10 @@ class CartItems extends Component {
 		this.cumulativePriceHandler = this.cumulativePriceHandler.bind(this);
 	}
 
-	//To gather each cartItems price here
+	//gather each cartItems price here
 	cumulativePriceHandler(price, itemIndex, update = false) {
 		if (update) {
+			//update the changes to the right position
 			this.setState((prevState) => {
 				let updatedPrices = [...prevState.itemPrices];
 				updatedPrices[itemIndex] = price;
@@ -27,7 +28,7 @@ class CartItems extends Component {
 
 			return;
 		}
-
+		//set the prices
 		this.setState((prevState) => ({
 			itemPrices: [...prevState.itemPrices, price],
 		}));
@@ -40,6 +41,7 @@ class CartItems extends Component {
 		}
 
 		if (prevProps.cartItems.length !== this.props.cartItems.length) {
+			//removes the item price
 			let removedItemIndex = prevProps.cartItems.findIndex(
 				(item) => !this.props.cartItems.includes(item)
 			);
