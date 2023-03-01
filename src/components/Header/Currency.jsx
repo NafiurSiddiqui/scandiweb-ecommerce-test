@@ -19,7 +19,6 @@ class Currency extends Component {
 
 		this.currencyStateHandler = this.currencyStateHandler.bind(this);
 		this.selectedCurrencyHandler = this.selectedCurrencyHandler.bind(this);
-		this.setStateCurrency = this.setStateCurrency.bind(this);
 	}
 
 	//toggle currency dropdown menu on click outside
@@ -47,10 +46,7 @@ class Currency extends Component {
 		const currencyState = currencyIsOpen ? 'visible' : '';
 
 		return (
-			<Query
-				query={GET_CURRENCIES}
-				onCompleted={(data) => this.setStateCurrency(data)}
-			>
+			<Query query={GET_CURRENCIES}>
 				{({ error, loading, data }) => {
 					if (error) return <DisplayMessage error={error} />;
 					if (loading || !data) return <Skeleton />;

@@ -8,7 +8,7 @@ import Skeleton from './components/Layout/skeleton';
 import Cart from './components/pages/Cart/Cart';
 import MiniCart from './components/pages/Cart/MiniCart';
 import Categories from './components/pages/Category/Categories';
-import { GET_ALL_CATEGORIES } from './components/pages/Category/CategoryList';
+import { GET_ALL_CATEGORIES } from './components/Utilities/query';
 import ProductDescription from './components/pages/PDP/ProductDescription';
 import { getProductID, setProducts } from './components/store/productsSlice';
 import DisplayMessage from './components/Utilities/DisplayMessage';

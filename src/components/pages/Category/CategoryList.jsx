@@ -9,38 +9,38 @@ import Skeleton from '../../Layout/skeleton';
 // const CategoryClothes = lazy(() => import('./Clothes'));
 // const CategoryTech = lazy(() => import('./Tech'));
 
-export const GET_ALL_CATEGORIES = gql`
-	query {
-		category {
-			products {
-				category
-				id
-				name
-				inStock
-				gallery
-				description
-				attributes {
-					id
-					name
-					type
-					items {
-						displayValue
-						value
-						id
-					}
-				}
-				prices {
-					currency {
-						label
-						symbol
-					}
-					amount
-				}
-				brand
-			}
-		}
-	}
-`;
+// export const GET_ALL_CATEGORIES = gql`
+// 	query {
+// 		category {
+// 			products {
+// 				category
+// 				id
+// 				name
+// 				inStock
+// 				gallery
+// 				description
+// 				attributes {
+// 					id
+// 					name
+// 					type
+// 					items {
+// 						displayValue
+// 						value
+// 						id
+// 					}
+// 				}
+// 				prices {
+// 					currency {
+// 						label
+// 						symbol
+// 					}
+// 					amount
+// 				}
+// 				brand
+// 			}
+// 		}
+// 	}
+// `;
 
 class CategoryList extends Component {
 	render() {
