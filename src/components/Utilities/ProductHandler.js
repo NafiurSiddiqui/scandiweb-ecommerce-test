@@ -12,7 +12,7 @@ export const attHandler = (att) => {
 	//converted attributes
 	const attID = att?.map((item) => item.id);
 
-	const attItems = att?.map((item) => item.items.map((item) => item.id));
+	const attItems = att?.map((item) => item.items.map((item) => item.value));
 
 	//default values set
 	const mappedAttItems = attItems?.map((itemT) =>
@@ -58,16 +58,9 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 				gallery: item.gallery,
 				attributesID: item.attributes.map((item) => item.id),
 				attributesItem: item.attributes.map((item) =>
-					item.items.map((item) => item.id)
+					item.items.map((item) => item.value)
 				),
-				// prices: item?.prices?.filter((item) => {
-				// 	if (selectedCurrency !== null) {
-				// 		return item.currency.label === selectedCurrency?.currency;
-				// 	} else {
-				// 		return item.currency.label === 'USD';
-				// 	}
-				// }),
-				// price: userCurrency(products, selectedCurrency, false),
+
 				prices: item.prices,
 				get amount() {
 					return this.prices[0].amount;
@@ -77,6 +70,7 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 		});
 		// return PDP;
 	} else {
+		console.log('single product');
 		PDP = products?.map((item) => {
 			return {
 				brand: item.brand,
@@ -84,7 +78,7 @@ export function cartItemHandler(products, productID, selectedCurrency, single) {
 				gallery: item.gallery,
 				attributesID: item.attributes.map((item) => item.id),
 				attributesItem: item.attributes.map((item) =>
-					item.items.map((item) => item.id)
+					item.items.map((item) => item.value)
 				),
 				prices: item.prices,
 				get amount() {

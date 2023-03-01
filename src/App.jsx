@@ -18,12 +18,6 @@ import { getProductID, setProducts } from './components/store/productsSlice';
 import DisplayMessage from './components/Utilities/DisplayMessage';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-
-		// this.getProductsHandler = this.getProductsHandler.bind(this);
-	}
-
 	componentDidUpdate(prevProps) {
 		if (prevProps.miniCartIsOpen !== this.props.miniCartIsOpen) {
 			this.props.isMiniCartOpen(this.props.miniCartIsOpen);
@@ -51,7 +45,6 @@ class App extends Component {
 						return <Skeleton />;
 					}
 
-					console.log(data);
 					return (
 						<>
 							<section>

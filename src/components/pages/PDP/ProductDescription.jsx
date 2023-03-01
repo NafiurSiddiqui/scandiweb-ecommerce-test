@@ -8,6 +8,7 @@ import { Navigate } from 'react-router-dom';
 import DisplayMessage from '../../Utilities/DisplayMessage';
 import Skeleton from '../../Layout/skeleton';
 import { GET_PRODUCTS_BY_ID } from '../../Utilities/query';
+import { getProductID } from '../../store/productsSlice';
 
 /**
  * @className - 'PDP' = product description
@@ -24,10 +25,6 @@ class ProductDescription extends Component {
 		};
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
-	}
-
-	componentDidMount() {
-		console.log('mounts on request');
 	}
 
 	//PARSE HTML
@@ -52,6 +49,10 @@ class ProductDescription extends Component {
 			: this.setState(null);
 	}
 
+	componentWillUnmount() {
+		this.props.getProductID('');
+	}
+
 	render() {
 		const { productID } = this.props;
 
@@ -65,7 +66,7 @@ class ProductDescription extends Component {
 						if (loading || !data) return <Skeleton />;
 
 						const product = data.product;
-
+						console.log(product);
 						let productObj = {
 							name: product.name,
 							attributes: attHandler(product.attributes),
@@ -161,4 +162,5 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(ProductDescription);
+const mapDispatchToProps = { getProductID };
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);

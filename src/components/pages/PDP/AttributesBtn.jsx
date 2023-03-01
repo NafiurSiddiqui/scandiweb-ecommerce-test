@@ -49,7 +49,7 @@ class AttributesBtn extends Component {
 
 		const { colorSwatch } = this.state;
 		const largeBtnGuard = item.length > 2;
-
+		console.log(colorSwatch);
 		let itemBackground = colorSwatch
 			? {
 					backgroundColor:
@@ -62,7 +62,7 @@ class AttributesBtn extends Component {
 							: item,
 					minWidth: miniCart ? '1.1rem' : '2.5rem',
 					border: 'none',
-					boxShadow: '0px 0px 3px 0px rgb(142 142 142 / 50%)',
+					boxShadow: '0px 0px 4px 2px rgb(142 142 142 / 50%) ',
 			  }
 			: !colorSwatch && itemIsChecked
 			? { backgroundColor: '#1D1F22', color: 'white' }
