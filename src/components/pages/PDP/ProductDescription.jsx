@@ -62,10 +62,15 @@ class ProductDescription extends Component {
 		const { productID } = this.props;
 
 		if (!productID) {
+			console.log('no id');
 			return <Navigate to={'/'} />;
 		} else {
 			return (
-				<Query query={GET_PRODUCTS_BY_ID} variables={{ productID: productID }}>
+				<Query
+					query={GET_PRODUCTS_BY_ID}
+					variables={{ productID: productID }}
+					fetchPolicy={'network-only'}
+				>
 					{({ error, loading, data }) => {
 						if (error) return <DisplayMessage error={error} />;
 						if (loading || !data) return <Skeleton />;

@@ -8,7 +8,6 @@ import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/userCurrency';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
 import CategoryCard from './CategoryCard';
-import productHandler, { attHandler } from '../../Utilities/ProductHandler';
 
 class Categories extends Component {
 	constructor(props) {
@@ -52,7 +51,7 @@ class Categories extends Component {
 					if (loading || !data) return <Skeleton />;
 
 					const products = data.category.products;
-					console.log(products);
+					// console.log(products);
 					const matchedUserPrice = userCurrency(
 						products,
 						selectedCurrency,
