@@ -19,12 +19,6 @@ class Categories extends Component {
 		this.formatQueryTerm = this.formatQueryTerm.bind(this);
 	}
 
-	componentDidMount() {
-		this.setState({
-			activePath: 'all',
-		});
-	}
-
 	formatQueryTerm(queryTerm) {
 		const { activePath } = this.state;
 
