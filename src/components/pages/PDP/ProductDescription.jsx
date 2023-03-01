@@ -174,3 +174,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { getProductID };
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);
+
+/**
+ * @fetchPolicy - caching leads to duplication of the attributes here.
+ */
