@@ -1,3 +1,11 @@
+/**
+ *
+ * @param {object} products
+ * @param {object} selectedCurrency
+ * @param {boolean} singleItem
+ * @returns
+ */
+
 export function userCurrency(products, selectedCurrency, singleItem = false) {
 	let currencies;
 	let userMatchedCurrency;

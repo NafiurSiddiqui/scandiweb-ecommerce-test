@@ -91,7 +91,6 @@ class Categories extends Component {
 
 export const mapStateToProps = (state) => {
 	return {
-		productIDState: state.category,
 		selectedCurrency: state.currency.selectedCurrency,
 		currentPath: state.path.currentPath,
 	};
