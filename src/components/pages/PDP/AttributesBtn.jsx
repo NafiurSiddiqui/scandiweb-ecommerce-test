@@ -49,7 +49,7 @@ class AttributesBtn extends Component {
 
 		const { colorSwatch } = this.state;
 		const largeBtnGuard = item.length > 2;
-		console.log(colorSwatch);
+
 		let itemBackground = colorSwatch
 			? {
 					backgroundColor:

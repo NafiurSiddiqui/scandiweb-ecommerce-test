@@ -55,7 +55,7 @@ class Header extends Component {
 												key={name}
 											>
 												<NavLink
-													to={`/${name}`}
+													to={name === 'ALL' ? '/' : `/${name}`}
 													onClick={(e) => getPage(e.target.pathname)}
 													className={(isActive) =>
 														this.setNavActiveRules(isActive, index, name)

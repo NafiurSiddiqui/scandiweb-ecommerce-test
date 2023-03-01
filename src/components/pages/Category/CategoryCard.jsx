@@ -3,7 +3,6 @@ import MiniCartIcon from '../../assets/MiniCartIcon';
 import { connect } from 'react-redux';
 import { getProductID } from '../../store/productsSlice';
 import { Link } from 'react-router-dom';
-import { userCurrency } from '../../Utilities/userCurrency';
 
 class CategoryCard extends Component {
 	constructor(props) {
@@ -30,8 +29,8 @@ class CategoryCard extends Component {
 			currencySymbol,
 			products,
 		} = this.props;
-		userCurrency();
-
+		// userCurrency();
+		// console.log(productID);
 		return (
 			<li className={'category-item'} key={index}>
 				<div className="category-item-wrapper">

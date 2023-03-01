@@ -52,8 +52,8 @@ export const GET_CURRENCIES = gql`
 `;
 
 export const GET_PRODUCTS_BY_ID = gql`
-	query ($productId: String!) {
-		product(id: $productId) {
+	query ($productID: String!) {
+		product(id: $productID) {
 			name
 			inStock
 			gallery

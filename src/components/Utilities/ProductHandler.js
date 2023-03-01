@@ -6,8 +6,6 @@
  * @returns
  */
 
-import { userCurrency } from './userCurrency';
-
 export const attHandler = (att) => {
 	//converted attributes
 	const attID = att?.map((item) => item.id);

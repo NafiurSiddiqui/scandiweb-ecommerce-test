@@ -22,9 +22,14 @@ class ProductDescription extends Component {
 		this.state = {
 			selectedImgSrc: '',
 			txtOverFlow: false,
+			products: [],
 		};
 		this.selectedImgSrcHandler = this.selectedImgSrcHandler.bind(this);
 		this.textOverFlowHandler = this.textOverFlowHandler.bind(this);
+	}
+
+	componentDidMount() {
+		console.log('mounts');
 	}
 
 	//PARSE HTML
@@ -60,7 +65,7 @@ class ProductDescription extends Component {
 			return <Navigate to={'/'} />;
 		} else {
 			return (
-				<Query query={GET_PRODUCTS_BY_ID} variables={{ productId: productID }}>
+				<Query query={GET_PRODUCTS_BY_ID} variables={{ productID: productID }}>
 					{({ error, loading, data }) => {
 						if (error) return <DisplayMessage error={error} />;
 						if (loading || !data) return <Skeleton />;

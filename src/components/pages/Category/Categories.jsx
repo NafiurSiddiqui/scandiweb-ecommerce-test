@@ -52,7 +52,7 @@ class Categories extends Component {
 					if (loading || !data) return <Skeleton />;
 
 					const products = data.category.products;
-
+					console.log(products);
 					const matchedUserPrice = userCurrency(
 						products,
 						selectedCurrency,
