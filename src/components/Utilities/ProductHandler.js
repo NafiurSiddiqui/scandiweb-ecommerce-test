@@ -1,5 +1,5 @@
 /**
- *
+ *@attItemHandler -
  * @param {obj} products
  * @returns
  */
