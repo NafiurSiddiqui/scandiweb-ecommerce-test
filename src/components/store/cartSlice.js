@@ -15,12 +15,6 @@ export const cartSlice = createSlice({
 	initialState,
 	reducers: {
 		addItemToCart: (state, action) => {
-			// const id = action.payload[0];
-			// const items = action.payload[1];
-			// const brand = action.payload[3];
-			// const gallery = action.payload[4];
-			// const prices = action.payload[5];
-			// const inStock = action.payload[6];
 			const id = action.payload.name;
 			const items = action.payload.attributes;
 			const brand = action.payload.brand;
@@ -29,9 +23,7 @@ export const cartSlice = createSlice({
 			const inStock = action.payload.inStock;
 
 			let newItemValues = [];
-			// console.log(action.payload);
-			// console.log(action.payload.name);
-			console.log(action.payload.attributes);
+
 			//Adding user selection to the attributes
 			items.forEach((item) => {
 				if (Array.isArray(item.values)) {
@@ -48,8 +40,6 @@ export const cartSlice = createSlice({
 				}
 			});
 
-			console.log(newItemValues);
-
 			let existingItem = state.cartItems.find(
 				(cartItem) =>
 					cartItem.name === id &&
@@ -57,14 +47,12 @@ export const cartSlice = createSlice({
 			);
 			//if item exists
 			if (existingItem) {
-				// existingItem['quantity'].quantity++;
-				// existingItem.attributes = items;
 				existingItem.quantity.quantity++;
 			} else {
 				let newCartItem = {
 					name: id,
 					attributes: newItemValues,
-					// attributes: items,
+
 					quantity: { quantity: 1 },
 					brand: brand,
 					gallery,
@@ -87,8 +75,6 @@ export const cartSlice = createSlice({
 					cartItem['name'] === id &&
 					JSON.stringify(cartItem['attributes']) === JSON.stringify(attributes)
 			);
-
-			// console.log(JSON.stringify(existingItem));
 
 			if (existingItem) {
 				existingItem.quantity.quantity++;
@@ -132,9 +118,8 @@ export const cartSlice = createSlice({
 			state.cartTotalTax = ((state.cartTotal / 100) * 21).toFixed(2);
 		},
 		cartQuantityHandler: (state) => {
-			// const items = state.cartItems.map((item) => item[2].quantity);
 			const items = state.cartItems.map((item) => item.quantity.quantity);
-			// console.log(items);
+
 			let newItems = items.reduce((acc, cur) => acc + cur, 0);
 			state.cartQuantity = newItems;
 		},

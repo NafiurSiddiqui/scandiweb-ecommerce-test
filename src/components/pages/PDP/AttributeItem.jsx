@@ -76,7 +76,6 @@ class AttributeItem extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productID: state.products.productID,
-		selectedProduct: state.products.selectedProduct,
 	};
 };
 

@@ -50,11 +50,8 @@ class CartItem extends Component {
 
 		if (prevPropQt !== quantity) {
 			this.setState({
-				// itemPrice: PDP[0].amount * quantity, //amoutn shoudl come from state now
 				quantity: quantity,
 			});
-
-			// this.props.cumulativePriceHandler(PDP[0].amount * quantity, itemIndex, true);
 			this.props.cartQuantityHandler();
 		}
 
@@ -90,7 +87,6 @@ class CartItem extends Component {
 
 		const { imageCount, attributes, gallery, quantity } = this.state;
 
-		// console.log(itemPrice);
 		let imageLength = gallery.length;
 
 		let btnGuardRight = {
@@ -163,7 +159,6 @@ class CartItem extends Component {
 const mapStateToProps = (state) => {
 	return {
 		productID: state.products.productID,
-		products: state.products.products,
 		selectedCurrency: state.currency.selectedCurrency,
 	};
 };
