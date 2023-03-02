@@ -18,6 +18,7 @@ Below is the explanations of how I approached to solve various problems I faced 
 - Sass
 - Redux-toolkit
 - GraphQL
+- Apollo-client
 
 ## Things that are challenging for this project
 
@@ -26,7 +27,7 @@ All of these challenges are tackled down without any third-party libs.
 - Finding and rendering content from deeply nested data structure.
 - Maintaining dynamicity of the application.
 - Implementing heavy algorithms required to achieve certain conditions and functionality.
--
+- and more.
 
 ## Advance proejct consideration
 
