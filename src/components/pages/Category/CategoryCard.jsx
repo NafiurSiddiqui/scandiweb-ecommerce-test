@@ -30,6 +30,7 @@ class CategoryCard extends Component {
 			products,
 		} = this.props;
 
+		console.log(productID);
 		return (
 			<li className={'category-item'} key={index}>
 				<div className="category-item-wrapper">
@@ -75,7 +76,8 @@ class CategoryCard extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		protductID: state.products,
+		// protductID: state.products,
+		// productID: state.products,
 	};
 };
 

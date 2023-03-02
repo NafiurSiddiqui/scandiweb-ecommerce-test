@@ -12,13 +12,13 @@ const persistConfig = {
 };
 
 const persistedCart = persistReducer(persistConfig, cartSliceReducer);
-
 const persistedCurrency = persistReducer(persistConfig, currencySliceReducer);
+const persistedProduct = persistReducer(persistConfig, productsSliceReducer);
 
 const store = configureStore({
 	reducer: {
 		currency: persistedCurrency,
-		products: productsSliceReducer,
+		products: persistedProduct,
 		cart: persistedCart,
 		path: pathSliceReducers,
 	},

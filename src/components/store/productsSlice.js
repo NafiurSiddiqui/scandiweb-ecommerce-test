@@ -9,9 +9,9 @@ export const productsSlice = createSlice({
 	name: 'products',
 	initialState,
 	reducers: {
-		setProducts: (state, action) => {
-			state.products = action.payload;
-		},
+		// setProducts: (state, action) => {
+		// 	state.products = action.payload;
+		// },
 		getProductID: (state, action) => {
 			state.productID = action.payload;
 		},
