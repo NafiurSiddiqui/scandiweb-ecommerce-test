@@ -129,12 +129,8 @@ class DescriptionCard extends Component {
 				}}
 			>
 				<div className={`${className}__headers`}>
-					<h2 style={cartPage ? { fontSize: '1.5rem', fontWeight: 600 } : {}}>
-						{brand}
-					</h2>
-					<h3 style={cartPage ? { fontSize: '1.2rem', fontWeight: 400 } : {}}>
-						{name}
-					</h3>
+					<h2 style={cartPage ? { fontSize: '1.5rem' } : {}}>{brand}</h2>
+					<h3 style={cartPage ? { fontSize: '1.2rem' } : {}}>{name}</h3>
 				</div>
 				{items ? (
 					items.map((item, itemIndex) => {

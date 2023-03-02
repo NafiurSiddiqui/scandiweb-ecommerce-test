@@ -40,9 +40,12 @@ class AttributeItem extends Component {
 				<li key={attHeader} className={`${className}__attribution`}>
 					<h4
 						className={`${className}__attribution-header`}
-						style={{ fontSize: cartPage ? '0.853rem' : '0.7rem' }}
+						style={{
+							fontSize: cartPage ? '1.125rem' : '0.835rem',
+							fontWeight: cartPage ? '700' : '400',
+						}}
 					>
-						{attHeader?.toUpperCase()}:
+						{attHeader}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
 						{attributesItem ? (

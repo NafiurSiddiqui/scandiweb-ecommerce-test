@@ -12,6 +12,10 @@
 		margin: 1rem 0;
 	}
 
+	h3 {
+		margin-top: 0.8rem;
+	}
+
 	&-image {
 		@include flex(center, null, null);
 
