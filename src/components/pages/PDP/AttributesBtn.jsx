@@ -78,7 +78,7 @@ class AttributesBtn extends Component {
 				style={{
 					...itemBackground,
 					...defaultColorChecked,
-					fontSize: miniCart && !cartPage ? '0.75rem' : '',
+					fontSize: miniCart && !cartPage ? '0.875rem' : '',
 					minWidth:
 						miniCart && !cartPage
 							? largeBtnGuard

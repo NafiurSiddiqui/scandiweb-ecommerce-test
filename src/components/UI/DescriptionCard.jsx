@@ -125,12 +125,26 @@ class DescriptionCard extends Component {
 			<article
 				className={className}
 				style={{
-					lineHeight: miniCart && !cartPage ? '1.1rem' : '1.5rem',
+					lineHeight: miniCart && !cartPage ? '1.1rem' : '1.8rem',
 				}}
 			>
 				<div className={`${className}__headers`}>
-					<h2 style={cartPage ? { fontSize: '1.5rem' } : {}}>{brand}</h2>
-					<h3 style={cartPage ? { fontSize: '1.2rem' } : {}}>{name}</h3>
+					<h2
+						style={{
+							fontSize: !cartPage && miniCart ? '1rem' : '1.875rem',
+							fontWeight: !cartPage && miniCart ? '300' : '600',
+						}}
+					>
+						{brand}
+					</h2>
+					<h3
+						style={{
+							fontSize: !cartPage && miniCart ? '1rem' : '1.875rem',
+							fontWeight: !cartPage && miniCart ? '300' : '400',
+						}}
+					>
+						{name}
+					</h3>
 				</div>
 				{items ? (
 					items.map((item, itemIndex) => {
@@ -155,7 +169,10 @@ class DescriptionCard extends Component {
 					{priceHeading ? <h4 className="pd__price-header">PRICE:</h4> : null}
 					<span
 						className="pd__price-price"
-						style={{ fontSize: miniCart && !cartPage ? '1rem' : '1.2rem' }}
+						style={{
+							fontSize: miniCart && !cartPage ? '1rem' : '1.5rem',
+							fontWeight: miniCart && !cartPage ? '500' : '700',
+						}}
 					>
 						<span className="pd__price-price__symbol">
 							{itemCurrency?.symbol}

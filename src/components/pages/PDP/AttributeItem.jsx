@@ -35,17 +35,29 @@ class AttributeItem extends Component {
 
 		const { attributesItem, attHeader } = this.state;
 
+		const fontStyling = cartPage
+			? {
+					fontSize: '1.125rem',
+					fontWeight: '700',
+			  }
+			: {
+					fontSize: '0.835rem',
+					fontWeight: '300',
+			  };
+
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>
 				<li key={attHeader} className={`${className}__attribution`}>
 					<h4
 						className={`${className}__attribution-header`}
 						style={{
-							fontSize: cartPage ? '1.125rem' : '0.835rem',
-							fontWeight: cartPage ? '700' : '400',
+							// fontSize: cartPage ? '1.125rem' : '0.835rem',
+							// fontSize: cartPage && !miniCart ? '1.875rem' : '1rem',
+							// fontWeight: cartPage ? '700' : '400',
+							...fontStyling,
 						}}
 					>
-						{attHeader}:
+						{cartPage ? attHeader.toUpperCase() : attHeader}:
 					</h4>
 					<ul className={`pd__attribution__items`}>
 						{attributesItem ? (

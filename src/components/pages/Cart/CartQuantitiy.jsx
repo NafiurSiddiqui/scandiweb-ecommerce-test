@@ -31,6 +31,9 @@ export default class CartQuantitiy extends Component {
 				<div
 					className="cart-quantity-container__actions"
 					aria-roledescription="Quantity button container"
+					style={{
+						minHeight: cartPage ? '14rem' : '11rem',
+					}}
 				>
 					<div className="cart-quantity-container__actions-btn">
 						<span
