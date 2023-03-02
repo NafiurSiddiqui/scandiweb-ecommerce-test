@@ -8,6 +8,7 @@ import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/userCurrency';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
 import CategoryCard from './CategoryCard';
+import { getProductID } from '../../store/productsSlice';
 
 class Categories extends Component {
 	constructor(props) {
@@ -30,7 +31,7 @@ class Categories extends Component {
 	}
 
 	render() {
-		const { selectedCurrency, currentPath } = this.props;
+		const { selectedCurrency, currentPath, getProductID } = this.props;
 
 		const queryTerm = currentPath.replace('/', '');
 
@@ -77,6 +78,7 @@ class Categories extends Component {
 											inStock={product.stock}
 											productID={p.id}
 											products={products}
+											getProductID={getProductID}
 										/>
 									);
 								})}
@@ -96,4 +98,4 @@ export const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(Categories);
+export default connect(mapStateToProps, { getProductID })(Categories);

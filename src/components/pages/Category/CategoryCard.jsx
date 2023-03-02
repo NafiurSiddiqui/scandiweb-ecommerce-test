@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import MiniCartIcon from '../../assets/MiniCartIcon';
-import { connect } from 'react-redux';
-import { getProductID } from '../../store/productsSlice';
 import { Link } from 'react-router-dom';
 
-class CategoryCard extends Component {
+export default class CategoryCard extends Component {
 	constructor(props) {
 		super(props);
 
@@ -30,7 +28,6 @@ class CategoryCard extends Component {
 			products,
 		} = this.props;
 
-		console.log(productID);
 		return (
 			<li className={'category-item'} key={index}>
 				<div className="category-item-wrapper">
@@ -73,14 +70,3 @@ class CategoryCard extends Component {
 		);
 	}
 }
-
-const mapStateToProps = (state) => {
-	return {
-		// protductID: state.products,
-		// productID: state.products,
-	};
-};
-
-const mapDispatchToProps = { getProductID };
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryCard);
