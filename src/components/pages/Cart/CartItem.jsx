@@ -101,8 +101,19 @@ class CartItem extends Component {
 			visibility: imageLength === 1 ? 'hidden' : 'visible',
 		};
 
+		const itemBorder = {
+			borderTop: '1px solid silver',
+			borderBottom: '1px solid silver',
+			borderLeft: 'none',
+			borderRight: 'none',
+			padding: '0.8rem 0',
+		};
+
 		return (
-			<li className="cart-items__item">
+			<li
+				className="cart-items__item"
+				style={cartPage ? { ...itemBorder } : {}}
+			>
 				<DescriptionCard
 					className="cart-items__pd"
 					product={cartItem}

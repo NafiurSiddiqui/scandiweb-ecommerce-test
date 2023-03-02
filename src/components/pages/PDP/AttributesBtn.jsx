@@ -86,10 +86,14 @@ class AttributesBtn extends Component {
 								: '1.5rem'
 							: colorSwatch
 							? '1.5rem'
-							: '2.5rem',
+							: '3.938rem',
 					padding: miniCart && !cartPage ? '0.2rem' : '0.4rem',
 					cursor: miniCart ? 'not-allowed' : 'pointer',
-					minHeight: colorSwatch ? '1.4rem' : '',
+					minHeight: colorSwatch
+						? !cartPage && miniCart
+							? '1rem'
+							: '1.4rem'
+						: '1.4rem',
 				}}
 			>
 				{colorSwatch ? '' : item}
