@@ -23,7 +23,6 @@ class AttributeItem extends Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.attributesItem !== this.props.attributesItem) {
-			console.log(this.props.attributesItem);
 			this.setState({
 				attributesItem: this.props.attributesItem,
 			});

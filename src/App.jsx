@@ -66,6 +66,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { getProductID, setProducts };
+const mapDispatchToProps = { getProductID };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

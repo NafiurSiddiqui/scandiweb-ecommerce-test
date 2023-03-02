@@ -24,10 +24,9 @@ Below is the explanations of how I approached to solve various problems I faced 
 All of these challenges are tackled down without any third-party libs.
 
 - Finding and rendering content from deeply nested data structure.
-- parsing HTML string to pure DOM content
-- parsing any HTML entity to pure DOM text content.
 - Maintaining dynamicity of the application.
 - Implementing heavy algorithms required to achieve certain conditions and functionality.
+-
 
 ## Advance proejct consideration
 
