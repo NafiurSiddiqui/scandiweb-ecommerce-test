@@ -13,15 +13,9 @@ class AttributesBtn extends Component {
 	componentDidMount() {
 		const { attHeader } = this.props;
 
-		if (attHeader === 'Color') {
-			this.setState({
-				colorSwatch: true,
-			});
-		} else {
-			this.setState({
-				colorSwatch: false,
-			});
-		}
+		this.setState({
+			colorSwatch: attHeader === 'Color' ? true : false,
+		});
 	}
 
 	btnCheckHandler(itemIndex, btnIndex) {
@@ -31,7 +25,6 @@ class AttributesBtn extends Component {
 		if (miniCart === true) {
 			return;
 		}
-
 		//update item isChecked based on these indexes
 		updateItems(itemIndex, btnIndex);
 	}
