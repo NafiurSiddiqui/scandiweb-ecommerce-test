@@ -16,15 +16,18 @@
 		@include flex(center, null, null);
 
 		&-gallery {
-			max-width: 14%;
-
+			// max-width: 14%;
+			// width: 35%;
 			&-item {
-				height: 5.5rem;
+				// height: 5.5rem;
 			}
 		}
 
 		&-hero {
-			width: 100%;
+			// width: 100%;
+			// width: 75%;
+			margin-left: 1rem;
+			width: 73%;
 			min-width: 10rem;
 			object-fit: contain;
 		}
