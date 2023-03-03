@@ -28,6 +28,10 @@ export default class CategoryCard extends Component {
 			products,
 		} = this.props;
 
+		const outOfStockStyle = {
+			color: inStock ? '' : '#8D8F9A',
+		};
+
 		return (
 			<li className={'category-item'} key={index}>
 				<div className="category-item-wrapper">
@@ -59,8 +63,13 @@ export default class CategoryCard extends Component {
 					</div>
 
 					<div className="category-item__meta-container">
-						<h2>{heading}</h2>
-						<p>
+						<h2 style={{ ...outOfStockStyle }}>{heading}</h2>
+						<p
+							style={{
+								fontWeight: inStock ? '600' : '100',
+								...outOfStockStyle,
+							}}
+						>
 							<span>{currencySymbol ? currencySymbol : '$'}</span>
 							{price}
 						</p>
