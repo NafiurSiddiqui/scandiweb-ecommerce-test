@@ -51,15 +51,19 @@ class AttributeItem extends Component {
 					<h4
 						className={`${className}__attribution-header`}
 						style={{
-							// fontSize: cartPage ? '1.125rem' : '0.835rem',
-							// fontSize: cartPage && !miniCart ? '1.875rem' : '1rem',
-							// fontWeight: cartPage ? '700' : '400',
 							...fontStyling,
 						}}
 					>
 						{cartPage ? attHeader.toUpperCase() : attHeader}:
 					</h4>
-					<ul className={`pd__attribution__items`}>
+					<ul
+						className={`pd__attribution__items`}
+						style={{
+							width: cartPage ? '40%' : '100%',
+							justifyContent:
+								cartPage && attHeader === 'Color' ? 'space-between' : '',
+						}}
+					>
 						{attributesItem ? (
 							attributesItem?.map((item, btnIndex) => {
 								return (

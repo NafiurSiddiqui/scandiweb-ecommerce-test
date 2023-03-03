@@ -79,21 +79,31 @@ class AttributesBtn extends Component {
 					...itemBackground,
 					...defaultColorChecked,
 					fontSize: miniCart && !cartPage ? '0.875rem' : '',
-					minWidth:
-						miniCart && !cartPage
-							? largeBtnGuard
-								? '1.1rem'
-								: '1.5rem'
-							: colorSwatch
-							? '1.5rem'
-							: '3.938rem',
+					// minWidth:
+					// 	miniCart && !cartPage
+					// 		? largeBtnGuard
+					// 			? '1.1rem'
+					// 			: '1.5rem'
+					// 		: colorSwatch
+					// 		? '1.5rem'
+					// 		: '3.938rem',
+					minWidth: colorSwatch
+						? cartPage
+							? '2rem'
+							: '1rem'
+						: miniCart && !cartPage
+						? '1.5rem'
+						: '3.983rem',
+
 					padding: miniCart && !cartPage ? '0.2rem' : '0.4rem',
 					cursor: miniCart ? 'not-allowed' : 'pointer',
 					minHeight: colorSwatch
-						? !cartPage && miniCart
-							? '1rem'
-							: '1.4rem'
-						: '1.4rem',
+						? cartPage
+							? '2rem'
+							: '1rem'
+						: miniCart && !cartPage
+						? '1rem'
+						: '2.813rem',
 				}}
 			>
 				{colorSwatch ? '' : item}
