@@ -88,7 +88,7 @@ class AttributesBtn extends Component {
 					// 		? '1.5rem'
 					// 		: '3.938rem',
 					minWidth: colorSwatch
-						? cartPage
+						? cartPage || (!cartPage && !miniCart)
 							? '2rem'
 							: '1rem'
 						: miniCart && !cartPage
@@ -98,7 +98,7 @@ class AttributesBtn extends Component {
 					padding: miniCart && !cartPage ? '0.2rem' : '0.4rem',
 					cursor: miniCart ? 'not-allowed' : 'pointer',
 					minHeight: colorSwatch
-						? cartPage
+						? cartPage || (!cartPage && !miniCart)
 							? '2rem'
 							: '1rem'
 						: miniCart && !cartPage

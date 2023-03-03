@@ -34,8 +34,14 @@ class AttributeItem extends Component {
 			this.props;
 
 		const { attributesItem, attHeader } = this.state;
+		const itemLength = attributesItem.length < 4;
 
 		const fontStyling = cartPage
+			? {
+					fontSize: '1.125rem',
+					fontWeight: '700',
+			  }
+			: !cartPage && !miniCart
 			? {
 					fontSize: '1.125rem',
 					fontWeight: '700',
@@ -45,6 +51,8 @@ class AttributeItem extends Component {
 					fontWeight: '300',
 			  };
 
+		const colorSwatch = attHeader === 'Color';
+		console.log(colorSwatch);
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>
 				<li key={attHeader} className={`${className}__attribution`}>
@@ -59,9 +67,16 @@ class AttributeItem extends Component {
 					<ul
 						className={`pd__attribution__items`}
 						style={{
-							width: cartPage ? '12rem' : '100%',
+							width:
+								cartPage || (!cartPage && !miniCart && colorSwatch)
+									? '12rem'
+									: !cartPage && !miniCart && itemLength && !colorSwatch
+									? '9rem'
+									: '100%',
 							justifyContent:
-								cartPage && attHeader === 'Color' ? 'space-between' : '',
+								(cartPage && colorSwatch) || (!cartPage && !miniCart)
+									? 'space-between'
+									: '',
 						}}
 					>
 						{attributesItem ? (
