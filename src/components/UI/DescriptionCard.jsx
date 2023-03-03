@@ -125,7 +125,7 @@ class DescriptionCard extends Component {
 			<article
 				className={className}
 				style={{
-					lineHeight: miniCart && !cartPage ? '1.1rem' : '1.8rem',
+					lineHeight: miniCart && !cartPage ? '1.1rem' : '2rem',
 				}}
 			>
 				<div className={`${className}__headers`}>

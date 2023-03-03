@@ -52,7 +52,7 @@ class AttributeItem extends Component {
 			  };
 
 		const colorSwatch = attHeader === 'Color';
-		console.log(colorSwatch);
+
 		return (
 			<ul key={itemIndex} className={`${className}__attributions`}>
 				<li key={attHeader} className={`${className}__attribution`}>
