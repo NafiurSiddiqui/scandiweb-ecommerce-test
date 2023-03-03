@@ -16,8 +16,14 @@
 			font-weight: bold;
 		}
 
-		&__pricing.price-info {
-			margin: 0.4rem 0 0.8rem 0;
+		&__pricing {
+			&.price-wrapper {
+				margin-top: 2rem;
+			}
+			&.price-info {
+				margin: 0.4rem 0 0.8rem 0;
+				width: 8rem;
+			}
 		}
 	}
 

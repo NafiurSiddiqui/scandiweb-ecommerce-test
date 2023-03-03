@@ -11,7 +11,7 @@ class Cart extends Component {
 
 		return (
 			<ContentWrapper>
-				<DisplayHeader>Cart</DisplayHeader>
+				<DisplayHeader>CART</DisplayHeader>
 				{cartItems.length === 0 ? (
 					<DisplayMessage />
 				) : (

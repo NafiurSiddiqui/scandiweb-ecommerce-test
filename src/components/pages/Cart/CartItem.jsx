@@ -102,8 +102,8 @@ class CartItem extends Component {
 		};
 
 		const itemBorder = {
-			borderTop: '1px solid silver',
-			borderBottom: '1px solid silver',
+			borderTop: '1.5px solid #E5E5E5',
+			borderBottom: '1.5px solid #E5E5E5',
 			borderLeft: 'none',
 			borderRight: 'none',
 			padding: '0.8rem 0',

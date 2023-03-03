@@ -59,7 +59,7 @@ class AttributeItem extends Component {
 					<ul
 						className={`pd__attribution__items`}
 						style={{
-							width: cartPage ? '40%' : '100%',
+							width: cartPage ? '12rem' : '100%',
 							justifyContent:
 								cartPage && attHeader === 'Color' ? 'space-between' : '',
 						}}
