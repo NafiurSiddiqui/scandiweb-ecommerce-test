@@ -72,9 +72,12 @@ class AttributeItem extends Component {
 									? '12rem'
 									: !cartPage && !miniCart && itemLength && !colorSwatch
 									? '9rem'
+									: miniCart && colorSwatch
+									? '7rem'
 									: '100%',
 							justifyContent:
-								(cartPage && colorSwatch) || (!cartPage && !miniCart)
+								((cartPage || miniCart) && colorSwatch) ||
+								(!cartPage && !miniCart)
 									? 'space-between'
 									: '',
 						}}

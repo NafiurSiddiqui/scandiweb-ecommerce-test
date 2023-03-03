@@ -171,7 +171,6 @@ class DescriptionCard extends Component {
 						className="pd__price-price"
 						style={{
 							fontSize: miniCart && !cartPage ? '1rem' : '1.5rem',
-							// fontWeight: miniCart && !cartPage ? '500' : '700',
 						}}
 					>
 						<span className="pd__price-price__symbol">
