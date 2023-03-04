@@ -5,8 +5,7 @@ import {
 	cartQuantityHandler,
 	setMiniCartIsOpen,
 } from '../store/cartSlice';
-import productHandler, { cartItemHandler } from '../Utilities/ProductHandler';
-import ProductHandler from '../Utilities/ProductHandler';
+import { cartItemHandler } from '../Utilities/ProductHandler';
 
 class MiniCartIcon extends Component {
 	constructor(props) {

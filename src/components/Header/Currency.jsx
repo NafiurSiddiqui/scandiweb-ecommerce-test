@@ -1,6 +1,7 @@
 import { Query } from '@apollo/client/react/components';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import DownArrow from '../assets/DownArrow';
 import Skeleton from '../Layout/skeleton';
 import { setCurrencyIsOpen, setSelectedCurrency } from '../store/currencySlice';
 import DisplayMessage from '../Utilities/DisplayMessage';
@@ -63,13 +64,15 @@ class Currency extends Component {
 										{selectedCurrency !== null ? selectedCurrency?.symbol : '$'}
 									</span>
 
-									<span
+									{/* <span
 										className={`header-currency__symbols__dropdown-symbol ${
 											currencyIsOpen ? 'currencyOpen' : ''
 										}`}
-									>
-										&#8964;
-									</span>
+									> */}
+									{/* &#8964; */}
+									{/* </span> */}
+
+									<DownArrow />
 								</div>
 							</div>
 							<ul

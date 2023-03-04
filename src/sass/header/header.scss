@@ -4,7 +4,7 @@ $itemHover: #e2e2e2;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 10vh;
+	height: 6rem;
 
 	&-navigation {
 		width: 20%;
@@ -20,7 +20,7 @@ $itemHover: #e2e2e2;
 
 				> a {
 					transition: all 0.19s ease-in-out;
-					padding-bottom: 1.3rem;
+					padding-bottom: 1.4rem;
 					&:hover {
 						color: #5ece7b;
 						border-bottom: 2px solid #5ece7b;
