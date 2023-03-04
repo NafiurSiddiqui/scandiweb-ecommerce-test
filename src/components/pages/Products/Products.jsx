@@ -7,10 +7,10 @@ import Skeleton from '../../Layout/skeleton';
 import ContentWrapper from '../../Layout/ContentWrapper';
 import { userCurrency } from '../../Utilities/userCurrency';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../Utilities/query';
-import CategoryCard from './CategoryCard';
+import ProductCard from './ProductCard';
 import { getProductID } from '../../store/productsSlice';
 
-class Categories extends Component {
+class Products extends Component {
 	constructor(props) {
 		super(props);
 
@@ -69,7 +69,7 @@ class Categories extends Component {
 									};
 
 									return (
-										<CategoryCard
+										<ProductCard
 											key={product.id}
 											image={product.image}
 											heading={`${product.brand} ${product.name}`}
@@ -98,4 +98,4 @@ export const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { getProductID })(Categories);
+export default connect(mapStateToProps, { getProductID })(Products);

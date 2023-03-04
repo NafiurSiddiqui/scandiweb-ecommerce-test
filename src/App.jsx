@@ -7,10 +7,10 @@ import Header from './components/Layout/Header';
 import Skeleton from './components/Layout/skeleton';
 import Cart from './components/pages/Cart/Cart';
 import MiniCart from './components/pages/Cart/MiniCart';
-import Categories from './components/pages/Category/Categories';
+import Products from './components/pages/Products/Products';
 import { GET_ALL_CATEGORIES } from './components/Utilities/query';
 import ProductDescription from './components/pages/PDP/ProductDescription';
-import { getProductID, setProducts } from './components/store/productsSlice';
+import { getProductID } from './components/store/productsSlice';
 import DisplayMessage from './components/Utilities/DisplayMessage';
 
 class App extends Component {
@@ -42,7 +42,7 @@ class App extends Component {
 									tabIndex={miniCartIsOpen ? '-1' : '0'}
 								>
 									<Routes>
-										<Route path="*" element={<Categories />} />
+										<Route path="*" element={<Products />} />
 										<Route
 											path="/ProductDescription"
 											element={<ProductDescription />}

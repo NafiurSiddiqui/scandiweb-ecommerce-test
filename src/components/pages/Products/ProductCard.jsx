@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MiniCartIcon from '../../assets/MiniCartIcon';
 import { Link } from 'react-router-dom';
 
-export default class CategoryCard extends Component {
+export default class ProductCard extends Component {
 	constructor(props) {
 		super(props);
 
