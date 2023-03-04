@@ -7,7 +7,6 @@ import { setCurrencyIsOpen, setSelectedCurrency } from '../store/currencySlice';
 import DisplayMessage from '../Utilities/DisplayMessage';
 import OutsideClickGuard from '../Utilities/OutsideClickGuard';
 import { GET_CURRENCIES } from '../Utilities/query';
-import { userCurrency } from '../Utilities/userCurrency';
 
 class Currency extends Component {
 	constructor() {
@@ -63,14 +62,6 @@ class Currency extends Component {
 									<span className="header-currency__symbols__currency-symbol">
 										{selectedCurrency !== null ? selectedCurrency?.symbol : '$'}
 									</span>
-
-									{/* <span
-										className={`header-currency__symbols__dropdown-symbol ${
-											currencyIsOpen ? 'currencyOpen' : ''
-										}`}
-									> */}
-									{/* &#8964; */}
-									{/* </span> */}
 
 									<DownArrow currencyIsOpen={currencyIsOpen} />
 								</div>

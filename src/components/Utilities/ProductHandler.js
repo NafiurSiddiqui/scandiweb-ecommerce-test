@@ -48,6 +48,7 @@ export function cartItemHandler(products, productID, single) {
 	let PDP;
 
 	if (!single) {
+		console.log(products);
 		// filtering out the product
 		let filteredProduct = products?.filter((item) => item?.id === productID);
 		// return PDP as an OBJECT
@@ -70,6 +71,7 @@ export function cartItemHandler(products, productID, single) {
 		});
 		// return PDP;
 	} else {
+		console.log(products);
 		PDP = products?.map((item) => {
 			return {
 				brand: item.brand,
