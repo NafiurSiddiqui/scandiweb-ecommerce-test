@@ -1,8 +1,11 @@
 .category-item {
 	cursor: pointer;
 	height: 29rem;
-	border-radius: 0.2em;
-
+	// border-radius: 0.2em;
+	transition: box-shadow 0.2s ease-in-out;
+	&:hover {
+		box-shadow: 0px 1px 19px 3px #39374838;
+	}
 	&-wrapper {
 		height: 100%;
 	}
@@ -10,7 +13,10 @@
 	&__image-wrapper {
 		height: 80%;
 		position: relative;
-
+		padding: 1rem;
+		// &__image {
+		// 	border: 1px solid orange; //! DELETE THIS
+		// }
 		&__cart {
 			@include transition(0.1);
 			visibility: hidden;
@@ -38,7 +44,7 @@
 		&-outOfStock {
 			width: 100%;
 			height: 100%;
-			background-color: rgba(192, 192, 192, 0.363);
+			// background-color: rgba(192, 192, 192, 0.363);
 			position: absolute;
 			top: 0;
 			left: 0;
