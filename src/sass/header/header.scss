@@ -69,11 +69,6 @@ $itemHover: #e2e2e2;
 			&:hover {
 				background-color: $itemHover;
 			}
-
-			&__dropdown-symbol {
-				position: relative;
-				top: -2px;
-			}
 		}
 
 		&__currency-items {
@@ -144,7 +139,6 @@ $itemHover: #e2e2e2;
 //for currency > dropdown symbol rotation
 .currencyOpen {
 	transform: rotate(180deg);
-	top: 0.5rem;
 }
 
 //for active currency

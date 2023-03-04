@@ -72,7 +72,7 @@ class Currency extends Component {
 									{/* &#8964; */}
 									{/* </span> */}
 
-									<DownArrow />
+									<DownArrow currencyIsOpen={currencyIsOpen} />
 								</div>
 							</div>
 							<ul

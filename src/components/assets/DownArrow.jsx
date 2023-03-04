@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 export default class DownArrow extends Component {
 	render() {
+		const { currencyIsOpen } = this.props;
+
 		return (
 			<svg
 				width="8"
@@ -9,6 +11,9 @@ export default class DownArrow extends Component {
 				viewBox="0 0 8 4"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
+				className={`header-currency__symbols__dropdown-symbol ${
+					currencyIsOpen ? 'currencyOpen' : ''
+				}`}
 			>
 				<path
 					d="M1 0.5L4 3.5L7 0.5"
