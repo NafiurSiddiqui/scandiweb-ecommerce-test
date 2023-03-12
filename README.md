@@ -2,6 +2,12 @@
 
 This is an assignment project for a junior React dev role in Scandiweb.
 
+## ⚠️ Notes for the Scandi devs 👋
+
+A feedback was provided to take care of the dangersouslySet innerHTML. By the time I polished the assignment based on the feedback, I did not quite understand where should I look into to take care of the issue. I generally sanitize user Input from the backend with PHP. During working on another project I found the useCase of sanitization in the client-side. 
+
+With this said, I probably would go and change the `product description`'s description to `<div dangerouslySetInnerHTML={_html: content }>` or use other libs for that. Plz correct me if I am wrong since, you know how it is, always learning. 🙂
+
 ## My takes
 
 Below is the explanations of how I approached to solve various problems I faced during the development phasee.
